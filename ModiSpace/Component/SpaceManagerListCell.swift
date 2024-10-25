@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SpaceManagerListCell: View {
    
-    let profileImage = UIImage(resource: .test)
+    let profileImage = UIImage(resource: .temp)
     let managerName = "끼얏호우"
     let email = "huhuhoho@example.com"
     

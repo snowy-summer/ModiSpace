@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WorkSpaceCell: View {
     
-    let image = UIImage(resource: .test)
+    let image = UIImage(resource: .temp)
     let titleText = "test_ios Study"
     let dateText = "24. 10. 25"
     var selected = true
