@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6BA79EC62CCB6CAE00FB1310 /* WorkSpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */; };
+		6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */; };
+		6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */; };
+		6BA79ECC2CCB7BA700FB1310 /* SpaceManagerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79ECB2CCB7BA700FB1310 /* SpaceManagerListCell.swift */; };
 		6BD3975D2CCA819500F7097D /* ModiSpaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */; };
 		6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3975E2CCA819500F7097D /* ContentView.swift */; };
 		6BD397612CCA819700F7097D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BD397602CCA819700F7097D /* Assets.xcassets */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceCell.swift; sourceTree = "<group>"; };
+		6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCoinCell.swift; sourceTree = "<group>"; };
+		6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationCell.swift; sourceTree = "<group>"; };
+		6BA79ECB2CCB7BA700FB1310 /* SpaceManagerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceManagerListCell.swift; sourceTree = "<group>"; };
 		6BD397592CCA819500F7097D /* ModiSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModiSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModiSpaceApp.swift; sourceTree = "<group>"; };
 		6BD3975E2CCA819500F7097D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -39,6 +47,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6BA79EC42CCB6C8200FB1310 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */,
+				6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */,
+				6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */,
+				6BA79ECB2CCB7BA700FB1310 /* SpaceManagerListCell.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		6BD397502CCA819500F7097D = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +81,7 @@
 			children = (
 				6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */,
 				6BD3975E2CCA819500F7097D /* ContentView.swift */,
+				6BA79EC42CCB6C8200FB1310 /* Component */,
 				6BD397702CCA8D0A00F7097D /* Modifier */,
 				6BD3976D2CCA897800F7097D /* Resource */,
 				6BD397622CCA819700F7097D /* Preview Content */,
@@ -165,8 +185,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BA79ECC2CCB7BA700FB1310 /* SpaceManagerListCell.swift in Sources */,
+				6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */,
+				6BA79EC62CCB6CAE00FB1310 /* WorkSpaceCell.swift in Sources */,
 				6BD397722CCA8D2500F7097D /* CustomFontModifier.swift in Sources */,
 				6BD3976F2CCA89CE00F7097D /* FontType.swift in Sources */,
+				6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */,
 				6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */,
 				6BD3975D2CCA819500F7097D /* ModiSpaceApp.swift in Sources */,
 			);

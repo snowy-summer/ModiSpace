@@ -15,6 +15,14 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
                 .customFont(.body)
+            
+            List() {
+                WorkSpaceCell()
+                StoreCoinCell()
+                StoreInformationCell()
+                SpaceManagerListCell()
+            }
+            .listStyle(.plain)
         }
         .padding()
     }
