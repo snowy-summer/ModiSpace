@@ -18,6 +18,9 @@ struct ContentView: View {
             
             List() {
                 WorkSpaceCell()
+                StoreCoinCell()
+                StoreInformationCell()
+                SpaceManagerListCell()
             }
             .listStyle(.plain)
         }
