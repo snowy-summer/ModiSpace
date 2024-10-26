@@ -19,6 +19,7 @@
 		6BD3976F2CCA89CE00F7097D /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3976E2CCA89CE00F7097D /* FontType.swift */; };
 		6BD397722CCA8D2500F7097D /* CustomFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD397712CCA8D2500F7097D /* CustomFontModifier.swift */; };
 		72CA3E5F2CCCE169002FE5C4 /* ProfileNickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E5E2CCCE169002FE5C4 /* ProfileNickView.swift */; };
+		72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */; };
 		AA54FCE22CCCB81D00D09293 /* endTextEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FCE12CCCB81D00D09293 /* endTextEditing.swift */; };
 		AA54FCE42CCCB83600D09293 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FCE32CCCB83600D09293 /* AlertCell.swift */; };
 		AA54FCE62CCCB84700D09293 /* InputFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FCE52CCCB84700D09293 /* InputFieldCell.swift */; };
@@ -60,6 +61,7 @@
 		6BD3976E2CCA89CE00F7097D /* FontType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontType.swift; sourceTree = "<group>"; };
 		6BD397712CCA8D2500F7097D /* CustomFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontModifier.swift; sourceTree = "<group>"; };
 		72CA3E5E2CCCE169002FE5C4 /* ProfileNickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNickView.swift; sourceTree = "<group>"; };
+		72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListCell.swift; sourceTree = "<group>"; };
 		AA54FCE12CCCB81D00D09293 /* endTextEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endTextEditing.swift; sourceTree = "<group>"; };
 		AA54FCE32CCCB83600D09293 /* AlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		AA54FCE52CCCB84700D09293 /* InputFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldCell.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */,
 				6BA79ECB2CCB7BA700FB1310 /* SpaceManagerListCell.swift */,
 				72CA3E5E2CCCE169002FE5C4 /* ProfileNickView.swift */,
+				72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				AA54FCF52CCCB91300D09293 /* SettingChannelHeaderViewCell.swift in Sources */,
 				AA54FD0C2CCCBA2200D09293 /* PlusButtonCell.swift in Sources */,
 				AA54FCFA2CCCB96C00D09293 /* RegisterChannelView.swift in Sources */,
+				72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */,
 				72CA3E5F2CCCE169002FE5C4 /* ProfileNickView.swift in Sources */,
 				AA54FCFF2CCCB9A900D09293 /* ChannelView_Home.swift in Sources */,
 				AA54FCEC2CCCB8B200D09293 /* SettingChannel_Home.swift in Sources */,
