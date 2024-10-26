@@ -9,11 +9,11 @@ import SwiftUI
 
 struct LabeledTextField: View {
     
+    @Binding var text: String
+    
     let labelText: String? //라벨 없을수 있으니 옵셔널
     let placeholder: String
     var keyboardType: UIKeyboardType = .default //키보드 타입 선정 가능(기본값 미리 설정)
-    
-    @Binding var text: String
     
     var body: some View {
         
@@ -44,14 +44,15 @@ struct LabeledTextField_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack(spacing: 20) {
-            LabeledTextField(labelText: "연락처",
-                             placeholder: "전화번호를 입력하세요",
-                             text: $text)
+            LabeledTextField(text: $text,
+                             labelText: "연락처",
+                             placeholder: "전화번호를 입력하세요")
             
             //라벨 없을때 사용, 키보드 설정
-            LabeledTextField(labelText: nil,
+            LabeledTextField(text: $text,
+                             labelText: nil,
                              placeholder: "전화번호를 입력하세요",
-                             keyboardType: .numberPad, text: $text)
+                             keyboardType: .numberPad)
             
         }
         .padding()
