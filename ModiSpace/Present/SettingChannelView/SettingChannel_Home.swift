@@ -10,15 +10,15 @@ import SwiftUI
 struct SettingChannel_Home: View {
     var body: some View {
         
-        SettingChannel_HeaderViewCell()
+        SettingChannelHeaderViewCell()
         
         MemberList()
         
-        SettingChannel_ButtonCell(title: "채널 편집") { }
-        SettingChannel_ButtonCell(title: "채널에서 나가기") { }
-        SettingChannel_ButtonCell(title: "채널 관리자 변경") { }
+        SettingChannelButtonCell(title: "채널 편집") { }
+        SettingChannelButtonCell(title: "채널에서 나가기") { }
+        SettingChannelButtonCell(title: "채널 관리자 변경") { }
         
-        SettingChannel_ButtonCell(title: "채널 삭제") { }
+        SettingChannelButtonCell(title: "채널 삭제") { }
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  Channel_ActionSheetCell.swift
+//  ChannelActionSheetCell.swift
 //  ModiSpace
 //
 //  Created by 이윤지 on 10/26/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Channel_ActionSheetCell: View {
+struct ChannelActionSheetCell: View {
     
     @Binding var isPresented: Bool
     

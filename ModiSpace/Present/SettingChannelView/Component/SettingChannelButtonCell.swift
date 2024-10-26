@@ -1,5 +1,5 @@
 //
-//  SettingChannel_ButtonCell.swift
+//  SettingChannelButtonCell.swift
 //  ModiSpace
 //
 //  Created by 이윤지 on 10/26/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingChannel_ButtonCell: View {
+struct SettingChannelButtonCell: View {
     
     var title: String
     var action: () -> Void
@@ -33,7 +33,7 @@ struct SettingChannel_ButtonCell: View {
 
 
 #Preview{
-    SettingChannel_ButtonCell(title: "채널에서 나가기") {
+    SettingChannelButtonCell(title: "채널에서 나가기") {
         print("Button tapped")
     }
 }

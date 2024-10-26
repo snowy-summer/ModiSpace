@@ -24,7 +24,7 @@ struct RegisterChannelView: View {
             
             Spacer()
             
-            BasicLarge_ButtonCell(title: "생성", isEnabled: isCreateButtonEnabled()) {
+            BasicLargeButtonCell(title: "생성", isEnabled: isCreateButtonEnabled()) {
                            newChannelTitle = channelName
                            onCreate()
                        }

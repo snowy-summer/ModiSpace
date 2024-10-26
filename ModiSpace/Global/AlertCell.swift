@@ -7,7 +7,7 @@
 
 import SwiftUI
 //MARK: - 얼럿 컴포넌트 사용 예시
-struct Alert_TestView: View {
+struct AlertTestView: View {
     var body: some View {
         VStack(spacing: 20) {
             AlertCell(
@@ -106,7 +106,7 @@ struct AlertCell: View {
 
 
 #Preview {
-    Alert_TestView()
+    AlertTestView()
 }
 
 
