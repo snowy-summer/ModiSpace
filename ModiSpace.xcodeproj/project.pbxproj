@@ -12,6 +12,10 @@
 		6B2C72ED2CCB9DF90043E478 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C72EC2CCB9DF90043E478 /* RouterProtocol.swift */; };
 		6B2C72EF2CCB9E1D0043E478 /* WorkSpaceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C72EE2CCB9E1D0043E478 /* WorkSpaceRouter.swift */; };
 		6B2C72F22CCB9E5E0043E478 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C72F12CCB9E5E0043E478 /* RequestBuilder.swift */; };
+		6B2C72F62CCCA7560043E478 /* ErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C72F52CCCA7560043E478 /* ErrorDTO.swift */; };
+		6B2C72F92CCCA7A70043E478 /* WorkspaceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C72F82CCCA7A70043E478 /* WorkspaceDTO.swift */; };
+		6B2C72FB2CCCAAB60043E478 /* ChannelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C72FA2CCCAAB60043E478 /* ChannelDTO.swift */; };
+		6B2C72FD2CCCAACB0043E478 /* WorkspaceMemberDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C72FC2CCCAACB0043E478 /* WorkspaceMemberDTO.swift */; };
 		6BA79EC62CCB6CAE00FB1310 /* WorkSpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */; };
 		6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */; };
 		6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */; };
@@ -31,6 +35,10 @@
 		6B2C72EC2CCB9DF90043E478 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		6B2C72EE2CCB9E1D0043E478 /* WorkSpaceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceRouter.swift; sourceTree = "<group>"; };
 		6B2C72F12CCB9E5E0043E478 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		6B2C72F52CCCA7560043E478 /* ErrorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDTO.swift; sourceTree = "<group>"; };
+		6B2C72F82CCCA7A70043E478 /* WorkspaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceDTO.swift; sourceTree = "<group>"; };
+		6B2C72FA2CCCAAB60043E478 /* ChannelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDTO.swift; sourceTree = "<group>"; };
+		6B2C72FC2CCCAACB0043E478 /* WorkspaceMemberDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceMemberDTO.swift; sourceTree = "<group>"; };
 		6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceCell.swift; sourceTree = "<group>"; };
 		6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCoinCell.swift; sourceTree = "<group>"; };
 		6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationCell.swift; sourceTree = "<group>"; };
@@ -60,6 +68,7 @@
 		6B2C72E32CCB9BDB0043E478 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				6B2C72F32CCCA7450043E478 /* DTO */,
 				6B2C72F02CCB9E4F0043E478 /* RequestBuilder */,
 				6B2C72EA2CCB9DE60043E478 /* Router */,
 				6B2C72E72CCB9C8B0043E478 /* Header */,
@@ -107,6 +116,33 @@
 				6B2C72F12CCB9E5E0043E478 /* RequestBuilder.swift */,
 			);
 			path = RequestBuilder;
+			sourceTree = "<group>";
+		};
+		6B2C72F32CCCA7450043E478 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				6B2C72F42CCCA74C0043E478 /* Error */,
+				6B2C72F72CCCA7800043E478 /* Workspace */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		6B2C72F42CCCA74C0043E478 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				6B2C72F52CCCA7560043E478 /* ErrorDTO.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		6B2C72F72CCCA7800043E478 /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				6B2C72F82CCCA7A70043E478 /* WorkspaceDTO.swift */,
+				6B2C72FA2CCCAAB60043E478 /* ChannelDTO.swift */,
+				6B2C72FC2CCCAACB0043E478 /* WorkspaceMemberDTO.swift */,
+			);
+			path = Workspace;
 			sourceTree = "<group>";
 		};
 		6BA79EC42CCB6C8200FB1310 /* Component */ = {
@@ -252,12 +288,16 @@
 				6BA79ECC2CCB7BA700FB1310 /* SpaceManagerListCell.swift in Sources */,
 				6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */,
 				6B2C72F22CCB9E5E0043E478 /* RequestBuilder.swift in Sources */,
+				6B2C72F62CCCA7560043E478 /* ErrorDTO.swift in Sources */,
 				6BA79EC62CCB6CAE00FB1310 /* WorkSpaceCell.swift in Sources */,
 				6BD397722CCA8D2500F7097D /* CustomFontModifier.swift in Sources */,
 				6B2C72E62CCB9C800043E478 /* HttpMethod.swift in Sources */,
+				6B2C72F92CCCA7A70043E478 /* WorkspaceDTO.swift in Sources */,
 				6BD3976F2CCA89CE00F7097D /* FontType.swift in Sources */,
 				6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */,
+				6B2C72FB2CCCAAB60043E478 /* ChannelDTO.swift in Sources */,
 				6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */,
+				6B2C72FD2CCCAACB0043E478 /* WorkspaceMemberDTO.swift in Sources */,
 				6BD3975D2CCA819500F7097D /* ModiSpaceApp.swift in Sources */,
 				6B2C72ED2CCB9DF90043E478 /* RouterProtocol.swift in Sources */,
 				6B2C72EF2CCB9E1D0043E478 /* WorkSpaceRouter.swift in Sources */,
