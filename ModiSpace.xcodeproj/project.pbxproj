@@ -92,8 +92,8 @@
 		6B2C72E32CCB9BDB0043E478 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				6B2C73192CCCB9670043E478 /* Session */,
 				6B2C73132CCCB8F00043E478 /* Manager */,
+				6B2C73192CCCB9670043E478 /* Session */,
 				6B2C72F02CCB9E4F0043E478 /* RequestBuilder */,
 				6B2C72EA2CCB9DE60043E478 /* Router */,
 				6B2C73002CCCADDF0043E478 /* Error */,
@@ -300,11 +300,11 @@
 		6BD3975B2CCA819500F7097D /* ModiSpace */ = {
 			isa = PBXGroup;
 			children = (
-				6B2C731C2CCCB98A0043E478 /* Extension */,
-				6B2C72E32CCB9BDB0043E478 /* Network */,
 				6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */,
 				6BD3975E2CCA819500F7097D /* ContentView.swift */,
+				6B2C72E32CCB9BDB0043E478 /* Network */,
 				6BA79EC42CCB6C8200FB1310 /* Component */,
+				6B2C731C2CCCB98A0043E478 /* Extension */,
 				6BD397702CCA8D0A00F7097D /* Modifier */,
 				6BD3976D2CCA897800F7097D /* Resource */,
 				6BD397622CCA819700F7097D /* Preview Content */,

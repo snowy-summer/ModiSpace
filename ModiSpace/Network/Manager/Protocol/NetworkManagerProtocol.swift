@@ -10,5 +10,6 @@ import Foundation
 protocol NetworkManagerProtocol {
     
     func getData(from router: RouterProtocol) async throws -> Data
+    func getDecodedData(from router: RouterProtocol) async throws -> Decodable
     
 }

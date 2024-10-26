@@ -21,11 +21,14 @@ final class NetworkManager {
 extension NetworkManager: NetworkManagerProtocol {
     
     private func validateResponse(_ response: URLResponse) throws {
+        
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode else { throw NetworkError.invalidResponse }
+        
         guard (200..<300) ~= statusCode else {
             print(statusCode)
             throw NetworkError.invalidResponse
         }
+        
     }
     
     func getData(from router: RouterProtocol) async throws -> Data {
@@ -43,8 +46,12 @@ extension NetworkManager: NetworkManagerProtocol {
         
         try validateResponse(response)
         
-        let decodedData = try decoder.decode(router.responseType, from: data)
-        return decodedData
+        do {
+            let decodedData = try decoder.decode(router.responseType, from: data)
+            return decodedData
+        } catch {
+            throw NetworkError.decodingFailed("\(router.responseType)")
+        }
     }
     
 }
