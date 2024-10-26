@@ -34,7 +34,7 @@ struct CategoryListView: View {
             Divider()
             
             .overlay(
-                Channel_ActionSheetCell(
+                ChannelActionSheetCell(
                     isPresented: $showActionSheet,
                     actions: [
                         .default(Text("채널 생성")) {

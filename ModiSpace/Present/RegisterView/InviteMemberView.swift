@@ -18,7 +18,7 @@ struct InviteMemberView: View {
             
             Spacer()
             
-            BasicLarge_ButtonCell(title: "초대 보내기", isEnabled: isCreateButtonEnabled()) {
+            BasicLargeButtonCell(title: "초대 보내기", isEnabled: isCreateButtonEnabled()) {
               //  print("입력한 이메일 \(email)")
             }
             .padding(.horizontal)

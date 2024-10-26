@@ -22,7 +22,7 @@ struct LoginView: View {
             
             Spacer()
             
-            BasicLarge_ButtonCell(title: "로그인", isEnabled: isCreateButtonEnabled()) {
+            BasicLargeButtonCell(title: "로그인", isEnabled: isCreateButtonEnabled()) {
                 onCreate()
             }
             .padding(.horizontal)

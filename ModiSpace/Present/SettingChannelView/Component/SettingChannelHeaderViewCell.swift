@@ -1,5 +1,5 @@
 //
-//  SettingChannel_HeaderViewCell.swift
+//  SettingChannelHeaderViewCell.swift
 //  ModiSpace
 //
 //  Created by 이윤지 on 10/26/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingChannel_HeaderViewCell: View {
+struct SettingChannelHeaderViewCell: View {
     var body: some View {
         VStack (spacing: 10){
             HStack{
@@ -22,6 +22,6 @@ struct SettingChannel_HeaderViewCell: View {
 }
 
 #Preview {
-    SettingChannel_HeaderViewCell()
+    SettingChannelHeaderViewCell()
 }
 
