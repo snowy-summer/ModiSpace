@@ -26,13 +26,13 @@ final class RequestBuilder {
     
     func setURL(_ url: URL) -> RequestBuilder {
         self.url = url
+        return self
     }
 
     func setHeaders(_ headers: [String: String]) -> RequestBuilder {
         
         headers.forEach { self.headers[$0.key] = $0.value }
         return self
-        
     }
 
     func setBody(_ body: Data?) -> RequestBuilder {

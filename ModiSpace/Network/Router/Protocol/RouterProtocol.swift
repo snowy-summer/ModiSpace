@@ -18,5 +18,6 @@ protocol RouterProtocol {
     var url: URL? { get }
     var headers: [String: String] { get }
     var method: HTTPMethod { get }
+    var responseType: Decodable.Type { get }
     
 }
