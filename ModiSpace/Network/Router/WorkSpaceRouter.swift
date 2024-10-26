@@ -93,4 +93,41 @@ extension WorkSpaceRouter: RouterProtocol {
         }
     }
     
+    var responseType: Decodable.Type {
+        switch self {
+        case .getWorkSpaceList:
+            return [WorkspaceDTO].self
+            
+        case .createWorkSpace:
+            return WorkspaceDTO.self
+            
+        case .getWorkSpaceInfo:
+            return WorkspaceDTO.self
+            
+        case .editWorkSpace:
+            return WorkspaceDTO.self
+            
+        case .deleteWorkSpace:
+            return EmptyResponseDTO.self
+            
+        case .inviteMember:
+            return WorkspaceMemberDTO.self
+            
+        case .findMember:
+            return [WorkspaceMemberDTO].self
+            
+        case .getMemberInfo:
+            return WorkspaceMemberDTO.self
+            
+        case .searchInWorkSpaceContent:
+            return WorkspaceDTO.self
+            
+        case .changeWorkSpaceManager:
+            return WorkspaceDTO.self
+            
+        case .exitWorkSpace:
+            return [WorkspaceDTO].self
+        }
+    }
+    
 }
