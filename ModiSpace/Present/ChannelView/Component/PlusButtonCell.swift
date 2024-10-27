@@ -17,11 +17,10 @@ struct PlusButtonCell: View {
             HStack {
                 Image(systemName: "plus")
                 Text(text)
-                    .font(.system(size: 18))
+                    .customFont(.body)
                 Spacer()
             }
-            .foregroundStyle(Color.gray)
-            .padding()
+            .foregroundStyle(.textSecondary)
         }
         
     }

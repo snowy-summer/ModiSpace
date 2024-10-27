@@ -20,6 +20,7 @@ struct BasicLargeButtonCell: View {
             }
         }) {
             Text(title)
+                .customFont(.title2)
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(isEnabled ? Color.green : Color.gray)

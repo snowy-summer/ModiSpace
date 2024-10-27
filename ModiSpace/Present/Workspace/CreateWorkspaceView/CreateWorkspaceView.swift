@@ -24,6 +24,8 @@ struct CreateWorkspaceView: View {
     var body: some View {
         VStack(spacing: 24) {
             
+            ImageSelectButton(tapGesture: {})
+            
             InputFieldCell(text: $model.workspaceName,
                            title: "워크스페이스 이름",
                            placeholder: "워크스페이스 이름을 입력하세요 (필수)")
@@ -40,8 +42,7 @@ struct CreateWorkspaceView: View {
             .padding()
             .disabled(!model.isCreateAbled)
         }
-        .padding(.top, 30)
-        .background(Color.gray.opacity(0.2))
+        .padding(.top, 32)
         .onAppear {
             intent.setModel(model)
         }
