@@ -18,6 +18,7 @@ struct MemberList: View {
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible()),
+        GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
@@ -39,7 +40,8 @@ struct MemberList: View {
             if isMemberListShow {
                 LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(0..<memberCount, id: \.self) { _ in
-                        MemberCell()
+                        //MemberCell()
+                        ProfileNickView(profile: "", nickText: "dfdf")
                     }
                 }
                 .padding(.horizontal, 10)
