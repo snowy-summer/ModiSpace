@@ -7,8 +7,18 @@
 
 import SwiftUI
 
+// 스플래시 화면 보기 없애고 싶을때 이걸로
+//@main
+//struct ModiSpaceApp: App {
+//    var body: some Scene {
+//        WindowGroup {
+//            ContentView()
+//        }
+//    }
+//}
+
 @main
-struct CampairApp: App {
+struct ModiSpaceApp: App {
     
     @State var isSplashView = true
     
