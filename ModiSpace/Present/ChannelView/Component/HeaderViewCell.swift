@@ -22,7 +22,7 @@ struct HeaderViewCell: View {
             
             Spacer()
             
-           
+            
             Button(action: {}) {
                 Image(systemName: "star")
                     .resizable()
@@ -33,7 +33,7 @@ struct HeaderViewCell: View {
                         Circle().stroke(Color.black, lineWidth: 3)
                     )
             }
-                   }
+        }
         
         .padding()
         

@@ -39,5 +39,5 @@ struct WorkSpaceCell: View {
 }
 
 #Preview {
-    ContentView()
+    WorkSpaceCell()
 }
