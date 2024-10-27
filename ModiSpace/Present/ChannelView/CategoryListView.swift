@@ -96,6 +96,7 @@ struct ChannelSection: View {
                     PlusButtonCell(text: "채널 추가") {
                         showActionSheet = true
                     }
+                    .padding()
                 }
                 .transition(.slide)
             }
@@ -141,6 +142,7 @@ struct DirectMessageSection: View {
                     PlusButtonCell(text: "새 메시지 시작") {
                         showNewMessageView = true
                     }
+                    .padding()
                 }
                 .transition(.slide)
             }

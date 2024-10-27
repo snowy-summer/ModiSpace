@@ -15,7 +15,7 @@ struct InputFieldCell: View {
     var placeholder: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .bold()
                 .padding(.leading)

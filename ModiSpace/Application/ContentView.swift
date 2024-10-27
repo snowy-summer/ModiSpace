@@ -6,25 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-                .customFont(.body)
-            
-            List() {
-                WorkSpaceCell()
-                StoreCoinCell()
-                StoreInformationCell()
-                SpaceManagerListCell()
-            }
-            .listStyle(.plain)
-        }
-        .padding()
+        CreateWorkspaceView()
     }
 }
 
