@@ -109,7 +109,7 @@ extension UserRouter: RouterProtocol {
         case .updateMyProfileImage(let body):
             data = try? jsonEncoder.encode(body)
             
-        case .getOtherUserProfile(let userId):
+        case .getOtherUserProfile:
             data = nil
         }
         
