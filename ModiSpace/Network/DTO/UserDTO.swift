@@ -24,6 +24,7 @@ struct UserDTO: Decodable {
         case userID = "user_id"
         case email, nickname, profileImage, phone, provider, createdAt, token, sesacCoin
     }
+    
 }
 
 
