@@ -27,9 +27,9 @@ extension WorkSpaceRouter: RouterProtocol {
     
     var scheme: String { return "http" }
     
-    var host: String { return "" }
+    var host: String? { return BundleManager.loadBundleValue(.host) }
     
-    var port: Int? { return 0000 }
+    var port: Int? { return BundleManager.loadBundlePort() }
     
     var path: String {
         return ""

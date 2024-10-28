@@ -10,7 +10,7 @@ import Foundation
 protocol RouterProtocol {
     
     var scheme: String { get }
-    var host: String { get }
+    var host: String? { get }
     var path: String { get }
     var port: Int? { get }
     var body: Data? { get }
