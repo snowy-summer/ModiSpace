@@ -136,7 +136,7 @@ extension WorkSpaceRouter: RouterProtocol {
         }
     }
     
-    var responseType: Decodable.Type {
+    var responseType: Decodable.Type? {
         switch self {
         case .getWorkSpaceList:
             return [WorkspaceDTO].self

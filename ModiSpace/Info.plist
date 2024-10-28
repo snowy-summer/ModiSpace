@@ -8,5 +8,10 @@
 	<string>$(Host)</string>
 	<key>Port</key>
 	<string>$(Port)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

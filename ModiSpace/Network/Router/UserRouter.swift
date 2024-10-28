@@ -128,7 +128,12 @@ extension UserRouter: RouterProtocol {
     }
     
     var headers: [String : String] {
-        return [:]
+        let headers = [
+            Header.sesacKey.key: Header.sesacKey.value,
+            Header.contentTypeJson.key: Header.contentTypeJson.value
+        ]
+        
+        return headers
     }
     
     var method: HTTPMethod {
@@ -144,16 +149,19 @@ extension UserRouter: RouterProtocol {
         }
     }
     
-    var responseType: Decodable.Type {
+    var responseType: Decodable.Type? {
         switch self {
-        case .join, .validateEmail, .login, .loginKakao, .loginApple:
+        case .join, .login, .loginKakao, .loginApple:
             return UserDTO.self
             
+        case .validateEmail:
+            return nil
+            
         case .logout:
-            return EmptyResponseDTO.self
+            return nil
             
         case .saveDeviceToken:
-            return EmptyResponseDTO.self
+            return nil
             
         case .getMyProfile, .updateMyProfile:
             return UserDTO.self
