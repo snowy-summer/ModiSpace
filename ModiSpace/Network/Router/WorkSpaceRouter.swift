@@ -17,7 +17,7 @@ enum WorkSpaceRouter {
     case inviteMember(spaceId: String)
     case findMember(spaceId: String)
     case getMemberInfo(spaceId: String, userId: String)
-    case searchInWorkSpaceContent(spaceId: String)
+    case searchInWorkSpaceContent(spaceId: String, keyword: String)
     case changeWorkSpaceManager(spaceId: String)
     case exitWorkSpace(spaceId: String)
     
@@ -27,15 +27,58 @@ extension WorkSpaceRouter: RouterProtocol {
     
     var scheme: String { return "http" }
     
-    var host: String { return "" }
+    var host: String? { return BundleManager.loadBundleValue(.host) }
     
-    var port: Int? { return 0000 }
+    var port: Int? { return BundleManager.loadBundlePort() }
     
     var path: String {
-        return ""
+        switch self {
+        case .getWorkSpaceList:
+            return "/v1/workspaces"
+            
+        case .createWorkSpace:
+            return "/v1/workspaces"
+            
+        case .getWorkSpaceInfo(let spaceId):
+            return "/v1/workspaces/\(spaceId)"
+            
+        case .editWorkSpace(let spaceId):
+            return "/v1/workspaces/\(spaceId)"
+            
+        case .deleteWorkSpace(let spaceId):
+            return "/v1/workspaces/\(spaceId)"
+            
+        case .inviteMember(let spaceId):
+            return "/v1/workspaces/\(spaceId)/members"
+            
+        case .findMember(let spaceId):
+            return "/v1/workspaces/\(spaceId)/members"
+            
+        case .getMemberInfo(let spaceId, let userId):
+            return "/v1/workspaces/\(spaceId)/members/\(userId)"
+            
+        case .searchInWorkSpaceContent(let spaceId, _):
+            return "/v1/workspaces/\(spaceId)/search"
+            
+        case .changeWorkSpaceManager(let spaceId):
+            return "/v1/workspaces/\(spaceId)/transfer/ownership"
+            
+        case .exitWorkSpace(let spaceId):
+            return "/v1/workspaces/\(spaceId)/exit"
+        }
     }
     
-    var query: [URLQueryItem] { return [] }
+    var query: [URLQueryItem] {
+        
+        switch self {
+        case .searchInWorkSpaceContent(_, let keyword):
+            return QueryOfWorkspaceSearch(keyword: keyword).asQueryItems()
+            
+        default:
+            return []
+        }
+        
+    }
     
     var body: Data? {
         return nil

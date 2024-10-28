@@ -13,7 +13,7 @@ enum APIError: Error {
     case unknownRoute // E97 알 수 없는 라우터 경로
     case tokenExpired // E05 액세스 토큰 만료
     case authenticationFailed // E02 인증 실패
-    case unknownAccount // E03 알 수 없는 계정
+    case unknownAccount // E03 알 수 없는 계정, 로그인 실패
     case rateLimitExceeded // E98 과호출
     case serverError // E99 서버 오류
     case refreshTokenExpired // E06 리프레시 토큰 만료
@@ -23,6 +23,8 @@ enum APIError: Error {
     case dataNotFound // E13 존재하지 않는 데이터
     case noPermission // E14 권한 없음
     case exitDenied // E15 요청 거절
+    case invalidPayment // E82 유효하지 않은 결제
+    case paymentAleradyExists// E81 존재하는 결제
     
 }
 
@@ -58,6 +60,10 @@ extension APIError {
             self = .noPermission
         case "E15":
             self = .exitDenied
+        case "E82":
+            self = .invalidPayment
+        case "E81":
+            self = .paymentAleradyExists
         default:
             return nil
         }
@@ -93,6 +99,10 @@ extension APIError {
             return "E14 권한이 없습니다."
         case .exitDenied:
             return "E15 워크스페이스에 속한 관리자 권한이 있는 경우 퇴장이 불가능합니다."
+        case .invalidPayment:
+            return "E82 유효하지 않은 결제입니다."
+        case .paymentAleradyExists:
+            return "E81 이미 존재하는 결제입니다"
         }
     }
     
