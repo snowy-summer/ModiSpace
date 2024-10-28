@@ -67,6 +67,12 @@
 		72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */; };
 		72CA3E632CCD1263002FE5C4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E622CCD1263002FE5C4 /* CustomButton.swift */; };
 		72CA3E652CCD1BC0002FE5C4 /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E642CCD1BC0002FE5C4 /* LabeledTextField.swift */; };
+		72F25EAF2CCE575300A1F182 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72F25EAE2CCE575300A1F182 /* Launch Screen.storyboard */; };
+		72F25EB22CCE5C9A00A1F182 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F25EB12CCE5C9A00A1F182 /* OnboardingView.swift */; };
+		72F25EB42CCE638600A1F182 /* AuthOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F25EB32CCE638600A1F182 /* AuthOptionsView.swift */; };
+		72F25EB72CCE672A00A1F182 /* OnboardingTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F25EB62CCE672A00A1F182 /* OnboardingTextViewCell.swift */; };
+		72F25EB92CCE675200A1F182 /* OnboardingImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F25EB82CCE675200A1F182 /* OnboardingImageViewCell.swift */; };
+		72F25EBB2CCE683F00A1F182 /* OnboardingButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F25EBA2CCE683F00A1F182 /* OnboardingButtonCell.swift */; };
 		AA54FCE22CCCB81D00D09293 /* endTextEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FCE12CCCB81D00D09293 /* endTextEditing.swift */; };
 		AA54FCE42CCCB83600D09293 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FCE32CCCB83600D09293 /* AlertCell.swift */; };
 		AA54FCE62CCCB84700D09293 /* InputFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FCE52CCCB84700D09293 /* InputFieldCell.swift */; };
@@ -157,6 +163,12 @@
 		72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListCell.swift; sourceTree = "<group>"; };
 		72CA3E622CCD1263002FE5C4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		72CA3E642CCD1BC0002FE5C4 /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
+		72F25EAE2CCE575300A1F182 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		72F25EB12CCE5C9A00A1F182 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		72F25EB32CCE638600A1F182 /* AuthOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOptionsView.swift; sourceTree = "<group>"; };
+		72F25EB62CCE672A00A1F182 /* OnboardingTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextViewCell.swift; sourceTree = "<group>"; };
+		72F25EB82CCE675200A1F182 /* OnboardingImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImageViewCell.swift; sourceTree = "<group>"; };
+		72F25EBA2CCE683F00A1F182 /* OnboardingButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonCell.swift; sourceTree = "<group>"; };
 		AA54FCE12CCCB81D00D09293 /* endTextEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endTextEditing.swift; sourceTree = "<group>"; };
 		AA54FCE32CCCB83600D09293 /* AlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		AA54FCE52CCCB84700D09293 /* InputFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldCell.swift; sourceTree = "<group>"; };
@@ -576,6 +588,7 @@
 		6BD3976D2CCA897800F7097D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				72F25EAD2CCE573F00A1F182 /* StoryBoard */,
 				6BD397602CCA819700F7097D /* Assets.xcassets */,
 				6BD3976E2CCA89CE00F7097D /* FontType.swift */,
 			);
@@ -588,6 +601,34 @@
 				6BD397712CCA8D2500F7097D /* CustomFontModifier.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		72F25EAD2CCE573F00A1F182 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				72F25EAE2CCE575300A1F182 /* Launch Screen.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		72F25EB02CCE5C4900A1F182 /* OnboardingView */ = {
+			isa = PBXGroup;
+			children = (
+				72F25EB12CCE5C9A00A1F182 /* OnboardingView.swift */,
+				72F25EB32CCE638600A1F182 /* AuthOptionsView.swift */,
+				72F25EB52CCE661100A1F182 /* Component */,
+			);
+			path = OnboardingView;
+			sourceTree = "<group>";
+		};
+		72F25EB52CCE661100A1F182 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				72F25EB62CCE672A00A1F182 /* OnboardingTextViewCell.swift */,
+				72F25EB82CCE675200A1F182 /* OnboardingImageViewCell.swift */,
+				72F25EBA2CCE683F00A1F182 /* OnboardingButtonCell.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		AA54FCDF2CCCB7C700D09293 /* Application */ = {
@@ -613,6 +654,7 @@
 		AA54FCE92CCCB88100D09293 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				72F25EB02CCE5C4900A1F182 /* OnboardingView */,
 				6B694E2E2CCCF8BF00ED484D /* MVIContainer */,
 				6B694E262CCCF67400ED484D /* Workspace */,
 				AA54FCEA2CCCB8A700D09293 /* SettingChannelView */,
@@ -763,6 +805,7 @@
 			files = (
 				6BD397642CCA819700F7097D /* Preview Assets.xcassets in Resources */,
 				6BD3976B2CCA81AD00F7097D /* .gitignore in Resources */,
+				72F25EAF2CCE575300A1F182 /* Launch Screen.storyboard in Resources */,
 				6BD397612CCA819700F7097D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -787,6 +830,7 @@
 				6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */,
 				72CA3E632CCD1263002FE5C4 /* CustomButton.swift in Sources */,
 				6B2C730E2CCCB6D50043E478 /* QueryStringProtocol.swift in Sources */,
+				72F25EB22CCE5C9A00A1F182 /* OnboardingView.swift in Sources */,
 				6B2C72F22CCB9E5E0043E478 /* RequestBuilder.swift in Sources */,
 				6B2C72F62CCCA7560043E478 /* ErrorDTO.swift in Sources */,
 				6B0564F32CCF6E0A003086AC /* BundleError.swift in Sources */,
@@ -803,6 +847,7 @@
 				AA54FD172CCCBABF00D09293 /* DummyMessage.swift in Sources */,
 				AA54FCF32CCCB90100D09293 /* MemberCell.swift in Sources */,
 				AA54FCF52CCCB91300D09293 /* SettingChannelHeaderViewCell.swift in Sources */,
+				72F25EB42CCE638600A1F182 /* AuthOptionsView.swift in Sources */,
 				AA54FD0C2CCCBA2200D09293 /* PlusButtonCell.swift in Sources */,
 				6BADE9A42CCE3F2A00099B78 /* UserDTO.swift in Sources */,
 				AA54FCFA2CCCB96C00D09293 /* RegisterChannelView.swift in Sources */,
@@ -821,10 +866,12 @@
 				AA54FCEE2CCCB8C200D09293 /* MemberList.swift in Sources */,
 				AA54FCE22CCCB81D00D09293 /* endTextEditing.swift in Sources */,
 				6BD3976F2CCA89CE00F7097D /* FontType.swift in Sources */,
+				72F25EB72CCE672A00A1F182 /* OnboardingTextViewCell.swift in Sources */,
 				72CA3E652CCD1BC0002FE5C4 /* LabeledTextField.swift in Sources */,
 				AA54FCE82CCCB85700D09293 /* BasicLargeButtonCell.swift in Sources */,
 				AA54FCE62CCCB84700D09293 /* InputFieldCell.swift in Sources */,
 				6B05650A2CCF7FF6003086AC /* EditMyProfileRequestBody.swift in Sources */,
+				72F25EB92CCE675200A1F182 /* OnboardingImageViewCell.swift in Sources */,
 				AA54FD112CCCBA7400D09293 /* ChattingView_Home.swift in Sources */,
 				AA54FCF82CCCB95900D09293 /* LoginView.swift in Sources */,
 				6B694E472CCE16DB00ED484D /* SideMenuHeaderView.swift in Sources */,
@@ -850,6 +897,7 @@
 				6B2C73182CCCB9410043E478 /* NetworkManagerProtocol.swift in Sources */,
 				6B2C73022CCCADE70043E478 /* NetworkError.swift in Sources */,
 				AA54FD192CCCBB3400D09293 /* NewMessageView.swift in Sources */,
+				72F25EBB2CCE683F00A1F182 /* OnboardingButtonCell.swift in Sources */,
 				AA54FCF12CCCB8F000D09293 /* SettingChannelButtonCell.swift in Sources */,
 				AA54FD042CCCB9DE00D09293 /* HeaderViewCell.swift in Sources */,
 				6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */,
@@ -1000,6 +1048,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1035,6 +1084,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
