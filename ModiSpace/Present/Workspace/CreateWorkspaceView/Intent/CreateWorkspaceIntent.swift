@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CreateWorkspaceIntent: CreateWorkspaceIntentProtocol {
+final class CreateWorkspaceIntent {
     
     private weak var model: CreateWorkspaceModelActionsProtocol?
     
@@ -18,6 +18,10 @@ final class CreateWorkspaceIntent: CreateWorkspaceIntentProtocol {
     func setModel(_ model: CreateWorkspaceModelActionsProtocol) {
         self.model = model
     }
+    
+}
+
+extension CreateWorkspaceIntent: CreateWorkspaceIntentProtocol {
     
     func createWorkspace() {
         

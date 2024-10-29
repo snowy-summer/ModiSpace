@@ -32,9 +32,9 @@ struct SideMenuView: View {
                             SideMenuNoneEmptyContentView()
                         }
                         
-                        PlusButtonCell(text: "워크스페이스 추가") { print("aa")}
+                        SFSubButton(text: "워크스페이스 추가") { print("aa")}
                             .padding()
-                        PlusButtonCell(text: "도움말") {}
+                        SFSubButton(text: "도움말") {}
                             .padding(.horizontal)
                             .padding(.bottom)
                     }

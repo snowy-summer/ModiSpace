@@ -11,6 +11,7 @@ final class CreateWorkSpaceModel: ObservableObject, CreateWorkspaceModelStatePro
     
     @Published var workspaceName = ""
     @Published var workspaceDescription = ""
+    
     var isCreateAbled: Bool {
         !workspaceName.isEmpty
     }
