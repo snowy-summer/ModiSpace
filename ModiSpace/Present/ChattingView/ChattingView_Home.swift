@@ -10,12 +10,14 @@ import SwiftUI
 struct ChattingView_Home: View {
     
     @State var messages: [DummyMessage] = [
-        DummyMessage(text: "저희 수료식이 언제였죠? 11/9 맞나요? 영등포 캠퍼스가 어디에 있었죠? 기억이...T.T", isCurrentUser: false, profileImage:  "person.crop.rectangle"),
-        DummyMessage(text: "수료식 사진 공유드려요!", isCurrentUser: false, profileImage: "person.crop.rectangle"),
-        DummyMessage(text: "하 드디어 퇴근...", isCurrentUser: true,  profileImage:  "person.crop.rectangle"),
+        DummyMessage(text: "저희 수료식이 언제였죠? 11/9 맞나요? 영등포 캠퍼스가 어디에 있었죠? 기억이...T.T", isCurrentUser: false, profileImage: "person.crop.rectangle", images: nil),
+        DummyMessage(text: "수료식 사진 공유드려요!", isCurrentUser: false, profileImage: "person.crop.rectangle", images: nil),
+        DummyMessage(text: "하 드디어 퇴근...", isCurrentUser: true, profileImage: "person.crop.rectangle", images: nil),
     ]
     
     @State var messageText: String = ""
+    @State private var selectedImages: [UIImage] = []
+    @State private var isShowingImagePicker = false
     
     var chatTitle: String
     
@@ -24,7 +26,13 @@ struct ChattingView_Home: View {
             ScrollView {
                 VStack(spacing: 15) {
                     ForEach(messages) { message in
-                        ChatMessageRowCell(message: message)
+                        VStack(alignment: .leading) {
+                            ChatMessageRowCell(message: message)
+                            
+                            if let images = message.images {
+                                ChatImageLayoutView(images: images)
+                            }
+                        }
                     }
                 }
                 .padding()
@@ -32,25 +40,57 @@ struct ChattingView_Home: View {
             
             HStack {
                 Button(action: {
-                    // 사진 첨부 버튼 기능 추가 할 예정임
+                    isShowingImagePicker = true
                 }) {
                     Image(systemName: "plus")
                         .foregroundStyle(.gray)
                 }
+                .sheet(isPresented: $isShowingImagePicker) {
+                    PhotoPicker(selectedImages: $selectedImages)
+                }
                 
-                TextField("메시지를 입력하세요", text: $messageText)
-                    .padding(12)
-                    .background(Color(UIColor.systemGray6))
-                    .cornerRadius(20)
+                VStack {
+                    TextField("메시지를 입력하세요", text: $messageText)
+                        .padding(12)
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(20)
+                    
+                    if !selectedImages.isEmpty {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                ForEach(Array(selectedImages.enumerated()), id: \.offset) { index, image in
+                                    ZStack(alignment: .topTrailing) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 50, height: 50)
+                                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                                        
+                                        Button(action: {
+                                            removeImage(at: index)
+                                        }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .foregroundColor(.white)
+                                                .background(Color.black.opacity(0.7))
+                                                .clipShape(Circle())
+                                        }
+                                        .offset(x: 5, y: -5)
+                                    }
+                                }
+                            }
+                            .padding(.top, 5)
+                        }
+                    }
+                }
                 
                 Button(action: {
                     sendMessage()
                 }) {
                     Image(systemName: "paperplane.fill")
-                        .foregroundStyle(messageText.isEmpty ? Color.gray : Color.green)
+                        .foregroundStyle((messageText.isEmpty && selectedImages.isEmpty) ? Color.gray : Color.green)
                         .padding(5)
                 }
-                .disabled(messageText.isEmpty)
+                .disabled(messageText.isEmpty && selectedImages.isEmpty)
             }
             .padding(.horizontal, 16)
             .background(Color(UIColor.systemGray6))
@@ -61,20 +101,30 @@ struct ChattingView_Home: View {
         .onTapGesture {
             self.endTextEditing()
         }
-        
     }
 }
-
 
 extension ChattingView_Home {
     
     func sendMessage() {
-        if !messageText.isEmpty {
-            let newMessage = DummyMessage(text: messageText, isCurrentUser: true, profileImage: "person.crop.rectangle")
+        if !messageText.isEmpty || !selectedImages.isEmpty {
+            let newMessage = DummyMessage(
+                text: messageText,
+                isCurrentUser: true,
+                profileImage: "person.crop.rectangle",
+                images: selectedImages.isEmpty ? nil : selectedImages
+            )
             messages.append(newMessage)
             messageText = ""
+            selectedImages = []
         }
     }
     
+    func removeImage(at index: Int) {
+        selectedImages.remove(at: index)
+    }
 }
 
+#Preview {
+  ChattingView_Home(chatTitle: "Chat")
+}

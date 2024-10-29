@@ -23,4 +23,5 @@ struct CustomCornerShape: Shape {
  사용방법
  원하는 코너를 선택해서 변형이 가능
  .clipShape(CustomCornerShape(radius: 12, corners: [.bottomLeft, .bottomRight]))
+ .dada(12 .bottom)
  */

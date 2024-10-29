@@ -10,7 +10,7 @@ import SwiftUI
 struct BasicLargeButtonCell: View {
     
     var title: String
-    var isEnabled: Bool
+    var isEnabled: Bool = true
     var action: () -> Void
     
     var body: some View {
