@@ -12,7 +12,6 @@ struct SideMenuEmptyContentView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            
             Spacer()
             
             Text("워크스페이스를\n찾을 수 없어요")
@@ -30,7 +29,6 @@ struct SideMenuEmptyContentView: View {
             .padding()
             
             Spacer()
-            
         }
     }
     
@@ -43,7 +41,6 @@ struct SideMenuNoneEmptyContentView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            
             Spacer()
             
             List {
@@ -53,7 +50,6 @@ struct SideMenuNoneEmptyContentView: View {
                 }
             }
             .listStyle(.plain)
-            
         }
     }
     

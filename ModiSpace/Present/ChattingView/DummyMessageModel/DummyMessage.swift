@@ -9,10 +9,11 @@ import SwiftUI
 
 struct DummyMessage: Identifiable {
     
-    var id = UUID()
-    var text: String
-    var isCurrentUser: Bool
-    var profileImage: String
+    let id = UUID()
+    let text: String
+    let isCurrentUser: Bool
+    let profileImage: String
+    let images: [UIImage]?
     
 }
 
