@@ -37,7 +37,7 @@ enum Header {
             return "----"
             
         case .sesacKey:
-            guard let key = Bundle.main.object(forInfoDictionaryKey: "APIKey") as? String else { return "실패" }
+            guard let key = BundleManager.loadBundleValue(.key) else { return "실패" }
             return key
             
         case .refreshToken:

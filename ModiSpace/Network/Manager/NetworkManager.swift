@@ -18,40 +18,68 @@ final class NetworkManager {
     
 }
 
+//MARK: - NetworkManagerProtocol
 extension NetworkManager: NetworkManagerProtocol {
+    
+    func getData(from router: RouterProtocol) async throws -> Data {
+        
+        let (data, response) = try await session.getData(from: router)
+        
+        do {
+            try validateResponse(response)
+        } catch {
+            handleErrorData(data: data)
+        }
+        
+        return data
+    }
+    
+    
+    func getDecodedData(from router: RouterProtocol) async throws -> Decodable {
+        
+        let (data, response) = try await session.getData(from: router)
+        
+        do {
+            try validateResponse(response)
+        } catch {
+            handleErrorData(data: data)
+        }
+        
+        guard let type = router.responseType else { return EmptyResponseDTO() }
+        
+        do {
+            let decodedData = try decoder.decode(type, from: data)
+            return decodedData
+        } catch {
+            throw NetworkError.decodingFailed("\(type)")
+        }
+    }
+    
+}
+
+//MARK: - 유효성, Error핸들링
+extension NetworkManager {
     
     private func validateResponse(_ response: URLResponse) throws {
         
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode else { throw NetworkError.invalidResponse }
         
         guard (200..<300) ~= statusCode else {
-            print(statusCode)
+            print("StatusCode: \(statusCode)")
             throw NetworkError.invalidResponse
         }
         
     }
     
-    func getData(from router: RouterProtocol) async throws -> Data {
-        
-        let (data, response) = try await session.getData(from: router)
-        
-        try validateResponse(response)
-        
-        return data
-    }
-    
-    func getDecodedData(from router: RouterProtocol) async throws -> Decodable {
-        
-        let (data, response) = try await session.getData(from: router)
-        
-        try validateResponse(response)
+    private func handleErrorData(data: Data) {
         
         do {
-            let decodedData = try decoder.decode(router.responseType, from: data)
-            return decodedData
+            let errorData = try decoder.decode(ErrorDTO.self, from: data)
+            print(APIError(errorCode: errorData.errorCode).description)
         } catch {
-            throw NetworkError.decodingFailed("\(router.responseType)")
+            print(NetworkError.decodingFailed("ErrorDTO"))
         }
+        
     }
     
 }
