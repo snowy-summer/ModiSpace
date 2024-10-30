@@ -9,20 +9,16 @@ import Foundation
 
 enum SesacStoreRouter {
     
-    case postStorePayValidation
+    case postStorePayValidation(body: PayvalidationRequestBody)
     case getStoreItemList
     
 }
 
 extension SesacStoreRouter: RouterProtocol {
     
-    var scheme: String {
-        <#code#>
-    }
+    var scheme: String { return "http" }
     
-    var host: String? {
-        <#code#>
-    }
+    var host: String? { return BundleManager.loadBundleValue(.host) }
     
     var path: String {
         switch self {
@@ -35,24 +31,29 @@ extension SesacStoreRouter: RouterProtocol {
         }
     }
     
-    var port: Int? {
-        <#code#>
-    }
+    var port: Int? { return BundleManager.loadBundlePort() }
     
     var body: Data? {
         return nil
     }
     
     var query: [URLQueryItem] {
-        <#code#>
+        return []
     }
     
     var url: URL? {
-        <#code#>
+        var components = URLComponents()
+        components.scheme = scheme
+        components.host = host
+        components.port = port
+        components.path = path
+        components.queryItems = query
+        
+        return components.url
     }
     
     var headers: [String : String] {
-        <#code#>
+        return [:]
     }
     
     var method: HTTPMethod {
@@ -77,5 +78,6 @@ extension SesacStoreRouter: RouterProtocol {
         }
     }
     
-    
 }
+
+
