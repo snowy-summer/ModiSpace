@@ -20,18 +20,3 @@ struct CustomCornerShape: Shape {
     }
     
 }
-
-extension View {
-    func customCornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        self.clipShape(CustomCornerShape(radius: radius, corners: corners))
-    }
-}
-
-/*
- 사용방법
- 원하는 코너를 선택해서 변형이 가능
- .customCornerRadius(12, corners: [.bottomLeft, .bottomRight])
- .dada(12 .bottom)
- */
-
-

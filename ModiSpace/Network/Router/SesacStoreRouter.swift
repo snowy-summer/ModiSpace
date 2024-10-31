@@ -34,7 +34,16 @@ extension SesacStoreRouter: RouterProtocol {
     var port: Int? { return BundleManager.loadBundlePort() }
     
     var body: Data? {
-        return nil
+        let jsonEncoder = JSONEncoder()
+        
+        switch self {
+            
+        case .postStorePayValidation(body: let body):
+            return try? jsonEncoder.encode(body)
+            
+        case .getStoreItemList:
+            return nil
+        }
     }
     
     var query: [URLQueryItem] {
@@ -53,7 +62,7 @@ extension SesacStoreRouter: RouterProtocol {
     }
     
     var headers: [String : String] {
-        return [:]
+        return [Header.contentTypeJson.key : Header.contentTypeJson.value]
     }
     
     var method: HTTPMethod {
