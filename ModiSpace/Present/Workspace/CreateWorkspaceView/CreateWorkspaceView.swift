@@ -23,7 +23,7 @@ struct CreateWorkspaceView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            ImageSelectButton(tapGesture: {})
+            ImageSelectButton(action: {})
             
             InputField(text: $model.workspaceName,
                            title: "워크스페이스 이름",

@@ -10,3 +10,4 @@ import Foundation
 struct ErrorDTO: Decodable {
     var errorCode: String
 }
+
