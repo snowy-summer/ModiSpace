@@ -47,6 +47,7 @@ struct ChattingView: View {
 
 //메세지 보낼 때 셀
 extension ChattingView {
+    
     func sendMessage() {
         if !messageText.isEmpty || !selectedImages.isEmpty {
             let newMessage = DummyMessage(
@@ -68,5 +69,5 @@ extension ChattingView {
 }
 
 #Preview {
-  ChattingView(chatTitle: "Chat")
+    ChattingView(chatTitle: "Chat")
 }

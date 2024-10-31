@@ -41,7 +41,8 @@ struct ChatTextField: View {
                     
                     TextEditor(text: $messageText)
                         .scrollContentBackground(.hidden)
-                        .frame(minHeight: textFieldHeight, maxHeight: 150)
+                        .frame(minHeight: textFieldHeight,
+                               maxHeight: 150)
                         .padding(8)
                         .cornerRadius(20)
                         .onChange(of: messageText) { _ in
@@ -51,7 +52,8 @@ struct ChatTextField: View {
                 }
                 .frame(height: textFieldHeight)
                 
-                TextFieldAttachImageScrollView(images: selectedImages, onRemoveImage: onRemoveImage)
+                TextFieldAttachImageScrollView(images: selectedImages,
+                                               onRemoveImage: onRemoveImage)
             }
             
             Button(action: {
@@ -67,9 +69,8 @@ struct ChatTextField: View {
     
 }
 
-
-
 extension ChatTextField {
+    
     private func updateTextFieldHeight() {
         let font = UIFont.systemFont(ofSize: 16)
         let textWidth = UIScreen.main.bounds.width - 64
@@ -85,6 +86,7 @@ extension ChatTextField {
         
         textFieldHeight = max(40, CGFloat(lineCount) * lineHeight + 26)
     }
+    
 }
 
 #Preview {
