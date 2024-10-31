@@ -16,7 +16,8 @@ struct QueryOfGetChannelChatList: QueryStringProtocol {
     }
     
     func asQueryItems() -> [URLQueryItem] {
-        return [URLQueryItem(name: "cursor_date", value: cursorDate)]
+        return [URLQueryItem(name: "cursor_date",
+                             value: cursorDate)]
     }
     
 }

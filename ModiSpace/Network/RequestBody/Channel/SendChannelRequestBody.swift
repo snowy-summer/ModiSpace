@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SendChannelRequestBody: MutipartEncodable {
+struct SendChannelChatRequestBody: MutipartEncodable {
     
     let content: String
     let files: [Data]

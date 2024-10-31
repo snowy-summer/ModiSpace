@@ -25,7 +25,7 @@ enum ChannelRouter {
                             cursorDate: String?) // 채팅채널 리스트 조회
     case sendChannelChat(workspaceID: String,
                          channelID: String,
-                         body: SendChannelRequestBody) // 채널 채팅 보내기
+                         body: SendChannelChatRequestBody) // 채널 채팅 보내기
     case unReadCountChat(workspaceID: String,
                          channelID: String,
                          after: String?) // 읽지 않은 채널 채팅 갯수
@@ -88,7 +88,6 @@ extension ChannelRouter: RouterProtocol {
     }
     
     var body: Data? {
-        
         let jsonEncoder = JSONEncoder()
         var data: Data?
         
@@ -107,24 +106,22 @@ extension ChannelRouter: RouterProtocol {
     }
     
     var query: [URLQueryItem] {
+        var query = [URLQueryItem]()
         switch self {
         case .getChannelListChat(_, _, let cursorDate):
             if let cursorDate = cursorDate {
-                return QueryOfGetChannelChatList(cursorDate: cursorDate).asQueryItems()
-            } else {
-                return []
+                query = QueryOfGetChannelChatList(cursorDate: cursorDate).asQueryItems()
             }
             
         case .unReadCountChat(_, _, let after):
             if let after = after {
-                return QueryOfUnReadChannel(after: after).asQueryItems()
-            } else {
-                return []
+                query = QueryOfUnReadChannel(after: after).asQueryItems()
             }
             
         default:
-            return []
+            query = []
         }
+        return query
     }
     
     var url: URL? {
@@ -139,10 +136,21 @@ extension ChannelRouter: RouterProtocol {
     }
     
     var headers: [String : String] {
-        let headers = [
+        var headers = [
             Header.sesacKey.key: Header.sesacKey.value,
-            Header.contentTypeJson.key: Header.contentTypeJson.value
+            Header.authorization.key: Header.authorization.value
         ]
+        
+        switch self {
+            
+        case .postChannel, .editSpecificChannel, .sendChannelChat:
+            headers.updateValue(Header.contentTypeMulti.value,
+                                forKey: Header.contentTypeMulti.key)
+            
+        default:
+            headers.updateValue(Header.contentTypeJson.value,
+                                forKey: Header.contentTypeJson.key)
+        }
         
         return headers
     }

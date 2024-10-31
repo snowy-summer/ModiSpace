@@ -12,7 +12,7 @@ struct OwnershipTransferDTO: Decodable {
     let ownerID: String
     
     enum CodingKeys: String, CodingKey {
-        case ownerID = "ownerID"
+        case ownerID = "owner_id"
     }
     
 }

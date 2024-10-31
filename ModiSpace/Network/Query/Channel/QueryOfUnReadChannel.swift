@@ -16,7 +16,8 @@ struct QueryOfUnReadChannel: QueryStringProtocol {
     }
     
     func asQueryItems() -> [URLQueryItem] {
-        return [URLQueryItem(name: "after", value: after)]
+        return [URLQueryItem(name: "after",
+                             value: after)]
     }
     
 }
