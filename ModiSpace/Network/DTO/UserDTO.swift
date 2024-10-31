@@ -13,7 +13,7 @@ struct UserDTO: Decodable {
     let userID: String
     let email: String
     let nickname: String
-    let profileImage: String
+    let profileImage: String?
     let phone: String?
     let provider: String? // 카카오, 애플 소셜제공자
     let sesacCoin: Int?

@@ -23,6 +23,7 @@ extension NetworkManager: NetworkManagerProtocol {
     
     func getData(from router: RouterProtocol) async throws -> Data {
         
+        print(router.url?.absoluteString)
         let (data, response) = try await session.getData(from: router)
         
         do {
@@ -51,6 +52,7 @@ extension NetworkManager: NetworkManagerProtocol {
             let decodedData = try decoder.decode(type, from: data)
             return decodedData
         } catch {
+            print(NetworkError.decodingFailed("\(type)"))
             throw NetworkError.decodingFailed("\(type)")
         }
     }
