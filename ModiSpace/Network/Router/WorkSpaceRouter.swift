@@ -10,15 +10,20 @@ import Foundation
 enum WorkSpaceRouter {
     
     case getWorkSpaceList
-    case createWorkSpace
+    case createWorkSpace(body: WorkspaceRequestBody)
     case getWorkSpaceInfo(spaceId: String)
-    case editWorkSpace(spaceId: String)
+    case editWorkSpace(spaceId: String,
+                       body: WorkspaceRequestBody)
     case deleteWorkSpace(spaceId: String)
-    case inviteMember(spaceId: String)
+    case inviteMember(spaceId: String,
+                      body: InviteMemberRequestBody)
     case findMember(spaceId: String)
-    case getMemberInfo(spaceId: String, userId: String)
-    case searchInWorkSpaceContent(spaceId: String, keyword: String)
-    case changeWorkSpaceManager(spaceId: String)
+    case getMemberInfo(spaceId: String,
+                       userId: String)
+    case searchInWorkSpaceContent(spaceId: String,
+                                  keyword: String)
+    case changeWorkSpaceManager(spaceId: String,
+                                body: ChangeWorkspaceManagerRequestBody)
     case exitWorkSpace(spaceId: String)
     
 }
@@ -42,13 +47,13 @@ extension WorkSpaceRouter: RouterProtocol {
         case .getWorkSpaceInfo(let spaceId):
             return "/v1/workspaces/\(spaceId)"
             
-        case .editWorkSpace(let spaceId):
+        case .editWorkSpace(let spaceId, _):
             return "/v1/workspaces/\(spaceId)"
             
         case .deleteWorkSpace(let spaceId):
             return "/v1/workspaces/\(spaceId)"
             
-        case .inviteMember(let spaceId):
+        case .inviteMember(let spaceId, _):
             return "/v1/workspaces/\(spaceId)/members"
             
         case .findMember(let spaceId):
@@ -60,7 +65,7 @@ extension WorkSpaceRouter: RouterProtocol {
         case .searchInWorkSpaceContent(let spaceId, _):
             return "/v1/workspaces/\(spaceId)/search"
             
-        case .changeWorkSpaceManager(let spaceId):
+        case .changeWorkSpaceManager(let spaceId, _):
             return "/v1/workspaces/\(spaceId)/transfer/ownership"
             
         case .exitWorkSpace(let spaceId):
@@ -81,7 +86,28 @@ extension WorkSpaceRouter: RouterProtocol {
     }
     
     var body: Data? {
-        return nil
+        let jsonEncoder = JSONEncoder()
+        var data: Data?
+        
+        switch self {
+        case .createWorkSpace(let body):
+            data = try? jsonEncoder.encode(body)
+            
+        case .editWorkSpace(_, let body):
+            data = try? jsonEncoder.encode(body)
+            
+        case .inviteMember(_, let body):
+            data = try? jsonEncoder.encode(body)
+            
+        case .changeWorkSpaceManager(_, let body):
+            data = try? jsonEncoder.encode(body)
+            
+        default:
+            data = nil
+        
+        }
+    
+        return data
     }
     
     var url: URL? {
@@ -96,7 +122,35 @@ extension WorkSpaceRouter: RouterProtocol {
     }
     
     var headers: [String : String] {
-        return [:]
+        var headers = [
+            Header.sesacKey.key : Header.sesacKey.value,
+        ]
+        
+        switch self {
+        case .getWorkSpaceList:
+            return headers
+            
+        case .createWorkSpace:
+            headers.updateValue(Header.contentTypeMulti.key,
+                                forKey: Header.contentTypeMulti.value)
+            
+        case .editWorkSpace(let spaceId, _):
+            headers.updateValue(Header.contentTypeMulti.key,
+                                forKey: Header.contentTypeMulti.value)
+            
+        case .changeWorkSpaceManager(let spaceId, _):
+            headers.updateValue(Header.contentTypeJson.key,
+                                forKey: Header.contentTypeJson.value)
+            
+        case .exitWorkSpace(let spaceId):
+            headers.updateValue(Header.contentTypeJson.key,
+                                forKey: Header.contentTypeJson.value)
+            
+        default:
+            return headers
+        }
+        
+        return headers
     }
     
     var method: HTTPMethod {
@@ -136,7 +190,7 @@ extension WorkSpaceRouter: RouterProtocol {
         }
     }
     
-    var responseType: Decodable.Type {
+    var responseType: Decodable.Type? {
         switch self {
         case .getWorkSpaceList:
             return [WorkspaceDTO].self
@@ -151,7 +205,7 @@ extension WorkSpaceRouter: RouterProtocol {
             return WorkspaceDTO.self
             
         case .deleteWorkSpace:
-            return EmptyResponseDTO.self
+            return nil
             
         case .inviteMember:
             return WorkspaceMemberDTO.self

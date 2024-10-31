@@ -25,12 +25,13 @@ enum APIError: Error {
     case exitDenied // E15 요청 거절
     case invalidPayment // E82 유효하지 않은 결제
     case paymentAleradyExists// E81 존재하는 결제
+    case unknownError
     
 }
 
 extension APIError {
     
-    init?(errorCode: String) {
+    init(errorCode: String) {
         switch errorCode {
         case "E01":
             self = .unauthorized
@@ -65,7 +66,7 @@ extension APIError {
         case "E81":
             self = .paymentAleradyExists
         default:
-            return nil
+            self = .unknownError
         }
     }
     
@@ -103,6 +104,8 @@ extension APIError {
             return "E82 유효하지 않은 결제입니다."
         case .paymentAleradyExists:
             return "E81 이미 존재하는 결제입니다"
+        case .unknownError:
+            return "알 수 없는 에러입니다"
         }
     }
     
