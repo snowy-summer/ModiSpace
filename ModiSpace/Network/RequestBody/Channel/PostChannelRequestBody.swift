@@ -1,13 +1,13 @@
 //
-//  WorkspaceRequestBody.swift
+//  PostChannelRequestBody.swift
 //  ModiSpace
 //
-//  Created by 최승범 on 10/26/24.
+//  Created by 전준영 on 10/31/24.
 //
 
 import Foundation
 
-struct WorkspaceRequestBody: MutipartEncodable {
+struct PostChannelRequestBody: MutipartEncodable {
     
     let name: String
     let description: String?
@@ -46,7 +46,7 @@ struct WorkspaceRequestBody: MutipartEncodable {
                 data: image
             )
         )
-    
+        
         return multipartData
     }
     

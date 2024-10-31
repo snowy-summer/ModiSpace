@@ -91,7 +91,7 @@ extension APIError {
         case .badRequest:
             return "E11 잘못된 요청입니다. 요청의 필수 사항을 확인하세요"
         case .duplicateData:
-            return "E12 중복된 데이터입니다. 워크스페이스 이름이 중복될 수 없습니다."
+            return "E12 중복된 데이터입니다."
         case .insufficientSesacCoin:
             return "E21 새싹코인이 부족합니다."
         case .dataNotFound:
