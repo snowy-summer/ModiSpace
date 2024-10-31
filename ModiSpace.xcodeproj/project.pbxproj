@@ -57,6 +57,10 @@
 		6BADE9A42CCE3F2A00099B78 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BADE9A32CCE3F2A00099B78 /* UserDTO.swift */; };
 		6BC87C6B2CD208F900ED3CD4 /* ChangeWorkspaceManagerRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C6A2CD208F900ED3CD4 /* ChangeWorkspaceManagerRequestBody.swift */; };
 		6BC87C6D2CD3091800ED3CD4 /* InviteMemberRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C6C2CD3091800ED3CD4 /* InviteMemberRequestBody.swift */; };
+		6BC87C6F2CD3432C00ED3CD4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C6E2CD3432C00ED3CD4 /* KeychainManager.swift */; };
+		6BC87C712CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C702CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift */; };
+		6BC87C732CD3649000ED3CD4 /* MutipartEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C722CD3649000ED3CD4 /* MutipartEncodable.swift */; };
+		6BC87C772CD367AD00ED3CD4 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C762CD367AD00ED3CD4 /* MultipartFormData.swift */; };
 		6BD3975D2CCA819500F7097D /* ModiSpaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */; };
 		6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3975E2CCA819500F7097D /* ContentView.swift */; };
 		6BD397612CCA819700F7097D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BD397602CCA819700F7097D /* Assets.xcassets */; };
@@ -154,6 +158,10 @@
 		6BADE9A32CCE3F2A00099B78 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		6BC87C6A2CD208F900ED3CD4 /* ChangeWorkspaceManagerRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWorkspaceManagerRequestBody.swift; sourceTree = "<group>"; };
 		6BC87C6C2CD3091800ED3CD4 /* InviteMemberRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberRequestBody.swift; sourceTree = "<group>"; };
+		6BC87C6E2CD3432C00ED3CD4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		6BC87C702CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyProfileImageRequestBody.swift; sourceTree = "<group>"; };
+		6BC87C722CD3649000ED3CD4 /* MutipartEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipartEncodable.swift; sourceTree = "<group>"; };
+		6BC87C762CD367AD00ED3CD4 /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
 		6BD397592CCA819500F7097D /* ModiSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModiSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModiSpaceApp.swift; sourceTree = "<group>"; };
 		6BD3975E2CCA819500F7097D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -216,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				6B0564EF2CCF6DF1003086AC /* Bundle */,
+				6BC87C6E2CD3432C00ED3CD4 /* KeychainManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -240,6 +249,7 @@
 				6B0565072CCF7FE4003086AC /* AppleLoginRequestBody.swift */,
 				6B0564FC2CCF7B36003086AC /* DeviceTokenRequestBody.swift */,
 				6B0565092CCF7FF6003086AC /* EditMyProfileRequestBody.swift */,
+				6BC87C702CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -257,6 +267,7 @@
 				6B2C730C2CCCB6BE0043E478 /* Query */,
 				6B2C72E72CCB9C8B0043E478 /* Header */,
 				6B2C72E42CCB9BE40043E478 /* HttpMethod */,
+				6BC87C752CD3678300ED3CD4 /* Multipart */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -353,6 +364,7 @@
 		6B2C73082CCCB5760043E478 /* RequestBody */ = {
 			isa = PBXGroup;
 			children = (
+				6BC87C742CD3666E00ED3CD4 /* Protocol */,
 				6B0564FB2CCF7B24003086AC /* User */,
 				6B2C73092CCCB5830043E478 /* Workspace */,
 			);
@@ -536,6 +548,22 @@
 				6B0564F92CCF7A0B003086AC /* OtherUserDTO.swift */,
 			);
 			name = User;
+			sourceTree = "<group>";
+		};
+		6BC87C742CD3666E00ED3CD4 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6BC87C722CD3649000ED3CD4 /* MutipartEncodable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		6BC87C752CD3678300ED3CD4 /* Multipart */ = {
+			isa = PBXGroup;
+			children = (
+				6BC87C762CD367AD00ED3CD4 /* MultipartFormData.swift */,
+			);
+			path = Multipart;
 			sourceTree = "<group>";
 		};
 		6BD397502CCA819500F7097D = {
@@ -918,6 +946,7 @@
 				72F25EB42CCE638600A1F182 /* AuthOptionsView.swift in Sources */,
 				AA54FD0C2CCCBA2200D09293 /* SFSubButton.swift in Sources */,
 				6BADE9A42CCE3F2A00099B78 /* UserDTO.swift in Sources */,
+				6BC87C772CD367AD00ED3CD4 /* MultipartFormData.swift in Sources */,
 				AA54FCFA2CCCB96C00D09293 /* RegisterChannelView.swift in Sources */,
 				72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */,
 				6B0564FA2CCF7A0B003086AC /* OtherUserDTO.swift in Sources */,
@@ -931,6 +960,7 @@
 				6B2C72F92CCCA7A70043E478 /* WorkspaceDTO.swift in Sources */,
 				6B694E422CCE01A300ED484D /* ImageSelectButton.swift in Sources */,
 				AA54FCEE2CCCB8C200D09293 /* MemberList.swift in Sources */,
+				6BC87C712CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift in Sources */,
 				AA54FCE22CCCB81D00D09293 /* View+Extension.swift in Sources */,
 				6BD3976F2CCA89CE00F7097D /* FontType.swift in Sources */,
 				72F25EB72CCE672A00A1F182 /* OnboardingHeaderView.swift in Sources */,
@@ -945,6 +975,7 @@
 				6B694E402CCD435100ED484D /* SideMenuView.swift in Sources */,
 				6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */,
 				6B2C731E2CCCB9980043E478 /* URLSession+Extension.swift in Sources */,
+				6BC87C6F2CD3432C00ED3CD4 /* KeychainManager.swift in Sources */,
 				6B2C72FB2CCCAAB60043E478 /* ChannelDTO.swift in Sources */,
 				6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */,
 				6B2C73072CCCB5360043E478 /* TokenDTO.swift in Sources */,
@@ -959,6 +990,7 @@
 				6B2C72ED2CCB9DF90043E478 /* RouterProtocol.swift in Sources */,
 				6B2C73152CCCB8FE0043E478 /* NetworkManager.swift in Sources */,
 				6B0564F12CCF6E02003086AC /* BundleManager.swift in Sources */,
+				6BC87C732CD3649000ED3CD4 /* MutipartEncodable.swift in Sources */,
 				6B2C72EF2CCB9E1D0043E478 /* WorkSpaceRouter.swift in Sources */,
 				6B694E492CCE170300ED484D /* SideMenuContentView.swift in Sources */,
 				6B2C73202CCCB9C00043E478 /* URLRequest+Extension.swift in Sources */,

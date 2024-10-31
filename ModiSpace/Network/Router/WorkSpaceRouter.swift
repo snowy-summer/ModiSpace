@@ -90,9 +90,6 @@ extension WorkSpaceRouter: RouterProtocol {
         var data: Data?
         
         switch self {
-        case .createWorkSpace(let body):
-            data = try? jsonEncoder.encode(body)
-            
         case .editWorkSpace(_, let body):
             data = try? jsonEncoder.encode(body)
             
@@ -104,7 +101,6 @@ extension WorkSpaceRouter: RouterProtocol {
             
         default:
             data = nil
-        
         }
     
         return data
@@ -128,23 +124,32 @@ extension WorkSpaceRouter: RouterProtocol {
         
         switch self {
         case .getWorkSpaceList:
-            return headers
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
             
         case .createWorkSpace:
-            headers.updateValue(Header.contentTypeMulti.key,
-                                forKey: Header.contentTypeMulti.value)
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
+            headers.updateValue(Header.contentTypeMulti.value,
+                                forKey: Header.contentTypeMulti.key)
             
-        case .editWorkSpace(let spaceId, _):
-            headers.updateValue(Header.contentTypeMulti.key,
-                                forKey: Header.contentTypeMulti.value)
+        case .editWorkSpace:
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
+            headers.updateValue(Header.contentTypeMulti.value,
+                                forKey: Header.contentTypeMulti.key)
             
-        case .changeWorkSpaceManager(let spaceId, _):
-            headers.updateValue(Header.contentTypeJson.key,
-                                forKey: Header.contentTypeJson.value)
+        case .changeWorkSpaceManager:
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
+            headers.updateValue(Header.contentTypeMulti.value,
+                                forKey: Header.contentTypeMulti.key)
             
-        case .exitWorkSpace(let spaceId):
-            headers.updateValue(Header.contentTypeJson.key,
-                                forKey: Header.contentTypeJson.value)
+        case .exitWorkSpace:
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
+            headers.updateValue(Header.contentTypeMulti.value,
+                                forKey: Header.contentTypeMulti.key)
             
         default:
             return headers
@@ -224,6 +229,17 @@ extension WorkSpaceRouter: RouterProtocol {
             
         case .exitWorkSpace:
             return [WorkspaceDTO].self
+        }
+    }
+    
+    var multipartFormData: [MultipartFormData] {
+        switch self {
+        case .createWorkSpace(let body):
+            return body.toMultipartFormData()
+        case .editWorkSpace(_, let body):
+            return body.toMultipartFormData()
+        default:
+            return []
         }
     }
     

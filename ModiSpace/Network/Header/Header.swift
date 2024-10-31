@@ -34,14 +34,16 @@ enum Header {
     var value: String {
         switch self {
         case .authorization:
-            return "----"
+            guard let token = KeychainManager.load(forKey: KeychainKey.accessToken.rawValue) else { return "실패" }
+            return token
             
         case .sesacKey:
             guard let key = BundleManager.loadBundleValue(.key) else { return "실패" }
             return key
             
         case .refreshToken:
-            return "----"
+            guard let token = KeychainManager.load(forKey: KeychainKey.refreshToken.rawValue) else { return "실패" }
+            return token
             
         case .contentTypeJson:
             return "application/json"

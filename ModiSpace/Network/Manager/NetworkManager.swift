@@ -23,7 +23,6 @@ extension NetworkManager: NetworkManagerProtocol {
     
     func getData(from router: RouterProtocol) async throws -> Data {
         
-        print(router.url?.absoluteString)
         let (data, response) = try await session.getData(from: router)
         
         do {
