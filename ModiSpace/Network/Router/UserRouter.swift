@@ -18,7 +18,7 @@ enum UserRouter {
     case saveDeviceToken(body: DeviceTokenRequestBody) // FCM 디바이스 토큰 저장
     case getMyProfile // 내 프로필 정보 조회
     case updateMyProfile(body: EditMyProfileRequestBody) // 프로필 정보 수정 (이미지 제외)
-    case updateMyProfileImage(body: Data) // 프로필 이미지 수정
+    case updateMyProfileImage(body: UpdateMyProfileImageRequestBody) // 프로필 이미지 수정
     case getOtherUserProfile(userId: String) // 다른 유저 프로필 조회
     
 }
@@ -104,12 +104,11 @@ extension UserRouter: RouterProtocol {
             
         case .updateMyProfile(let body):
             data = try? jsonEncoder.encode(body)
-
-            //TODO: - 이미지 업로드 수정 필요
-        case .updateMyProfileImage(let body):
-            data = try? jsonEncoder.encode(body)
             
         case .getOtherUserProfile:
+            data = nil
+            
+        default:
             data = nil
         }
         
@@ -171,6 +170,15 @@ extension UserRouter: RouterProtocol {
             
         case .updateMyProfileImage:
             return UserDTO.self
+        }
+    }
+    
+    var multipartFormData: [MultipartFormData] {
+        switch self {
+        case .updateMyProfileImage(let body):
+           return body.toMultipartFormData()
+        default:
+            return []
         }
     }
     

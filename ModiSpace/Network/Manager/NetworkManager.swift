@@ -51,6 +51,7 @@ extension NetworkManager: NetworkManagerProtocol {
             let decodedData = try decoder.decode(type, from: data)
             return decodedData
         } catch {
+            print(NetworkError.decodingFailed("\(type)"))
             throw NetworkError.decodingFailed("\(type)")
         }
     }
