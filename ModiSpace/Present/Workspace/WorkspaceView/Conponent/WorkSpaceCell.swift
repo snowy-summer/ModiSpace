@@ -18,9 +18,8 @@ struct WorkSpaceCell: View {
         HStack {
             Image(uiImage: image)
                 .resizable()
-                .frame(width: 44, height: 44)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .padding(.trailing, 8)
+                .customRoundedRadius()
+            
             VStack(alignment: .leading) {
                 Text(titleText)
                     .customFont(.bodyBold)
