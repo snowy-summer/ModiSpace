@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+struct QueryOfUnReadChannel: QueryStringProtocol {
+    
+    private let after: String
+    
+    init(after: String) {
+        self.after = after
+    }
+    
+    func asQueryItems() -> [URLQueryItem] {
+        return [URLQueryItem(name: "after", value: after)]
+    }
+    
+}

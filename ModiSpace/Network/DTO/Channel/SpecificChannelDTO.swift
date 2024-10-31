@@ -17,4 +17,10 @@ struct SpecificChannelDTO: Decodable {
     let createdAt: String
     let channelMembers: [OtherUserDTO]
     
+    enum CodingKeys: String, CodingKey {
+        case channelID = "channel_id"
+        case ownerID = "owner_id"
+        case name, description, coverImage, createdAt, channelMembers
+    }
+    
 }

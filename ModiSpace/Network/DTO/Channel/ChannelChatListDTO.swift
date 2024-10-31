@@ -19,12 +19,8 @@ struct ChannelChatListDTO: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case channelID = "channel_id"
-        case channelName
         case chatID = "chat_id"
-        case content
-        case createdAt
-        case files
-        case user
+        case channelName, content, createdAt, files, user
     }
     
 }

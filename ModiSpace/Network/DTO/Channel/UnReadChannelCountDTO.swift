@@ -15,8 +15,7 @@ struct UnReadChannelCountDTO: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case channelID = "channel_id"
-        case name
-        case count
+        case name, count
     }
     
 }
