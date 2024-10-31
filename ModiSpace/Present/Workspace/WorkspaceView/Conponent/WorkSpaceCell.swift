@@ -35,6 +35,7 @@ struct WorkSpaceCell: View {
         }
         .frame(maxWidth: .infinity)
     }
+    
 }
 
 #Preview {

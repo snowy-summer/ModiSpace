@@ -74,14 +74,15 @@ extension ChatTextField {
         let font = UIFont.systemFont(ofSize: 16)
         let textWidth = UIScreen.main.bounds.width - 64
         let boundingRect = NSString(string: messageText)
-            .boundingRect(with: CGSize(width: textWidth, height: .infinity),
+            .boundingRect(with: CGSize(width: textWidth,
+                                       height: .infinity),
                           options: .usesLineFragmentOrigin,
-                          attributes: [.font: font], context: nil)
+                          attributes: [.font: font],
+                          context: nil)
         
         let lineHeight = font.lineHeight
         let lineCount = Int(ceil(boundingRect.height / lineHeight))
         
-
         textFieldHeight = max(40, CGFloat(lineCount) * lineHeight + 26)
     }
 }
