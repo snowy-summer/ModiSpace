@@ -15,7 +15,7 @@ enum SesacStoreRouter {
 }
 
 extension SesacStoreRouter: RouterProtocol {
-    
+
     var scheme: String { return "http" }
     
     var host: String? { return BundleManager.loadBundleValue(.host) }
@@ -27,7 +27,6 @@ extension SesacStoreRouter: RouterProtocol {
             
         case .getStoreItemList:
             return "/v1/store/pay/validation"
-            
         }
     }
     
@@ -62,7 +61,11 @@ extension SesacStoreRouter: RouterProtocol {
     }
     
     var headers: [String : String] {
-        return [Header.contentTypeJson.key : Header.contentTypeJson.value]
+        let headers = [
+            Header.sesacKey.key: Header.sesacKey.value,
+            Header.contentTypeJson.key: Header.contentTypeJson.value
+        ]
+        return headers
     }
     
     var method: HTTPMethod {
@@ -72,18 +75,16 @@ extension SesacStoreRouter: RouterProtocol {
             
         case .getStoreItemList:
             return .post
-            
         }
     }
     
-    var responseType: any Decodable.Type {
+    var responseType: (any Decodable.Type)? {
         switch self {
         case .postStorePayValidation:
             return [PayvalidationDTO].self
             
         case .getStoreItemList:
             return [ItemlistDTO].self
-            
         }
     }
     
