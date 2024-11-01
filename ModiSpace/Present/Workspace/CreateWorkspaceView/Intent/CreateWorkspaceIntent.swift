@@ -5,34 +5,14 @@
 //  Created by 최승범 on 10/26/24.
 //
 
-import Foundation
+import UIKit
 
-final class CreateWorkspaceIntent {
+enum CreateWorkspaceIntent {
     
-    private weak var model: CreateWorkspaceModelActionsProtocol?
-    
-    init(model: CreateWorkspaceModelActionsProtocol? = nil) {
-        self.model = model
-    }
-    
-    func setModel(_ model: CreateWorkspaceModelActionsProtocol) {
-        self.model = model
-    }
-    
-}
-
-extension CreateWorkspaceIntent: CreateWorkspaceIntentProtocol {
-    
-    func createWorkspace() {
-        
-    }
-    
-    func updateWorkspaceName(_ name: String) {
-        model?.updateWorkspaceName(name)
-    }
-    
-    func updateWorkspaceDescription(_ description: String) {
-        model?.updateWorkspaceDescription(description)
-    }
+    case createWorkspace
+    case updateName(String)
+    case updateImage(UIImage)
+    case updateDescription(String)
+    case showImagePicker
     
 }
