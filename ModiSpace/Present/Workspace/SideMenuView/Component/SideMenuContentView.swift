@@ -23,7 +23,12 @@ struct SideMenuEmptyContentView: View {
                 .customFont(.body)
                 .padding()
             
-            BasicLargeButtonCell(title: "워크스페이스 생성", isEnabled: true) {
+            CommonButton(icon: nil,
+                         backgroundColor: .main,
+                         text: "워크스페이스 생성",
+                         textColor: .white,
+                         symbolColor: nil,
+                         cornerRadius: 8) {
                 
             }
             .padding()

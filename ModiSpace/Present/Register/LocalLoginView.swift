@@ -26,8 +26,13 @@ struct LocalLoginView: View {
             
             Spacer()
             
-            BasicLargeButtonCell(title: "로그인",
-                                 isEnabled: isCreateButtonEnabled()) {
+            CommonButton(icon: nil,
+                         backgroundColor: .main,
+                         text: "로그인",
+                         textColor: .white,
+                         symbolColor: nil,
+                         cornerRadius: 8,
+                         isEnabled: isCreateButtonEnabled()) {
                 onCreate()
             }
             .padding(.horizontal)

@@ -35,9 +35,15 @@ struct CreateWorkspaceView: View {
             
             Spacer()
             
-            BasicLargeButtonCell(title: "완료", isEnabled: model.isCreateAbled) {
+            CommonButton(icon: nil,
+                         backgroundColor: .main,
+                         text: "완료",
+                         textColor: .white,
+                         symbolColor: nil,
+                         cornerRadius: 8,
+                         isEnabled: model.isCreateAbled) {
                 print(model.workspaceName)
-                intent.createWorkspace() 
+                intent.createWorkspace()
             }
             .padding()
             .disabled(!model.isCreateAbled)
