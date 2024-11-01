@@ -44,7 +44,6 @@ struct SideMenuView: View {
                                 corners: [.topRight, .bottomRight])
             .ignoresSafeArea()
 
-            
             Spacer()
         }
         .onAppear() {
