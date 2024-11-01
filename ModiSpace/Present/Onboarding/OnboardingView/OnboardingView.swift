@@ -22,7 +22,17 @@ struct OnboardingView: View {
                 
                 Spacer()
                 
-                BasicLargeButtonCell(title: "시작하기", action: {})
+                CommonButton(icon: nil,
+                             backgroundColor: .main,
+                             text: "시작하기",
+                             textColor: .white,
+                             symbolColor: nil,
+                             cornerRadius: 12) {
+                    showAuthOption = true
+                }
+            }
+            .sheet(isPresented: $showAuthOption) {
+                AuthOptionsView()
             }
             .padding()
         }

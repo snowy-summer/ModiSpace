@@ -73,7 +73,6 @@ extension UserRouter: RouterProtocol {
     }
     
     var body: Data? {
-        
         let jsonEncoder = JSONEncoder()
         var data: Data?
             

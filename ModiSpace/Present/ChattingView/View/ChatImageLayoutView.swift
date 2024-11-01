@@ -10,25 +10,22 @@ import SwiftUI
 struct ChatImageLayoutView: View {
     
     let images: [UIImage]?
-
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Chat message text")
-                .padding(.bottom, 5)
-
-        
+        VStack(alignment: .leading, spacing: 8) {
             if let images = images, !images.isEmpty {
-                if images.count == 1 {
-         
+                
+                switch images.count {
+                    
+                case 1:
                     Image(uiImage: images[0])
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: UIScreen.main.bounds.width * 0.8, height: 200)
                         .clipped()
                     
-                } else if images.count == 2 {
-                 
-                    HStack(spacing: 5) {
+                case 2:
+                    HStack(spacing: 4) {
                         ForEach(images, id: \.self) { image in
                             Image(uiImage: image)
                                 .resizable()
@@ -38,16 +35,15 @@ struct ChatImageLayoutView: View {
                         }
                     }
                     
-                } else if images.count == 3 {
-              
-                    VStack(spacing: 5) {
+                case 3:
+                    VStack(spacing: 4) {
                         Image(uiImage: images[0])
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: UIScreen.main.bounds.width * 0.8, height: 150)
                             .clipped()
-
-                        HStack(spacing: 5) {
+                        
+                        HStack(spacing: 4) {
                             ForEach(images[1...2], id: \.self) { image in
                                 Image(uiImage: image)
                                     .resizable()
@@ -57,10 +53,40 @@ struct ChatImageLayoutView: View {
                             }
                         }
                     }
-                } else {
-                    // 이미지가 4개 이상 일때
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 5) {
+                    
+                case 4:
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 4) {
                         ForEach(images, id: \.self) { image in
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: (UIScreen.main.bounds.width * 0.8 - 5) / 2, height: 150)
+                                .clipped()
+                        }
+                    }
+                    
+                case 5:
+                    VStack(spacing: 4) {
+                        Image(uiImage: images[0])
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: UIScreen.main.bounds.width * 0.8, height: 150)
+                            .clipped()
+                        
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 4) {
+                            ForEach(images[1...4], id: \.self) { image in
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: (UIScreen.main.bounds.width * 0.8 - 5) / 2, height: 150)
+                                    .clipped()
+                            }
+                        }
+                    }
+                    
+                default:
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 4) {
+                        ForEach(images.prefix(6), id: \.self) { image in
                             Image(uiImage: image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -72,8 +98,9 @@ struct ChatImageLayoutView: View {
             }
         }
         .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(10)
+        .background(.gray.opacity(0.1))
+        .cornerRadius(8)
     }
     
 }
+

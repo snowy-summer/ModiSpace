@@ -18,9 +18,8 @@ struct ChatMessageRowCell: View {
             } else {
                 Image(systemName: message.profileImage)
                     .resizable()
-                    .background(Color.gray)
-                    .frame(width: 40, height: 40)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .background(.gray)
+                    .customRoundedRadius()
             }
             
             VStack(alignment: message.isCurrentUser ? .trailing : .leading) {
@@ -44,13 +43,13 @@ struct ChatMessageRowCell: View {
             } else {
                 Image(systemName: message.profileImage)
                     .resizable()
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
+                    .background(.gray)
+                    .customRoundedRadius()
             }
         }
         .padding(message.isCurrentUser ? .leading : .trailing, 60)
-        .padding(.vertical, 5)
-        
+        .padding(.vertical, 4)
     }
+    
 }
 

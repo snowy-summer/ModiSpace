@@ -14,9 +14,7 @@ struct WorkspaceHeaderView: View {
             Image(systemName: "star")
                 .resizable()
                 .background(Color.green)
-                .frame(width: 44, height: 44)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .padding(.trailing,8)
+                .customRoundedRadius()
             
             Text("iOS Developers Study")
                 .font(.system(size: 20, weight: .bold))
