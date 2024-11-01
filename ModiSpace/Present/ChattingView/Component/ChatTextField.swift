@@ -27,7 +27,8 @@ struct ChatTextField: View {
                     .foregroundStyle(.gray)
             }
             .sheet(isPresented: $isShowingImagePicker) {
-                PhotoPicker(selectedImages: $selectedImages)
+                PhotoPicker(selectedImages: $selectedImages,
+                            isMultipleImage: true)
             }
             
             VStack {

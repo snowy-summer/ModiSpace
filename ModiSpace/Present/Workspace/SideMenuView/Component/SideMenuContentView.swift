@@ -10,6 +10,8 @@ import SwiftUI
 //MARK: - EmptyContnent
 struct SideMenuEmptyContentView: View {
     
+    var model: SideMenuModel
+    
     var body: some View {
         VStack(alignment: .center) {
             Spacer()
@@ -29,7 +31,7 @@ struct SideMenuEmptyContentView: View {
                          textColor: .white,
                          symbolColor: nil,
                          cornerRadius: 8) {
-                
+                model.apply(.addWorkspace)
             }
             .padding()
             
@@ -42,15 +44,16 @@ struct SideMenuEmptyContentView: View {
 //MARK: - NoneEmptyContent
 struct SideMenuNoneEmptyContentView: View {
     
-    var exampleWorksapceList = [1,2,3]
+    var model: SideMenuModel
     
     var body: some View {
         VStack(alignment: .center) {
             Spacer()
             
             List {
-                ForEach(exampleWorksapceList, id: \.self) { _ in
-                    WorkSpaceCell()
+                ForEach(model.workspaceList, id: \.workspaceID) { workspace in
+                    WorkSpaceCell(titleText: workspace.name,
+                                  dateText: workspace.createdAt)
                         .listRowSeparator(.hidden)
                 }
             }

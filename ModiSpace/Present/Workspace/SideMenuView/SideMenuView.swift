@@ -9,8 +9,7 @@ import SwiftUI
 
 struct SideMenuView: View {
     
-    @Binding var isShowing: Bool
-    var isWorkspaceEmpty = true
+    @StateObject var model = SideMenuModel()
     
     var body: some View {
         HStack {
@@ -20,16 +19,20 @@ struct SideMenuView: View {
                 
                 Spacer()
                 
-                if isWorkspaceEmpty {
-                    SideMenuEmptyContentView()
+                if model.isWorkspaceEmpty {
+                    SideMenuEmptyContentView(model: model)
                 } else  {
-                    SideMenuNoneEmptyContentView()
+                    SideMenuNoneEmptyContentView(model: model)
                 }
                 
-                SFSubButton(text: "워크스페이스 추가") { print("aa")}
+                SFSubButton(text: "워크스페이스 추가") {
+                    model.apply(.addWorkspace)
+                }
                     .padding()
                 
-                SFSubButton(text: "도움말") {}
+                SFSubButton(text: "도움말") {
+                    model.apply(.showHelpGuide)
+                }
                     .padding(.horizontal)
                     .padding(.bottom, 40)
                     
@@ -44,11 +47,16 @@ struct SideMenuView: View {
             
             Spacer()
         }
-        
+        .onAppear() {
+            model.apply(.fetchWorkspaceList)
+        }
+        .sheet(isPresented: $model.isShowCreateWorkspaceView) {
+            CreateWorkspaceView()
+        }
     }
     
 }
 
 #Preview {
-    SideMenuView(isShowing: .constant(true))
+    SideMenuView()
 }

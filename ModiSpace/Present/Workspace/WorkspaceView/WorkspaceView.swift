@@ -48,7 +48,7 @@ struct WorkspaceView: View {
                                 }
                             }
                         
-                        SideMenuView(isShowing: $model.isShowSideView)
+                        SideMenuView()
                             .transition(.move(edge: .leading))
                             .dragGesture(direction: .left) {
                                 model.apply(.dontShowSideView)

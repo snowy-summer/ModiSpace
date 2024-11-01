@@ -43,10 +43,10 @@ struct CreateWorkspaceView: View {
                          symbolColor: nil,
                          cornerRadius: 8,
                          isEnabled: model.isCreateAbled) {
-                intent.createWorkspace()
+                model.apply(.createWorkspace)
             }
-                                 .padding()
-                                 .disabled(!model.isCreateAbled)
+                         .padding()
+                         .disabled(!model.isCreateAbled)
         }
         .padding(.top, 32)
         .onTapGesture {
