@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import Combine
 
 protocol NetworkManagerProtocol {
     
     func getData(from router: RouterProtocol) async throws -> Data
-    func getDecodedData(from router: RouterProtocol) async throws -> Decodable
+    func getDecodedData<T:Decodable>(from router: RouterProtocol,
+                                     type: T.Type) async throws -> T 
+    func getData(from router: RouterProtocol) -> AnyPublisher<Data, Error>
+    func getDecodedData<T: Decodable>(from router: RouterProtocol,
+                                      type: T.Type) -> AnyPublisher<T, Error>
     
 }

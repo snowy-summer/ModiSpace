@@ -24,6 +24,8 @@ enum UserRouter {
 }
 
 extension UserRouter: RouterProtocol {
+    typealias ResponseType = <#type#>
+    
     
     var scheme: String { return "http" }
     
@@ -148,30 +150,26 @@ extension UserRouter: RouterProtocol {
         }
     }
     
-    var responseType: Decodable.Type? {
-        switch self {
-        case .join, .login, .loginKakao, .loginApple:
-            return UserDTO.self
-            
-        case .validateEmail:
-            return nil
-            
-        case .logout:
-            return nil
-            
-        case .saveDeviceToken:
-            return nil
-            
-        case .getMyProfile, .updateMyProfile:
-            return UserDTO.self
-            
-        case .getOtherUserProfile:
-            return OtherUserDTO.self
-            
-        case .updateMyProfileImage:
-            return UserDTO.self
+    typealias ResponseType = Decodable  // 프로토콜 요구사항 충족을 위해 기본 Decodable로 선언
+
+        var responseType: Decodable.Type {
+            switch self {
+            case .join, .login, .loginKakao, .loginApple:
+                return UserDTO.self
+                
+            case .validateEmail, .logout, .saveDeviceToken:
+                return EmptyResponseDTO.self
+                
+            case .getMyProfile, .updateMyProfile:
+                return UserDTO.self
+                
+            case .getOtherUserProfile:
+                return OtherUserDTO.self
+                
+            case .updateMyProfileImage:
+                return UserDTO.self
+            }
         }
-    }
     
     var multipartFormData: [MultipartFormData] {
         switch self {

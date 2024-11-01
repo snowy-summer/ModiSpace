@@ -25,31 +25,31 @@ struct ContentView: View {
                     //                                                                                    phone: "010-9999-9999",     deviceToken: "test_mac_Modi")))
                     //
                     //로그인
-                    let login = try await NetworkManager()
-                        .getDecodedData(from: UserRouter.login(body: LoginRequestBody(email: "Modispace@naver.com",
-                                                                                      password: "A!2a0000",
-                                                                                      deviceToken: "test_mac_Modi")))
-                    // 토큰 저장
-                    if let userInfo = login as? UserDTO {
-                        KeychainManager.save(userInfo.token.accessToken,
-                                             forKey: KeychainKey.accessToken.rawValue)
-                        KeychainManager.save(userInfo.token.refreshToken!,
-                                             forKey: KeychainKey.refreshToken.rawValue)
-                        print(userInfo.token.accessToken)
-                    }
+                    let router = UserRouter.login(body: LoginRequestBody(email: "Modispace@naver.com",
+                                                                         password: "A!2a0000",
+                                                                         deviceToken: "test_mac_Modi"))
                     
+                    
+                    let loginData = try await NetworkManager().getDecodedData(from: router, type: UserDTO.self)
+                    
+                    // 토큰 저장
+                    KeychainManager.save(loginData.token.accessToken,
+                                         forKey: KeychainKey.accessToken.rawValue)
+                    KeychainManager.save(loginData.token.refreshToken!,
+                                         forKey: KeychainKey.refreshToken.rawValue)
+                    print(loginData.token.accessToken)
                     
                     // 워크스페이스 조회
-//                    let myWorkspaceList = try await NetworkManager()
-//                        .getDecodedData(from: WorkSpaceRouter.getWorkSpaceList)
-//                    
-//                    //워크스페이스 생성
-//                    let createWorkspace = try await NetworkManager()
-//                        .getDecodedData(from: WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: "test_1_ModiSpace",
-//                                                                                                         description: "테스트",
-//                                                                                                         image: UIImage(resource: .temp).jpegData(compressionQuality: 0.4) ?? Data())))
-//                    
-//                    print(createWorkspace)
+                    //                    let myWorkspaceList = try await NetworkManager()
+                    //                        .getDecodedData(from: WorkSpaceRouter.getWorkSpaceList)
+                    //
+                    //                    //워크스페이스 생성
+                    //                    let createWorkspace = try await NetworkManager()
+                    //                        .getDecodedData(from: WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: "test_1_ModiSpace",
+                    //                                                                                                         description: "테스트",
+                    //                                                                                                         image: UIImage(resource: .temp).jpegData(compressionQuality: 0.4) ?? Data())))
+                    //
+                    //                    print(createWorkspace)
                     
                 } catch(let error) {
                     print(error.localizedDescription)

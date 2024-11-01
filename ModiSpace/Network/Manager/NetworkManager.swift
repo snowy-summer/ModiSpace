@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class NetworkManager {
     
@@ -35,7 +36,8 @@ extension NetworkManager: NetworkManagerProtocol {
     }
     
     
-    func getDecodedData(from router: RouterProtocol) async throws -> Decodable {
+    func getDecodedData<T:Decodable>(from router: RouterProtocol,
+                                     type: T.Type) async throws -> T {
         
         let (data, response) = try await session.getData(from: router)
         
@@ -45,8 +47,6 @@ extension NetworkManager: NetworkManagerProtocol {
             handleErrorData(data: data)
         }
         
-        guard let type = router.responseType else { return EmptyResponseDTO() }
-        
         do {
             let decodedData = try decoder.decode(type, from: data)
             return decodedData
@@ -54,6 +54,48 @@ extension NetworkManager: NetworkManagerProtocol {
             print(NetworkError.decodingFailed("\(type)"))
             throw NetworkError.decodingFailed("\(type)")
         }
+    }
+    
+    func getData(from router: RouterProtocol) -> AnyPublisher<Data, Error> {
+        Future { promise in
+            Task { [weak self] in
+                guard let self = self else { return }
+                
+                let (data, response): (Data, URLResponse)
+                
+                do {
+                    (data, response) = try await self.session.getData(from: router)
+                    try validateResponse(response)
+                    promise(.success(data))
+                } catch {
+                    handleErrorData(data: data)
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getDecodedData<T: Decodable>(from router: RouterProtocol,
+                                      type: T.Type) -> AnyPublisher<T, Error> {
+        Future { promise in
+            Task { [weak self] in
+                guard let self = self else { return }
+                
+                let (data, response): (Data, URLResponse)
+                do {
+                    (data, response) = try await self.session.getData(from: router)
+                    try validateResponse(response)
+                    
+                    let decodedData = try self.decoder.decode(type, from: data)
+                    promise(.success(decodedData))
+                } catch {
+                    self.handleErrorData(data: data)
+                    promise(.failure(NetworkError.decodingFailed("\(type)")))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
     
 }
