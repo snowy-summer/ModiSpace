@@ -13,38 +13,38 @@ struct SideMenuView: View {
     var isWorkspaceEmpty = true
     
     var body: some View {
-        ZStack {
-            if isShowing {
-                Rectangle()
-                    .opacity(0.3)
-                    .ignoresSafeArea()
-                    .onTapGesture { isShowing.toggle() }
+        HStack {
+            VStack(alignment: .leading) {
+                SideMenuHeaderView()
+                    .padding(.top, 40)
                 
-                HStack {
-                    VStack(alignment: .leading) {
-                        SideMenuHeaderView()
-                        
-                        Spacer()
-                        
-                        if isWorkspaceEmpty {
-                            SideMenuEmptyContentView()
-                        } else  {
-                            SideMenuNoneEmptyContentView()
-                        }
-                        
-                        SFSubButton(text: "워크스페이스 추가") { print("aa")}
-                            .padding()
-                        SFSubButton(text: "도움말") {}
-                            .padding(.horizontal)
-                            .padding(.bottom)
-                    }
-                    .frame(width: 300)
-                    .background(.white)
-                    
-                    Spacer()
+                Spacer()
+                
+                if isWorkspaceEmpty {
+                    SideMenuEmptyContentView()
+                } else  {
+                    SideMenuNoneEmptyContentView()
                 }
+                
+                SFSubButton(text: "워크스페이스 추가") { print("aa")}
+                    .padding()
+                
+                SFSubButton(text: "도움말") {}
+                    .padding(.horizontal)
+                    .padding(.bottom, 40)
+                    
+                Spacer()
             }
+            .frame(width: 300)
+            .background(.white)
+            .customCornerRadius(20,
+                                corners: [.topRight, .bottomRight])
+            .ignoresSafeArea()
+
+            
+            Spacer()
         }
+        
     }
     
 }

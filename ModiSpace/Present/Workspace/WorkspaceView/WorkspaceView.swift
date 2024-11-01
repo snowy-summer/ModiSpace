@@ -9,27 +9,50 @@ import SwiftUI
 
 struct WorkspaceView: View {
     
-    @State private var isChannelsShow = false
-    @State private var isDirectShow = false
-    @State private var showNewMessageView = false
+    @StateObject var model = WorkspaceModel()
     
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
                 VStack {
                     WorkspaceHeaderView()
+                        .onTapGesture {
+                            withAnimation {
+                                model.apply(.showSideView)
+                            }
+                        }
                     
                     Divider()
                     
                     ScrollView{
-                        CategoryListView(isChannelsShow: $isChannelsShow,
-                                         isDirectShow: $isDirectShow,
-                                         showNewMessageView: $showNewMessageView)
+                        CategoryListView(isChannelsShow: $model.isShowChannels,
+                                         isDirectShow: $model.isShowMessageList,
+                                         showNewMessageView: $model.isShowNewMessageView)
                         
-                        SFSubButton(text: "팀원 추가") {}
-                            .padding()
+                        SFSubButton(text: "팀원 추가") {
+                            model.apply(.showMemberAddView)
+                        }
+                        .padding()
                         
                         Spacer()
+                    }
+                }
+                .overlay {
+                    if model.isShowSideView {
+                        Rectangle()
+                            .opacity(0.3)
+                            .ignoresSafeArea()
+                            .onTapGesture {
+                                withAnimation {
+                                    model.apply(.dontShowSideView)
+                                }
+                            }
+                        
+                        SideMenuView(isShowing: $model.isShowSideView)
+                            .transition(.move(edge: .leading))
+                            .dragGesture(direction: .left) {
+                                model.apply(.dontShowSideView)
+                            }
                     }
                 }
                 
@@ -38,7 +61,7 @@ struct WorkspaceView: View {
                     .position(x: geometry.size.width - 45,
                               y: geometry.size.height - 35)
             }
-            .navigationDestination(isPresented: $showNewMessageView) {
+            .navigationDestination(isPresented: $model.isShowNewMessageView) {
                 NewMessageView()
             }
         }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-  
+
 extension View {
     
     func endTextEditing() {
@@ -15,10 +15,10 @@ extension View {
     }
     /*
      키보드 내리는 함수 입니다.
-    사용법: 원하는 뷰의 백그라운드 밑에 코드를 붙이면 키보드가 내려갑니다.
-        .onTapGesture {
-            endTextEditing()
-    }
+     사용법: 원하는 뷰의 백그라운드 밑에 코드를 붙이면 키보드가 내려갑니다.
+     .onTapGesture {
+     endTextEditing()
+     }
      */
     
     func customCornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
@@ -30,9 +30,51 @@ extension View {
      .customCornerRadius(12, corners: [.bottomLeft, .bottomRight])
      .dada(12 .bottom)
      */
-
+    
+    func dragGesture(direction: DragDirection,
+                     action: @escaping () -> Void) -> some View {
+        self.gesture(
+            DragGesture()
+                .onChanged { value in
+                    
+                    switch direction {
+                    case .left:
+                        if value.translation.width < 0 {
+                            withAnimation {
+                                action()
+                            }
+                        }
+                        
+                    case .right:
+                        if value.translation.width > 0 {
+                            withAnimation {
+                                action()
+                            }
+                        }
+                        
+                    case .both:
+                        withAnimation {
+                            action()
+                        }
+                    }
+                }
+        )
+    }
+    
+    /*
+     사용방법
+     방향 선택후 액션
+     .dragGesture(direction: .left) {
+      action()
+     }
+     */
+    
 }
 
-
-
-
+enum DragDirection {
+    
+    case left
+    case right
+    case both
+    
+}
