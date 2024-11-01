@@ -10,7 +10,8 @@ import SwiftUI
 struct CommonButton: View {
     
     let icon: Image? //글자만 있는 버튼도 사용할 수 있도록
-    let backgroundColor: Color //배경
+    let backgroundColor: Color //배경색
+    let disabledBackgroundColor: Color? = .gray// disabled일때 배경색상
     let text: String //글자
     let textColor: Color //글자색상
     let symbolColor: Color? //로고 색상
@@ -19,14 +20,12 @@ struct CommonButton: View {
     var action: () -> Void
     
     var body: some View {
-        
         Button(action: {
             if isEnabled {
                 action()
             }
         }) {
             HStack {
-                
                 if let icon = icon {
                     icon
                         .resizable()
@@ -42,7 +41,7 @@ struct CommonButton: View {
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .background(backgroundColor)
+            .background(isEnabled ? backgroundColor : (disabledBackgroundColor ?? backgroundColor))
             .cornerRadius(cornerRadius)
         }
         .disabled(!isEnabled)
@@ -53,9 +52,7 @@ struct CommonButton: View {
 struct CustomLoginButton_Previews: PreviewProvider {
     
     static var previews: some View {
-        
-        VStack(spacing: 10) {
-            
+        VStack(spacing: 12) {
             CommonButton(
                 icon: Image(systemName: "applelogo"),
                 backgroundColor: .black,
@@ -66,7 +63,6 @@ struct CustomLoginButton_Previews: PreviewProvider {
             ) {
                 
             }
-            
             
             CommonButton(
                 icon: Image(systemName: "message.fill"),
@@ -81,7 +77,7 @@ struct CustomLoginButton_Previews: PreviewProvider {
             
             CommonButton(
                 icon: Image(systemName: "envelope"),
-                backgroundColor: Color.green,
+                backgroundColor: .main,
                 text: "이메일로 계속하기",
                 textColor: .white,
                 symbolColor: .white,
@@ -91,7 +87,6 @@ struct CustomLoginButton_Previews: PreviewProvider {
             }
         }
         .padding()
-        
     }
     
 }
