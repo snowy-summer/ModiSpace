@@ -16,11 +16,11 @@ struct LocalLoginView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            InputFieldCell(text: $loginEmail,
+            InputField(text: $loginEmail,
                            title: "이메일",
                            placeholder: "이메일을 입력하세요")
             
-            InputFieldCell(text: $loginPassword,
+            InputField(text: $loginPassword,
                            title: "비밀번호",
                            placeholder: "비밀번호를 입력하세요")
             

@@ -1,5 +1,5 @@
 //
-//  InputFieldCell.swift
+//  InputField.swift
 //  ModiSpace
 //
 //  Created by 이윤지 on 10/26/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InputFieldCell: View {
+struct InputField: View {
     
     @Binding var text: String
     
@@ -39,11 +39,11 @@ struct InputField_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack(spacing: 20) {
-            InputFieldCell(text: $text,
+            InputField(text: $text,
                        title: "연락처",
                        placeholder: "전화번호를 입력하세요")
             
-            InputFieldCell(text: $text,
+            InputField(text: $text,
                        title: nil,
                        placeholder: "전화번호를 입력하세요",
                        keyboardType: .numberPad)

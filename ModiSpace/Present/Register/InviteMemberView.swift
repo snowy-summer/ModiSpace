@@ -14,7 +14,7 @@ struct InviteMemberView: View {
     var body: some View {
         VStack(spacing: 24) {
             
-            InputFieldCell(text: $email,
+            InputField(text: $email,
                            title: "이메일",
                            placeholder: "초대하려는 팀원의 이메일을 입력하세요.")
             

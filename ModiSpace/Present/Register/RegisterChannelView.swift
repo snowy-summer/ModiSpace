@@ -18,11 +18,11 @@ struct RegisterChannelView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            InputFieldCell(text: $channelName,
+            InputField(text: $channelName,
                            title: "채널 이름",
                            placeholder: "채널 이름을 입력하세요 (필수)")
             
-            InputFieldCell(text: $channelDescription,
+            InputField(text: $channelDescription,
                            title: "채널 설명",
                            placeholder: "채널을 설명하세요 (옵션)")
             
