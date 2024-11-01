@@ -11,27 +11,27 @@ import PhotosUI
 struct PhotoPicker: UIViewControllerRepresentable {
     
     @Binding var selectedImages: [UIImage]
+    var isMultipleImage: Bool
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
-        
         var config = PHPickerConfiguration()
-        config.selectionLimit = 0
+        config.selectionLimit = isMultipleImage ? 0 : 1
         config.filter = .images
+        
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
-        return picker
         
+        return picker
     }
     
-    
-    func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: PHPickerViewController,
+                                context: Context) {}
     
     func makeCoordinator() -> Coordinator {
-        
         Coordinator(self)
     }
     
-    class Coordinator: NSObject, PHPickerViewControllerDelegate {
+    final class Coordinator: NSObject, PHPickerViewControllerDelegate {
         var parent: PhotoPicker
         
         init(_ parent: PhotoPicker) {

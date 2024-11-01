@@ -88,6 +88,8 @@ extension SesacStoreRouter: RouterProtocol {
         }
     }
     
+    var multipartFormData: [MultipartFormData] {
+        return []
+    }
+    
 }
-
-

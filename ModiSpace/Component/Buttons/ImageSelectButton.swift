@@ -10,11 +10,12 @@ import SwiftUI
 struct ImageSelectButton: View {
     
     var action: () -> Void
+    var image: UIImage?
     
     var body: some View {
         
         Button(action: action) {
-            Image(uiImage: .temp)
+            Image(uiImage: image ?? UIImage(resource: .temp))
                 .resizable()
                 .frame(width: 100, height: 100)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -44,6 +45,6 @@ struct ImageSelectButton: View {
     
 }
 
-#Preview {
-    ImageSelectButton(action: {})
-}
+//#Preview {
+//    ImageSelectButton(action: {}, image: $UIImage())
+//}

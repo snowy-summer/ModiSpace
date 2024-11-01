@@ -18,10 +18,7 @@ struct DirectMessageCell: View {
             Image(systemName: icon)
                 .resizable()
                 .background(.main)
-                .frame(width: 44,
-                       height: 44)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .padding(.trailing, 8)
+                .customRoundedRadius()
             
             Text(directTitle)
                 .font(.system(size: 16))

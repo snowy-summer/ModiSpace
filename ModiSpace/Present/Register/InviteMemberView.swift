@@ -20,9 +20,14 @@ struct InviteMemberView: View {
             
             Spacer()
             
-            BasicLargeButtonCell(title: "초대 보내기",
-                                 isEnabled: isCreateButtonEnabled()) {
-              //  print("입력한 이메일 \(email)")
+            CommonButton(icon: nil,
+                         backgroundColor: .main,
+                         text: "초대 보내기",
+                         textColor: .white,
+                         symbolColor: nil,
+                         cornerRadius: 8,
+                         isEnabled: isCreateButtonEnabled()) {
+                //  print("입력한 이메일 \(email)")
             }
             .padding(.horizontal)
         }

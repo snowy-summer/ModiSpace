@@ -10,7 +10,7 @@ import Combine
 
 struct ContentView: View {
     var body: some View {
-        CreateWorkspaceView()
+        WorkspaceView()
             .task {
                 do {
                     //이메일 검증

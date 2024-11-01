@@ -9,18 +9,17 @@ import SwiftUI
 
 struct WorkSpaceCell: View {
     
-    let image = UIImage(resource: .temp)
-    let titleText = "test_ios Study"
-    let dateText = "24. 10. 25"
+    let image: UIImage = UIImage(resource: .temp)
+    let titleText: String
+    let dateText: String
     var selected = true
     
     var body: some View {
         HStack {
             Image(uiImage: image)
                 .resizable()
-                .frame(width: 44, height: 44)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .padding(.trailing, 8)
+                .customRoundedRadius()
+            
             VStack(alignment: .leading) {
                 Text(titleText)
                     .customFont(.bodyBold)
@@ -36,8 +35,10 @@ struct WorkSpaceCell: View {
         }
         .frame(maxWidth: .infinity)
     }
+    
 }
 
 #Preview {
-    WorkSpaceCell()
+    WorkSpaceCell(titleText: "워크",
+                  dateText: "2024.03.11")
 }
