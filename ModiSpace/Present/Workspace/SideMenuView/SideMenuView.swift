@@ -9,46 +9,53 @@ import SwiftUI
 
 struct SideMenuView: View {
     
-    @Binding var isShowing: Bool
-    var isWorkspaceEmpty = true
+    @StateObject var model = SideMenuModel()
     
     var body: some View {
-        ZStack {
-            if isShowing {
-                Rectangle()
-                    .opacity(0.3)
-                    .ignoresSafeArea()
-                    .onTapGesture { isShowing.toggle() }
+        HStack {
+            VStack(alignment: .leading) {
+                SideMenuHeaderView()
+                    .padding(.top, 40)
                 
-                HStack {
-                    VStack(alignment: .leading) {
-                        SideMenuHeaderView()
-                        
-                        Spacer()
-                        
-                        if isWorkspaceEmpty {
-                            SideMenuEmptyContentView()
-                        } else  {
-                            SideMenuNoneEmptyContentView()
-                        }
-                        
-                        SFSubButton(text: "워크스페이스 추가") { print("aa")}
-                            .padding()
-                        SFSubButton(text: "도움말") {}
-                            .padding(.horizontal)
-                            .padding(.bottom)
-                    }
-                    .frame(width: 300)
-                    .background(.white)
-                    
-                    Spacer()
+                Spacer()
+                
+                if model.isWorkspaceEmpty {
+                    SideMenuEmptyContentView(model: model)
+                } else  {
+                    SideMenuNoneEmptyContentView(model: model)
                 }
+                
+                SFSubButton(text: "워크스페이스 추가") {
+                    model.apply(.addWorkspace)
+                }
+                    .padding()
+                
+                SFSubButton(text: "도움말") {
+                    model.apply(.showHelpGuide)
+                }
+                    .padding(.horizontal)
+                    .padding(.bottom, 40)
+                    
+                Spacer()
             }
+            .frame(width: 300)
+            .background(.white)
+            .customCornerRadius(20,
+                                corners: [.topRight, .bottomRight])
+            .ignoresSafeArea()
+
+            Spacer()
+        }
+        .onAppear() {
+            model.apply(.fetchWorkspaceList)
+        }
+        .sheet(isPresented: $model.isShowCreateWorkspaceView) {
+            CreateWorkspaceView()
         }
     }
     
 }
 
 #Preview {
-    SideMenuView(isShowing: .constant(true))
+    SideMenuView()
 }

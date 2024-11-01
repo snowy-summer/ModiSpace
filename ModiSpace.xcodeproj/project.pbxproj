@@ -42,7 +42,6 @@
 		6B2C73202CCCB9C00043E478 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C731F2CCCB9C00043E478 /* URLRequest+Extension.swift */; };
 		6B694E292CCCF69100ED484D /* CreateWorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E282CCCF69100ED484D /* CreateWorkspaceView.swift */; };
 		6B694E2D2CCCF8A600ED484D /* CreateWorkspaceIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E2C2CCCF8A600ED484D /* CreateWorkspaceIntent.swift */; };
-		6B694E332CCCF9EE00ED484D /* CreateWorkspaceIntentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E322CCCF9EE00ED484D /* CreateWorkspaceIntentProtocol.swift */; };
 		6B694E392CCCFA9100ED484D /* CreateWorkspaceModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E382CCCFA9100ED484D /* CreateWorkspaceModelProtocol.swift */; };
 		6B694E3B2CCCFB4500ED484D /* CreateWorkspaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E3A2CCCFB4500ED484D /* CreateWorkspaceModel.swift */; };
 		6B694E402CCD435100ED484D /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E3F2CCD435100ED484D /* SideMenuView.swift */; };
@@ -61,6 +60,8 @@
 		6BC87C712CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C702CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift */; };
 		6BC87C732CD3649000ED3CD4 /* MutipartEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C722CD3649000ED3CD4 /* MutipartEncodable.swift */; };
 		6BC87C772CD367AD00ED3CD4 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC87C762CD367AD00ED3CD4 /* MultipartFormData.swift */; };
+		6BCF99702CD4A625001A73FE /* WorkspaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF996F2CD4A625001A73FE /* WorkspaceModel.swift */; };
+		6BCF99722CD4C634001A73FE /* WorkspaceIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF99712CD4C634001A73FE /* WorkspaceIntent.swift */; };
 		6BD3975D2CCA819500F7097D /* ModiSpaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */; };
 		6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3975E2CCA819500F7097D /* ContentView.swift */; };
 		6BD397612CCA819700F7097D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BD397602CCA819700F7097D /* Assets.xcassets */; };
@@ -68,6 +69,8 @@
 		6BD3976B2CCA81AD00F7097D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6BD3976A2CCA81AD00F7097D /* .gitignore */; };
 		6BD3976F2CCA89CE00F7097D /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3976E2CCA89CE00F7097D /* FontType.swift */; };
 		6BD397722CCA8D2500F7097D /* CustomFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD397712CCA8D2500F7097D /* CustomFontModifier.swift */; };
+		6BD865C02CD4CA0500361227 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD865BF2CD4CA0500361227 /* SideMenuModel.swift */; };
+		6BD865C32CD4CF9700361227 /* SideMenuInetnt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD865C22CD4CF9700361227 /* SideMenuInetnt.swift */; };
 		727D87452CD205D100C52751 /* ChannelRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87442CD205D100C52751 /* ChannelRouter.swift */; };
 		727D87482CD3447A00C52751 /* PostChannelRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87472CD3447A00C52751 /* PostChannelRequestBody.swift */; };
 		727D874A2CD349D000C52751 /* SendChannelRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87492CD349D000C52751 /* SendChannelRequestBody.swift */; };
@@ -159,7 +162,6 @@
 		6B2C731F2CCCB9C00043E478 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		6B694E282CCCF69100ED484D /* CreateWorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceView.swift; sourceTree = "<group>"; };
 		6B694E2C2CCCF8A600ED484D /* CreateWorkspaceIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceIntent.swift; sourceTree = "<group>"; };
-		6B694E322CCCF9EE00ED484D /* CreateWorkspaceIntentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceIntentProtocol.swift; sourceTree = "<group>"; };
 		6B694E382CCCFA9100ED484D /* CreateWorkspaceModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceModelProtocol.swift; sourceTree = "<group>"; };
 		6B694E3A2CCCFB4500ED484D /* CreateWorkspaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceModel.swift; sourceTree = "<group>"; };
 		6B694E3F2CCD435100ED484D /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,8 @@
 		6BC87C702CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyProfileImageRequestBody.swift; sourceTree = "<group>"; };
 		6BC87C722CD3649000ED3CD4 /* MutipartEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipartEncodable.swift; sourceTree = "<group>"; };
 		6BC87C762CD367AD00ED3CD4 /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
+		6BCF996F2CD4A625001A73FE /* WorkspaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceModel.swift; sourceTree = "<group>"; };
+		6BCF99712CD4C634001A73FE /* WorkspaceIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceIntent.swift; sourceTree = "<group>"; };
 		6BD397592CCA819500F7097D /* ModiSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModiSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModiSpaceApp.swift; sourceTree = "<group>"; };
 		6BD3975E2CCA819500F7097D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 		6BD3976A2CCA81AD00F7097D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6BD3976E2CCA89CE00F7097D /* FontType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontType.swift; sourceTree = "<group>"; };
 		6BD397712CCA8D2500F7097D /* CustomFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontModifier.swift; sourceTree = "<group>"; };
+		6BD865BF2CD4CA0500361227 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
+		6BD865C22CD4CF9700361227 /* SideMenuInetnt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInetnt.swift; sourceTree = "<group>"; };
 		727D87432CD1013900C52751 /* Secretes.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secretes.xcconfig; sourceTree = "<group>"; };
 		727D87442CD205D100C52751 /* ChannelRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRouter.swift; sourceTree = "<group>"; };
 		727D87472CD3447A00C52751 /* PostChannelRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChannelRequestBody.swift; sourceTree = "<group>"; };
@@ -502,7 +508,6 @@
 		6B694E2A2CCCF88200ED484D /* Intent */ = {
 			isa = PBXGroup;
 			children = (
-				6B694E312CCCF9D200ED484D /* Protocol */,
 				6B694E342CCCFA2900ED484D /* Implementation */,
 			);
 			path = Intent;
@@ -515,14 +520,6 @@
 				6B694E3C2CCCFB5300ED484D /* Implementaion */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		6B694E312CCCF9D200ED484D /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				6B694E322CCCF9EE00ED484D /* CreateWorkspaceIntentProtocol.swift */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		6B694E342CCCFA2900ED484D /* Implementation */ = {
@@ -553,6 +550,8 @@
 			isa = PBXGroup;
 			children = (
 				6B694E3F2CCD435100ED484D /* SideMenuView.swift */,
+				6BD865C12CD4CF8700361227 /* Intent */,
+				6BD865C42CD4CFAC00361227 /* Model */,
 				6B694E452CCE16C600ED484D /* Component */,
 			);
 			path = SideMenuView;
@@ -601,6 +600,22 @@
 				6BC87C762CD367AD00ED3CD4 /* MultipartFormData.swift */,
 			);
 			path = Multipart;
+			sourceTree = "<group>";
+		};
+		6BCF996D2CD4A5B4001A73FE /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				6BCF99712CD4C634001A73FE /* WorkspaceIntent.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		6BCF996E2CD4A5EE001A73FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BCF996F2CD4A625001A73FE /* WorkspaceModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6BD397502CCA819500F7097D = {
@@ -664,6 +679,22 @@
 				AA5491302CD3453A009A0B2F /* CustomRoundedRaudius.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		6BD865C12CD4CF8700361227 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				6BD865C22CD4CF9700361227 /* SideMenuInetnt.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		6BD865C42CD4CFAC00361227 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BD865BF2CD4CA0500361227 /* SideMenuModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		727D87462CD342F800C52751 /* Channel */ = {
@@ -744,6 +775,8 @@
 			isa = PBXGroup;
 			children = (
 				AA54FCFE2CCCB9A900D09293 /* WorkspaceView.swift */,
+				6BCF996D2CD4A5B4001A73FE /* Intent */,
+				6BCF996E2CD4A5EE001A73FE /* Model */,
 				AA54911D2CD0EF96009A0B2F /* View */,
 				AA5491182CD0EE63009A0B2F /* Conponent */,
 			);
@@ -1023,8 +1056,8 @@
 				6B0564F32CCF6E0A003086AC /* BundleError.swift in Sources */,
 				6B0564FF2CCF7B74003086AC /* JoinRequestBody.swift in Sources */,
 				6B694E292CCCF69100ED484D /* CreateWorkspaceView.swift in Sources */,
+				6BCF99702CD4A625001A73FE /* WorkspaceModel.swift in Sources */,
 				AA54912F2CD342BD009A0B2F /* ChatTextField.swift in Sources */,
-				6B694E332CCCF9EE00ED484D /* CreateWorkspaceIntentProtocol.swift in Sources */,
 				6B2C73122CCCB8420043E478 /* QueryOfWorkspaceSearch.swift in Sources */,
 				727D874A2CD349D000C52751 /* SendChannelRequestBody.swift in Sources */,
 				AA54912D2CD1FEFD009A0B2F /* PayvalidationRequestBody.swift in Sources */,
@@ -1040,6 +1073,7 @@
 				72F25EB42CCE638600A1F182 /* AuthOptionsView.swift in Sources */,
 				AA54FD0C2CCCBA2200D09293 /* SFSubButton.swift in Sources */,
 				6BADE9A42CCE3F2A00099B78 /* UserDTO.swift in Sources */,
+				6BCF99722CD4C634001A73FE /* WorkspaceIntent.swift in Sources */,
 				6BC87C772CD367AD00ED3CD4 /* MultipartFormData.swift in Sources */,
 				AA54FCFA2CCCB96C00D09293 /* RegisterChannelView.swift in Sources */,
 				72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */,
@@ -1075,6 +1109,7 @@
 				6B2C72FB2CCCAAB60043E478 /* ChannelDTO.swift in Sources */,
 				6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */,
 				6B2C73072CCCB5360043E478 /* TokenDTO.swift in Sources */,
+				6BD865C02CD4CA0500361227 /* SideMenuModel.swift in Sources */,
 				727D87482CD3447A00C52751 /* PostChannelRequestBody.swift in Sources */,
 				727D87512CD35FF100C52751 /* SpecificChannelDTO.swift in Sources */,
 				6B0564F82CCF7793003086AC /* UserRouter.swift in Sources */,
@@ -1085,6 +1120,7 @@
 				6B0564F52CCF6E14003086AC /* BundleType.swift in Sources */,
 				6BC87C6D2CD3091800ED3CD4 /* InviteMemberRequestBody.swift in Sources */,
 				6BD3975D2CCA819500F7097D /* ModiSpaceApp.swift in Sources */,
+				6BD865C32CD4CF9700361227 /* SideMenuInetnt.swift in Sources */,
 				6B0565062CCF7FDA003086AC /* KakaoLoginRequestBody.swift in Sources */,
 				6B2C72ED2CCB9DF90043E478 /* RouterProtocol.swift in Sources */,
 				6B2C73152CCCB8FE0043E478 /* NetworkManager.swift in Sources */,

@@ -11,27 +11,28 @@ import Combine
 struct CreateWorkspaceView: View {
     
     @StateObject private var model: CreateWorkSpaceModel
-    private var intent: CreateWorkspaceIntent
     
-    var onCreate: () -> Void = {}
-    
-    init(onCreate: @escaping () -> Void = {}) {
+    init() {
         _model = StateObject(wrappedValue: CreateWorkSpaceModel())
-        self.intent = CreateWorkspaceIntent()
-        self.onCreate = onCreate
     }
     
     var body: some View {
         VStack(spacing: 24) {
-            ImageSelectButton(action: {})
+            ImageSelectButton(action: {
+                model.apply(.showImagePicker)
+            }, image: model.workspaceImage.first)
+            .sheet(isPresented: $model.isShowingImagePicker) {
+                PhotoPicker(selectedImages: $model.workspaceImage,
+                            isMultipleImage: false)
+            }
             
             InputField(text: $model.workspaceName,
-                           title: "워크스페이스 이름",
-                           placeholder: "워크스페이스 이름을 입력하세요 (필수)")
+                       title: "워크스페이스 이름",
+                       placeholder: "워크스페이스 이름을 입력하세요 (필수)")
             
             InputField(text: $model.workspaceDescription,
-                           title: "워크스페이스 설명",
-                           placeholder: "워크스페이스를 설명하세요 (옵션)")
+                       title: "워크스페이스 설명",
+                       placeholder: "워크스페이스를 설명하세요 (옵션)")
             
             Spacer()
             
@@ -42,16 +43,12 @@ struct CreateWorkspaceView: View {
                          symbolColor: nil,
                          cornerRadius: 8,
                          isEnabled: model.isCreateAbled) {
-                print(model.workspaceName)
-                intent.createWorkspace()
+                model.apply(.createWorkspace)
             }
-            .padding()
-            .disabled(!model.isCreateAbled)
+                         .padding()
+                         .disabled(!model.isCreateAbled)
         }
         .padding(.top, 32)
-        .onAppear {
-            intent.setModel(model)
-        }
         .onTapGesture {
             endTextEditing()
         }

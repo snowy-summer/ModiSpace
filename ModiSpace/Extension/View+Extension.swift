@@ -31,8 +31,50 @@ extension View {
      .dada(12 .bottom)
      */
     
+    func dragGesture(direction: DragDirection,
+                     action: @escaping () -> Void) -> some View {
+        self.gesture(
+            DragGesture()
+                .onChanged { value in
+                    
+                    switch direction {
+                    case .left:
+                        if value.translation.width < 0 {
+                            withAnimation {
+                                action()
+                            }
+                        }
+                        
+                    case .right:
+                        if value.translation.width > 0 {
+                            withAnimation {
+                                action()
+                            }
+                        }
+                        
+                    case .both:
+                        withAnimation {
+                            action()
+                        }
+                    }
+                }
+        )
+    }
+    
+    /*
+     사용방법
+     방향 선택후 액션
+     .dragGesture(direction: .left) {
+      action()
+     }
+     */
+    
 }
 
-
-
-
+enum DragDirection {
+    
+    case left
+    case right
+    case both
+    
+}

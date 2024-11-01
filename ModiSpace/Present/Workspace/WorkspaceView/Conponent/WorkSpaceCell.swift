@@ -9,9 +9,9 @@ import SwiftUI
 
 struct WorkSpaceCell: View {
     
-    let image = UIImage(resource: .temp)
-    let titleText = "test_ios Study"
-    let dateText = "24. 10. 25"
+    let image: UIImage = UIImage(resource: .temp)
+    let titleText: String
+    let dateText: String
     var selected = true
     
     var body: some View {
@@ -39,5 +39,6 @@ struct WorkSpaceCell: View {
 }
 
 #Preview {
-    WorkSpaceCell()
+    WorkSpaceCell(titleText: "워크",
+                  dateText: "2024.03.11")
 }
