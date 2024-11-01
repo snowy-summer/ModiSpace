@@ -59,9 +59,11 @@ extension CreateWorkSpaceModel {
         Task {
             do {
                 guard let imageData = workspaceImage.first?.jpegData(compressionQuality: 0.4) else { return }
-                let response = try await NetworkManager().getDecodedData(from: WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: workspaceName,
-                                                                                                                                          description: workspaceDescription,
-                                                                                                                                          image: imageData)))
+                let router = WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: workspaceName,
+                                                                                        description: workspaceDescription,
+                                                                                        image: imageData))
+                let response = try await NetworkManager().getDecodedData(from: router,
+                                                                         type: WorkspaceDTO.self)
                 print(response)
             } catch(let error) {
                 print(error.localizedDescription)

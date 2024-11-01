@@ -10,11 +10,15 @@ import Combine
 
 protocol NetworkManagerProtocol {
     
-    func getData(from router: RouterProtocol) async throws -> Data
+    func getData(from router: RouterProtocol,
+                 retryCount: Int) async throws -> Data
     func getDecodedData<T:Decodable>(from router: RouterProtocol,
-                                     type: T.Type) async throws -> T 
-    func getData(from router: RouterProtocol) -> AnyPublisher<Data, Error>
-    func getDecodedData<T: Decodable>(from router: RouterProtocol,
-                                      type: T.Type) -> AnyPublisher<T, Error>
+                                     type: T.Type,
+                                     retryCount: Int) async throws -> T 
+    func getDataWithPublisher(from router: RouterProtocol,
+                              retryCount: Int) -> AnyPublisher<Data, Error>
+    func getDecodedDataWithPublisher<T: Decodable>(from router: RouterProtocol,
+                                                   type: T.Type,
+                                                   retryCount: Int) -> AnyPublisher<T, Error>
     
 }

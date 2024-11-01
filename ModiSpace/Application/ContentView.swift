@@ -38,6 +38,7 @@ struct ContentView: View {
                     KeychainManager.save(loginData.token.refreshToken!,
                                          forKey: KeychainKey.refreshToken.rawValue)
                     print(loginData.token.accessToken)
+                    print(loginData.token.refreshToken)
                     
                     // 워크스페이스 조회
                     //                    let myWorkspaceList = try await NetworkManager()

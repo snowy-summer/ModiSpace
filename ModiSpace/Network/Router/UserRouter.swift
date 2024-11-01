@@ -24,8 +24,6 @@ enum UserRouter {
 }
 
 extension UserRouter: RouterProtocol {
-    typealias ResponseType = <#type#>
-    
     
     var scheme: String { return "http" }
     
@@ -77,7 +75,7 @@ extension UserRouter: RouterProtocol {
     var body: Data? {
         let jsonEncoder = JSONEncoder()
         var data: Data?
-            
+        
         switch self {
         case .join(let body):
             data = try? jsonEncoder.encode(body)
@@ -90,7 +88,7 @@ extension UserRouter: RouterProtocol {
             
         case .loginKakao(let body):
             data = try? jsonEncoder.encode(body)
-        
+            
         case .loginApple(let body):
             data = try? jsonEncoder.encode(body)
             
@@ -149,31 +147,29 @@ extension UserRouter: RouterProtocol {
         }
     }
     
-    typealias ResponseType = Decodable  // 프로토콜 요구사항 충족을 위해 기본 Decodable로 선언
-
-        var responseType: Decodable.Type {
-            switch self {
-            case .join, .login, .loginKakao, .loginApple:
-                return UserDTO.self
-                
-            case .validateEmail, .logout, .saveDeviceToken:
-                return EmptyResponseDTO.self
-                
-            case .getMyProfile, .updateMyProfile:
-                return UserDTO.self
-                
-            case .getOtherUserProfile:
-                return OtherUserDTO.self
-                
-            case .updateMyProfileImage:
-                return UserDTO.self
-            }
+    var responseType: Decodable.Type? {
+        switch self {
+        case .join, .login, .loginKakao, .loginApple:
+            return UserDTO.self
+            
+        case .validateEmail, .logout, .saveDeviceToken:
+            return EmptyResponseDTO.self
+            
+        case .getMyProfile, .updateMyProfile:
+            return UserDTO.self
+            
+        case .getOtherUserProfile:
+            return OtherUserDTO.self
+            
+        case .updateMyProfileImage:
+            return UserDTO.self
         }
+    }
     
     var multipartFormData: [MultipartFormData] {
         switch self {
         case .updateMyProfileImage(let body):
-           return body.toMultipartFormData()
+            return body.toMultipartFormData()
         default:
             return []
         }
