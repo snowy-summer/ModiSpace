@@ -14,15 +14,20 @@ struct InviteMemberView: View {
     var body: some View {
         VStack(spacing: 24) {
             
-            InputField(text: $email,
+            InputFieldCell(text: $email,
                            title: "이메일",
                            placeholder: "초대하려는 팀원의 이메일을 입력하세요.")
             
             Spacer()
             
-            BasicLargeButtonCell(title: "초대 보내기",
-                                 isEnabled: isCreateButtonEnabled()) {
-              //  print("입력한 이메일 \(email)")
+            CommonButton(icon: nil,
+                         backgroundColor: .main,
+                         text: "초대 보내기",
+                         textColor: .white,
+                         symbolColor: nil,
+                         cornerRadius: 8,
+                         isEnabled: isCreateButtonEnabled()) {
+                //  print("입력한 이메일 \(email)")
             }
             .padding(.horizontal)
         }

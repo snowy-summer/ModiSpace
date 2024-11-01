@@ -18,23 +18,27 @@ struct RegisterChannelView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            
-            InputField(text: $channelName,
+            InputFieldCell(text: $channelName,
                            title: "채널 이름",
                            placeholder: "채널 이름을 입력하세요 (필수)")
             
-            InputField(text: $channelDescription,
+            InputFieldCell(text: $channelDescription,
                            title: "채널 설명",
                            placeholder: "채널을 설명하세요 (옵션)")
             
             Spacer()
             
-            BasicLargeButtonCell(title: "생성",
-                                 isEnabled: isCreateButtonEnabled()) {
-                           newChannelTitle = channelName
-                           onCreate()
-                       }
-                       .padding(.horizontal)
+            CommonButton(icon: nil,
+                         backgroundColor: .main,
+                         text: "생성",
+                         textColor: .white,
+                         symbolColor: nil,
+                         cornerRadius: 8,
+                         isEnabled: isCreateButtonEnabled()) {
+                newChannelTitle = channelName
+                onCreate()
+            }
+            .padding(.horizontal)
         }
         .padding(.top, 32)
         .background(.gray.opacity(0.2))

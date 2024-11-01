@@ -16,18 +16,23 @@ struct LocalLoginView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            InputField(text: $loginEmail,
+            InputFieldCell(text: $loginEmail,
                            title: "이메일",
                            placeholder: "이메일을 입력하세요")
             
-            InputField(text: $loginPassword,
+            InputFieldCell(text: $loginPassword,
                            title: "비밀번호",
                            placeholder: "비밀번호를 입력하세요")
             
             Spacer()
             
-            BasicLargeButtonCell(title: "로그인",
-                                 isEnabled: isCreateButtonEnabled()) {
+            CommonButton(icon: nil,
+                         backgroundColor: .main,
+                         text: "로그인",
+                         textColor: .white,
+                         symbolColor: nil,
+                         cornerRadius: 8,
+                         isEnabled: isCreateButtonEnabled()) {
                 onCreate()
             }
             .padding(.horizontal)

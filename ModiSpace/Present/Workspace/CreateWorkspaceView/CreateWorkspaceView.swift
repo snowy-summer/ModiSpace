@@ -25,19 +25,25 @@ struct CreateWorkspaceView: View {
         VStack(spacing: 24) {
             ImageSelectButton(action: {})
             
-            InputField(text: $model.workspaceName,
+            InputFieldCell(text: $model.workspaceName,
                            title: "워크스페이스 이름",
                            placeholder: "워크스페이스 이름을 입력하세요 (필수)")
             
-            InputField(text: $model.workspaceDescription,
+            InputFieldCell(text: $model.workspaceDescription,
                            title: "워크스페이스 설명",
                            placeholder: "워크스페이스를 설명하세요 (옵션)")
             
             Spacer()
             
-            BasicLargeButtonCell(title: "완료", isEnabled: model.isCreateAbled) {
+            CommonButton(icon: nil,
+                         backgroundColor: .main,
+                         text: "완료",
+                         textColor: .white,
+                         symbolColor: nil,
+                         cornerRadius: 8,
+                         isEnabled: model.isCreateAbled) {
                 print(model.workspaceName)
-                intent.createWorkspace() 
+                intent.createWorkspace()
             }
             .padding()
             .disabled(!model.isCreateAbled)
