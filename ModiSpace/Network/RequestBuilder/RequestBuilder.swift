@@ -47,7 +47,8 @@ final class RequestBuilder {
     func build() throws -> URLRequest {
         guard let url = url else { throw NetworkError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: url,
+                                 cachePolicy: .returnCacheDataElseLoad)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         
@@ -74,6 +75,7 @@ final class RequestBuilder {
         }
 
         body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        
         return body
     }
 }

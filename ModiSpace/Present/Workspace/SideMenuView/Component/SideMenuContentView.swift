@@ -53,7 +53,8 @@ struct SideMenuNoneEmptyContentView: View {
             List {
                 ForEach(model.workspaceList, id: \.workspaceID) { workspace in
                     WorkSpaceCell(titleText: workspace.name,
-                                  dateText: workspace.createdAt)
+                                  dateText: workspace.createdAt,
+                                  imageString: workspace.coverImage)
                     .listRowSeparator(.hidden)
                 }
             }
