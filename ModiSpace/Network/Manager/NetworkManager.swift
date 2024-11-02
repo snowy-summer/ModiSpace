@@ -65,7 +65,8 @@ extension NetworkManager: NetworkManagerProtocol {
             
             if retryCount > 0 {
                 print("토큰 갱신 성공, 원래 요청을 다시 시도합니다.")
-                return try await getDecodedData(from: router, type: type, retryCount: retryCount - 1)
+                return try await getDecodedData(from: router,
+                                                type: type, retryCount: retryCount - 1)
             }
         }
         
@@ -190,7 +191,6 @@ extension NetworkManager {
             print("StatusCode: \(statusCode)")
             throw NetworkError.invalidResponse
         }
-        
     }
     
     private func handleErrorDataWithError(data: Data) async -> APIError? {
@@ -223,7 +223,8 @@ extension NetworkManager {
                     continuation.resume(returning: .refreshTokenExpired)
                 }
             } receiveValue: { tokens in
-                KeychainManager.save(tokens.accessToken, forKey: KeychainKey.accessToken.rawValue)
+                KeychainManager.save(tokens.accessToken,
+                                     forKey: KeychainKey.accessToken.rawValue)
             }
             .store(in: &cancelable)
         }
