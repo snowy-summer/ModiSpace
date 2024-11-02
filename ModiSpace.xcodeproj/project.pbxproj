@@ -82,6 +82,14 @@
 		727D87572CD3658B00C52751 /* OwnershipTransferDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87562CD3658B00C52751 /* OwnershipTransferDTO.swift */; };
 		727D875A2CD3745800C52751 /* QueryOfGetChannelChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87592CD3745800C52751 /* QueryOfGetChannelChatList.swift */; };
 		727D875C2CD3755400C52751 /* QueryOfUnReadChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D875B2CD3755400C52751 /* QueryOfUnReadChannel.swift */; };
+		727D875E2CD4F9A800C52751 /* DMSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D875D2CD4F9A800C52751 /* DMSRouter.swift */; };
+		727D87612CD4FE7500C52751 /* DMSDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87602CD4FE7500C52751 /* DMSDTO.swift */; };
+		727D87632CD4FF3D00C52751 /* DMSChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87622CD4FF3D00C52751 /* DMSChatDTO.swift */; };
+		727D87652CD5000200C52751 /* DMSUnreadCountDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87642CD5000200C52751 /* DMSUnreadCountDTO.swift */; };
+		727D87682CD5015000C52751 /* CreateDMSRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87672CD5015000C52751 /* CreateDMSRequestBody.swift */; };
+		727D876A2CD5022400C52751 /* SendDMSChatRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87692CD5022400C52751 /* SendDMSChatRequestBody.swift */; };
+		727D876D2CD5052800C52751 /* QueryOfGetDMSChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D876C2CD5052800C52751 /* QueryOfGetDMSChatList.swift */; };
+		727D876F2CD5054600C52751 /* QueryOfUnReadDMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D876E2CD5054600C52751 /* QueryOfUnReadDMS.swift */; };
 		72CA3E5F2CCCE169002FE5C4 /* ProfileNickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E5E2CCCE169002FE5C4 /* ProfileNickCell.swift */; };
 		72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */; };
 		72CA3E632CCD1263002FE5C4 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E622CCD1263002FE5C4 /* CommonButton.swift */; };
@@ -205,6 +213,14 @@
 		727D87562CD3658B00C52751 /* OwnershipTransferDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnershipTransferDTO.swift; sourceTree = "<group>"; };
 		727D87592CD3745800C52751 /* QueryOfGetChannelChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOfGetChannelChatList.swift; sourceTree = "<group>"; };
 		727D875B2CD3755400C52751 /* QueryOfUnReadChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOfUnReadChannel.swift; sourceTree = "<group>"; };
+		727D875D2CD4F9A800C52751 /* DMSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSRouter.swift; sourceTree = "<group>"; };
+		727D87602CD4FE7500C52751 /* DMSDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSDTO.swift; sourceTree = "<group>"; };
+		727D87622CD4FF3D00C52751 /* DMSChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSChatDTO.swift; sourceTree = "<group>"; };
+		727D87642CD5000200C52751 /* DMSUnreadCountDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSUnreadCountDTO.swift; sourceTree = "<group>"; };
+		727D87672CD5015000C52751 /* CreateDMSRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDMSRequestBody.swift; sourceTree = "<group>"; };
+		727D87692CD5022400C52751 /* SendDMSChatRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDMSChatRequestBody.swift; sourceTree = "<group>"; };
+		727D876C2CD5052800C52751 /* QueryOfGetDMSChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOfGetDMSChatList.swift; sourceTree = "<group>"; };
+		727D876E2CD5054600C52751 /* QueryOfUnReadDMS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOfUnReadDMS.swift; sourceTree = "<group>"; };
 		72CA3E5E2CCCE169002FE5C4 /* ProfileNickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNickCell.swift; sourceTree = "<group>"; };
 		72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListCell.swift; sourceTree = "<group>"; };
 		72CA3E622CCD1263002FE5C4 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
@@ -335,6 +351,7 @@
 				6B0564F72CCF7793003086AC /* UserRouter.swift */,
 				6B2C72EE2CCB9E1D0043E478 /* WorkSpaceRouter.swift */,
 				727D87442CD205D100C52751 /* ChannelRouter.swift */,
+				727D875D2CD4F9A800C52751 /* DMSRouter.swift */,
 				AA5491242CD1EEAB009A0B2F /* SesacStoreRouter.swift */,
 				6BF1F2EA2CD4FF8100919F3B /* TokenRouter.swift */,
 			);
@@ -365,6 +382,7 @@
 				6B2C72F72CCCA7800043E478 /* Workspace */,
 				6BADE9A22CCE3F1100099B78 /* User */,
 				727D874D2CD35D6000C52751 /* Channel */,
+				727D875F2CD4FE0600C52751 /* DMS */,
 				AA5491262CD1F424009A0B2F /* SesacStore */,
 			);
 			path = DTO;
@@ -412,6 +430,7 @@
 				6B0564FB2CCF7B24003086AC /* User */,
 				6B2C73092CCCB5830043E478 /* Workspace */,
 				727D87462CD342F800C52751 /* Channel */,
+				727D87662CD5011900C52751 /* DMS */,
 				AA54912B2CD1FEE4009A0B2F /* SesacStore */,
 			);
 			path = RequestBody;
@@ -433,6 +452,7 @@
 				6B2C730F2CCCB8100043E478 /* Protocol */,
 				6B2C73102CCCB8230043E478 /* Workspace */,
 				727D87582CD3741C00C52751 /* Channel */,
+				727D876B2CD5050500C52751 /* DMS */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -729,6 +749,34 @@
 				727D875B2CD3755400C52751 /* QueryOfUnReadChannel.swift */,
 			);
 			path = Channel;
+			sourceTree = "<group>";
+		};
+		727D875F2CD4FE0600C52751 /* DMS */ = {
+			isa = PBXGroup;
+			children = (
+				727D87602CD4FE7500C52751 /* DMSDTO.swift */,
+				727D87622CD4FF3D00C52751 /* DMSChatDTO.swift */,
+				727D87642CD5000200C52751 /* DMSUnreadCountDTO.swift */,
+			);
+			path = DMS;
+			sourceTree = "<group>";
+		};
+		727D87662CD5011900C52751 /* DMS */ = {
+			isa = PBXGroup;
+			children = (
+				727D87672CD5015000C52751 /* CreateDMSRequestBody.swift */,
+				727D87692CD5022400C52751 /* SendDMSChatRequestBody.swift */,
+			);
+			path = DMS;
+			sourceTree = "<group>";
+		};
+		727D876B2CD5050500C52751 /* DMS */ = {
+			isa = PBXGroup;
+			children = (
+				727D876C2CD5052800C52751 /* QueryOfGetDMSChatList.swift */,
+				727D876E2CD5054600C52751 /* QueryOfUnReadDMS.swift */,
+			);
+			path = DMS;
 			sourceTree = "<group>";
 		};
 		72F25EAD2CCE573F00A1F182 /* StoryBoard */ = {
@@ -1038,6 +1086,7 @@
 				6B2C72E92CCB9C930043E478 /* Header.swift in Sources */,
 				6B0565022CCF7FAB003086AC /* CheckEmailRequestBody.swift in Sources */,
 				6B694E3B2CCCFB4500ED484D /* CreateWorkspaceModel.swift in Sources */,
+				727D876A2CD5022400C52751 /* SendDMSChatRequestBody.swift in Sources */,
 				AA54FD082CCCB9FE00D09293 /* DirectMessageCell.swift in Sources */,
 				AA54FD0A2CCCBA1000D09293 /* ChannelActionSheet.swift in Sources */,
 				AA54911C2CD0EEDA009A0B2F /* DirectMessageSection.swift in Sources */,
@@ -1079,7 +1128,9 @@
 				6BCF99722CD4C634001A73FE /* WorkspaceIntent.swift in Sources */,
 				6BC87C772CD367AD00ED3CD4 /* MultipartFormData.swift in Sources */,
 				AA54FCFA2CCCB96C00D09293 /* RegisterChannelView.swift in Sources */,
+				727D87632CD4FF3D00C52751 /* DMSChatDTO.swift in Sources */,
 				72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */,
+				727D87652CD5000200C52751 /* DMSUnreadCountDTO.swift in Sources */,
 				AA5491332CD36277009A0B2F /* ChattingScrollListView.swift in Sources */,
 				6B0564FA2CCF7A0B003086AC /* OtherUserDTO.swift in Sources */,
 				6B0565042CCF7FB2003086AC /* LoginRequestBody.swift in Sources */,
@@ -1092,12 +1143,14 @@
 				6B2C72F92CCCA7A70043E478 /* WorkspaceDTO.swift in Sources */,
 				6B694E422CCE01A300ED484D /* ImageSelectButton.swift in Sources */,
 				AA54FCEE2CCCB8C200D09293 /* MemberList.swift in Sources */,
+				727D87612CD4FE7500C52751 /* DMSDTO.swift in Sources */,
 				6BC87C712CD3635400ED3CD4 /* UpdateMyProfileImageRequestBody.swift in Sources */,
 				AA54FCE22CCCB81D00D09293 /* View+Extension.swift in Sources */,
 				6BD3976F2CCA89CE00F7097D /* FontType.swift in Sources */,
 				72F25EB72CCE672A00A1F182 /* OnboardingHeaderView.swift in Sources */,
 				AA54FCE62CCCB84700D09293 /* InputField.swift in Sources */,
 				6B05650A2CCF7FF6003086AC /* EditMyProfileRequestBody.swift in Sources */,
+				727D876F2CD5054600C52751 /* QueryOfUnReadDMS.swift in Sources */,
 				72F25EB92CCE675200A1F182 /* OnboardingImageView.swift in Sources */,
 				727D874C2CD3507500C52751 /* OwnershipTransferRequestBody.swift in Sources */,
 				AA54FD112CCCBA7400D09293 /* ChattingView.swift in Sources */,
@@ -1117,6 +1170,7 @@
 				727D87482CD3447A00C52751 /* PostChannelRequestBody.swift in Sources */,
 				727D87512CD35FF100C52751 /* SpecificChannelDTO.swift in Sources */,
 				6B0564F82CCF7793003086AC /* UserRouter.swift in Sources */,
+				727D87682CD5015000C52751 /* CreateDMSRequestBody.swift in Sources */,
 				AA54912A2CD1F462009A0B2F /* ItemlistDTO.swift in Sources */,
 				6B2C72FD2CCCAACB0043E478 /* WorkspaceMemberDTO.swift in Sources */,
 				6B694E2D2CCCF8A600ED484D /* CreateWorkspaceIntent.swift in Sources */,
@@ -1134,6 +1188,7 @@
 				AA5491252CD1EEAB009A0B2F /* SesacStoreRouter.swift in Sources */,
 				6B694E492CCE170300ED484D /* SideMenuContentView.swift in Sources */,
 				6B2C73202CCCB9C00043E478 /* URLRequest+Extension.swift in Sources */,
+				727D875E2CD4F9A800C52751 /* DMSRouter.swift in Sources */,
 				6B2C73182CCCB9410043E478 /* NetworkManagerProtocol.swift in Sources */,
 				AA5491352CD3767D009A0B2F /* TextFieldAttachImageScrollView.swift in Sources */,
 				AA5491122CCF9C57009A0B2F /* ChatImageLayoutView.swift in Sources */,
@@ -1141,6 +1196,7 @@
 				AA54FD192CCCBB3400D09293 /* NewMessageView.swift in Sources */,
 				AA54FCF12CCCB8F000D09293 /* SettingChannelButton.swift in Sources */,
 				AA5491312CD3453A009A0B2F /* CustomRoundedRaudius.swift in Sources */,
+				727D876D2CD5052800C52751 /* QueryOfGetDMSChatList.swift in Sources */,
 				AA54FD042CCCB9DE00D09293 /* WorkspaceHeaderView.swift in Sources */,
 				727D87572CD3658B00C52751 /* OwnershipTransferDTO.swift in Sources */,
 				6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */,
