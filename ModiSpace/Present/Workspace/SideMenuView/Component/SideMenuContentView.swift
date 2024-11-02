@@ -33,7 +33,7 @@ struct SideMenuEmptyContentView: View {
                          cornerRadius: 8) {
                 model.apply(.addWorkspace)
             }
-            .padding()
+                         .padding()
             
             Spacer()
         }
@@ -54,7 +54,7 @@ struct SideMenuNoneEmptyContentView: View {
                 ForEach(model.workspaceList, id: \.workspaceID) { workspace in
                     WorkSpaceCell(titleText: workspace.name,
                                   dateText: workspace.createdAt)
-                        .listRowSeparator(.hidden)
+                    .listRowSeparator(.hidden)
                 }
             }
             .listStyle(.plain)

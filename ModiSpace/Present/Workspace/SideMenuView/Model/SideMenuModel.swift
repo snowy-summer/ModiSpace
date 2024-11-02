@@ -20,6 +20,7 @@ final class SideMenuModel: ObservableObject {
     }
     
     private let networkManager = NetworkManager()
+    private let dateManager = DateManager()
     private var cancelable = Set<AnyCancellable>()
     
     func apply(_ intent: SideMenuIntnet) {
@@ -65,7 +66,12 @@ extension SideMenuModel {
                 }
                 print(error.localizedDescription)
             }
-        } receiveValue: { [weak self] list in
+        } receiveValue: { [weak self] value in
+            var list = value
+            for index in list.indices {
+                list[index].createdAt = self?.dateManager.convertToFormattedString(isoString: list[index].createdAt,
+                                                                                   format: "yyyy. MM. dd") ?? list[index].createdAt
+            }
             self?.workspaceList = list
         }.store(in: &cancelable)
         
