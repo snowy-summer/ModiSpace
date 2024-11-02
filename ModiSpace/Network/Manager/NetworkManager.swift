@@ -47,25 +47,6 @@ extension NetworkManager: NetworkManagerProtocol {
         return data
     }
     
-    func getDecodedData<T:Decodable>(from router: RouterProtocol,
-                                     type: T.Type) async throws -> T {
-        let (data, response) = try await session.getData(from: router)
-        
-        do {
-            try validateResponse(response)
-        } catch {
-            handleErrorData(data: data)
-        }
-        
-        do {
-            let decodedData = try decoder.decode(type, from: data)
-            return decodedData
-        } catch {
-            print(NetworkError.decodingFailed("\(type)"))
-            throw NetworkError.decodingFailed("\(type)")
-        }
-    }
-    
     func getDecodedData<T: Decodable>(from router: RouterProtocol,
                                       type: T.Type,
                                       retryCount: Int = 1) async throws -> T {
@@ -74,9 +55,9 @@ extension NetworkManager: NetworkManagerProtocol {
         do {
             try validateResponse(response)
         } catch {
-            // validateResponse 실패 시 handleErrorDataWithError 호출
+            
             if let handledError = await handleErrorDataWithError(data: data) {
-                // refreshTokenExpired 처리
+                
                 if handledError == .refreshTokenExpired {
                     throw APIError.refreshTokenExpired
                 }
@@ -119,23 +100,25 @@ extension NetworkManager: NetworkManagerProtocol {
                         }
                     }
                     
-                    if retryCount > 0 {
-                        print("토큰 갱신 성공, 원래 요청을 다시 시도합니다.")
-                        let newPublisher = getDataWithPublisher(from: router,
-                                                                retryCount: retryCount - 1)
-                        newPublisher.sink(receiveCompletion: { completion in
-                            switch completion {
-                            case .failure(let error):
-                                promise(.failure(error))
-                            case .finished:
-                                break
-                            }
-                        }, receiveValue: { value in
-                            promise(.success(value))
-                        })
-                        .store(in: &self.cancelable)
-                    } else {
-                        promise(.failure(error))
+                    if  handledError == nil {
+                        if retryCount > 0 {
+                            print("토큰 갱신 성공, 원래 요청을 다시 시도")
+                            
+                            let newPublisher = getDataWithPublisher(from: router,
+                                                                    retryCount: retryCount - 1)
+                            newPublisher.sink(receiveCompletion: { completion in
+                                switch completion {
+                                case .failure(let error):
+                                    promise(.failure(error))
+                                case .finished:
+                                    break
+                                }
+                            }, receiveValue: { value in
+                                promise(.success(value))
+                            })
+                            .store(in: &self.cancelable)
+                        }
+                        return
                     }
                 }
             }
@@ -192,7 +175,6 @@ extension NetworkManager: NetworkManagerProtocol {
                 }
             }
         }
-        .retry(2)
         .eraseToAnyPublisher()
     }
     
@@ -209,21 +191,6 @@ extension NetworkManager {
             throw NetworkError.invalidResponse
         }
         
-    }
-    
-    private func handleErrorData(data: Data) {
-        do {
-            let errorData = try decoder.decode(ErrorDTO.self, from: data)
-            let error = APIError(errorCode: errorData.errorCode)
-            print(error.description)
-            
-            if error == .tokenExpired {
-                
-            }
-            
-        } catch {
-            print(NetworkError.decodingFailed("ErrorDTO"))
-        }
     }
     
     private func handleErrorDataWithError(data: Data) async -> APIError? {
