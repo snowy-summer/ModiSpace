@@ -20,4 +20,5 @@ protocol RouterProtocol {
     var method: HTTPMethod { get }
     var responseType: Decodable.Type? { get }
     var multipartFormData: [MultipartFormData] { get }
+    
 }
