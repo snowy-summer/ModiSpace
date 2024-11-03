@@ -13,7 +13,7 @@ struct DummyMessage: Identifiable {
     let text: String
     let isCurrentUser: Bool
     let profileImage: String
-    let images: [UIImage]?
+    let images: [String]?
     
 }
 
