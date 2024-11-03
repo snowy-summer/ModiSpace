@@ -14,7 +14,7 @@ struct WorkspaceDTO: Decodable {
     let description: String
     let coverImage: String
     let ownerID: String
-    let createdAt: String
+    var createdAt: String
     let channels: [ChannelDTO]
     let workspaceMembers: [WorkspaceMemberDTO]
     
