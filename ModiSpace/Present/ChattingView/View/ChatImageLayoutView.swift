@@ -14,9 +14,7 @@ struct ChatImageLayoutView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let images = images, !images.isEmpty {
-                
                 switch images.count {
-                    
                 case 1:
                     Image(uiImage: images[0])
                         .resizable()
@@ -85,7 +83,7 @@ struct ChatImageLayoutView: View {
                     }
                     
                 default:
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 4) {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 5) {
                         ForEach(images.prefix(6), id: \.self) { image in
                             Image(uiImage: image)
                                 .resizable()

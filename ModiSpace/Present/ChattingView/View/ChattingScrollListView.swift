@@ -27,5 +27,5 @@ struct ChattingScrollListView: View {
             .padding()
         }
     }
-
+    
 }

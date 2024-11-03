@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class ChatModel: ObservableObject {
-    @Published var messages: [DummyMessage] = []
+    @Published var messages: [DummyMessage] = []  // 빈 배열로 초기화
     @Published var messageText: String = ""
     @Published var selectedImages: [UIImage] = []
     @Published var isShowingImagePicker = false
@@ -49,7 +49,8 @@ extension ChatModel {
                         text: dto.content,
                         isCurrentUser: true,
                         profileImage: dto.user.profileImage,
-                        images: dto.files
+                       // images: dto.files.
+                        images: nil
                     )
                 }
                 
@@ -69,7 +70,7 @@ extension ChatModel {
     private func sendMessage(text: String, images: [UIImage]) {
         guard !text.isEmpty || !images.isEmpty else { return }
         
-        let newMessage = DummyMessage(text: text, isCurrentUser: true, profileImage: "person.crop.rectangle", images: []
+        let newMessage = DummyMessage(text: text, isCurrentUser: false, profileImage: "person.crop.rectangle", images: []
          
         )
         messages.append(newMessage)
