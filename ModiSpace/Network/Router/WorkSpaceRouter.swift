@@ -126,6 +126,10 @@ extension WorkSpaceRouter: RouterProtocol {
         case .getWorkSpaceList:
             headers.updateValue(Header.authorization.value,
                                 forKey: Header.authorization.key)
+        
+        case .getWorkSpaceInfo:
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
             
         case .createWorkSpace:
             headers.updateValue(Header.authorization.value,
