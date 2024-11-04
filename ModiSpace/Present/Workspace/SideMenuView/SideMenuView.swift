@@ -50,7 +50,9 @@ struct SideMenuView: View {
             model.apply(.fetchWorkspaceList)
         }
         .sheet(isPresented: $model.isShowCreateWorkspaceView) {
-            CreateWorkspaceView()
+            CreateWorkspaceView {
+                model.apply(.fetchWorkspaceList)
+            }
         }
     }
     

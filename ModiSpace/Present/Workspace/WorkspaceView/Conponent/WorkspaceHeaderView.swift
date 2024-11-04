@@ -9,14 +9,14 @@ import SwiftUI
 
 struct WorkspaceHeaderView: View {
     
+    @ObservedObject var model: WorkspaceModel
+    
     var body: some View {
         HStack {
-            Image(systemName: "star")
-                .resizable()
-                .background(Color.green)
+            AsyncImageView(path: model.selectedWorkspace?.coverImage ?? "")
                 .customRoundedRadius()
             
-            Text("iOS Developers Study")
+            Text(model.selectedWorkspace?.name ?? "아무 값 없음")
                 .font(.system(size: 20, weight: .bold))
             
             Spacer()

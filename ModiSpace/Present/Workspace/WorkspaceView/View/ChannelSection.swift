@@ -9,40 +9,38 @@ import SwiftUI
 
 struct ChannelSection: View {
     
-    @Binding var isChannelsShow: Bool
-    @Binding var showActionSheet: Bool
-    @Binding var channelTitles: [String]
+    @ObservedObject var model: CategoryListModel
     
     var body: some View {
         VStack {
             Button(action: {
-                isChannelsShow.toggle()
+                model.apply(.changingShowedChannelState)
             }) {
                 HStack {
                     Text("채널")
                         .font(.headline)
                         .foregroundStyle(Color.black)
                     Spacer()
-                    Image(systemName: isChannelsShow ? "chevron.down" : "chevron.forward")
+                    Image(systemName: model.isShowChannels ? "chevron.down" : "chevron.forward")
                         .foregroundStyle(Color.black)
                 }
                 .padding()
             }
             
-            if isChannelsShow {
+            if model.isShowChannels {
                 VStack(alignment: .leading) {
-                    ForEach(channelTitles, id: \.self) { title in
+                    ForEach(model.channelList, id: \.channelID) { channel in
                         NavigationLink(
-                            destination: ChattingView(chatTitle: title),
+                            destination: ChattingView(chatTitle: channel.name),
                             label: {
-                                ChannelListCell(channelTitle: title)
+                                ChannelListCell(channelTitle: channel.name)
                                     .foregroundStyle(Color.gray)
                             }
                         )
                     }
                     
                     SFSubButton(text: "채널 추가") {
-                        showActionSheet = true
+                        model.apply(.showActionSheet)
                     }
                     .padding()
                 }

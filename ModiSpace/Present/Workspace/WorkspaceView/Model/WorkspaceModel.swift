@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class WorkspaceModel: ObservableObject {
     
@@ -15,7 +16,19 @@ final class WorkspaceModel: ObservableObject {
     @Published var isShowSideView = false
     @Published var isShowMemberAddView = false
     @Published var isShowChannelAddView = false
+    @Published var workspaceList: [WorkspaceDTO] = []
     
+    var selectedWorkspace: WorkspaceDTO? {
+        if workspaceList.isEmpty {
+            return nil
+        } else {
+            WorkspaceIDManager.shared.workspaceID = workspaceList[0].workspaceID
+            return workspaceList[0]
+        }
+    }
+    
+    private let networkManager = NetworkManager()
+    private var cancelable = Set<AnyCancellable>()
     
     func apply(_ intent: WorkspaceIntent) {
         
@@ -47,5 +60,33 @@ final class WorkspaceModel: ObservableObject {
 }
 
 extension WorkspaceModel {
+ 
+     func fetchWorkspace() {
+        
+        networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getWorkSpaceList,
+                                                   type: [WorkspaceDTO].self)
+        .receive(on: DispatchQueue.main)
+        .sink { completion in
+            switch completion {
+            case .finished:
+                break
+            case .failure(let error):
+                if let error = error as? NetworkError {
+                    print(error.description)
+                }
+                if let error = error as? APIError {
+                    if error == .refreshTokenExpired {
+                        print("리프레시 토큰 만료")
+                    }
+                }
+                print(error.localizedDescription)
+            }
+        } receiveValue: { [weak self] value in
+            var list = value
+            if !list.isEmpty {
+                self?.workspaceList = list
+            }
+        }.store(in: &cancelable)
+    }
     
 }

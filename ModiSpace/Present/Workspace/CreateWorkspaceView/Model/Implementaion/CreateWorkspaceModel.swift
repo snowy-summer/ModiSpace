@@ -64,7 +64,6 @@ extension CreateWorkSpaceModel {
                                                                                         image: imageData))
                 let response = try await NetworkManager().getDecodedData(from: router,
                                                                          type: WorkspaceDTO.self)
-                print(response)
             } catch(let error) {
                 print(error.localizedDescription)
             }
