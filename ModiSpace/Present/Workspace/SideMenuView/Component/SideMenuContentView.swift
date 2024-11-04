@@ -44,7 +44,8 @@ struct SideMenuEmptyContentView: View {
 //MARK: - NoneEmptyContent
 struct SideMenuNoneEmptyContentView: View {
     
-    var model: SideMenuModel
+    @EnvironmentObject var workspaceModel: WorkspaceModel
+    @StateObject var model: SideMenuModel
     
     var body: some View {
         VStack(alignment: .center) {
@@ -52,10 +53,24 @@ struct SideMenuNoneEmptyContentView: View {
             
             List {
                 ForEach(model.workspaceList, id: \.workspaceID) { workspace in
-                    WorkSpaceCell(titleText: workspace.name,
-                                  dateText: workspace.createdAt,
-                                  imageString: workspace.coverImage)
-                    .listRowSeparator(.hidden)
+                    if workspace.workspaceID == model.selectedWorkspace {
+                        WorkSpaceCell(titleText: workspace.name,
+                                      dateText: workspace.createdAt,
+                                      imageString: workspace.coverImage, selected: true, model: model)
+                        .listRowSeparator(.hidden)
+                        .onTapGesture {
+                            model.apply(.selectWorkspace(workspace))
+                        }
+                    } else {
+                        WorkSpaceCell(titleText: workspace.name,
+                                      dateText: workspace.createdAt,
+                                      imageString: workspace.coverImage, selected: false, model: model)
+                        .listRowSeparator(.hidden)
+                        .onTapGesture {
+                            model.apply(.selectWorkspace(workspace))
+                            workspaceModel.apply(.dontShowSideView)
+                        }
+                    }
                 }
             }
             .listStyle(.plain)

@@ -47,6 +47,7 @@ struct WorkspaceView: View {
                             }
                         
                         SideMenuView()
+                            .environmentObject(model)
                             .transition(.move(edge: .leading))
                             .dragGesture(direction: .left) {
                                 model.apply(.dontShowSideView)
@@ -58,6 +59,13 @@ struct WorkspaceView: View {
                     .frame(width: 50, height: 50)
                     .position(x: geometry.size.width - 45,
                               y: geometry.size.height - 35)
+            }
+            .sheet(isPresented: $model.isShowEditWorkspaceView) {
+                if let workspace = model.selectedWorkspace {
+                    CreateWorkspaceView(workspace: workspace) {
+//                        model.apply(.fetchWorkspaceList)
+                    }
+                }
             }
             .onAppear() {
                 model.fetchWorkspace()

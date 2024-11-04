@@ -16,5 +16,6 @@ enum WorkspaceIntent {
     case dontShowSideView
     case showMemberAddView
     case showChannelAddView
+    case showEditWorkspaceView
     
 }

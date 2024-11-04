@@ -14,5 +14,6 @@ enum SideMenuIntnet {
     case addWorkspace
     case showMoreMenu
     case showHelpGuide
+    case selectWorkspace(WorkspaceDTO)
     
 }

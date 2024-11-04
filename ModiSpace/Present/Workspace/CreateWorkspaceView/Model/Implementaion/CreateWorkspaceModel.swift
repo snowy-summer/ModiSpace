@@ -7,12 +7,22 @@
 
 import SwiftUI
 
-final class CreateWorkSpaceModel: ObservableObject, CreateWorkspaceModelStateProtocol {
+final class CreateWorkSpaceModel: ObservableObject {
     
     @Published var workspaceImage = [UIImage]()
     @Published var workspaceName = ""
     @Published var workspaceDescription = ""
     @Published var isShowingImagePicker = false
+    
+    init(workspaceImage: [UIImage] = [UIImage](),
+         workspaceName: String = "",
+         workspaceDescription: String = "",
+         isShowingImagePicker: Bool = false) {
+        self.workspaceImage = workspaceImage
+        self.workspaceName = workspaceName
+        self.workspaceDescription = workspaceDescription
+        self.isShowingImagePicker = isShowingImagePicker
+    }
     
     var isCreateAbled: Bool {
         !workspaceName.isEmpty

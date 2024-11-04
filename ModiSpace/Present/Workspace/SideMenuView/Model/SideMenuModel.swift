@@ -15,6 +15,7 @@ final class SideMenuModel: ObservableObject {
     @Published var isShowMoreMenu: Bool = false
     @Published var isShowCreateWorkspaceView: Bool = false
     
+    var selectedWorkspace: String? = WorkspaceIDManager.shared.workspaceID
     var isWorkspaceEmpty: Bool {
         workspaceList.isEmpty
     }
@@ -40,8 +41,12 @@ final class SideMenuModel: ObservableObject {
             
         case .showMoreMenu:
             isShowMoreMenu = true
+            
+        case .selectWorkspace(let workspace):
+            WorkspaceIDManager.shared.workspaceID = workspace.workspaceID
         }
     }
+    
 }
 
 extension SideMenuModel {

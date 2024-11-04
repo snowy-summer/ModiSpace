@@ -5,7 +5,7 @@
 //  Created by 최승범 on 11/1/24.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 final class WorkspaceModel: ObservableObject {
@@ -16,19 +16,26 @@ final class WorkspaceModel: ObservableObject {
     @Published var isShowSideView = false
     @Published var isShowMemberAddView = false
     @Published var isShowChannelAddView = false
-    @Published var workspaceList: [WorkspaceDTO] = []
+    @Published var isShowEditWorkspaceView = false
+    @Published var workspaceList: [WorkspaceState] = []
+    @Published var selectedWorkspaceID: String? = WorkspaceIDManager.shared.workspaceID
     
-    var selectedWorkspace: WorkspaceDTO? {
-        if workspaceList.isEmpty {
-            return nil
-        } else {
-            WorkspaceIDManager.shared.workspaceID = workspaceList[0].workspaceID
-            return workspaceList[0]
+    var selectedWorkspace: WorkspaceState? {
+        for workspace in workspaceList {
+            if workspace.workspaceID == selectedWorkspaceID {
+                return workspace
+            }
         }
+        return nil
     }
     
     private let networkManager = NetworkManager()
     private var cancelable = Set<AnyCancellable>()
+    
+    init() {
+        WorkspaceIDManager.shared.$workspaceID
+                   .assign(to: &$selectedWorkspaceID)
+    }
     
     func apply(_ intent: WorkspaceIntent) {
         
@@ -54,14 +61,17 @@ final class WorkspaceModel: ObservableObject {
         case .showChannelAddView:
             isShowChannelAddView = true
             
+        case .showEditWorkspaceView:
+            isShowEditWorkspaceView = true
+            
         }
     }
     
 }
 
 extension WorkspaceModel {
- 
-     func fetchWorkspace() {
+
+    func fetchWorkspace() {
         
         networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getWorkSpaceList,
                                                    type: [WorkspaceDTO].self)
@@ -82,11 +92,42 @@ extension WorkspaceModel {
                 print(error.localizedDescription)
             }
         } receiveValue: { [weak self] value in
-            var list = value
-            if !list.isEmpty {
-                self?.workspaceList = list
-            }
+            self?.convertWorkspaceList(from: value)
         }.store(in: &cancelable)
+    }
+    
+    private func convertWorkspaceList(from dtoList: [WorkspaceDTO]) {
+        Task {
+            var workspaceStates: [WorkspaceState] = []
+    
+            for dto in dtoList {
+                var workspaceState = WorkspaceState(
+                    workspaceID: dto.workspaceID,
+                    name: dto.name,
+                    description: dto.description,
+                    coverImageString: dto.coverImage,
+                    ownerID: dto.ownerID,
+                    createdAt: dto.createdAt,
+                    channels: dto.channels,
+                    workspaceMembers: dto.workspaceMembers
+                )
+                
+                if let image = await fetchImage(for: dto.coverImage) {
+                    workspaceState.coverImage = image
+                }
+                
+                workspaceStates.append(workspaceState)
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.workspaceList = workspaceStates
+            }
+        }
+    }
+    
+    private func fetchImage(for path: String) async -> UIImage? {
+        let router = ImageRouter.getImage(path: path)
+        return await ImageCacheManager.shared.fetchImage(from: router)
     }
     
 }

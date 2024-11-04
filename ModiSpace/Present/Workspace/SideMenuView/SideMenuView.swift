@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SideMenuView: View {
     
+    @EnvironmentObject var workspaceModel: WorkspaceModel
     @StateObject var model = SideMenuModel()
     
     var body: some View {
@@ -50,10 +51,30 @@ struct SideMenuView: View {
             model.apply(.fetchWorkspaceList)
         }
         .sheet(isPresented: $model.isShowCreateWorkspaceView) {
-            CreateWorkspaceView {
-                model.apply(.fetchWorkspaceList)
-            }
+                CreateWorkspaceView {
+                    model.apply(.fetchWorkspaceList)
+                }
         }
+        .overlay(
+            ChannelActionSheet(
+                isPresented: $model.isShowMoreMenu,
+                actions: [
+                    .default(Text("워크스페이스 편집")) {
+                        workspaceModel.apply(.showEditWorkspaceView)
+                    },
+                    .default(Text("워크스페이스 나가기")) {
+                        print("채널 탐색 선택됨")
+                    },
+                    .default(Text("워크스페이스 관리자 변경")) {
+                        print("채널 탐색 선택됨")
+                    },
+                    .destructive(Text("워크스페이스 삭제")) {
+                        print("채널 탐색 선택됨")
+                    },
+                    .cancel(Text("취소"))
+                ]
+            )
+        )
     }
     
 }

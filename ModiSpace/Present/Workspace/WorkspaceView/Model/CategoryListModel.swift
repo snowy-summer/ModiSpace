@@ -10,7 +10,7 @@ import Combine
 
 final class CategoryListModel: ObservableObject {
     
-    @Published var workspaceID: String
+    @Published var selectedWorkspaceID: String? = WorkspaceIDManager.shared.workspaceID
     
     @Published var isShowChannels = false
     @Published var isShowMessageList = false
@@ -19,7 +19,6 @@ final class CategoryListModel: ObservableObject {
     @Published var selectedDirect: String? = nil
     @Published var showActionSheet = false
     @Published var showAddChannelView = false
-    @Published var newChannelTitle: String = ""
     
     @Published var channelList: [ChannelDTO] = []
     
@@ -27,10 +26,9 @@ final class CategoryListModel: ObservableObject {
     private var cancelable = Set<AnyCancellable>()
     
     init() {
-        workspaceID = WorkspaceIDManager.shared.workspaceID ?? ""
-        fetchChannelList()
+        binding()
     }
-   
+    
     func apply(_ intent: CategoryListIntent) {
         switch intent {
         case .viewAppear:
@@ -55,9 +53,18 @@ final class CategoryListModel: ObservableObject {
 
 extension CategoryListModel {
     
+    private func binding() {
+        WorkspaceIDManager.shared.$workspaceID
+            .sink { [weak self] newID in
+                self?.selectedWorkspaceID = newID
+                self?.fetchChannelList()
+            }
+            .store(in: &cancelable)
+    }
+    
     private func fetchChannelList() {
-        if workspaceID.isEmpty { return }
-        networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getWorkSpaceInfo(spaceId: workspaceID),
+        guard let id = selectedWorkspaceID else { return }
+        networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getWorkSpaceInfo(spaceId: id),
                                                    type: WorkspaceDTO.self)
         .receive(on: DispatchQueue.main)
         .sink { completion in
