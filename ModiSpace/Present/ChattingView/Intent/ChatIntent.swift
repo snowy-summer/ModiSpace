@@ -8,8 +8,7 @@
 import SwiftUI
 
 enum ChatIntent {
-    case sendMessage(String, [UIImage])
+    case sendMessage(text: String, images: [UIImage])
     case removeImage(Int)
     case showImagePicker(Bool)
-    case fetchChatsData
 }
