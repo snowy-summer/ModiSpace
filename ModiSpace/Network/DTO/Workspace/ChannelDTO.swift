@@ -11,8 +11,8 @@ struct ChannelDTO: Decodable {
     
     let channelID: String
     let name: String
-    let description: String
-    let coverImage: String
+    let description: String?
+    let coverImage: String?
     let ownerID: String
     let createdAt: String
     

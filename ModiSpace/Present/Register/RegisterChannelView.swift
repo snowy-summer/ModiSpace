@@ -9,20 +9,18 @@ import SwiftUI
 
 struct RegisterChannelView: View {
     
-    @Binding var newChannelTitle: String
+    @Environment(\.dismiss) private var dismiss
+    @StateObject private var model: RegisterChannelModel = RegisterChannelModel()
     
-    @State private var channelName: String = ""
-    @State private var channelDescription: String = ""
-    
-    var onCreate: () -> Void
+    var dismissAction: () -> Void
     
     var body: some View {
         VStack(spacing: 24) {
-            InputField(text: $channelName,
+            InputField(text: $model.channelName,
                            title: "채널 이름",
                            placeholder: "채널 이름을 입력하세요 (필수)")
             
-            InputField(text: $channelDescription,
+            InputField(text: $model.channelDescription,
                            title: "채널 설명",
                            placeholder: "채널을 설명하세요 (옵션)")
             
@@ -34,9 +32,9 @@ struct RegisterChannelView: View {
                          textColor: .white,
                          symbolColor: nil,
                          cornerRadius: 8,
-                         isEnabled: isCreateButtonEnabled()) {
-                newChannelTitle = channelName
-                onCreate()
+                         isEnabled: model.isRegistAble) {
+                dismiss()
+                model.apply(.registChannel(dismissAction))
             }
             .padding(.horizontal)
         }
@@ -48,12 +46,3 @@ struct RegisterChannelView: View {
     }
     
 }
-
-extension RegisterChannelView {
-    
-    func isCreateButtonEnabled() -> Bool {
-        return !channelName.isEmpty
-    }
-    
-}
-

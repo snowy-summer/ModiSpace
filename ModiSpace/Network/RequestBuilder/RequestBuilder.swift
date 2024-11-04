@@ -47,8 +47,7 @@ final class RequestBuilder {
     func build() throws -> URLRequest {
         guard let url = url else { throw NetworkError.invalidURL }
         
-        var request = URLRequest(url: url,
-                                 cachePolicy: .returnCacheDataElseLoad)
+        var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         

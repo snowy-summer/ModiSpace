@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+final class WorkspaceIDManager: ObservableObject {
+    
+    static let shared = WorkspaceIDManager()
+    
+    @Published var workspaceID: String? {
+        didSet {
+            UserDefaults.standard.set(workspaceID, forKey: "workspaceID")
+        }
+    }
+    
+    private init() {
+        self.workspaceID = UserDefaults.standard.string(forKey: "workspaceID")
+    }
+    
+}
