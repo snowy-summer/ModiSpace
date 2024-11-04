@@ -16,9 +16,11 @@ struct ChattingScrollListView: View {
             VStack(spacing: 16) {
                 ForEach(messages) { message in
                     VStack(alignment: .leading) {
-                        ChatMessageRowCell(message: message)
+                        if !message.content.isEmpty {
+                            ChatMessageRowCell(message: message)
+                        }
                         
-                        if let images = message.images {
+                        if let images = message.localFiles, !images.isEmpty {
                             ChatImageLayoutView(images: images)
                         }
                     }
@@ -27,5 +29,5 @@ struct ChattingScrollListView: View {
             .padding()
         }
     }
-
+    
 }
