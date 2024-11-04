@@ -18,12 +18,14 @@ struct ContentView: View {
                     
                     
                     // 회원가입
-                    //                    let join = try await NetworkManager()
-                    //                        .getDecodedData(from: UserRouter.join(body: JoinRequestBody(email: "Modispace@naver.com",
-                    //                                                                                    password: "A!2a0000",
-                    //                                                                                    nickname: "Modispace",
-                    //                                                                                    phone: "010-9999-9999",     deviceToken: "test_mac_Modi")))
+//                                        let join = try await NetworkManager()
+//                                            .getDecodedData(from: UserRouter.join(body: JoinRequestBody(email: "Modispace111@naver.com",
+//                                                                                                        password: "A!2a0000",
+//                                                                                                        nickname: "Modispace",
+//                                                                                                        phone: "010-9999-9999",     deviceToken: "test_mac_Modi111")), type: UserDTO.self)
                     //
+                    
+                    URLCache.shared.removeAllCachedResponses()
                     //로그인
                     let router = UserRouter.login(body: LoginRequestBody(email: "Modispace@naver.com",
                                                                          password: "A!2a0000",

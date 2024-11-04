@@ -9,15 +9,14 @@ import SwiftUI
 
 struct WorkSpaceCell: View {
     
-    let image: UIImage = UIImage(resource: .temp)
     let titleText: String
     let dateText: String
+    let imageString: String
     var selected = true
     
     var body: some View {
         HStack {
-            Image(uiImage: image)
-                .resizable()
+            AsyncImageView(path: imageString)
                 .customRoundedRadius()
             
             VStack(alignment: .leading) {
@@ -40,5 +39,6 @@ struct WorkSpaceCell: View {
 
 #Preview {
     WorkSpaceCell(titleText: "워크",
-                  dateText: "2024.03.11")
+                  dateText: "2024.03.11",
+                  imageString: "")
 }

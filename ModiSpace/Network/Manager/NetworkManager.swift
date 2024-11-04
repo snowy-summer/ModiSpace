@@ -29,7 +29,6 @@ extension NetworkManager: NetworkManagerProtocol {
         
         do {
             try validateResponse(response)
-            return data
         } catch {
             if let handledError = await handleErrorDataWithError(data: data) {
                 
@@ -134,11 +133,10 @@ extension NetworkManager: NetworkManagerProtocol {
             Task { [weak self] in
                 guard let self = self else { return }
                 
-                let (data, _) = try await self.session.getData(from: router)
+                let (data, response) = try await self.session.getData(from: router)
                 
                 do {
-                    let decodedData = try self.decoder.decode(type, from: data)
-                    promise(.success(decodedData))
+                    try validateResponse(response)
                 } catch {
                     if let _ = error as? NetworkError {
                         promise(.failure(NetworkError.decodingFailed("\(type)")))
@@ -155,7 +153,6 @@ extension NetworkManager: NetworkManagerProtocol {
                     if  handledError == nil {
                         if retryCount > 0 {
                             print("토큰 갱신 성공, 원래 요청을 다시 시도")
-                            
                             let newPublisher = getDecodedDataWithPublisher(from: router,
                                                                            type: type,
                                                                            retryCount: retryCount - 1)
@@ -172,6 +169,17 @@ extension NetworkManager: NetworkManagerProtocol {
                             .store(in: &self.cancelable)
                         }
                         return
+                    }
+                }
+                
+                do {
+                    let decodedData = try self.decoder.decode(type, from: data)
+                    promise(.success(decodedData))
+                } catch {
+                    print("실패한 라우터:", router.url!.absoluteString)
+                    print(NetworkError.decodingFailed("\(type)"))
+                    if let string = String(data: data, encoding: .utf8) {
+                        print("\(router.url!.absoluteString):", string)
                     }
                 }
             }

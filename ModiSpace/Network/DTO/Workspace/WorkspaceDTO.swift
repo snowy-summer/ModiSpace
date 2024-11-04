@@ -14,7 +14,7 @@ struct WorkspaceDTO: Decodable {
     let description: String
     let coverImage: String
     let ownerID: String
-    let createdAt: String
+    var createdAt: String
     let channels: [ChannelDTO]
     let workspaceMembers: [WorkspaceMemberDTO]
     
@@ -37,4 +37,45 @@ struct WorkspaceDTO: Decodable {
             workspaceMembers = try container.decodeIfPresent([WorkspaceMemberDTO].self, forKey: .workspaceMembers) ?? []
         }
     
+//    func convertState() -> WorkspaceState {
+//        WorkspaceState(workspaceID: workspaceID,
+//                       name: name,
+//                       description: description,
+//                       coverImage: coverImage,
+//                       ownerID: ownerID,
+//                       createdAt: createdAt,
+//                       channels: channels,
+//                       workspaceMembers: workspaceMembers)
+//    }
+    
+}
+
+struct WorkspaceState {
+    let workspaceID: String
+    let name: String
+    let description: String
+    let coverImage: String
+    let ownerID: String
+    var createdAt: String
+    let channels: [ChannelDTO]
+    let workspaceMembers: [WorkspaceMemberDTO]
+    
+    init(workspaceID: String = "",
+         name: String = "",
+         description: String = "",
+         coverImage: String = "",
+         ownerID: String = "",
+         createdAt: String = "",
+         channels: [ChannelDTO] = [],
+         workspaceMembers: [WorkspaceMemberDTO] = []) {
+        
+        self.workspaceID = workspaceID
+        self.name = name
+        self.description = description
+        self.coverImage = coverImage
+        self.ownerID = ownerID
+        self.createdAt = createdAt
+        self.channels = channels
+        self.workspaceMembers = workspaceMembers
+    }
 }

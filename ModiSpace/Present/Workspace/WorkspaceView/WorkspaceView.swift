@@ -15,7 +15,7 @@ struct WorkspaceView: View {
         NavigationStack {
             GeometryReader { geometry in
                 VStack {
-                    WorkspaceHeaderView()
+                    WorkspaceHeaderView(model: model)
                         .onTapGesture {
                             withAnimation {
                                 model.apply(.showSideView)
@@ -25,9 +25,7 @@ struct WorkspaceView: View {
                     Divider()
                     
                     ScrollView{
-                        CategoryListView(isChannelsShow: $model.isShowChannels,
-                                         isDirectShow: $model.isShowMessageList,
-                                         showNewMessageView: $model.isShowNewMessageView)
+                        CategoryListView()
                         
                         SFSubButton(text: "팀원 추가") {
                             model.apply(.showMemberAddView)
@@ -60,6 +58,9 @@ struct WorkspaceView: View {
                     .frame(width: 50, height: 50)
                     .position(x: geometry.size.width - 45,
                               y: geometry.size.height - 35)
+            }
+            .onAppear() {
+                model.fetchWorkspace()
             }
             .navigationDestination(isPresented: $model.isShowNewMessageView) {
                 NewMessageView()

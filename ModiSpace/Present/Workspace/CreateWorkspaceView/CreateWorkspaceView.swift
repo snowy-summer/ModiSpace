@@ -10,9 +10,12 @@ import Combine
 
 struct CreateWorkspaceView: View {
     
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var model: CreateWorkSpaceModel
+    var dismissAction: () -> Void
     
-    init() {
+    init(dismissAction: @escaping () -> Void) {
+        self.dismissAction = dismissAction
         _model = StateObject(wrappedValue: CreateWorkSpaceModel())
     }
     
@@ -44,6 +47,7 @@ struct CreateWorkspaceView: View {
                          cornerRadius: 8,
                          isEnabled: model.isCreateAbled) {
                 model.apply(.createWorkspace)
+                dismiss()
             }
                          .padding()
                          .disabled(!model.isCreateAbled)
@@ -56,6 +60,6 @@ struct CreateWorkspaceView: View {
     
 }
 
-#Preview {
-    CreateWorkspaceView()
-}
+//#Preview {
+//    CreateWorkspaceView()
+//}
