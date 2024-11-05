@@ -16,5 +16,6 @@ enum SignUpIntent {
     case validateConfirmPassword(String)
     case checkEmailDuplicate
     case checkSignUpEnabled
+    case signUp
     
 }
