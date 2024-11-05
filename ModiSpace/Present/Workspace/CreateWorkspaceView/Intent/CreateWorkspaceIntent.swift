@@ -5,7 +5,7 @@
 //  Created by 최승범 on 10/26/24.
 //
 
-import UIKit
+import SwiftUI
 
 enum CreateWorkspaceIntent {
     

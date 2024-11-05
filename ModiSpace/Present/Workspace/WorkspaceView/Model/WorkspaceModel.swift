@@ -5,7 +5,7 @@
 //  Created by 최승범 on 11/1/24.
 //
 
-import UIKit
+import SwiftUI
 import Combine
 
 final class WorkspaceModel: ObservableObject {
