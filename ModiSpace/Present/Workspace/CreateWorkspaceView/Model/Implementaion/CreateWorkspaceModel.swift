@@ -7,12 +7,22 @@
 
 import SwiftUI
 
-final class CreateWorkSpaceModel: ObservableObject, CreateWorkspaceModelStateProtocol {
+final class CreateWorkSpaceModel: ObservableObject {
     
     @Published var workspaceImage = [UIImage]()
     @Published var workspaceName = ""
     @Published var workspaceDescription = ""
     @Published var isShowingImagePicker = false
+    
+    init(workspaceImage: [UIImage] = [UIImage](),
+         workspaceName: String = "",
+         workspaceDescription: String = "",
+         isShowingImagePicker: Bool = false) {
+        self.workspaceImage = workspaceImage
+        self.workspaceName = workspaceName
+        self.workspaceDescription = workspaceDescription
+        self.isShowingImagePicker = isShowingImagePicker
+    }
     
     var isCreateAbled: Bool {
         !workspaceName.isEmpty
@@ -58,7 +68,7 @@ extension CreateWorkSpaceModel {
     private func createWorkspace() {
         Task {
             do {
-                guard let imageData = workspaceImage.first?.jpegData(compressionQuality: 0.4) else { return }
+                guard let imageData = workspaceImage.last?.jpegData(compressionQuality: 0.4) else { return }
                 let router = WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: workspaceName,
                                                                                         description: workspaceDescription,
                                                                                         image: imageData))

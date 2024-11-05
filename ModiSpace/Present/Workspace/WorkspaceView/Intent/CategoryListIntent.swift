@@ -9,10 +9,8 @@ import Foundation
 
 enum CategoryListIntent {
     
-    case viewAppear
     case showAddChannelView
     case changingShowedChannelState
     case showActionSheet
-    case reloadChannelList
     
 }
