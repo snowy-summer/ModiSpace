@@ -13,14 +13,12 @@ struct CreateWorkspaceView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var workspaceModel: WorkspaceModel
     @StateObject private var model: CreateWorkSpaceModel
-    var dismissAction: () -> Void
     
-    init(dismissAction: @escaping () -> Void) {
-        self.dismissAction = dismissAction
+    init() {
         _model = StateObject(wrappedValue: CreateWorkSpaceModel())
     }
     
-    init(workspace: WorkspaceState, dismissAction: @escaping () -> Void) {
+    init(workspace: WorkspaceState) {
         self.dismissAction = dismissAction
         _model = StateObject(wrappedValue: CreateWorkSpaceModel(workspaceImage: [workspace.coverImage],
                                                                 workspaceName: workspace.name,
