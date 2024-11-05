@@ -14,6 +14,8 @@ struct InputField: View {
     var title: String?
     var placeholder: String
     var keyboardType: UIKeyboardType = .default
+    var isEditable: Bool = true
+    var isSecure: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -23,11 +25,22 @@ struct InputField: View {
                     .padding(.leading)
             }
             
-            TextField(placeholder, text: $text)
-                .padding()
-                .background(Color(UIColor.systemGray6))
-                .cornerRadius(8)
-                .padding(.horizontal)
+            if isSecure {
+                SecureField(placeholder, text: $text)
+                    .padding()
+                    .background(Color(UIColor.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+                    .disabled(!isEditable)
+            } else {
+                TextField(placeholder, text: $text)
+                    .keyboardType(keyboardType)
+                    .padding()
+                    .background(Color(UIColor.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+                    .disabled(!isEditable)
+            }
         }
     }
     

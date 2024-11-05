@@ -10,9 +10,56 @@ import SwiftUI
 struct ChattingView: View {
     
     @State var messages: [DummyMessage] = [
-        DummyMessage(text: "저희 수료식이 언제였죠? 11/9 맞나요? 영등포 캠퍼스가 어디에 있었죠? 기억이...T.T", isCurrentUser: false, profileImage: "person.crop.rectangle", images: nil),
-        DummyMessage(text: "수료식 사진 공유드려요!", isCurrentUser: false, profileImage: "person.crop.rectangle", images: nil),
-        DummyMessage(text: "하 드디어 퇴근...", isCurrentUser: true, profileImage: "person.crop.rectangle", images: nil),
+        DummyMessage(
+            channelId: "f8ff1a63-8278-4529-ac88-fea037af75aa",
+            channelName: "General",
+            chatId: "chat1",
+            content: "안녕하세요! 테스트 메시지입니다.",
+            createdAt: Date(),
+            localFiles: [],
+            files: [], //서버에서 받은 이미지
+            user: DummyUser(
+                id: "user1",
+                email: "user1@example.com",
+                nickname: "Alice",
+                profileImage: "https://example.com/image1.png"
+            ),
+            isCurrentUser: false
+        ),
+        
+        DummyMessage(
+            channelId: "f8ff1a63-8278-4529-ac88-fea037af75aa",
+            channelName: "General",
+            chatId: "chat2",
+            content: "안녕하세요, Alice! 반가워요!",
+            createdAt: Date().addingTimeInterval(-3600),
+            localFiles: [],
+            files: [], //서버에서 받은 이미지
+            user: DummyUser(
+                id: "user2",
+                email: "user2@example.com",
+                nickname: "Bob",
+                profileImage: "https://example.com/image2.png"
+            ),
+            isCurrentUser: true
+        ),
+        
+        DummyMessage(
+            channelId: "f8ff1a63-8278-4529-ac88-fea037af75aa",
+            channelName: "Random",
+            chatId: "chat3",
+            content: "최신 업데이트 보셨나요?",
+            createdAt: Date().addingTimeInterval(-7200),
+            localFiles: [],
+            files: [], //서버에서 받은 이미지
+            user: DummyUser(
+                id: "user3",
+                email: "user3@example.com",
+                nickname: "Charlie",
+                profileImage: "https://example.com/image3.png"
+            ),
+            isCurrentUser: false
+        )
     ]
     
     @State var messageText: String = ""
@@ -49,18 +96,29 @@ struct ChattingView: View {
 extension ChattingView {
     
     func sendMessage() {
-        if !messageText.isEmpty || !selectedImages.isEmpty {
-            let newMessage = DummyMessage(
-                text: messageText,
-                isCurrentUser: true,
-                profileImage: "person.crop.rectangle",
-                images: selectedImages.isEmpty ? nil : selectedImages
-            )
-            messages.append(newMessage)
-            messageText = ""
-            selectedImages = []
-        }
-    }
+          if !messageText.isEmpty || !selectedImages.isEmpty {
+              let newMessage = DummyMessage(
+                  channelId: "f8ff1a63-8278-4529-ac88-fea037af75aa",
+                  channelName: "Chat Channel",
+                  chatId: UUID().uuidString,
+                  content: messageText,
+                  createdAt: Date(),
+                  localFiles: selectedImages,
+                  files: [], //서버에서 받은 이미지
+                  user: DummyUser(
+                      id: "currentUser",
+                      email: "currentUser@example.com",
+                      nickname: "Me",
+                      profileImage: "star"
+                  ),
+                  isCurrentUser: true
+              )
+              messages.append(newMessage)
+              messageText = ""
+              selectedImages = []
+          }
+      }
+    
     
     func removeImage(at index: Int) {
         selectedImages.remove(at: index)
