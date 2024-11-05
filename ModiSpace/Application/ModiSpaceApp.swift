@@ -20,6 +20,7 @@ import SwiftUI
 @main
 struct ModiSpaceApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State var isSplashView = true
     
     var body: some Scene {
@@ -42,7 +43,6 @@ struct ModiSpaceApp: App {
         
     }
 }
-
 
 struct LaunchScreenView: UIViewControllerRepresentable {
     
