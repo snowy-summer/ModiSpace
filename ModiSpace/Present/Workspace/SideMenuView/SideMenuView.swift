@@ -20,14 +20,14 @@ struct SideMenuView: View {
                 
                 Spacer()
                 
-                if model.isWorkspaceEmpty {
-                    SideMenuEmptyContentView(model: model)
+                if workspaceModel.isWorkspaceEmpty {
+                    SideMenuEmptyContentView()
                 } else  {
                     SideMenuNoneEmptyContentView(model: model)
                 }
                 
                 SFSubButton(text: "워크스페이스 추가") {
-                    model.apply(.addWorkspace)
+                    workspaceModel.apply(.showCreateWorkspaceView)
                 }
                     .padding()
                 
@@ -47,20 +47,12 @@ struct SideMenuView: View {
 
             Spacer()
         }
-        .onAppear() {
-            model.apply(.fetchWorkspaceList)
-        }
-        .sheet(isPresented: $model.isShowCreateWorkspaceView) {
-                CreateWorkspaceView {
-                    model.apply(.fetchWorkspaceList)
-                }
-        }
         .overlay(
             ChannelActionSheet(
                 isPresented: $model.isShowMoreMenu,
                 actions: [
                     .default(Text("워크스페이스 편집")) {
-                        workspaceModel.apply(.showEditWorkspaceView)
+                        workspaceModel.apply(.showEditWorkspaceView(workspaceModel.selectedWorkspace!))
                     },
                     .default(Text("워크스페이스 나가기")) {
                         print("채널 탐색 선택됨")

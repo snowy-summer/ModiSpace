@@ -9,11 +9,10 @@ import Foundation
 
 enum SideMenuIntnet {
     
-    case fetchWorkspaceList
     case changeWorkspace
     case addWorkspace
     case showMoreMenu
     case showHelpGuide
-    case selectWorkspace(WorkspaceDTO)
+    case selectWorkspace(WorkspaceState)
     
 }

@@ -9,21 +9,19 @@ import SwiftUI
 
 struct WorkSpaceCell: View {
     
-    let titleText: String
-    let dateText: String
-    let imageString: String
-    var selected: Bool
-    var model: SideMenuModel
+    let workspace: WorkspaceState
+    let selected: Bool
+    let model: SideMenuModel
     
     var body: some View {
         HStack {
-            AsyncImageView(path: imageString)
+            AsyncImageView(path: workspace.coverImageString)
                 .customRoundedRadius()
             
             VStack(alignment: .leading) {
-                Text(titleText)
+                Text(workspace.name)
                     .customFont(.bodyBold)
-                Text(dateText)
+                Text(workspace.createdAt)
                     .customFont(.caption)
                     .foregroundStyle(.textSecondary)
             }

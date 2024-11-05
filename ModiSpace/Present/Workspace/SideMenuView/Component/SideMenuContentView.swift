@@ -10,7 +10,7 @@ import SwiftUI
 //MARK: - EmptyContnent
 struct SideMenuEmptyContentView: View {
     
-    var model: SideMenuModel
+    @EnvironmentObject var workspaceModel: WorkspaceModel
     
     var body: some View {
         VStack(alignment: .center) {
@@ -31,7 +31,7 @@ struct SideMenuEmptyContentView: View {
                          textColor: .white,
                          symbolColor: nil,
                          cornerRadius: 8) {
-                model.apply(.addWorkspace)
+                workspaceModel.apply(.showCreateWorkspaceView)
             }
                          .padding()
             
@@ -52,19 +52,19 @@ struct SideMenuNoneEmptyContentView: View {
             Spacer()
             
             List {
-                ForEach(model.workspaceList, id: \.workspaceID) { workspace in
-                    if workspace.workspaceID == model.selectedWorkspace {
-                        WorkSpaceCell(titleText: workspace.name,
-                                      dateText: workspace.createdAt,
-                                      imageString: workspace.coverImage, selected: true, model: model)
+                ForEach(workspaceModel.workspaceList, id: \.workspaceID) { workspace in
+                    if workspace.workspaceID == workspaceModel.selectedWorkspace?.workspaceID {
+                        WorkSpaceCell(workspace: workspace,
+                                      selected: true,
+                                      model: model)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
                             model.apply(.selectWorkspace(workspace))
                         }
                     } else {
-                        WorkSpaceCell(titleText: workspace.name,
-                                      dateText: workspace.createdAt,
-                                      imageString: workspace.coverImage, selected: false, model: model)
+                        WorkSpaceCell(workspace: workspace,
+                                      selected: false,
+                                      model: model)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
                             model.apply(.selectWorkspace(workspace))

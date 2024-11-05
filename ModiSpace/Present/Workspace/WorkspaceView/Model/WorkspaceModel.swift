@@ -10,15 +10,14 @@ import Combine
 
 final class WorkspaceModel: ObservableObject {
     
-    @Published var isShowChannels = false
-    @Published var isShowMessageList = false
     @Published var isShowNewMessageView = false
     @Published var isShowSideView = false
-    @Published var isShowMemberAddView = false
-    @Published var isShowChannelAddView = false
-    @Published var isShowEditWorkspaceView = false
+    
     @Published var workspaceList: [WorkspaceState] = []
     @Published var selectedWorkspaceID: String? = WorkspaceIDManager.shared.workspaceID
+    @Published var selectedWorkspaceChannelList = [ChannelDTO]()
+    
+    @Published var sheetType: WorkspaceViewSheetType?
     
     var selectedWorkspace: WorkspaceState? {
         for workspace in workspaceList {
@@ -29,26 +28,21 @@ final class WorkspaceModel: ObservableObject {
         return nil
     }
     
+    var isWorkspaceEmpty: Bool {
+        workspaceList.isEmpty
+    }
+    
     private let networkManager = NetworkManager()
+    private let dateManager = DateManager()
     private var cancelable = Set<AnyCancellable>()
     
     init() {
-        WorkspaceIDManager.shared.$workspaceID
-                   .assign(to: &$selectedWorkspaceID)
+       binding()
     }
     
     func apply(_ intent: WorkspaceIntent) {
         
         switch intent {
-        case .showChannels:
-            isShowChannels = true
-            
-        case .showMessageList:
-            isShowMessageList = true
-            
-        case .showNewMessageView:
-            isShowNewMessageView = true
-            
         case .showSideView:
             isShowSideView = true
             
@@ -56,20 +50,34 @@ final class WorkspaceModel: ObservableObject {
             isShowSideView = false
             
         case .showMemberAddView:
-            isShowMemberAddView = true
+            sheetType = .addMemberView
             
-        case .showChannelAddView:
-            isShowChannelAddView = true
+        case .showEditWorkspaceView(let workspace):
+            sheetType = .editWorkspace(workspace)
             
-        case .showEditWorkspaceView:
-            isShowEditWorkspaceView = true
+        case .showCreateWorkspaceView:
+            sheetType = .createWorkspace
             
+        case .showChangeManagerView:
+            sheetType = .changeWorkspaceManager
+            
+        case .reloadChannelList:
+            fetchChannelList()
         }
     }
     
 }
 
 extension WorkspaceModel {
+    
+    private func binding() {
+        WorkspaceIDManager.shared.$workspaceID
+            .sink { [weak self] newID in
+                self?.selectedWorkspaceID = newID
+                self?.fetchChannelList()
+            }
+            .store(in: &cancelable)
+    }
 
     func fetchWorkspace() {
         
@@ -99,7 +107,7 @@ extension WorkspaceModel {
     private func convertWorkspaceList(from dtoList: [WorkspaceDTO]) {
         Task {
             var workspaceStates: [WorkspaceState] = []
-    
+            
             for dto in dtoList {
                 var workspaceState = WorkspaceState(
                     workspaceID: dto.workspaceID,
@@ -107,7 +115,8 @@ extension WorkspaceModel {
                     description: dto.description,
                     coverImageString: dto.coverImage,
                     ownerID: dto.ownerID,
-                    createdAt: dto.createdAt,
+                    createdAt: dateManager.convertToFormattedString(isoString: dto.createdAt,
+                                                  format: "yyyy. MM. dd") ?? "",
                     channels: dto.channels,
                     workspaceMembers: dto.workspaceMembers
                 )
@@ -128,6 +137,32 @@ extension WorkspaceModel {
     private func fetchImage(for path: String) async -> UIImage? {
         let router = ImageRouter.getImage(path: path)
         return await ImageCacheManager.shared.fetchImage(from: router)
+    }
+    
+    private func fetchChannelList() {
+        guard let id = selectedWorkspaceID else { return }
+        networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getWorkSpaceInfo(spaceId: id),
+                                                   type: WorkspaceDTO.self)
+        .receive(on: DispatchQueue.main)
+        .sink { completion in
+            switch completion {
+            case .finished:
+                break
+            case .failure(let error):
+                if let error = error as? NetworkError {
+                    print(error.description)
+                }
+                if let error = error as? APIError {
+                    if error == .refreshTokenExpired {
+                        print("리프레시 토큰 만료")
+                    }
+                }
+                print(error.localizedDescription)
+            }
+        } receiveValue: { [weak self] value in
+            self?.selectedWorkspaceChannelList = value.channels
+        }.store(in: &cancelable)
+        
     }
     
 }

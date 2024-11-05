@@ -26,6 +26,7 @@ struct WorkspaceView: View {
                     
                     ScrollView{
                         CategoryListView()
+                            .environmentObject(model)
                         
                         SFSubButton(text: "팀원 추가") {
                             model.apply(.showMemberAddView)
@@ -60,12 +61,8 @@ struct WorkspaceView: View {
                     .position(x: geometry.size.width - 45,
                               y: geometry.size.height - 35)
             }
-            .sheet(isPresented: $model.isShowEditWorkspaceView) {
-                if let workspace = model.selectedWorkspace {
-                    CreateWorkspaceView(workspace: workspace) {
-//                        model.apply(.fetchWorkspaceList)
-                    }
-                }
+            .sheet(item: $model.sheetType) { type in
+                SheetView(type: type)
             }
             .onAppear() {
                 model.fetchWorkspace()
