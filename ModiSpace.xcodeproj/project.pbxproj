@@ -99,6 +99,10 @@
 		727D876A2CD5022400C52751 /* SendDMSChatRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87692CD5022400C52751 /* SendDMSChatRequestBody.swift */; };
 		727D876D2CD5052800C52751 /* QueryOfGetDMSChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D876C2CD5052800C52751 /* QueryOfGetDMSChatList.swift */; };
 		727D876F2CD5054600C52751 /* QueryOfUnReadDMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D876E2CD5054600C52751 /* QueryOfUnReadDMS.swift */; };
+		727D87722CD6130300C52751 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87712CD6130300C52751 /* SignUpView.swift */; };
+		727D87762CD78FB300C52751 /* SignUpIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87752CD78FB300C52751 /* SignUpIntent.swift */; };
+		727D87782CD7900400C52751 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87772CD7900400C52751 /* SignUpModel.swift */; };
+		727D87822CD90C8000C52751 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87812CD90C8000C52751 /* AppDelegate.swift */; };
 		72CA3E5F2CCCE169002FE5C4 /* ProfileNickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E5E2CCCE169002FE5C4 /* ProfileNickCell.swift */; };
 		72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */; };
 		72CA3E632CCD1263002FE5C4 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E622CCD1263002FE5C4 /* CommonButton.swift */; };
@@ -241,6 +245,11 @@
 		727D87692CD5022400C52751 /* SendDMSChatRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDMSChatRequestBody.swift; sourceTree = "<group>"; };
 		727D876C2CD5052800C52751 /* QueryOfGetDMSChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOfGetDMSChatList.swift; sourceTree = "<group>"; };
 		727D876E2CD5054600C52751 /* QueryOfUnReadDMS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOfUnReadDMS.swift; sourceTree = "<group>"; };
+		727D87712CD6130300C52751 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		727D87752CD78FB300C52751 /* SignUpIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIntent.swift; sourceTree = "<group>"; };
+		727D87772CD7900400C52751 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		727D87812CD90C8000C52751 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		727D87832CD90D2600C52751 /* ModiSpace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModiSpace.entitlements; sourceTree = "<group>"; };
 		72CA3E5E2CCCE169002FE5C4 /* ProfileNickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNickCell.swift; sourceTree = "<group>"; };
 		72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListCell.swift; sourceTree = "<group>"; };
 		72CA3E622CCD1263002FE5C4 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
@@ -707,6 +716,7 @@
 		6BD3975B2CCA819500F7097D /* ModiSpace */ = {
 			isa = PBXGroup;
 			children = (
+				727D87832CD90D2600C52751 /* ModiSpace.entitlements */,
 				6B0564F62CCF741B003086AC /* Info.plist */,
 				AA54FCDF2CCCB7C700D09293 /* Application */,
 				AA54FCE92CCCB88100D09293 /* Present */,
@@ -840,6 +850,32 @@
 			path = DMS;
 			sourceTree = "<group>";
 		};
+		727D87702CD6127800C52751 /* SignUpView */ = {
+			isa = PBXGroup;
+			children = (
+				727D87712CD6130300C52751 /* SignUpView.swift */,
+				727D87732CD78F8A00C52751 /* Intent */,
+				727D87742CD78F9400C52751 /* Model */,
+			);
+			path = SignUpView;
+			sourceTree = "<group>";
+		};
+		727D87732CD78F8A00C52751 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				727D87752CD78FB300C52751 /* SignUpIntent.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		727D87742CD78F9400C52751 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				727D87772CD7900400C52751 /* SignUpModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		72F25EAD2CCE573F00A1F182 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
@@ -871,6 +907,7 @@
 			children = (
 				72F25EB02CCE5C4900A1F182 /* OnboardingView */,
 				AA5491162CD0E856009A0B2F /* AuthOptionsView */,
+				727D87702CD6127800C52751 /* SignUpView */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1011,6 +1048,7 @@
 			children = (
 				6BD3975C2CCA819500F7097D /* ModiSpaceApp.swift */,
 				6BD3975E2CCA819500F7097D /* ContentView.swift */,
+				727D87812CD90C8000C52751 /* AppDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1181,6 +1219,7 @@
 				6B2C72FF2CCCAD3B0043E478 /* EmptyResponseDTO.swift in Sources */,
 				6B694E442CCE0E2F00ED484D /* CustomCornerShape.swift in Sources */,
 				6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */,
+				727D87722CD6130300C52751 /* SignUpView.swift in Sources */,
 				72CA3E632CCD1263002FE5C4 /* CommonButton.swift in Sources */,
 				AA5491102CCF9B81009A0B2F /* PhotoPicker.swift in Sources */,
 				AA54911A2CD0EEAD009A0B2F /* ChannelSection.swift in Sources */,
@@ -1211,6 +1250,7 @@
 				AA54FD0C2CCCBA2200D09293 /* SFSubButton.swift in Sources */,
 				6BADE9A42CCE3F2A00099B78 /* UserDTO.swift in Sources */,
 				6BCF99722CD4C634001A73FE /* WorkspaceIntent.swift in Sources */,
+				727D87822CD90C8000C52751 /* AppDelegate.swift in Sources */,
 				6BC87C772CD367AD00ED3CD4 /* MultipartFormData.swift in Sources */,
 				6B8DB43C2CD868D4001B0893 /* RegisterChannelModel.swift in Sources */,
 				AA54FCFA2CCCB96C00D09293 /* RegisterChannelView.swift in Sources */,
@@ -1226,6 +1266,7 @@
 				AA54FCFF2CCCB9A900D09293 /* WorkspaceView.swift in Sources */,
 				AA54FCEC2CCCB8B200D09293 /* SettingChannelView.swift in Sources */,
 				6BD397722CCA8D2500F7097D /* CustomFontModifier.swift in Sources */,
+				727D87782CD7900400C52751 /* SignUpModel.swift in Sources */,
 				6B2C72E62CCB9C800043E478 /* HttpMethod.swift in Sources */,
 				6B2C730B2CCCB59F0043E478 /* WorkspaceRequestBody.swift in Sources */,
 				6B2C72F92CCCA7A70043E478 /* WorkspaceDTO.swift in Sources */,
@@ -1292,6 +1333,7 @@
 				AA54FD042CCCB9DE00D09293 /* WorkspaceHeaderView.swift in Sources */,
 				727D87572CD3658B00C52751 /* OwnershipTransferDTO.swift in Sources */,
 				6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */,
+				727D87762CD78FB300C52751 /* SignUpIntent.swift in Sources */,
 				AA5491282CD1F446009A0B2F /* PayvalidationDTO.swift in Sources */,
 				AA54FCE42CCCB83600D09293 /* AlertView.swift in Sources */,
 				AA54FD0E2CCCBA3400D09293 /* AddPostCircleCell.swift in Sources */,
@@ -1429,6 +1471,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ModiSpace/ModiSpace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ModiSpace/Preview Content\"";
@@ -1465,6 +1508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ModiSpace/ModiSpace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ModiSpace/Preview Content\"";
