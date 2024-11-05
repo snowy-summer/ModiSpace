@@ -7,20 +7,31 @@
 
 import Foundation
 
-struct ChannelChatListDTO: Decodable {
+struct ChannelChatListDTO: Codable {
     
     let channelID: String
     let channelName: String
-    let chatID: String
     let content: String
-    let createdAt: String
     let files: [String]
-    let user: OtherUserDTO
+    
+    init(
+        channelID: String,
+        channelName: String,
+        content: String,
+        files: [String] = []
+    )
+    {
+        self.channelID = channelID
+        self.channelName = channelName
+        self.content = content
+        self.files = files
+    }
     
     enum CodingKeys: String, CodingKey {
         case channelID = "channel_id"
-        case chatID = "chat_id"
-        case channelName, content, createdAt, files, user
+        case channelName
+        case content
+        case files
     }
     
 }
