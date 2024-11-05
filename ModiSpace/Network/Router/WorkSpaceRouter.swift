@@ -142,6 +142,9 @@ extension WorkSpaceRouter: RouterProtocol {
                                 forKey: Header.authorization.key)
             headers.updateValue(Header.contentTypeMulti.value,
                                 forKey: Header.contentTypeMulti.key)
+        case .deleteWorkSpace:
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
             
         case .changeWorkSpaceManager:
             headers.updateValue(Header.authorization.value,

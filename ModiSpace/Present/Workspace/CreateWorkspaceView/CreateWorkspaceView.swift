@@ -19,7 +19,6 @@ struct CreateWorkspaceView: View {
     }
     
     init(workspace: WorkspaceState) {
-        self.dismissAction = dismissAction
         _model = StateObject(wrappedValue: CreateWorkSpaceModel(workspaceImage: [workspace.coverImage],
                                                                 workspaceName: workspace.name,
                                                                 workspaceDescription: workspace.description))
@@ -29,7 +28,7 @@ struct CreateWorkspaceView: View {
         VStack(spacing: 24) {
             ImageSelectButton(action: {
                 model.apply(.showImagePicker)
-            }, image: model.workspaceImage.first)
+            }, image: model.workspaceImage.last)
             .sheet(isPresented: $model.isShowingImagePicker) {
                 PhotoPicker(selectedImages: $model.workspaceImage,
                             isMultipleImage: false)

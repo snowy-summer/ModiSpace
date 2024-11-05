@@ -29,14 +29,14 @@ struct SideMenuView: View {
                 SFSubButton(text: "워크스페이스 추가") {
                     workspaceModel.apply(.showCreateWorkspaceView)
                 }
-                    .padding()
+                .padding()
                 
                 SFSubButton(text: "도움말") {
                     model.apply(.showHelpGuide)
                 }
-                    .padding(.horizontal)
-                    .padding(.bottom, 40)
-                    
+                .padding(.horizontal)
+                .padding(.bottom, 40)
+                
                 Spacer()
             }
             .frame(width: 300)
@@ -44,7 +44,7 @@ struct SideMenuView: View {
             .customCornerRadius(20,
                                 corners: [.topRight, .bottomRight])
             .ignoresSafeArea()
-
+            
             Spacer()
         }
         .overlay(
@@ -61,7 +61,7 @@ struct SideMenuView: View {
                         print("채널 탐색 선택됨")
                     },
                     .destructive(Text("워크스페이스 삭제")) {
-                        print("채널 탐색 선택됨")
+                        workspaceModel.isShowDeleteAlertView = true
                     },
                     .cancel(Text("취소"))
                 ]

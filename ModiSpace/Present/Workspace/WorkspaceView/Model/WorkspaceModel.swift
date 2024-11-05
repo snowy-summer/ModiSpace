@@ -12,6 +12,7 @@ final class WorkspaceModel: ObservableObject {
     
     @Published var isShowNewMessageView = false
     @Published var isShowSideView = false
+    @Published var isShowDeleteAlertView = false
     
     @Published var workspaceList: [WorkspaceState] = []
     @Published var selectedWorkspaceID: String? = WorkspaceIDManager.shared.workspaceID
@@ -37,12 +38,16 @@ final class WorkspaceModel: ObservableObject {
     private var cancelable = Set<AnyCancellable>()
     
     init() {
-       binding()
+        binding()
     }
     
     func apply(_ intent: WorkspaceIntent) {
         
         switch intent {
+            
+        case .viewAppear:
+            fetchWorkspace()
+            
         case .showSideView:
             isShowSideView = true
             
@@ -63,6 +68,17 @@ final class WorkspaceModel: ObservableObject {
             
         case .reloadChannelList:
             fetchChannelList()
+            
+        case .showDeleteAlert:
+            isShowDeleteAlertView = true
+            
+        case .dontShowDeleteAlert:
+            isShowDeleteAlertView = false
+            
+        case .deleteWorkspace:
+            isShowDeleteAlertView = false
+            isShowSideView = false
+            deleteWorkspace()
         }
     }
     
@@ -78,8 +94,8 @@ extension WorkspaceModel {
             }
             .store(in: &cancelable)
     }
-
-    func fetchWorkspace() {
+    
+    private func fetchWorkspace() {
         
         networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getWorkSpaceList,
                                                    type: [WorkspaceDTO].self)
@@ -116,7 +132,7 @@ extension WorkspaceModel {
                     coverImageString: dto.coverImage,
                     ownerID: dto.ownerID,
                     createdAt: dateManager.convertToFormattedString(isoString: dto.createdAt,
-                                                  format: "yyyy. MM. dd") ?? "",
+                                                                    format: "yyyy. MM. dd") ?? "",
                     channels: dto.channels,
                     workspaceMembers: dto.workspaceMembers
                 )
@@ -165,4 +181,27 @@ extension WorkspaceModel {
         
     }
     
+    private func deleteWorkspace() {
+        networkManager.getDataWithPublisher(from: WorkSpaceRouter.deleteWorkSpace(spaceId: selectedWorkspaceID ?? ""))
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    if let error = error as? NetworkError {
+                        print(error.description)
+                    }
+                    if let error = error as? APIError {
+                        if error == .refreshTokenExpired {
+                            print("리프레시 토큰 만료")
+                        }
+                    }
+                    print(error.localizedDescription)
+                }
+            } receiveValue: { [weak self] data in
+                self?.fetchWorkspace()
+            }
+            .store(in: &cancelable)
+        
+    }
 }

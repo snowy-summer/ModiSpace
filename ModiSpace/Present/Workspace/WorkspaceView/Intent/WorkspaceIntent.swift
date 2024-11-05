@@ -9,6 +9,7 @@ import Foundation
 
 enum WorkspaceIntent {
     
+    case viewAppear
     case showSideView
     case dontShowSideView
     case showMemberAddView
@@ -16,5 +17,8 @@ enum WorkspaceIntent {
     case showEditWorkspaceView(WorkspaceState)
     case showChangeManagerView
     case reloadChannelList
+    case showDeleteAlert
+    case dontShowDeleteAlert
+    case deleteWorkspace
     
 }

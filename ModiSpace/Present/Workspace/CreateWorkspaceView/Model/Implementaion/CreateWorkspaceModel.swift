@@ -68,7 +68,7 @@ extension CreateWorkSpaceModel {
     private func createWorkspace() {
         Task {
             do {
-                guard let imageData = workspaceImage.first?.jpegData(compressionQuality: 0.4) else { return }
+                guard let imageData = workspaceImage.last?.jpegData(compressionQuality: 0.4) else { return }
                 let router = WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: workspaceName,
                                                                                         description: workspaceDescription,
                                                                                         image: imageData))
