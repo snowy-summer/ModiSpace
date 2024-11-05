@@ -9,76 +9,27 @@ import SwiftUI
 
 struct ChattingView: View {
     
-    @State var messages: [DummyMessage] = [
-        DummyMessage(
-            channelId: "f8ff1a63-8278-4529-ac88-fea037af75aa",
-            channelName: "General",
-            chatId: "chat1",
-            content: "안녕하세요! 테스트 메시지입니다.",
-            createdAt: Date(),
-            localFiles: [],
-            files: [], //서버에서 받은 이미지
-            user: DummyUser(
-                id: "user1",
-                email: "user1@example.com",
-                nickname: "Alice",
-                profileImage: "https://example.com/image1.png"
-            ),
-            isCurrentUser: false
-        ),
-        
-        DummyMessage(
-            channelId: "f8ff1a63-8278-4529-ac88-fea037af75aa",
-            channelName: "General",
-            chatId: "chat2",
-            content: "안녕하세요, Alice! 반가워요!",
-            createdAt: Date().addingTimeInterval(-3600),
-            localFiles: [],
-            files: [], //서버에서 받은 이미지
-            user: DummyUser(
-                id: "user2",
-                email: "user2@example.com",
-                nickname: "Bob",
-                profileImage: "https://example.com/image2.png"
-            ),
-            isCurrentUser: true
-        ),
-        
-        DummyMessage(
-            channelId: "f8ff1a63-8278-4529-ac88-fea037af75aa",
-            channelName: "Random",
-            chatId: "chat3",
-            content: "최신 업데이트 보셨나요?",
-            createdAt: Date().addingTimeInterval(-7200),
-            localFiles: [],
-            files: [], //서버에서 받은 이미지
-            user: DummyUser(
-                id: "user3",
-                email: "user3@example.com",
-                nickname: "Charlie",
-                profileImage: "https://example.com/image3.png"
-            ),
-            isCurrentUser: false
-        )
-    ]
-    
+    @StateObject var model = ChatDummyModel()
+    @State var messages: [ChannelChatListDTO] = []
     @State var messageText: String = ""
     @State private var selectedImages: [UIImage] = []
     @State private var isShowingImagePicker = false
+    @State private var chattingScrollListView = ChattingScrollListView(messages: .constant([]))
     
     var chatTitle: String
+    private let networkManager = NetworkManager()
     
     var body: some View {
+        
         VStack {
-            ChattingScrollListView(messages: $messages)
+            chattingScrollListView
             
             ChatTextField(
-                           messageText: $messageText,
-                           selectedImages: $selectedImages,
-                           isShowingImagePicker: $isShowingImagePicker,
-                           onSendMessage: sendMessage,
-                           onRemoveImage: removeImage
-                       )
+                messageText: $messageText,
+                selectedImages: $selectedImages,
+                isShowingImagePicker: $isShowingImagePicker,
+                onRemoveImage: removeImage
+            )
             .padding(.horizontal, 16)
             .background(Color(UIColor.systemGray6))
             .cornerRadius(8)
@@ -87,45 +38,51 @@ struct ChattingView: View {
         .navigationTitle(chatTitle)
         .onTapGesture {
             endTextEditing()
+            chattingScrollListView.scrollToBottom() // 키보드 닫힐 때 마지막 메시지로 스크롤
+        }
+        .onAppear {
+            print("fetchChatsData 실행")
+            fetchChatsData()
+            chattingScrollListView = ChattingScrollListView(messages: $messages) // 실제 메시지를 바인딩
+        }
+    }
+}
+
+
+//메세지 내역 받는 거
+extension ChattingView {
+    private func fetchChatsData() {
+        Task {
+            do {
+                let data = try await networkManager.getData(from: ChannelRouter.getChannelListChat(workspaceID: "12a75244-5c0f-4478-becd-d2c95820de56", channelID: "f8ff1a63-8278-4529-ac88-fea037af75aa", cursorDate: "2024-10-18T09:30:00.722Z"))
+                
+                let decoder = JSONDecoder()
+                
+                // 배열 형태로 디코딩
+                let list = try decoder.decode([ChannelChatListDTO].self, from: data)
+                
+                // 새로운 메시지 리스트를 할당
+                DispatchQueue.main.async {
+                    self.messages = list
+                }
+            } catch {
+                print("채팅 내역 불러오는데 실패: \(error)")
+            }
         }
     }
     
-}
-
-//메세지 보낼 때 셀
-extension ChattingView {
-    
-    func sendMessage() {
-          if !messageText.isEmpty || !selectedImages.isEmpty {
-              let newMessage = DummyMessage(
-                  channelId: "f8ff1a63-8278-4529-ac88-fea037af75aa",
-                  channelName: "Chat Channel",
-                  chatId: UUID().uuidString,
-                  content: messageText,
-                  createdAt: Date(),
-                  localFiles: selectedImages,
-                  files: [], //서버에서 받은 이미지
-                  user: DummyUser(
-                      id: "currentUser",
-                      email: "currentUser@example.com",
-                      nickname: "Me",
-                      profileImage: "star"
-                  ),
-                  isCurrentUser: true
-              )
-              messages.append(newMessage)
-              messageText = ""
-              selectedImages = []
-          }
-      }
-    
-    
     func removeImage(at index: Int) {
-        selectedImages.remove(at: index)
-    }
+           selectedImages.remove(at: index)
+       }
+    
     
 }
 
 #Preview {
     ChattingView(chatTitle: "Chat")
+}
+
+
+extension ChattingView {
+    
 }

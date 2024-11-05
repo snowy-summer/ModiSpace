@@ -15,7 +15,7 @@ struct ChatTextField: View {
     
     @State private var textFieldHeight: CGFloat = 40
     
-    var onSendMessage: () -> Void
+   // var onSendMessage: () -> Void
     var onRemoveImage: (Int) -> Void
     
     var body: some View {
@@ -27,8 +27,8 @@ struct ChatTextField: View {
                     .foregroundStyle(.gray)
             }
             .sheet(isPresented: $isShowingImagePicker) {
-                PhotoPicker(selectedImages: $selectedImages,
-                            isMultipleImage: true)
+//                PhotoPicker(selectedImages: $selectedImages,
+//                            isMultipleImage: true)
             }
             
             VStack {
@@ -58,7 +58,7 @@ struct ChatTextField: View {
             }
             
             Button(action: {
-                onSendMessage()
+              //  onSendMessage()
             }) {
                 Image(systemName: "paperplane.fill")
                     .foregroundStyle((messageText.isEmpty && selectedImages.isEmpty) ? .gray : .green)

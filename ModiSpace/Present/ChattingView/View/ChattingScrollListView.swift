@@ -9,25 +9,43 @@ import SwiftUI
 
 struct ChattingScrollListView: View {
     
-    @Binding var messages: [DummyMessage]
+    @Binding var messages: [ChannelChatListDTO]
+    @State private var proxy: ScrollViewProxy? = nil
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                ForEach(messages) { message in
-                    VStack(alignment: .leading) {
-                        if !message.content.isEmpty {
-                            ChatMessageRowCell(message: message)
+        ScrollViewReader { scrollProxy in
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(messages) { message in
+                        VStack(alignment: .leading) {
+                            if let content = message.content, !content.isEmpty {
+                                ChatMessageRowCell(message: message)
+                            }
+                            // 이미지 파일이 있는 경우 처리
+                            // if let images = message.files, !images.isEmpty {
+                            //     ChatImageLayoutView(images: images)
+                            // }
                         }
-                        
-                        if let images = message.localFiles, !images.isEmpty {
-                            ChatImageLayoutView(images: images)
-                        }
+                        .id(message.id) // 각 메시지에 고유 ID를 추가
                     }
                 }
+                .padding()
+                .onAppear {
+                    self.proxy = scrollProxy
+                    scrollToBottom() // 처음 로드 시 마지막으로 스크롤
+                }
+                .onChange(of: messages) { _ in
+                    scrollToBottom() // 메시지가 추가될 때마다 스크롤
+                }
             }
-            .padding()
         }
     }
     
+    func scrollToBottom() {
+        if let lastMessage = messages.last {
+            withAnimation {
+                proxy?.scrollTo(lastMessage.id, anchor: .bottom)
+            }
+        }
+    }
 }

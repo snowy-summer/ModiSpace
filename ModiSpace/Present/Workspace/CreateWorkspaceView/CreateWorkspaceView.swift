@@ -24,10 +24,10 @@ struct CreateWorkspaceView: View {
             ImageSelectButton(action: {
                 model.apply(.showImagePicker)
             }, image: model.workspaceImage.first)
-            .sheet(isPresented: $model.isShowingImagePicker) {
-                PhotoPicker(selectedImages: $model.workspaceImage,
-                            isMultipleImage: false)
-            }
+//            .sheet(isPresented: $model.isShowingImagePicker) {
+//                PhotoPicker(selectedImages: $model.workspaceImage,
+//                            isMultipleImage: false)
+//            }
             
             InputField(text: $model.workspaceName,
                        title: "워크스페이스 이름",
