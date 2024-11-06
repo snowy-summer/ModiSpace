@@ -78,7 +78,7 @@ extension CreateWorkSpaceModel {
                 let router = WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: workspaceName,
                                                                                         description: workspaceDescription,
                                                                                         image: imageData))
-                let response = try await NetworkManager().getDecodedData(from: router,
+                let _ = try await NetworkManager().getDecodedData(from: router,
                                                                          type: WorkspaceDTO.self)
             } catch(let error) {
                 print(error.localizedDescription)
@@ -94,7 +94,7 @@ extension CreateWorkSpaceModel {
                                                            body: WorkspaceRequestBody(name: workspaceName,
                                                                                       description: workspaceDescription,
                                                                                       image: imageData))
-                let response = try await NetworkManager().getDecodedData(from: router,
+                let _ = try await NetworkManager().getDecodedData(from: router,
                                                                          type: WorkspaceDTO.self)
             } catch(let error) {
                 print(error.localizedDescription)

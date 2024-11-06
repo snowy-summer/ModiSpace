@@ -17,7 +17,7 @@ enum WorkSpaceRouter {
     case deleteWorkSpace(spaceId: String)
     case inviteMember(spaceId: String,
                       body: InviteMemberRequestBody)
-    case findMember(spaceId: String)
+    case getMemberList(spaceId: String)
     case getMemberInfo(spaceId: String,
                        userId: String)
     case searchInWorkSpaceContent(spaceId: String,
@@ -56,7 +56,7 @@ extension WorkSpaceRouter: RouterProtocol {
         case .inviteMember(let spaceId, _):
             return "/v1/workspaces/\(spaceId)/members"
             
-        case .findMember(let spaceId):
+        case .getMemberList(let spaceId):
             return "/v1/workspaces/\(spaceId)/members"
             
         case .getMemberInfo(let spaceId, let userId):
@@ -146,11 +146,21 @@ extension WorkSpaceRouter: RouterProtocol {
             headers.updateValue(Header.authorization.value,
                                 forKey: Header.authorization.key)
             
+        case .getMemberList:
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
+            
+        case .inviteMember:
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
+            headers.updateValue(Header.contentTypeJson.value,
+                                forKey: Header.contentTypeJson.key)
+            
         case .changeWorkSpaceManager:
             headers.updateValue(Header.authorization.value,
                                 forKey: Header.authorization.key)
-            headers.updateValue(Header.contentTypeMulti.value,
-                                forKey: Header.contentTypeMulti.key)
+            headers.updateValue(Header.contentTypeJson.value,
+                                forKey: Header.contentTypeJson.key)
             
         case .exitWorkSpace:
             headers.updateValue(Header.authorization.value,
@@ -185,7 +195,7 @@ extension WorkSpaceRouter: RouterProtocol {
         case .inviteMember:
             return .post
             
-        case .findMember:
+        case .getMemberList:
             return .get
             
         case .getMemberInfo:
@@ -222,7 +232,7 @@ extension WorkSpaceRouter: RouterProtocol {
         case .inviteMember:
             return WorkspaceMemberDTO.self
             
-        case .findMember:
+        case .getMemberList:
             return [WorkspaceMemberDTO].self
             
         case .getMemberInfo:

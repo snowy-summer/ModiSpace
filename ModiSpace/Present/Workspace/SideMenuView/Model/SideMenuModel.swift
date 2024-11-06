@@ -10,16 +10,10 @@ import Combine
 
 final class SideMenuModel: ObservableObject {
     
-//    @Published var workspaceList: [WorkspaceDTO] = []
     @Published var isShowHelpGuide: Bool = false
     @Published var isShowMoreMenu: Bool = false
     @Published var isShowCreateWorkspaceView: Bool = false
-    
-//    var selectedWorkspace: String? = WorkspaceIDManager.shared.workspaceID
-//    var isWorkspaceEmpty: Bool {
-//        workspaceList.isEmpty
-//    }
-    
+        
     private let networkManager = NetworkManager()
     private let dateManager = DateManager()
     private var cancelable = Set<AnyCancellable>()

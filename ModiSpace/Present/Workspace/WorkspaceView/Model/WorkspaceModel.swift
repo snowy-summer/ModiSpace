@@ -82,6 +82,9 @@ final class WorkspaceModel: ObservableObject {
             
         case .reloadWorkspaceList:
             fetchWorkspace()
+        
+        case .exitWorkspace:
+            exitWorkspace()
         }
     }
     
@@ -206,5 +209,29 @@ extension WorkspaceModel {
             }
             .store(in: &cancelable)
         
+    }
+    
+    private func exitWorkspace() {
+        guard let id = selectedWorkspaceID else { return }
+        networkManager.getDataWithPublisher(from: WorkSpaceRouter.exitWorkSpace(spaceId: id))
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    if let error = error as? NetworkError {
+                        print(error.description)
+                    }
+                    if let error = error as? APIError {
+                        if error == .refreshTokenExpired {
+                            print("리프레시 토큰 만료")
+                        }
+                    }
+                    print(error.localizedDescription)
+                }
+            } receiveValue: { [weak self] data in
+                self?.fetchWorkspace()
+            }
+            .store(in: &cancelable)
     }
 }
