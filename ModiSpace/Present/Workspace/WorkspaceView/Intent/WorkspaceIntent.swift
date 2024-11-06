@@ -20,5 +20,6 @@ enum WorkspaceIntent {
     case showDeleteAlert
     case dontShowDeleteAlert
     case deleteWorkspace
+    case reloadWorkspaceList
     
 }

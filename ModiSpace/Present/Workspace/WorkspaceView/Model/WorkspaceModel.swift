@@ -79,6 +79,9 @@ final class WorkspaceModel: ObservableObject {
             isShowDeleteAlertView = false
             isShowSideView = false
             deleteWorkspace()
+            
+        case .reloadWorkspaceList:
+            fetchWorkspace()
         }
     }
     

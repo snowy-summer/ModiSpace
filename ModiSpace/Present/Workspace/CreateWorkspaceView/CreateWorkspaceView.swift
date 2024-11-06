@@ -19,9 +19,8 @@ struct CreateWorkspaceView: View {
     }
     
     init(workspace: WorkspaceState) {
-        _model = StateObject(wrappedValue: CreateWorkSpaceModel(workspaceImage: [workspace.coverImage],
-                                                                workspaceName: workspace.name,
-                                                                workspaceDescription: workspace.description))
+        _model = StateObject(wrappedValue: CreateWorkSpaceModel(workspace: workspace,
+                                                                isEditingMode: true))
     }
     
     var body: some View {
@@ -51,7 +50,12 @@ struct CreateWorkspaceView: View {
                          symbolColor: nil,
                          cornerRadius: 8,
                          isEnabled: model.isCreateAbled) {
-                model.apply(.createWorkspace)
+                if model.isEditingMode {
+                    model.apply(.editWorkspace)
+                } else {
+                    model.apply(.createWorkspace)
+                }
+                
                 dismiss()
             }
                          .padding()
