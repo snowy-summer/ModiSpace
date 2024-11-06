@@ -12,8 +12,6 @@ struct RegisterChannelView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var model: RegisterChannelModel = RegisterChannelModel()
     
-    var dismissAction: () -> Void
-    
     var body: some View {
         VStack(spacing: 24) {
             InputField(text: $model.channelName,
@@ -34,7 +32,6 @@ struct RegisterChannelView: View {
                          cornerRadius: 8,
                          isEnabled: model.isRegistAble) {
                 dismiss()
-                model.apply(.registChannel(dismissAction))
             }
             .padding(.horizontal)
         }

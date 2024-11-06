@@ -55,6 +55,13 @@
 		6B8DB43E2CD868FE001B0893 /* RegisterChannelIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB43D2CD868FE001B0893 /* RegisterChannelIntent.swift */; };
 		6B8DB4412CD8F865001B0893 /* WorkspaceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4402CD8F865001B0893 /* WorkspaceState.swift */; };
 		6B8DB4432CD9BB59001B0893 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4422CD9BB59001B0893 /* SheetView.swift */; };
+		6B8DB4462CDB5F8B001B0893 /* AddMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4452CDB5F8B001B0893 /* AddMemberView.swift */; };
+		6B8DB4482CDB5FD4001B0893 /* AddMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4472CDB5FD4001B0893 /* AddMemberModel.swift */; };
+		6B8DB44A2CDB6015001B0893 /* AddModelIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4492CDB6015001B0893 /* AddModelIntent.swift */; };
+		6B8DB44F2CDB61DB001B0893 /* ChangeManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB44E2CDB61DB001B0893 /* ChangeManagerView.swift */; };
+		6B8DB4512CDB9220001B0893 /* ChangeManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4502CDB9220001B0893 /* ChangeManagerModel.swift */; };
+		6B8DB4532CDB9233001B0893 /* MemberInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4522CDB9233001B0893 /* MemberInfoCell.swift */; };
+		6B8DB4552CDB9331001B0893 /* ChangeManagerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4542CDB9331001B0893 /* ChangeManagerIntent.swift */; };
 		6BA79EC62CCB6CAE00FB1310 /* WorkSpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */; };
 		6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */; };
 		6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */; };
@@ -201,6 +208,13 @@
 		6B8DB43D2CD868FE001B0893 /* RegisterChannelIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterChannelIntent.swift; sourceTree = "<group>"; };
 		6B8DB4402CD8F865001B0893 /* WorkspaceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceState.swift; sourceTree = "<group>"; };
 		6B8DB4422CD9BB59001B0893 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		6B8DB4452CDB5F8B001B0893 /* AddMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberView.swift; sourceTree = "<group>"; };
+		6B8DB4472CDB5FD4001B0893 /* AddMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberModel.swift; sourceTree = "<group>"; };
+		6B8DB4492CDB6015001B0893 /* AddModelIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModelIntent.swift; sourceTree = "<group>"; };
+		6B8DB44E2CDB61DB001B0893 /* ChangeManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerView.swift; sourceTree = "<group>"; };
+		6B8DB4502CDB9220001B0893 /* ChangeManagerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerModel.swift; sourceTree = "<group>"; };
+		6B8DB4522CDB9233001B0893 /* MemberInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoCell.swift; sourceTree = "<group>"; };
+		6B8DB4542CDB9331001B0893 /* ChangeManagerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerIntent.swift; sourceTree = "<group>"; };
 		6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceCell.swift; sourceTree = "<group>"; };
 		6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCoinCell.swift; sourceTree = "<group>"; };
 		6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationCell.swift; sourceTree = "<group>"; };
@@ -553,6 +567,8 @@
 				AA5491172CD0EE54009A0B2F /* WorkspaceView */,
 				6B694E3E2CCD433A00ED484D /* SideMenuView */,
 				6B694E272CCCF67D00ED484D /* CreateWorkspaceView */,
+				6B8DB4442CDB5F2F001B0893 /* AddMemberView */,
+				6B8DB44D2CDB61B1001B0893 /* ChangeManagerView */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -642,6 +658,67 @@
 				6B8DB43D2CD868FE001B0893 /* RegisterChannelIntent.swift */,
 			);
 			path = Intent;
+			sourceTree = "<group>";
+		};
+		6B8DB4442CDB5F2F001B0893 /* AddMemberView */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB4452CDB5F8B001B0893 /* AddMemberView.swift */,
+				6B8DB44B2CDB6048001B0893 /* Intent */,
+				6B8DB44C2CDB604E001B0893 /* Model */,
+			);
+			path = AddMemberView;
+			sourceTree = "<group>";
+		};
+		6B8DB44B2CDB6048001B0893 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB4492CDB6015001B0893 /* AddModelIntent.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		6B8DB44C2CDB604E001B0893 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB4472CDB5FD4001B0893 /* AddMemberModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6B8DB44D2CDB61B1001B0893 /* ChangeManagerView */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB44E2CDB61DB001B0893 /* ChangeManagerView.swift */,
+				6B8DB4572CDB9B47001B0893 /* Intent */,
+				6B8DB4562CDB9B3F001B0893 /* Model */,
+				6B8DB4582CDB9B51001B0893 /* Component */,
+			);
+			path = ChangeManagerView;
+			sourceTree = "<group>";
+		};
+		6B8DB4562CDB9B3F001B0893 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB4502CDB9220001B0893 /* ChangeManagerModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6B8DB4572CDB9B47001B0893 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB4542CDB9331001B0893 /* ChangeManagerIntent.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		6B8DB4582CDB9B51001B0893 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB4522CDB9233001B0893 /* MemberInfoCell.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		6BA79EC42CCB6C8200FB1310 /* Component */ = {
@@ -1211,6 +1288,7 @@
 				6BD27EE02CD7ABC100CDF93A /* ModiSpaceApp.swift in Sources */,
 				6B2C731B2CCCB9760043E478 /* URLSessionProtocol.swift in Sources */,
 				6B2C72E92CCB9C930043E478 /* Header.swift in Sources */,
+				6B8DB44F2CDB61DB001B0893 /* ChangeManagerView.swift in Sources */,
 				6B0565022CCF7FAB003086AC /* CheckEmailRequestBody.swift in Sources */,
 				6B694E3B2CCCFB4500ED484D /* CreateWorkspaceModel.swift in Sources */,
 				727D876A2CD5022400C52751 /* SendDMSChatRequestBody.swift in Sources */,
@@ -1221,6 +1299,7 @@
 				727D87452CD205D100C52751 /* ChannelRouter.swift in Sources */,
 				727D87532CD361FA00C52751 /* ChannelChatListDTO.swift in Sources */,
 				6BA79ECC2CCB7BA700FB1310 /* SpaceManagerListCell.swift in Sources */,
+				6B8DB4552CDB9331001B0893 /* ChangeManagerIntent.swift in Sources */,
 				6BC87C6B2CD208F900ED3CD4 /* ChangeWorkspaceManagerRequestBody.swift in Sources */,
 				6B2C72FF2CCCAD3B0043E478 /* EmptyResponseDTO.swift in Sources */,
 				6B694E442CCE0E2F00ED484D /* CustomCornerShape.swift in Sources */,
@@ -1237,6 +1316,7 @@
 				6B0564F32CCF6E0A003086AC /* BundleError.swift in Sources */,
 				6B0564FF2CCF7B74003086AC /* JoinRequestBody.swift in Sources */,
 				6B694E292CCCF69100ED484D /* CreateWorkspaceView.swift in Sources */,
+				6B8DB4532CDB9233001B0893 /* MemberInfoCell.swift in Sources */,
 				6BCF99702CD4A625001A73FE /* WorkspaceModel.swift in Sources */,
 				AA54912F2CD342BD009A0B2F /* ChatTextField.swift in Sources */,
 				6B2C73122CCCB8420043E478 /* QueryOfWorkspaceSearch.swift in Sources */,
@@ -1313,6 +1393,7 @@
 				AA54912A2CD1F462009A0B2F /* ItemlistDTO.swift in Sources */,
 				6B2C72FD2CCCAACB0043E478 /* WorkspaceMemberDTO.swift in Sources */,
 				6B694E2D2CCCF8A600ED484D /* CreateWorkspaceIntent.swift in Sources */,
+				6B8DB4462CDB5F8B001B0893 /* AddMemberView.swift in Sources */,
 				6B2C73042CCCAED20043E478 /* APIError.swift in Sources */,
 				6B0564F52CCF6E14003086AC /* BundleType.swift in Sources */,
 				6BC87C6D2CD3091800ED3CD4 /* InviteMemberRequestBody.swift in Sources */,
@@ -1336,7 +1417,9 @@
 				AA54FD192CCCBB3400D09293 /* NewMessageView.swift in Sources */,
 				AA54FCF12CCCB8F000D09293 /* SettingChannelButton.swift in Sources */,
 				AA5491312CD3453A009A0B2F /* CustomRoundedRaudius.swift in Sources */,
+				6B8DB4482CDB5FD4001B0893 /* AddMemberModel.swift in Sources */,
 				6BF1F2F52CD65D2600919F3B /* AsyncImageView.swift in Sources */,
+				6B8DB4512CDB9220001B0893 /* ChangeManagerModel.swift in Sources */,
 				727D876D2CD5052800C52751 /* QueryOfGetDMSChatList.swift in Sources */,
 				AA54FD042CCCB9DE00D09293 /* WorkspaceHeaderView.swift in Sources */,
 				727D87572CD3658B00C52751 /* OwnershipTransferDTO.swift in Sources */,
@@ -1346,6 +1429,7 @@
 				AA54FCE42CCCB83600D09293 /* AlertView.swift in Sources */,
 				AA54FD0E2CCCBA3400D09293 /* AddPostCircleCell.swift in Sources */,
 				6B694E392CCCFA9100ED484D /* CreateWorkspaceModelProtocol.swift in Sources */,
+				6B8DB44A2CDB6015001B0893 /* AddModelIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -55,10 +55,10 @@ struct SideMenuView: View {
                         workspaceModel.apply(.showEditWorkspaceView(workspaceModel.selectedWorkspace!))
                     },
                     .default(Text("워크스페이스 나가기")) {
-                        print("채널 탐색 선택됨")
+                        workspaceModel.apply(.exitWorkspace)
                     },
                     .default(Text("워크스페이스 관리자 변경")) {
-                        print("채널 탐색 선택됨")
+                        workspaceModel.apply(.showChangeManagerView)
                     },
                     .destructive(Text("워크스페이스 삭제")) {
                         workspaceModel.isShowDeleteAlertView = true

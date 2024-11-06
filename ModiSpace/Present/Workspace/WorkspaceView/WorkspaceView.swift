@@ -82,7 +82,10 @@ struct WorkspaceView: View {
                     )
                 }
             }
-            .sheet(item: $model.sheetType) { type in
+            .sheet(item: $model.sheetType,
+                   onDismiss: {
+                model.apply(.reloadWorkspaceList)
+            }) { type in
                 SheetView(type: type)
             }
             .onAppear() {

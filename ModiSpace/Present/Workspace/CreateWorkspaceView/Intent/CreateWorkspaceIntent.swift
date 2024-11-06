@@ -10,6 +10,7 @@ import SwiftUI
 enum CreateWorkspaceIntent {
     
     case createWorkspace
+    case editWorkspace
     case updateName(String)
     case updateImage(UIImage)
     case updateDescription(String)

@@ -21,15 +21,13 @@ struct SheetView: View {
             CreateWorkspaceView(workspace: workspaceState)
             
         case .changeWorkspaceManager:
-            Rectangle()
+            ChangeManagerView()
             
         case .addChannelView:
-            RegisterChannelView {
-                
-            }
+            RegisterChannelView()
             
         case .addMemberView:
-            Rectangle()
+            AddMemberView()
         }
     }
     
