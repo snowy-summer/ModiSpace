@@ -10,7 +10,7 @@ import Foundation
 enum ChangeManagerInent {
     
     case changeManager
-    case viewAppear
+    case fetchMemberList
     case showAlert
     case dontShowAlert
     case saveMember(WorkspaceMemberDTO)

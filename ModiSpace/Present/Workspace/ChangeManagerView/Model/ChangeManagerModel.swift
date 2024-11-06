@@ -23,7 +23,7 @@ final class ChangeManagerModel: ObservableObject {
     func apply(_ intent: ChangeManagerInent) {
         
         switch intent {
-        case .viewAppear:
+        case .fetchMemberList:
             fetchMemberList()
             
         case .changeManager:

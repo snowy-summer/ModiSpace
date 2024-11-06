@@ -52,7 +52,7 @@ struct ChangeManagerView: View {
             }
         }
         .onAppear() {
-            model.apply(.viewAppear)
+            model.apply(.fetchMemberList)
         }
     }
     
