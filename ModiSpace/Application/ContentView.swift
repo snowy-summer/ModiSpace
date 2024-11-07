@@ -41,7 +41,6 @@ struct ContentView: View {
                                          forKey: KeychainKey.refreshToken.rawValue)
                     print(loginData.token.accessToken)
                     print(loginData.token.refreshToken)
-                    
                     // 워크스페이스 조회
                     //                    let myWorkspaceList = try await NetworkManager()
                     //                        .getDecodedData(from: WorkSpaceRouter.getWorkSpaceList)
