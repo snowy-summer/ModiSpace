@@ -13,7 +13,8 @@ struct WorkspaceHeaderView: View {
     
     var body: some View {
         HStack {
-            AsyncImageView(path: model.selectedWorkspace?.coverImage ?? "")
+            Image(uiImage: model.selectedWorkspace?.coverImage ?? UIImage(resource: .temp))
+                .resizable()
                 .customRoundedRadius()
             
             Text(model.selectedWorkspace?.name ?? "아무 값 없음")

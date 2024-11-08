@@ -9,36 +9,41 @@ import SwiftUI
 
 struct WorkSpaceCell: View {
     
-    let titleText: String
-    let dateText: String
-    let imageString: String
-    var selected = true
+    let workspace: WorkspaceState
+    let selected: Bool
+    let model: SideMenuModel
     
     var body: some View {
         HStack {
-            AsyncImageView(path: imageString)
+            AsyncImageView(path: workspace.coverImageString)
                 .customRoundedRadius()
             
             VStack(alignment: .leading) {
-                Text(titleText)
+                Text(workspace.name)
                     .customFont(.bodyBold)
-                Text(dateText)
+                Text(workspace.createdAt)
                     .customFont(.caption)
                     .foregroundStyle(.textSecondary)
             }
             Spacer()
             if selected {
-                Image(systemName: "ellipsis")
-                    .padding()
+                Button(action: {
+                    model.apply(.showMoreMenu)
+                }) {
+                    Image(systemName: "ellipsis")
+                        .padding()
+                }
+                .buttonStyle(PlainButtonStyle())
+                .contentShape(Rectangle())
             }
         }
         .frame(maxWidth: .infinity)
     }
     
 }
-
-#Preview {
-    WorkSpaceCell(titleText: "워크",
-                  dateText: "2024.03.11",
-                  imageString: "")
-}
+//
+//#Preview {
+//    WorkSpaceCell(titleText: "워크",
+//                  dateText: "2024.03.11",
+//                  imageString: "", selected: true)
+//}
