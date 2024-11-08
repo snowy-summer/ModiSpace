@@ -35,6 +35,11 @@ struct SheetView: View {
                     .navigationTitle("채널 등록")
                     .navigationBarTitleDisplayMode(.inline)
                 
+            case .findChannelView:
+                FindChannelView()
+                    .navigationTitle("채널 탐색")
+                    .navigationBarTitleDisplayMode(.inline)
+                
             case .addMemberView:
                 AddMemberView()
                     .navigationTitle("팀원 초대")
@@ -51,6 +56,7 @@ enum WorkspaceViewSheetType: Identifiable {
     case editWorkspace(WorkspaceState)
     case changeWorkspaceManager
     case addChannelView
+    case findChannelView
     case addMemberView
     
     var id: String {
@@ -66,6 +72,9 @@ enum WorkspaceViewSheetType: Identifiable {
             
         case .addChannelView:
             return "addChannelView"
+            
+        case .findChannelView:
+            return "findChannelView"
             
         case .addMemberView:
             return "addMemberView"

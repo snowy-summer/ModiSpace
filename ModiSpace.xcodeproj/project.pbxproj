@@ -62,6 +62,9 @@
 		6B8DB4512CDB9220001B0893 /* ChangeManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4502CDB9220001B0893 /* ChangeManagerModel.swift */; };
 		6B8DB4532CDB9233001B0893 /* MemberInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4522CDB9233001B0893 /* MemberInfoCell.swift */; };
 		6B8DB4552CDB9331001B0893 /* ChangeManagerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4542CDB9331001B0893 /* ChangeManagerIntent.swift */; };
+		6B8DB45B2CDDECEA001B0893 /* FindChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB45A2CDDECEA001B0893 /* FindChannelView.swift */; };
+		6B8DB45D2CDDECF5001B0893 /* FindChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB45C2CDDECF5001B0893 /* FindChannelModel.swift */; };
+		6B8DB45F2CDDED01001B0893 /* FindChannelIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB45E2CDDED01001B0893 /* FindChannelIntent.swift */; };
 		6BA79EC62CCB6CAE00FB1310 /* WorkSpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */; };
 		6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */; };
 		6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */; };
@@ -215,6 +218,9 @@
 		6B8DB4502CDB9220001B0893 /* ChangeManagerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerModel.swift; sourceTree = "<group>"; };
 		6B8DB4522CDB9233001B0893 /* MemberInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoCell.swift; sourceTree = "<group>"; };
 		6B8DB4542CDB9331001B0893 /* ChangeManagerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerIntent.swift; sourceTree = "<group>"; };
+		6B8DB45A2CDDECEA001B0893 /* FindChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChannelView.swift; sourceTree = "<group>"; };
+		6B8DB45C2CDDECF5001B0893 /* FindChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChannelModel.swift; sourceTree = "<group>"; };
+		6B8DB45E2CDDED01001B0893 /* FindChannelIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChannelIntent.swift; sourceTree = "<group>"; };
 		6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceCell.swift; sourceTree = "<group>"; };
 		6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCoinCell.swift; sourceTree = "<group>"; };
 		6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationCell.swift; sourceTree = "<group>"; };
@@ -569,6 +575,7 @@
 				6B694E272CCCF67D00ED484D /* CreateWorkspaceView */,
 				6B8DB4442CDB5F2F001B0893 /* AddMemberView */,
 				6B8DB44D2CDB61B1001B0893 /* ChangeManagerView */,
+				6B8DB4592CDDECC3001B0893 /* FindChannelView */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -719,6 +726,32 @@
 				6B8DB4522CDB9233001B0893 /* MemberInfoCell.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		6B8DB4592CDDECC3001B0893 /* FindChannelView */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB45A2CDDECEA001B0893 /* FindChannelView.swift */,
+				6B8DB4612CDDF1ED001B0893 /* Intent */,
+				6B8DB4602CDDF1E5001B0893 /* Model */,
+			);
+			path = FindChannelView;
+			sourceTree = "<group>";
+		};
+		6B8DB4602CDDF1E5001B0893 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB45C2CDDECF5001B0893 /* FindChannelModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6B8DB4612CDDF1ED001B0893 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB45E2CDDED01001B0893 /* FindChannelIntent.swift */,
+			);
+			path = Intent;
 			sourceTree = "<group>";
 		};
 		6BA79EC42CCB6C8200FB1310 /* Component */ = {
@@ -1332,12 +1365,14 @@
 				AA54FD142CCCBA9D00D09293 /* ChatMessageRowCell.swift in Sources */,
 				AA54FD172CCCBABF00D09293 /* DummyMessage.swift in Sources */,
 				AA54FCF52CCCB91300D09293 /* SettingChannelHeaderView.swift in Sources */,
+				6B8DB45F2CDDED01001B0893 /* FindChannelIntent.swift in Sources */,
 				72F25EB42CCE638600A1F182 /* AuthOptionsView.swift in Sources */,
 				AA54FD0C2CCCBA2200D09293 /* SFSubButton.swift in Sources */,
 				6BADE9A42CCE3F2A00099B78 /* UserDTO.swift in Sources */,
 				6BCF99722CD4C634001A73FE /* WorkspaceIntent.swift in Sources */,
 				727D87822CD90C8000C52751 /* AppDelegate.swift in Sources */,
 				6BC87C772CD367AD00ED3CD4 /* MultipartFormData.swift in Sources */,
+				6B8DB45B2CDDECEA001B0893 /* FindChannelView.swift in Sources */,
 				6B8DB43C2CD868D4001B0893 /* RegisterChannelModel.swift in Sources */,
 				AA54FCFA2CCCB96C00D09293 /* RegisterChannelView.swift in Sources */,
 				727D87632CD4FF3D00C52751 /* DMSChatDTO.swift in Sources */,
@@ -1419,6 +1454,7 @@
 				AA5491312CD3453A009A0B2F /* CustomRoundedRaudius.swift in Sources */,
 				6B8DB4482CDB5FD4001B0893 /* AddMemberModel.swift in Sources */,
 				6BF1F2F52CD65D2600919F3B /* AsyncImageView.swift in Sources */,
+				6B8DB45D2CDDECF5001B0893 /* FindChannelModel.swift in Sources */,
 				6B8DB4512CDB9220001B0893 /* ChangeManagerModel.swift in Sources */,
 				727D876D2CD5052800C52751 /* QueryOfGetDMSChatList.swift in Sources */,
 				AA54FD042CCCB9DE00D09293 /* WorkspaceHeaderView.swift in Sources */,
