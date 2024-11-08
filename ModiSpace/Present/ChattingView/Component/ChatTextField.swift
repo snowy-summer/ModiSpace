@@ -89,7 +89,3 @@ extension ChatTextField {
     }
     
 }
-
-#Preview {
-    ChattingView(chatTitle: "Chat")
-}
