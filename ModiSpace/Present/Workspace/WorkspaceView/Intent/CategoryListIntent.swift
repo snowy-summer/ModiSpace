@@ -12,5 +12,6 @@ enum CategoryListIntent {
     case showAddChannelView
     case changingShowedChannelState
     case showActionSheet
+    case showFindChannelView
     
 }

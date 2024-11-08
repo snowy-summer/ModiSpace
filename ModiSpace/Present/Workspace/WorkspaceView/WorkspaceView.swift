@@ -87,6 +87,7 @@ struct WorkspaceView: View {
                 model.apply(.reloadWorkspaceList)
             }) { type in
                 SheetView(type: type)
+                    .presentationDragIndicator(.visible)
             }
             .onAppear() {
                 model.apply(.viewAppear)

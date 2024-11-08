@@ -152,7 +152,7 @@ extension NetworkManager: NetworkManagerProtocol {
                     
                     if  handledError == nil {
                         if retryCount > 0 {
-                            print("토큰 갱신 성공, 원래 요청을 다시 시도")
+                            
                             let newPublisher = getDecodedDataWithPublisher(from: router,
                                                                            type: type,
                                                                            retryCount: retryCount - 1)
