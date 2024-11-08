@@ -26,6 +26,9 @@ final class CategoryListModel: ObservableObject {
         case .showAddChannelView:
             sheetType = .addChannelView
             
+        case .showFindChannelView:
+            sheetType = .findChannelView
+            
         case .changingShowedChannelState:
             isShowChannels.toggle()
             

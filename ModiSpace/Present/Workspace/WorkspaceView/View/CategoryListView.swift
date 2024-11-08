@@ -35,7 +35,7 @@ struct CategoryListView: View {
                             model.apply(.showAddChannelView)
                         },
                         .default(Text("채널 탐색")) {
-                            print("채널 탐색 선택됨")
+                            model.apply(.showFindChannelView)
                         },
                         .cancel(Text("취소"))
                     ]
