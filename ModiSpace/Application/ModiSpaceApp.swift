@@ -37,6 +37,7 @@ struct ModiSpaceApp: App {
                     }
             } else {
                 ContentView()
+               // ChattingView(chatTitle: "임시채팅방")
             }
             
         }
