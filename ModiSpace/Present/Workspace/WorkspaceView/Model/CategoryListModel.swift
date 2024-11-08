@@ -10,7 +10,6 @@ import Combine
 
 final class CategoryListModel: ObservableObject {
     
-    
     @Published var isShowChannels = false
     @Published var isShowMessageList = false
     @Published var isShowNewMessageView = false

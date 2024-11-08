@@ -15,8 +15,14 @@ final class ChatModel: ObservableObject {
     @Published var selectedImages: [UIImage] = []
     @Published var isShowingImagePicker = false
     
+    let channel: ChannelDTO
+    
     private let networkManager = NetworkManager()
     private var cancelable = Set<AnyCancellable>()
+    
+    init(channel: ChannelDTO) {
+            self.channel = channel
+        }
     
     func removeImage(at index: Int) {
         selectedImages.remove(at: index)
@@ -33,11 +39,11 @@ extension ChatModel {
         sendMessageserver(text: messageText, images: selectedImages)
         
         let newMessage = ChannelChatListDTO(
-            channelID: "f8ff1a63-8278-4529-ac88-fea037af75aa",
-            channelName: "일반",
+            channelID: channel.channelID,
+            channelName: channel.name,
             chatID: "",
             content: messageText,
-            createdAt: "",
+            createdAt: channel.createdAt,
             files: [""],
             user: OtherUserDTO(userID: "", email: "Modispace@naver.com", nickname: "임시닉네임", profileImage: "")
         )
@@ -53,8 +59,8 @@ extension ChatModel {
 extension ChatModel {
     // 서버로 메시지 전송하는 실제 함수
     func sendMessageserver(text: String, images: [UIImage]) {
-        let workspaceID = "12a75244-5c0f-4478-becd-d2c95820de56"
-        let channelID = "f8ff1a63-8278-4529-ac88-fea037af75aa"
+        let workspaceID = WorkspaceIDManager.shared.workspaceID
+        let channelID = channel.channelID
         
         let imageFiles = images.compactMap { $0.jpegData(compressionQuality: 0.8) }
         let requestBody = SendChannelChatRequestBody(content: text, files: imageFiles)
@@ -62,7 +68,7 @@ extension ChatModel {
         
         networkManager.getDataWithPublisher(
             from: ChannelRouter.sendChannelChat(
-                workspaceID: workspaceID,
+                workspaceID: WorkspaceIDManager.shared.workspaceID ?? "",
                 channelID: channelID,
                 body: requestBody
             )
@@ -88,8 +94,8 @@ extension ChatModel {
     // 채팅 데이터 가져오기
     func fetchChatsData() {
         networkManager.getDecodedDataWithPublisher(
-            from: ChannelRouter.getChannelListChat(workspaceID: "12a75244-5c0f-4478-becd-d2c95820de56",
-                                                   channelID: "f8ff1a63-8278-4529-ac88-fea037af75aa",
+            from: ChannelRouter.getChannelListChat(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "",
+                                                   channelID: channel.channelID,
                                                    cursorDate: "2024-10-18T09:30:00.722Z"),
             type: [ChannelChatListDTO].self
         )
