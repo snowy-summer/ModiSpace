@@ -88,7 +88,8 @@ final class KakaoAuthVM: ObservableObject{
                     self?.fetchedKakaoData = response
                     
                     let accessToken = response.token.accessToken
-                    KeychainManager.save(accessToken, forKey: KeychainKey.accessToken.rawValue)
+                    KeychainManager.save(accessToken,
+                                         forKey: KeychainKey.accessToken.rawValue)
                     
                     if let refreshToken = response.token.refreshToken {
                         KeychainManager.save(refreshToken,

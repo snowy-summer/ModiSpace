@@ -109,6 +109,7 @@
 		727D878C2CDA3FA700C52751 /* KakaoAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D878B2CDA3FA700C52751 /* KakaoAuthVM.swift */; };
 		727D87902CDB593700C52751 /* AuthOptionsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D878F2CDB593700C52751 /* AuthOptionsIntent.swift */; };
 		727D87922CDB594300C52751 /* AuthOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87912CDB594300C52751 /* AuthOptionsModel.swift */; };
+		727D87942CDDED5800C52751 /* AppleAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87932CDDED5800C52751 /* AppleAuthManager.swift */; };
 		72CA3E5F2CCCE169002FE5C4 /* ProfileNickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E5E2CCCE169002FE5C4 /* ProfileNickCell.swift */; };
 		72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */; };
 		72CA3E632CCD1263002FE5C4 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E622CCD1263002FE5C4 /* CommonButton.swift */; };
@@ -259,6 +260,7 @@
 		727D878B2CDA3FA700C52751 /* KakaoAuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthVM.swift; sourceTree = "<group>"; };
 		727D878F2CDB593700C52751 /* AuthOptionsIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOptionsIntent.swift; sourceTree = "<group>"; };
 		727D87912CDB594300C52751 /* AuthOptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOptionsModel.swift; sourceTree = "<group>"; };
+		727D87932CDDED5800C52751 /* AppleAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthManager.swift; sourceTree = "<group>"; };
 		72CA3E5E2CCCE169002FE5C4 /* ProfileNickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNickCell.swift; sourceTree = "<group>"; };
 		72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListCell.swift; sourceTree = "<group>"; };
 		72CA3E622CCD1263002FE5C4 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
@@ -945,6 +947,7 @@
 			children = (
 				72F25EB32CCE638600A1F182 /* AuthOptionsView.swift */,
 				727D878B2CDA3FA700C52751 /* KakaoAuthVM.swift */,
+				727D87932CDDED5800C52751 /* AppleAuthManager.swift */,
 				727D878D2CDB58EF00C52751 /* Intent */,
 				727D878E2CDB590200C52751 /* Model */,
 			);
@@ -1339,6 +1342,7 @@
 				6BD3975F2CCA819500F7097D /* ContentView.swift in Sources */,
 				6B2C73072CCCB5360043E478 /* TokenDTO.swift in Sources */,
 				AA54913B2CD5E005009A0B2F /* ChatModel.swift in Sources */,
+				727D87942CDDED5800C52751 /* AppleAuthManager.swift in Sources */,
 				6BD865C02CD4CA0500361227 /* SideMenuModel.swift in Sources */,
 				727D87482CD3447A00C52751 /* PostChannelRequestBody.swift in Sources */,
 				727D87512CD35FF100C52751 /* SpecificChannelDTO.swift in Sources */,
@@ -1517,7 +1521,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ModiSpace/Preview Content\"";
-				DEVELOPMENT_TEAM = F8Q3Y446GH;
+				DEVELOPMENT_TEAM = QQN262X7KM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ModiSpace/Info.plist;
@@ -1533,7 +1537,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = beom.ModiSpace;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jun.ModiSpaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1554,7 +1558,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ModiSpace/Preview Content\"";
-				DEVELOPMENT_TEAM = F8Q3Y446GH;
+				DEVELOPMENT_TEAM = QQN262X7KM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ModiSpace/Info.plist;
@@ -1570,7 +1574,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = beom.ModiSpace;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jun.ModiSpaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

@@ -16,12 +16,15 @@ final class AuthOptionsModel: ObservableObject {
     @Published var showAddressSetup: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
-    private lazy var kakaoAuthVM: KakaoAuthVM = KakaoAuthVM()
+    private var kakaoAuthVM = KakaoAuthVM()
+    private var appleAuthManager = AppleAuthManager()
     
     func apply(_ intent: AuthOptionsIntent) {
         switch intent {
         case .appleLogin:
-            print("app")
+            Task {
+                self.isLoggedIn = await appleAuthManager.handleAppleSignIn()
+            }
         case .kakaoLogin:
             Task { @MainActor in
                 self.isLoggedIn = await kakaoAuthVM.loginWithKakao()
