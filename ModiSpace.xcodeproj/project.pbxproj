@@ -155,7 +155,6 @@
 		AA54FD0E2CCCBA3400D09293 /* AddPostCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FD0D2CCCBA3400D09293 /* AddPostCircleCell.swift */; };
 		AA54FD112CCCBA7400D09293 /* ChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FD102CCCBA7400D09293 /* ChattingView.swift */; };
 		AA54FD142CCCBA9D00D09293 /* ChatMessageRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FD132CCCBA9D00D09293 /* ChatMessageRowCell.swift */; };
-		AA54FD172CCCBABF00D09293 /* DummyPostMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FD162CCCBABF00D09293 /* DummyPostMessage.swift */; };
 		AA54FD192CCCBB3400D09293 /* NewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA54FD182CCCBB3400D09293 /* NewMessageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -312,7 +311,6 @@
 		AA54FD0D2CCCBA3400D09293 /* AddPostCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostCircleCell.swift; sourceTree = "<group>"; };
 		AA54FD102CCCBA7400D09293 /* ChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingView.swift; sourceTree = "<group>"; };
 		AA54FD132CCCBA9D00D09293 /* ChatMessageRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageRowCell.swift; sourceTree = "<group>"; };
-		AA54FD162CCCBABF00D09293 /* DummyPostMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyPostMessage.swift; sourceTree = "<group>"; };
 		AA54FD182CCCBB3400D09293 /* NewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1192,7 +1190,6 @@
 				AA5491362CD5DDB5009A0B2F /* Intent */,
 				AA54911E2CD0F4C4009A0B2F /* View */,
 				AA54FD122CCCBA8D00D09293 /* Component */,
-				AA54FD152CCCBAB500D09293 /* DummyMessageModel */,
 			);
 			path = ChattingView;
 			sourceTree = "<group>";
@@ -1205,14 +1202,6 @@
 				AA5491342CD3767D009A0B2F /* TextFieldAttachImageScrollView.swift */,
 			);
 			path = Component;
-			sourceTree = "<group>";
-		};
-		AA54FD152CCCBAB500D09293 /* DummyMessageModel */ = {
-			isa = PBXGroup;
-			children = (
-				AA54FD162CCCBABF00D09293 /* DummyPostMessage.swift */,
-			);
-			path = DummyMessageModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1333,7 +1322,6 @@
 				6BF1F2F02CD63E1100919F3B /* CacheManager.swift in Sources */,
 				727D875A2CD3745800C52751 /* QueryOfGetChannelChatList.swift in Sources */,
 				AA54FD142CCCBA9D00D09293 /* ChatMessageRowCell.swift in Sources */,
-				AA54FD172CCCBABF00D09293 /* DummyPostMessage.swift in Sources */,
 				AA54FCF52CCCB91300D09293 /* SettingChannelHeaderView.swift in Sources */,
 				72F25EB42CCE638600A1F182 /* AuthOptionsView.swift in Sources */,
 				AA54FD0C2CCCBA2200D09293 /* SFSubButton.swift in Sources */,
