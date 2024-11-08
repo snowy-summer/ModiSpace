@@ -37,7 +37,7 @@ struct ChangeManagerView: View {
                     }
                 
                 AlertView(
-                    title: " \(model.selectedMember?.nickname ?? "미설정")님을 관리자로 지정하시겠습니까?",
+                    title: "\(model.selectedMember?.nickname ?? "미설정")님을 관리자로 지정하시겠습니까?",
                     message: """
                             워크스페이스 관리자에게는 다음과 같은 권한이 있습니다.
                             • 워크스페이스 이름 또는 설명 변경

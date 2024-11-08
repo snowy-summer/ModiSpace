@@ -163,8 +163,9 @@ extension WorkspaceModel {
     
     private func fetchChannelList() {
         guard let id = selectedWorkspaceID else { return }
-        networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getWorkSpaceInfo(spaceId: id),
-                                                   type: WorkspaceDTO.self)
+        let router = ChannelRouter.myChannelList(workspaceID: id)
+        networkManager.getDecodedDataWithPublisher(from: router,
+                                                   type: [ChannelDTO].self)
         .receive(on: DispatchQueue.main)
         .sink { completion in
             switch completion {
@@ -182,7 +183,7 @@ extension WorkspaceModel {
                 print(error.localizedDescription)
             }
         } receiveValue: { [weak self] value in
-            self?.selectedWorkspaceChannelList = value.channels
+            self?.selectedWorkspaceChannelList = value
         }.store(in: &cancelable)
         
     }
