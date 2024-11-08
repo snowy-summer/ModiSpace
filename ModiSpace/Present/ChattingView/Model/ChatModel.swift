@@ -18,7 +18,6 @@ final class ChatModel: ObservableObject {
     private let networkManager = NetworkManager()
     private var cancelable = Set<AnyCancellable>()
     
-    // 이미지 제거 메서드
     func removeImage(at index: Int) {
         selectedImages.remove(at: index)
     }
@@ -33,7 +32,6 @@ extension ChatModel {
         // 서버로 메시지 전송
         sendMessageserver(text: messageText, images: selectedImages)
         
-        // 메시지를 로컬 리스트에 추가 (서버 전송 성공 후 업데이트가 필요하면 생략 가능)
         let newMessage = ChannelChatListDTO(
             channelID: "f8ff1a63-8278-4529-ac88-fea037af75aa",
             channelName: "일반",

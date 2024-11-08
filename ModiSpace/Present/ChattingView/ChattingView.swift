@@ -34,7 +34,6 @@ struct ChattingView: View {
             endTextEditing()
         }
         .onAppear {
-            print("fetchChatsData 실행")
             model.fetchChatsData()
         }
     }
