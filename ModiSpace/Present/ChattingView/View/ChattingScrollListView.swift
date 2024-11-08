@@ -40,6 +40,10 @@ struct ChattingScrollListView: View {
             }
         }
     }
+
+}
+
+extension ChattingScrollListView {
     
     func scrollToBottom() {
         if let lastMessage = messages.last {
@@ -48,4 +52,5 @@ struct ChattingScrollListView: View {
             }
         }
     }
+    
 }
