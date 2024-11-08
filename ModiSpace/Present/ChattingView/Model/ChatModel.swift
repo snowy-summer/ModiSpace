@@ -100,8 +100,8 @@ extension ChatModel {
             }
         } receiveValue: { [weak self] decodedData in
             self?.messages = decodedData
-            print("채팅 데이터 로드 성공")
-            print(decodedData)
+            //print("채팅 데이터 로드 성공")
+            //print(decodedData)
         }
         .store(in: &cancelable)
     }
