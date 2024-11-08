@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+import KakaoSDKCommon
+import KakaoSDKAuth
 // 스플래시 화면 보기 없애고 싶을때 이걸로
 //@main
 //struct ModiSpaceApp: App {
@@ -23,6 +24,11 @@ struct ModiSpaceApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State var isSplashView = true
     
+    init() {
+        let nativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
+        KakaoSDK.initSDK(appKey: nativeAppKey as! String)
+    }
+    
     var body: some Scene {
         
         WindowGroup {
@@ -36,7 +42,12 @@ struct ModiSpaceApp: App {
                         }
                     }
             } else {
-                ContentView()
+                OnboardingView()
+                    .onOpenURL { url in
+                        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                            _ = AuthController.handleOpenUrl(url: url)
+                        }
+                    }
             }
             
         }

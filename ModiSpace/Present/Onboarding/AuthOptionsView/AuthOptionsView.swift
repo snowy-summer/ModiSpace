@@ -9,6 +9,11 @@ import SwiftUI
 
 struct AuthOptionsView: View {
     
+    @StateObject private var model = AuthOptionsModel()
+    
+    @State private var showSignUpView = false
+    @State private var showWorkspaceView = false
+    
     var body: some View {
         VStack(spacing: 16) {
             Spacer().frame(height: 20)
@@ -21,7 +26,7 @@ struct AuthOptionsView: View {
                 symbolColor: .white,
                 cornerRadius: 12
             ) {
-                // 애플 로그인 가능한지 여부 로직으로 시작
+                model.apply(.appleLogin)
             }
             
             CommonButton(
@@ -32,7 +37,7 @@ struct AuthOptionsView: View {
                 symbolColor: .black,
                 cornerRadius: 12
             ) {
-                // 카카오 웹뷰 혹은 앱으로 갈지 선택으로 시작
+                model.apply(.kakaoLogin)
             }
             
             CommonButton(
@@ -43,7 +48,7 @@ struct AuthOptionsView: View {
                 symbolColor: .white,
                 cornerRadius: 12
             ) {
-                // 로그인 화면으로 이동
+                model.apply(.localLogin)
             }
             
             HStack(spacing: 0) {
@@ -53,6 +58,7 @@ struct AuthOptionsView: View {
                 
                 Button(action: {
                     //회원가입 화면 넘기기
+                    showSignUpView = true
                 }) {
                     Text("새롭게 회원가입 하기")
                         .font(.footnote)
@@ -62,11 +68,30 @@ struct AuthOptionsView: View {
             .padding(.top, 8)
             
             Spacer()
+            
         }
         .padding(.horizontal, 40)
         .padding(.top, 20)
         .presentationDetents([.fraction(0.35), .fraction(0.5)]) // ios 16 이상부터 씀
         //앞에는 처음 올라오는 위치, 뒤는 내가 최대로 올릴 수 있는 위치
+        .sheet(isPresented: $showSignUpView) {
+            SignUpView(showWorkspaceView: $showWorkspaceView)
+                .presentationDetents([.fraction(0.99), .fraction(1)])
+        }
+        .onReceive(model.$isLoggedIn) { isLoggedIn in
+            if isLoggedIn {
+                setRootViewToWorkspace()
+            }
+        }
+    }
+    
+    private func setRootViewToWorkspace() {
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        let rootViewController = UIHostingController(rootView: WorkspaceView())
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
     }
     
 }

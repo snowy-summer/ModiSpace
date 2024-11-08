@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+enum AuthOptionsIntent {
+    
+    case appleLogin
+    case kakaoLogin
+    case localLogin
+    
+}
