@@ -9,27 +9,33 @@ import SwiftUI
 
 struct ChannelSection: View {
     
+    @EnvironmentObject var workspaceModel: WorkspaceModel
     @ObservedObject var model: CategoryListModel
     
     var body: some View {
         VStack {
             Button(action: {
-                model.apply(.changingShowedChannelState)
+                withAnimation {
+                    model.apply(.changingShowedChannelState)
+                }
             }) {
                 HStack {
                     Text("채널")
                         .font(.headline)
                         .foregroundStyle(Color.black)
                     Spacer()
-                    Image(systemName: model.isShowChannels ? "chevron.down" : "chevron.forward")
+                    
+                    Image(systemName: "chevron.forward")
                         .foregroundStyle(Color.black)
+                        .rotationEffect(.degrees(model.isShowChannels ? 90 : 0))
+                        .animation(.easeInOut(duration: 0.3), value: model.isShowChannels)
                 }
                 .padding()
             }
             
             if model.isShowChannels {
                 VStack(alignment: .leading) {
-                    ForEach(model.channelList, id: \.channelID) { channel in
+                    ForEach(workspaceModel.selectedWorkspaceChannelList, id: \.channelID) { channel in
                         NavigationLink(
                             destination: ChattingView(chatTitle: channel.name),
                             label: {
@@ -44,8 +50,13 @@ struct ChannelSection: View {
                     }
                     .padding()
                 }
-                .transition(.slide)
             }
+        }
+        .sheet(item: $model.sheetType,
+               onDismiss: {
+            workspaceModel.apply(.reloadChannelList)
+        }) { type in
+            SheetView(type: type)
         }
     }
     

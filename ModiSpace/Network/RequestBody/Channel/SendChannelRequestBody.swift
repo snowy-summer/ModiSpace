@@ -18,7 +18,7 @@ struct SendChannelChatRequestBody: MutipartEncodable {
         if let nameData = content.data(using: .utf8) {
             multipartData.append(
                 MultipartFormData(
-                    name: "name",
+                    name: "content",
                     fileName: "",
                     mimeType: "text/plain",
                     data: nameData

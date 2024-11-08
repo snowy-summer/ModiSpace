@@ -7,12 +7,25 @@
 
 import SwiftUI
 
-final class CreateWorkSpaceModel: ObservableObject, CreateWorkspaceModelStateProtocol {
+final class CreateWorkSpaceModel: ObservableObject {
     
     @Published var workspaceImage = [UIImage]()
     @Published var workspaceName = ""
     @Published var workspaceDescription = ""
+    var workspaceID: String = ""
     @Published var isShowingImagePicker = false
+    var isEditingMode = false
+    
+    init(workspace: WorkspaceState = WorkspaceState(),
+         isShowingImagePicker: Bool = false,
+         isEditingMode: Bool = false) {
+        self.workspaceImage = [workspace.coverImage]
+        self.workspaceName = workspace.name
+        self.workspaceDescription = workspace.description
+        self.workspaceID = workspace.workspaceID
+        self.isEditingMode = isEditingMode
+        self.isShowingImagePicker = isShowingImagePicker
+    }
     
     var isCreateAbled: Bool {
         !workspaceName.isEmpty
@@ -23,6 +36,9 @@ final class CreateWorkSpaceModel: ObservableObject, CreateWorkspaceModelStatePro
         switch intent {
         case .createWorkspace:
             createWorkspace()
+            
+        case .editWorkspace:
+            editingWorkspace()
             
         case .updateName(let name):
             updateWorkspaceName(name)
@@ -58,11 +74,27 @@ extension CreateWorkSpaceModel {
     private func createWorkspace() {
         Task {
             do {
-                guard let imageData = workspaceImage.first?.jpegData(compressionQuality: 0.4) else { return }
+                guard let imageData = workspaceImage.last?.jpegData(compressionQuality: 0.4) else { return }
                 let router = WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: workspaceName,
                                                                                         description: workspaceDescription,
                                                                                         image: imageData))
-                let response = try await NetworkManager().getDecodedData(from: router,
+                let _ = try await NetworkManager().getDecodedData(from: router,
+                                                                         type: WorkspaceDTO.self)
+            } catch(let error) {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func editingWorkspace() {
+        Task {
+            do {
+                guard let imageData = workspaceImage.last?.jpegData(compressionQuality: 0.4) else { return }
+                let router = WorkSpaceRouter.editWorkSpace(spaceId: workspaceID,
+                                                           body: WorkspaceRequestBody(name: workspaceName,
+                                                                                      description: workspaceDescription,
+                                                                                      image: imageData))
+                let _ = try await NetworkManager().getDecodedData(from: router,
                                                                          type: WorkspaceDTO.self)
             } catch(let error) {
                 print(error.localizedDescription)

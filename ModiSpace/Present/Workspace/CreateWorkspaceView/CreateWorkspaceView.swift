@@ -11,19 +11,23 @@ import Combine
 struct CreateWorkspaceView: View {
     
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var workspaceModel: WorkspaceModel
     @StateObject private var model: CreateWorkSpaceModel
-    var dismissAction: () -> Void
     
-    init(dismissAction: @escaping () -> Void) {
-        self.dismissAction = dismissAction
+    init() {
         _model = StateObject(wrappedValue: CreateWorkSpaceModel())
+    }
+    
+    init(workspace: WorkspaceState) {
+        _model = StateObject(wrappedValue: CreateWorkSpaceModel(workspace: workspace,
+                                                                isEditingMode: true))
     }
     
     var body: some View {
         VStack(spacing: 24) {
             ImageSelectButton(action: {
                 model.apply(.showImagePicker)
-            }, image: model.workspaceImage.first)
+            }, image: model.workspaceImage.last)
             .sheet(isPresented: $model.isShowingImagePicker) {
                 PhotoPicker(selectedImages: $model.workspaceImage,
                             isMultipleImage: false)
@@ -46,7 +50,12 @@ struct CreateWorkspaceView: View {
                          symbolColor: nil,
                          cornerRadius: 8,
                          isEnabled: model.isCreateAbled) {
-                model.apply(.createWorkspace)
+                if model.isEditingMode {
+                    model.apply(.editWorkspace)
+                } else {
+                    model.apply(.createWorkspace)
+                }
+                
                 dismiss()
             }
                          .padding()

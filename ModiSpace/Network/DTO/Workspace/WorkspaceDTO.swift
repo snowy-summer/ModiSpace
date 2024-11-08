@@ -49,33 +49,3 @@ struct WorkspaceDTO: Decodable {
 //    }
     
 }
-
-struct WorkspaceState {
-    let workspaceID: String
-    let name: String
-    let description: String
-    let coverImage: String
-    let ownerID: String
-    var createdAt: String
-    let channels: [ChannelDTO]
-    let workspaceMembers: [WorkspaceMemberDTO]
-    
-    init(workspaceID: String = "",
-         name: String = "",
-         description: String = "",
-         coverImage: String = "",
-         ownerID: String = "",
-         createdAt: String = "",
-         channels: [ChannelDTO] = [],
-         workspaceMembers: [WorkspaceMemberDTO] = []) {
-        
-        self.workspaceID = workspaceID
-        self.name = name
-        self.description = description
-        self.coverImage = coverImage
-        self.ownerID = ownerID
-        self.createdAt = createdAt
-        self.channels = channels
-        self.workspaceMembers = workspaceMembers
-    }
-}

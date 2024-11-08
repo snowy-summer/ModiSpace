@@ -39,8 +39,8 @@ struct ContentView: View {
                                          forKey: KeychainKey.accessToken.rawValue)
                     KeychainManager.save(loginData.token.refreshToken!,
                                          forKey: KeychainKey.refreshToken.rawValue)
-                    print(loginData.token.accessToken)
-                    print(loginData.token.refreshToken)
+                    print("에세스토큰: \(loginData.token.accessToken)")
+                    print("리프레쉬토큰: \(loginData.token.refreshToken)")
                     
                     // 워크스페이스 조회
                     //                    let myWorkspaceList = try await NetworkManager()
@@ -62,5 +62,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+   ContentView()
 }
