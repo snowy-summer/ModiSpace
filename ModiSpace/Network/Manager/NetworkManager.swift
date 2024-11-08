@@ -88,7 +88,6 @@ extension NetworkManager: NetworkManagerProtocol {
                 
                 do {
                     try validateResponse(response)
-                    print(11)
                     promise(.success(data))
                 } catch {
                     
