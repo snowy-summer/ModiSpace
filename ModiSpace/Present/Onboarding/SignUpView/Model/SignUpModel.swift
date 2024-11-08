@@ -26,6 +26,7 @@ final class SignUpModel: ObservableObject {
     @Published var isCheckEmailEnabled = false
     
     @Published var isEmailEditable = true
+    @Published var isSignUpSuccessful = false
     @Published var emailErrorMessage: String? = nil
     @Published var passwordErrorMessage: String? = nil
     
@@ -134,7 +135,19 @@ extension SignUpModel {
                 }
             }
         }, receiveValue: { response in
+            let accessToken = response.token.accessToken
+            KeychainManager.save(accessToken,
+                                 forKey: KeychainKey.accessToken.rawValue)
+            
+            if let refreshToken = response.token.refreshToken {
+                KeychainManager.save(refreshToken,
+                                     forKey: KeychainKey.refreshToken.rawValue)
+            }
+            
+            KeychainManager.save(response.userID,
+                                 forKey: KeychainKey.userID.rawValue)
             print("회원가입: \(response)")
+            self.isSignUpSuccessful = true
         })
         .store(in: &cancellables)
     }
