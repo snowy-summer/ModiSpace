@@ -16,7 +16,7 @@ struct FindChannelView: View {
         VStack(alignment: .leading) {
             ForEach(model.channelList, id: \.channelID) { channel in
                 NavigationLink(
-                    destination: ChattingView(chatTitle: channel.name),
+                    destination: ChattingView(channel: channel),
                     label: {
                         ChannelListCell(channelTitle: channel.name)
                             .foregroundStyle(Color.gray)
