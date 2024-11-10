@@ -9,14 +9,16 @@ import SwiftUI
 
 struct ChattingView: View {
     
-    @StateObject var model = ChatModel()
+    @StateObject private var model: ChatModel
     
-    var chatTitle: String
-
+    init(channel: ChannelDTO) {
+        _model = StateObject(wrappedValue: ChatModel(channel: channel))
+    }
+    
     var body: some View {
         VStack {
             ChattingScrollListView(messages: $model.messages)
-
+            
             ChatTextField(
                 messageText: $model.messageText,
                 selectedImages: $model.selectedImages,
@@ -29,7 +31,7 @@ struct ChattingView: View {
             .cornerRadius(8)
             .padding(.horizontal)
         }
-        .navigationTitle(chatTitle)
+        .navigationTitle(model.channel.name)
         .onTapGesture {
             endTextEditing()
         }

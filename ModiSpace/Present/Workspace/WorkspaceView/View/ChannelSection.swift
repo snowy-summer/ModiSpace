@@ -37,7 +37,8 @@ struct ChannelSection: View {
                 VStack(alignment: .leading) {
                     ForEach(workspaceModel.selectedWorkspaceChannelList, id: \.channelID) { channel in
                         NavigationLink(
-                            destination: ChattingView(chatTitle: channel.name),
+                            //🌟
+                            destination: ChattingView(channel: channel),
                             label: {
                                 ChannelListCell(channelTitle: channel.name)
                                     .foregroundStyle(Color.gray)
