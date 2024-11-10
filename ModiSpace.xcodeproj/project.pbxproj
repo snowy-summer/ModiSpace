@@ -65,6 +65,8 @@
 		6B8DB45B2CDDECEA001B0893 /* FindChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB45A2CDDECEA001B0893 /* FindChannelView.swift */; };
 		6B8DB45D2CDDECF5001B0893 /* FindChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB45C2CDDECF5001B0893 /* FindChannelModel.swift */; };
 		6B8DB45F2CDDED01001B0893 /* FindChannelIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB45E2CDDED01001B0893 /* FindChannelIntent.swift */; };
+		6B8DB4652CDE2AC8001B0893 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4642CDE2AC8001B0893 /* ChatData.swift */; };
+		6B8DB4672CE07A1D001B0893 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4662CE07A1D001B0893 /* DBManager.swift */; };
 		6BA79EC62CCB6CAE00FB1310 /* WorkSpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */; };
 		6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */; };
 		6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */; };
@@ -227,6 +229,8 @@
 		6B8DB45A2CDDECEA001B0893 /* FindChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChannelView.swift; sourceTree = "<group>"; };
 		6B8DB45C2CDDECF5001B0893 /* FindChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChannelModel.swift; sourceTree = "<group>"; };
 		6B8DB45E2CDDED01001B0893 /* FindChannelIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChannelIntent.swift; sourceTree = "<group>"; };
+		6B8DB4642CDE2AC8001B0893 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
+		6B8DB4662CE07A1D001B0893 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceCell.swift; sourceTree = "<group>"; };
 		6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCoinCell.swift; sourceTree = "<group>"; };
 		6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationCell.swift; sourceTree = "<group>"; };
@@ -766,6 +770,23 @@
 			path = Intent;
 			sourceTree = "<group>";
 		};
+		6B8DB4622CDE2A9E001B0893 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB4662CE07A1D001B0893 /* DBManager.swift */,
+				6B8DB4632CDE2AB3001B0893 /* Chat */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		6B8DB4632CDE2AB3001B0893 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6B8DB4642CDE2AC8001B0893 /* ChatData.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		6BA79EC42CCB6C8200FB1310 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -849,6 +870,7 @@
 				AA54FCE92CCCB88100D09293 /* Present */,
 				6BA79EC42CCB6C8200FB1310 /* Component */,
 				6B2C72E32CCB9BDB0043E478 /* Network */,
+				6B8DB4622CDE2A9E001B0893 /* DataBase */,
 				6B0564EE2CCF6DCC003086AC /* Util */,
 				6B2C731C2CCCB98A0043E478 /* Extension */,
 				6BD397702CCA8D0A00F7097D /* Modifier */,
@@ -1388,6 +1410,7 @@
 				6BD27EE22CD7B1AC00CDF93A /* CategoryListModel.swift in Sources */,
 				6B0564F32CCF6E0A003086AC /* BundleError.swift in Sources */,
 				6B0564FF2CCF7B74003086AC /* JoinRequestBody.swift in Sources */,
+				6B8DB4672CE07A1D001B0893 /* DBManager.swift in Sources */,
 				6B694E292CCCF69100ED484D /* CreateWorkspaceView.swift in Sources */,
 				6B8DB4532CDB9233001B0893 /* MemberInfoCell.swift in Sources */,
 				6BCF99702CD4A625001A73FE /* WorkspaceModel.swift in Sources */,
@@ -1419,6 +1442,7 @@
 				727D87632CD4FF3D00C52751 /* DMSChatDTO.swift in Sources */,
 				72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */,
 				727D87652CD5000200C52751 /* DMSUnreadCountDTO.swift in Sources */,
+				6B8DB4652CDE2AC8001B0893 /* ChatData.swift in Sources */,
 				AA5491332CD36277009A0B2F /* ChattingScrollListView.swift in Sources */,
 				6B0564FA2CCF7A0B003086AC /* OtherUserDTO.swift in Sources */,
 				6B8DB4382CD8679D001B0893 /* CategoryListIntent.swift in Sources */,
@@ -1655,7 +1679,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1692,7 +1716,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
