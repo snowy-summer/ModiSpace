@@ -16,7 +16,7 @@ struct DMListCell: View {
     let badgeCount: Int
     
     var body: some View {
-        HStack(alignment: .top, spacing: 10) {
+        HStack(alignment: .top, spacing: 8) {
             Image(profileImage)
                 .resizable()
                 .frame(width: 44, height: 44)

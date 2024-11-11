@@ -125,6 +125,10 @@
 		727D87902CDB593700C52751 /* AuthOptionsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D878F2CDB593700C52751 /* AuthOptionsIntent.swift */; };
 		727D87922CDB594300C52751 /* AuthOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87912CDB594300C52751 /* AuthOptionsModel.swift */; };
 		727D87942CDDED5800C52751 /* AppleAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87932CDDED5800C52751 /* AppleAuthManager.swift */; };
+		727D879E2CE0C79E00C52751 /* DMListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D879D2CE0C79E00C52751 /* DMListView.swift */; };
+		727D87A22CE1DBAF00C52751 /* DMListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87A12CE1DBAF00C52751 /* DMListModel.swift */; };
+		727D87A42CE1DBB800C52751 /* DMListIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87A32CE1DBB800C52751 /* DMListIntent.swift */; };
+		727D87A62CE1F52700C52751 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87A52CE1F52700C52751 /* HeaderView.swift */; };
 		72CA3E5F2CCCE169002FE5C4 /* ProfileNickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E5E2CCCE169002FE5C4 /* ProfileNickCell.swift */; };
 		72CA3E612CCD04DB002FE5C4 /* DMListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */; };
 		72CA3E632CCD1263002FE5C4 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3E622CCD1263002FE5C4 /* CommonButton.swift */; };
@@ -290,6 +294,10 @@
 		727D878F2CDB593700C52751 /* AuthOptionsIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOptionsIntent.swift; sourceTree = "<group>"; };
 		727D87912CDB594300C52751 /* AuthOptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOptionsModel.swift; sourceTree = "<group>"; };
 		727D87932CDDED5800C52751 /* AppleAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthManager.swift; sourceTree = "<group>"; };
+		727D879D2CE0C79E00C52751 /* DMListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListView.swift; sourceTree = "<group>"; };
+		727D87A12CE1DBAF00C52751 /* DMListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListModel.swift; sourceTree = "<group>"; };
+		727D87A32CE1DBB800C52751 /* DMListIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListIntent.swift; sourceTree = "<group>"; };
+		727D87A52CE1F52700C52751 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		72CA3E5E2CCCE169002FE5C4 /* ProfileNickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNickCell.swift; sourceTree = "<group>"; };
 		72CA3E602CCD04DB002FE5C4 /* DMListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListCell.swift; sourceTree = "<group>"; };
 		72CA3E622CCD1263002FE5C4 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
@@ -940,6 +948,7 @@
 			children = (
 				6BF1F2F42CD65D2600919F3B /* AsyncImageView.swift */,
 				6B8DB4422CD9BB59001B0893 /* SheetView.swift */,
+				727D87A52CE1F52700C52751 /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1051,6 +1060,32 @@
 				AA54FCF72CCCB95900D09293 /* LocalLoginView.swift */,
 			);
 			path = LocalLoginView;
+			sourceTree = "<group>";
+		};
+		727D879C2CE0C74F00C52751 /* DM */ = {
+			isa = PBXGroup;
+			children = (
+				727D879D2CE0C79E00C52751 /* DMListView.swift */,
+				727D879F2CE1CCFA00C52751 /* Intent */,
+				727D87A02CE1CD0100C52751 /* Model */,
+			);
+			path = DM;
+			sourceTree = "<group>";
+		};
+		727D879F2CE1CCFA00C52751 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				727D87A32CE1DBB800C52751 /* DMListIntent.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		727D87A02CE1CD0100C52751 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				727D87A12CE1DBAF00C52751 /* DMListModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		72F25EAD2CCE573F00A1F182 /* StoryBoard */ = {
@@ -1244,6 +1279,7 @@
 				AA54FCEA2CCCB8A700D09293 /* SettingChannelView */,
 				AA54FCF62CCCB92F00D09293 /* Register */,
 				AA54FD0F2CCCBA5F00D09293 /* ChattingView */,
+				727D879C2CE0C74F00C52751 /* DM */,
 				AA54FD182CCCBB3400D09293 /* NewMessageView.swift */,
 			);
 			path = Present;
@@ -1428,10 +1464,12 @@
 				AA54FCFC2CCCB97D00D09293 /* InviteMemberView.swift in Sources */,
 				AA54FD062CCCB9ED00D09293 /* ChannelListCell.swift in Sources */,
 				6BF1F2F02CD63E1100919F3B /* CacheManager.swift in Sources */,
+				727D87A42CE1DBB800C52751 /* DMListIntent.swift in Sources */,
 				727D875A2CD3745800C52751 /* QueryOfGetChannelChatList.swift in Sources */,
 				AA54FD142CCCBA9D00D09293 /* ChatMessageRowCell.swift in Sources */,
 				727D87922CDB594300C52751 /* AuthOptionsModel.swift in Sources */,
 				727D87902CDB593700C52751 /* AuthOptionsIntent.swift in Sources */,
+				727D87A62CE1F52700C52751 /* HeaderView.swift in Sources */,
 				AA54FCF52CCCB91300D09293 /* SettingChannelHeaderView.swift in Sources */,
 				6B8DB45F2CDDED01001B0893 /* FindChannelIntent.swift in Sources */,
 				72F25EB42CCE638600A1F182 /* AuthOptionsView.swift in Sources */,
@@ -1460,6 +1498,7 @@
 				6B2C72E62CCB9C800043E478 /* HttpMethod.swift in Sources */,
 				6B2C730B2CCCB59F0043E478 /* WorkspaceRequestBody.swift in Sources */,
 				6B2C72F92CCCA7A70043E478 /* WorkspaceDTO.swift in Sources */,
+				727D87A22CE1DBAF00C52751 /* DMListModel.swift in Sources */,
 				6B694E422CCE01A300ED484D /* ImageSelectButton.swift in Sources */,
 				AA54FCEE2CCCB8C200D09293 /* MemberList.swift in Sources */,
 				727D87612CD4FE7500C52751 /* DMSDTO.swift in Sources */,
@@ -1473,6 +1512,7 @@
 				72F25EB92CCE675200A1F182 /* OnboardingImageView.swift in Sources */,
 				727D874C2CD3507500C52751 /* OwnershipTransferRequestBody.swift in Sources */,
 				AA54FD112CCCBA7400D09293 /* ChattingView.swift in Sources */,
+				727D879E2CE0C79E00C52751 /* DMListView.swift in Sources */,
 				6BF1F2EB2CD4FF8100919F3B /* TokenRouter.swift in Sources */,
 				AA54FCF82CCCB95900D09293 /* LocalLoginView.swift in Sources */,
 				727D87552CD364AE00C52751 /* UnReadChannelCountDTO.swift in Sources */,
