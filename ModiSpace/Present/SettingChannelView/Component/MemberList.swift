@@ -10,7 +10,6 @@ import SwiftUI
 struct MemberList: View {
     
     @State private var isMemberListShow = false
-    @StateObject var model: ChatModel
     
     let memberCount = 30
 

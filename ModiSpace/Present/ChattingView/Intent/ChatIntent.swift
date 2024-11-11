@@ -12,4 +12,7 @@ enum ChatIntent {
     case removeImage(Int)
     case showImagePicker(Bool)
     case fetchMessages
+    case showDeleteAlert
+    case dontShowDeleteAlert
+    case deleteChannel
 }
