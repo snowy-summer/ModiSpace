@@ -31,6 +31,7 @@ struct RegisterChannelView: View {
                          symbolColor: nil,
                          cornerRadius: 8,
                          isEnabled: model.isRegistAble) {
+                model.apply(.registChannel)
                 dismiss()
             }
             .padding(.horizontal)
