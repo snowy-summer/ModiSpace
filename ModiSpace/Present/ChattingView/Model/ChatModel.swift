@@ -21,21 +21,24 @@ final class ChatModel: ObservableObject {
     private var cancelable = Set<AnyCancellable>()
     
     init(channel: ChannelDTO) {
-            self.channel = channel
-        }
+        self.channel = channel
+    }
     
     func apply(_ intent: ChatIntent) {
-          switch intent {
-          case .sendMessage(let text, let images):
-              sendMessage()
-          case .removeImage(let index):
-              removeImage(at: index)
-          case .showImagePicker(let isShowing):
-              isShowingImagePicker = isShowing
-          case .fetchMessages:
-              fetchChatsData()
-          }
-      }
+        switch intent {
+        case .sendMessage(let text, let images):
+            sendMessage()
+            
+        case .removeImage(let index):
+            removeImage(at: index)
+            
+        case .showImagePicker(let isShowing):
+            isShowingImagePicker = isShowing
+            
+        case .fetchMessages:
+            fetchChatsData()
+        }
+    }
     
     func removeImage(at index: Int) {
         selectedImages.remove(at: index)
@@ -102,7 +105,6 @@ extension ChatModel {
     
 }
 
-
 extension ChatModel {
     // 채팅 데이터 가져오기
     func fetchChatsData() {
@@ -124,4 +126,5 @@ extension ChatModel {
         }
         .store(in: &cancelable)
     }
+    
 }
