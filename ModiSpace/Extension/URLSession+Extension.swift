@@ -17,6 +17,15 @@ extension URLSession: URLSessionProtocol {
         return try await data(for: request)
     }
     
+    func webSocket(from router: any RouterProtocol) throws -> URLSessionWebSocketTask {
+        
+        let request = try RequestBuilder()
+            .setRouter(router)
+            .build()
+        
+        return webSocketTask(with: request)
+    }
+    
 }
 
 extension URLSessionDataTask: URLSessionDataTaskProtocol {
