@@ -1,5 +1,5 @@
 //
-//  ChattingView_Home.swift
+//  ChattingView.swift
 //  ModiSpace
 //
 //  Created by 이윤지 on 10/26/24.

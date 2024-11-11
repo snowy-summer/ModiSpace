@@ -58,8 +58,8 @@ struct CreateWorkspaceView: View {
                 
                 dismiss()
             }
-                         .padding()
-                         .disabled(!model.isCreateAbled)
+             .padding()
+             .disabled(!model.isCreateAbled)
         }
         .padding(.top, 32)
         .onTapGesture {

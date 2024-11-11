@@ -43,12 +43,13 @@ struct ModiSpaceApp: App {
                     }
             } else {
 
-                OnboardingView()
-                    .onOpenURL { url in
-                        if (AuthApi.isKakaoTalkLoginUrl(url)) {
-                            _ = AuthController.handleOpenUrl(url: url)
-                        }
-                    }
+//                OnboardingView()
+//                    .onOpenURL { url in
+//                        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+//                            _ = AuthController.handleOpenUrl(url: url)
+//                        }
+//                    }
+                ContentView()
 
             }
             
