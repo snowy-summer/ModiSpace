@@ -14,7 +14,7 @@ struct SettingChannelView: View {
     var body: some View {
         SettingChannelHeaderView(model: model)
         
-        MemberList()
+        MemberList(model: model)
         
         SettingChannelButton(title: "채널 편집") { }
         
