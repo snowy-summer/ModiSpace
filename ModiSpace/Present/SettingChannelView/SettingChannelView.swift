@@ -9,10 +9,12 @@ import SwiftUI
 
 struct SettingChannelView: View {
     
+    @StateObject var model: ChatModel
+    
     var body: some View {
-        SettingChannelHeaderView()
+        SettingChannelHeaderView(model: model)
         
-        MemberList()
+        MemberList(model: model)
         
         SettingChannelButton(title: "채널 편집") { }
         
@@ -25,7 +27,7 @@ struct SettingChannelView: View {
     
 }
 
-#Preview {
-    SettingChannelView()
-}
+//#Preview {
+//    SettingChannelView()
+//}
 

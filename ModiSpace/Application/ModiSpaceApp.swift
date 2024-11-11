@@ -33,18 +33,15 @@ struct ModiSpaceApp: App {
         
         WindowGroup {
             
-            ContentView()
-            
-//            if isSplashView {
-//                LaunchScreenView()
-//                    .ignoresSafeArea()
-//                    .onAppear {
-//                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { // 1초로 설정
-//                            isSplashView = false
-//                        }
-//                    }
-//            } else {
-//
+            if isSplashView {
+                LaunchScreenView()
+                    .ignoresSafeArea()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { // 1초로 설정
+                            isSplashView = false
+                        }
+                    }
+            } else {
 //                OnboardingView()
 //                    .onOpenURL { url in
 //                        if (AuthApi.isKakaoTalkLoginUrl(url)) {
@@ -53,6 +50,10 @@ struct ModiSpaceApp: App {
 //                    }
 //
 //            }
+                ContentView()
+
+            }
+
             
         }
         

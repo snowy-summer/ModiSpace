@@ -67,6 +67,7 @@
 		6B8DB45F2CDDED01001B0893 /* FindChannelIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB45E2CDDED01001B0893 /* FindChannelIntent.swift */; };
 		6B8DB4652CDE2AC8001B0893 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4642CDE2AC8001B0893 /* ChatData.swift */; };
 		6B8DB4672CE07A1D001B0893 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8DB4662CE07A1D001B0893 /* DBManager.swift */; };
+		6B91FE9D2CE19F7500D9F5CE /* SocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91FE9C2CE19F7500D9F5CE /* SocketRouter.swift */; };
 		6BA79EC62CCB6CAE00FB1310 /* WorkSpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */; };
 		6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */; };
 		6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */; };
@@ -235,6 +236,7 @@
 		6B8DB45E2CDDED01001B0893 /* FindChannelIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindChannelIntent.swift; sourceTree = "<group>"; };
 		6B8DB4642CDE2AC8001B0893 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		6B8DB4662CE07A1D001B0893 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		6B91FE9C2CE19F7500D9F5CE /* SocketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRouter.swift; sourceTree = "<group>"; };
 		6BA79EC52CCB6CAE00FB1310 /* WorkSpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceCell.swift; sourceTree = "<group>"; };
 		6BA79EC72CCB723800FB1310 /* StoreCoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCoinCell.swift; sourceTree = "<group>"; };
 		6BA79EC92CCB796F00FB1310 /* StoreInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInformationCell.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 				AA5491242CD1EEAB009A0B2F /* SesacStoreRouter.swift */,
 				6BF1F2EA2CD4FF8100919F3B /* TokenRouter.swift */,
 				6BF1F2F12CD6576F00919F3B /* ImageRouter.swift */,
+				6B91FE9C2CE19F7500D9F5CE /* SocketRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1446,6 +1449,7 @@
 				6BD27EE22CD7B1AC00CDF93A /* CategoryListModel.swift in Sources */,
 				6B0564F32CCF6E0A003086AC /* BundleError.swift in Sources */,
 				6B0564FF2CCF7B74003086AC /* JoinRequestBody.swift in Sources */,
+				6B91FE9D2CE19F7500D9F5CE /* SocketRouter.swift in Sources */,
 				6B8DB4672CE07A1D001B0893 /* DBManager.swift in Sources */,
 				6B694E292CCCF69100ED484D /* CreateWorkspaceView.swift in Sources */,
 				6B8DB4532CDB9233001B0893 /* MemberInfoCell.swift in Sources */,
@@ -1706,10 +1710,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ModiSpace/ModiSpace.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ModiSpace/Preview Content\"";
-				DEVELOPMENT_TEAM = QQN262X7KM;
+				DEVELOPMENT_TEAM = 4KLMMMFY4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ModiSpace/Info.plist;
@@ -1727,6 +1732,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jun.ModiSpaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Jun_Development;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1743,10 +1750,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ModiSpace/ModiSpace.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ModiSpace/Preview Content\"";
-				DEVELOPMENT_TEAM = QQN262X7KM;
+				DEVELOPMENT_TEAM = 4KLMMMFY4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ModiSpace/Info.plist;
@@ -1764,6 +1772,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jun.ModiSpaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;

@@ -11,4 +11,5 @@ enum ChatIntent {
     case sendMessage(text: String, images: [UIImage])
     case removeImage(Int)
     case showImagePicker(Bool)
+    case fetchMessages
 }

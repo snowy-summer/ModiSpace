@@ -1,5 +1,5 @@
 //
-//  ChattingView_Home.swift
+//  ChattingView.swift
 //  ModiSpace
 //
 //  Created by 이윤지 on 10/26/24.
@@ -32,6 +32,14 @@ struct ChattingView: View {
             .padding(.horizontal)
         }
         .navigationTitle(model.channel.name)
+        .toolbar {
+                  ToolbarItem(placement: .navigationBarTrailing) {
+                      NavigationLink(destination: SettingChannelView(model: model)) {
+                          Image(systemName: "line.horizontal.3.decrease")
+                              .imageScale(.large)
+                      }
+                  }
+              }
         .onTapGesture {
             endTextEditing()
         }

@@ -10,6 +10,7 @@ import SwiftUI
 struct MemberList: View {
     
     @State private var isMemberListShow = false
+    @StateObject var model: ChatModel
     
     let memberCount = 30
 
@@ -51,7 +52,7 @@ struct MemberList: View {
     
 }
 
-#Preview {
-    SettingChannelView()
-}
+//#Preview {
+//    SettingChannelView()
+//}
 
