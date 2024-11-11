@@ -24,6 +24,19 @@ final class ChatModel: ObservableObject {
             self.channel = channel
         }
     
+    func apply(_ intent: ChatIntent) {
+          switch intent {
+          case .sendMessage(let text, let images):
+              sendMessage()
+          case .removeImage(let index):
+              removeImage(at: index)
+          case .showImagePicker(let isShowing):
+              isShowingImagePicker = isShowing
+          case .fetchMessages:
+              fetchChatsData()
+          }
+      }
+    
     func removeImage(at index: Int) {
         selectedImages.remove(at: index)
     }
