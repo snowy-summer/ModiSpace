@@ -9,6 +9,6 @@ import Foundation
 
 enum RegisterChannelIntent {
     
-    case registChannel(() -> Void)
-    
+    case registChannel
+
 }

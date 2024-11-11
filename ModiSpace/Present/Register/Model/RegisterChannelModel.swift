@@ -22,12 +22,12 @@ final class RegisterChannelModel: ObservableObject {
     
     func apply(_ intent: RegisterChannelIntent) {
         switch intent {
-        case .registChannel(let fetch):
-            regist(with: fetch)
+        case .registChannel:
+            regist()
         }
     }
     
-    func regist(with fetch: @escaping () -> Void) {
+    func regist() {
         
         let channelBody = PostChannelRequestBody(name: channelName,
                                                  description: nil,
@@ -51,8 +51,7 @@ final class RegisterChannelModel: ObservableObject {
                 }
                 print(error.localizedDescription)
             }
-        }, receiveValue: { value in
-            fetch()
+        }, receiveValue: { _ in
         }).store(in: &cancelable)
     }
 }
