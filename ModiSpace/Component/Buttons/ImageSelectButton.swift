@@ -44,7 +44,3 @@ struct ImageSelectButton: View {
     }
     
 }
-
-//#Preview {
-//    ImageSelectButton(action: {}, image: $UIImage())
-//}
