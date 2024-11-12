@@ -50,7 +50,8 @@ struct ModiSpaceApp: App {
 //                    }
 //
 //            }
-                ContentView()
+//                ContentView()
+                CustomTabView()
 
             }
 

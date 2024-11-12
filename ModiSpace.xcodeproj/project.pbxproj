@@ -40,6 +40,7 @@
 		6B2C731B2CCCB9760043E478 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C731A2CCCB9760043E478 /* URLSessionProtocol.swift */; };
 		6B2C731E2CCCB9980043E478 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C731D2CCCB9980043E478 /* URLSession+Extension.swift */; };
 		6B2C73202CCCB9C00043E478 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C731F2CCCB9C00043E478 /* URLRequest+Extension.swift */; };
+		6B2FF0172CE2E04A008CEF1B /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2FF0162CE2E04A008CEF1B /* TabView.swift */; };
 		6B694E292CCCF69100ED484D /* CreateWorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E282CCCF69100ED484D /* CreateWorkspaceView.swift */; };
 		6B694E2D2CCCF8A600ED484D /* CreateWorkspaceIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E2C2CCCF8A600ED484D /* CreateWorkspaceIntent.swift */; };
 		6B694E392CCCFA9100ED484D /* CreateWorkspaceModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B694E382CCCFA9100ED484D /* CreateWorkspaceModelProtocol.swift */; };
@@ -211,6 +212,7 @@
 		6B2C731A2CCCB9760043E478 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		6B2C731D2CCCB9980043E478 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		6B2C731F2CCCB9C00043E478 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
+		6B2FF0162CE2E04A008CEF1B /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		6B694E282CCCF69100ED484D /* CreateWorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceView.swift; sourceTree = "<group>"; };
 		6B694E2C2CCCF8A600ED484D /* CreateWorkspaceIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceIntent.swift; sourceTree = "<group>"; };
 		6B694E382CCCFA9100ED484D /* CreateWorkspaceModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceModelProtocol.swift; sourceTree = "<group>"; };
@@ -596,6 +598,14 @@
 				6B2C731F2CCCB9C00043E478 /* URLRequest+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		6B2FF0152CE2E036008CEF1B /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				6B2FF0162CE2E04A008CEF1B /* TabView.swift */,
+			);
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 		6B694E262CCCF67400ED484D /* Workspace */ = {
@@ -1279,6 +1289,7 @@
 		AA54FCE92CCCB88100D09293 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				6B2FF0152CE2E036008CEF1B /* Tabbar */,
 				AA5491232CD0F668009A0B2F /* Store */,
 				AA5491152CD0E52B009A0B2F /* Onboarding */,
 				6B694E262CCCF67400ED484D /* Workspace */,
@@ -1529,6 +1540,7 @@
 				6B694E402CCD435100ED484D /* SideMenuView.swift in Sources */,
 				6BA79ECA2CCB796F00FB1310 /* StoreInformationCell.swift in Sources */,
 				6B2C731E2CCCB9980043E478 /* URLSession+Extension.swift in Sources */,
+				6B2FF0172CE2E04A008CEF1B /* TabView.swift in Sources */,
 				6B8DB43E2CD868FE001B0893 /* RegisterChannelIntent.swift in Sources */,
 				6BC87C6F2CD3432C00ED3CD4 /* KeychainManager.swift in Sources */,
 				6B2C72FB2CCCAAB60043E478 /* ChannelDTO.swift in Sources */,
