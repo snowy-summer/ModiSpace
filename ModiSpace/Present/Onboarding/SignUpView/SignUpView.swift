@@ -9,9 +9,8 @@ import SwiftUI
 
 struct SignUpView: View {
     
+    @Environment(\.dismiss) var dismiss
     @StateObject private var model = SignUpModel()
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var showWorkspaceView: Bool
     
     var body: some View {
         NavigationView {
@@ -110,7 +109,7 @@ struct SignUpView: View {
                              .padding()
                              .onReceive(model.$isSignUpSuccessful) { isSuccess in
                                  if isSuccess {
-                                     showWorkspaceView = true
+//                                     showWorkspaceView = true
                                  }
                              }
             }
@@ -119,9 +118,9 @@ struct SignUpView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     }) {
-                        Image(systemName: "chevron.left")
+                        Image(systemName: "xmark")
                             .foregroundColor(.gray)
                     }
                 }
@@ -130,6 +129,6 @@ struct SignUpView: View {
     }
 }
 
-#Preview {
-    SignUpView(showWorkspaceView: .constant(true))
-}
+//#Preview {
+//    SignUpView(showWorkspaceView: .constant(true))
+//}

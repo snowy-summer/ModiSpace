@@ -15,6 +15,8 @@ final class AuthOptionsModel: ObservableObject {
     @Published var showProfileSetup: Bool = false
     @Published var showAddressSetup: Bool = false
     
+    @Published var sheetType: AuthSheetType?
+    
     private var cancellables = Set<AnyCancellable>()
     private var kakaoAuthVM = KakaoAuthVM()
     private var appleAuthManager = AppleAuthManager()
@@ -31,8 +33,11 @@ final class AuthOptionsModel: ObservableObject {
                 self.showProfileSetup = kakaoAuthVM.showProfileSetup
                 self.showAddressSetup = kakaoAuthVM.showAddressSetup
             }
-        case .localLogin:
-            print("app11")
+        case .showSignInView:
+            sheetType = .signIn
+            
+        case .showSignUpView:
+            sheetType = .signUp
         }
     }
     

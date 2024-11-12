@@ -41,19 +41,6 @@ struct ContentView: View {
                                          forKey: KeychainKey.refreshToken.rawValue)
                     print("에세스토큰: \(loginData.token.accessToken)")
                     print("리프레쉬토큰: \(loginData.token.refreshToken)")
-                    
-                    // 워크스페이스 조회
-                    //                    let myWorkspaceList = try await NetworkManager()
-                    //                        .getDecodedData(from: WorkSpaceRouter.getWorkSpaceList)
-                    //
-                    //                    //워크스페이스 생성
-                    //                    let createWorkspace = try await NetworkManager()
-                    //                        .getDecodedData(from: WorkSpaceRouter.createWorkSpace(body: WorkspaceRequestBody(name: "test_1_ModiSpace",
-                    //                                                                                                         description: "테스트",
-                    //                                                                                                         image: UIImage(resource: .temp).jpegData(compressionQuality: 0.4) ?? Data())))
-                    //
-                    //                    print(createWorkspace)
-                    
                 } catch(let error) {
                     print(error.localizedDescription)
                 }
