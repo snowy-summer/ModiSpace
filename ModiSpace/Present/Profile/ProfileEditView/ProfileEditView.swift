@@ -1,5 +1,5 @@
 //
-//  ProfileEditTextView.swift
+//  ProfileEditView.swift
 //  ModiSpace
 //
 //  Created by 전준영 on 11/12/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProfileEditTextView: View {
+struct ProfileEditView: View {
     
     @ObservedObject var model: ProfileModel
     @Environment(\.presentationMode) var presentationMode

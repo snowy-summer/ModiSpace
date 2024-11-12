@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+enum ProfileIntent {
+    
+    case viewAppear
+    case nickname(String, Bool)
+    case phone(String, Bool)
+    
+}

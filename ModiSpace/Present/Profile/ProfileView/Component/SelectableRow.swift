@@ -1,5 +1,5 @@
 //
-//  CustomNavigationRow.swift
+//  SelectableRow.swift
 //  ModiSpace
 //
 //  Created by 전준영 on 11/12/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomNavigationRow<Destination: View, Content: View>: View {
+struct SelectableRow<Destination: View, Content: View>: View {
     
     private let destination: Destination?
     private let content: () -> Content
