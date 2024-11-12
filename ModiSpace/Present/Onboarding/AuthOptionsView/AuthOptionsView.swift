@@ -48,7 +48,7 @@ struct AuthOptionsView: View {
                 symbolColor: .white,
                 cornerRadius: 12
             ) {
-                model.apply(.localLogin)
+                model.apply(.showSignInView)
             }
             
             HStack(spacing: 0) {
@@ -57,8 +57,7 @@ struct AuthOptionsView: View {
                     .foregroundStyle(.black)
                 
                 Button(action: {
-                    //회원가입 화면 넘기기
-                    showSignUpView = true
+                    model.apply(.showSignUpView)
                 }) {
                     Text("새롭게 회원가입 하기")
                         .font(.footnote)
@@ -74,9 +73,9 @@ struct AuthOptionsView: View {
         .padding(.top, 20)
         .presentationDetents([.fraction(0.35), .fraction(0.5)]) // ios 16 이상부터 씀
         //앞에는 처음 올라오는 위치, 뒤는 내가 최대로 올릴 수 있는 위치
-        .sheet(isPresented: $showSignUpView) {
-            SignUpView(showWorkspaceView: $showWorkspaceView)
-                .presentationDetents([.fraction(0.99), .fraction(1)])
+        .sheet(item: $model.sheetType) { type in
+            AuthSheetView(type: type)
+                .presentationDragIndicator(.visible)
         }
         .onReceive(model.$isLoggedIn) { isLoggedIn in
             if isLoggedIn {
@@ -99,3 +98,51 @@ struct AuthOptionsView: View {
 #Preview {
     AuthOptionsView()
 }
+
+
+struct AuthSheetView: View {
+    
+    var type: AuthSheetType
+    
+    var body: some View {
+        NavigationStack {
+            
+            switch type {
+            case .signIn:
+                SignInView()
+                    
+            case .signUp:
+                SignUpView()
+            }
+        }
+    }
+}
+
+
+enum AuthSheetType: Identifiable {
+    
+    case signIn
+    case signUp
+    
+    var id: String {
+        switch self {
+        case .signIn:
+            return "singIn"
+            
+        case .signUp:
+            return "signUp"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .signIn:
+            return "이메일 로그인"
+            
+        case .signUp:
+            return "회원가입"
+        }
+    }
+}
+
+

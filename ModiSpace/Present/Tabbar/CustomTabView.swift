@@ -7,45 +7,6 @@
 
 import SwiftUI
 
-enum TabComponent: Int, CaseIterable {
-    case home
-    case dm
-    case search
-    case setting
-    
-    var title: String {
-        switch self {
-        case .home:
-            return "홈"
-            
-        case .dm:
-            return "DM"
-            
-        case .search:
-            return "검색"
-            
-        case .setting:
-            return "설정"
-        }
-    }
-    
-    var icon: String {
-        switch self {
-        case .home:
-            return "list.bullet"
-            
-        case .dm:
-            return "paperplane"
-            
-        case .search:
-            return "magnifyingglass"
-            
-        case .setting:
-            return "rectangle.grid.2x2"
-        }
-    }
-}
-
 struct CustomTabView: View {
     
     @State private var selectedTab: TabComponent = .home
@@ -171,6 +132,45 @@ struct TabButton: View {
         }
     }
     
+}
+
+enum TabComponent: Int, CaseIterable {
+    case home
+    case dm
+    case search
+    case setting
+    
+    var title: String {
+        switch self {
+        case .home:
+            return "홈"
+            
+        case .dm:
+            return "DM"
+            
+        case .search:
+            return "검색"
+            
+        case .setting:
+            return "설정"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .home:
+            return "list.bullet"
+            
+        case .dm:
+            return "paperplane"
+            
+        case .search:
+            return "magnifyingglass"
+            
+        case .setting:
+            return "rectangle.grid.2x2"
+        }
+    }
 }
 
 #Preview {

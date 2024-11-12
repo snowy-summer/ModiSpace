@@ -31,7 +31,7 @@ struct SignInView: View {
                          symbolColor: nil,
                          cornerRadius: 8,
                          isEnabled: model.isloginButtonEnabled) {
-                
+                model.apply(.login)
             }
                          .padding(.horizontal)
         }
@@ -52,8 +52,21 @@ struct SignInView: View {
         .onTapGesture {
             endTextEditing()
         }
+        .onReceive(model.$showWorkspace) { value in
+            if value {
+                setRootViewToWorkspace()
+            }
+        }
     }
     
+    private func setRootViewToWorkspace() {
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        let rootViewController = UIHostingController(rootView: CustomTabView())
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
+    }
 }
 
 #Preview {
