@@ -16,8 +16,14 @@ final class ChatModel: ObservableObject {
     @Published var isShowingImagePicker = false
     @Published var isShowDeleteAlertView = false
     @Published var isChannelDeleted = false
+    @Published var isShowingEditChannelView = false
     
-    let channel: ChannelDTO
+    
+    var channel: ChannelDTO
+    
+    var isEditAble: Bool {
+        !channel.name.isEmpty
+    }
     
     let networkManager = NetworkManager()
     var cancelable = Set<AnyCancellable>()
@@ -49,6 +55,9 @@ final class ChatModel: ObservableObject {
         case .deleteChannel:
             isShowDeleteAlertView = false
             deleteChannel()
+            
+        case .showEditChannelView:
+            isShowingEditChannelView = true
         }
     }
     
@@ -81,4 +90,5 @@ extension ChatModel {
         messageText = ""
         selectedImages = []
     }
+    
 }
