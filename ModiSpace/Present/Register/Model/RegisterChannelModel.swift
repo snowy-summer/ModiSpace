@@ -30,7 +30,7 @@ final class RegisterChannelModel: ObservableObject {
     func regist() {
         
         let channelBody = PostChannelRequestBody(name: channelName,
-                                                 description: nil,
+                                                 description: channelDescription,
                                                  image: Data())
         
         networkManager.getDecodedDataWithPublisher(from: ChannelRouter.postChannel(workspaceID: workspaceID,

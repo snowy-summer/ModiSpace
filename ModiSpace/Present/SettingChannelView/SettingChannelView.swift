@@ -17,7 +17,9 @@ struct SettingChannelView: View {
             
             MemberList()
             
-            SettingChannelButton(title: "채널 편집") { }
+            SettingChannelButton(title: "채널 편집") {
+                model.apply(.showEditChannelView)
+            }
             
             SettingChannelButton(title: "채널에서 나가기") { }
             
@@ -41,6 +43,9 @@ struct SettingChannelView: View {
                 }
             }
         )
+        .sheet(isPresented: $model.isShowingEditChannelView) {
+                   EditChannelView(model: model)
+               }
         .onChange(of: model.isChannelDeleted) { isDeleted in
             if isDeleted {
                 switchToWorkspaceView()

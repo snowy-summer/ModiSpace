@@ -10,8 +10,8 @@ import Foundation
 struct ChannelDTO: Decodable {
     
     let channelID: String
-    let name: String
-    let description: String?
+    var name: String
+    var description: String?
     let coverImage: String?
     let ownerID: String
     let createdAt: String
