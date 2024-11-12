@@ -126,10 +126,27 @@ extension UserRouter: RouterProtocol {
     }
     
     var headers: [String : String] {
-        let headers = [
-            Header.sesacKey.key: Header.sesacKey.value,
-            Header.contentTypeJson.key: Header.contentTypeJson.value
+        var headers = [
+            Header.sesacKey.key: Header.sesacKey.value
         ]
+        
+        switch self {
+        case .updateMyProfileImage:
+            headers.updateValue(Header.contentTypeMulti.value,
+                                forKey: Header.contentTypeMulti.key)
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
+            
+        case .getOtherUserProfile, .updateMyProfile, .getMyProfile, .saveDeviceToken, .logout:
+            headers.updateValue(Header.contentTypeJson.value,
+                                forKey: Header.contentTypeJson.key)
+            headers.updateValue(Header.authorization.value,
+                                forKey: Header.authorization.key)
+            
+        default:
+            headers.updateValue(Header.contentTypeJson.value,
+                                forKey: Header.contentTypeJson.key)
+        }
         
         return headers
     }
@@ -156,7 +173,7 @@ extension UserRouter: RouterProtocol {
             return EmptyResponseDTO.self
             
         case .getMyProfile, .updateMyProfile:
-            return UserDTO.self
+            return UserProfileDTO.self
             
         case .getOtherUserProfile:
             return OtherUserDTO.self
