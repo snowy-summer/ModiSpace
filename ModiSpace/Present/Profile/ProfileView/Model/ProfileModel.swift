@@ -18,6 +18,7 @@ final class ProfileModel: ObservableObject {
     @Published var myProfileImage = [UIImage]()
     @Published var isShowingImagePicker = false
     @Published var isShowLogoutAlertView = false
+    @Published var isUpdateSuccess = false
     @Published var goOnboarding = false
     
     private var cancelable = Set<AnyCancellable>()
@@ -31,11 +32,15 @@ final class ProfileModel: ObservableObject {
             
         case .nickname(let nickname, let isEdit):
             self.nickname = nickname
-            editProfile(isEditingNickname: isEdit)
+            editProfile(isEditingNickname: isEdit) {
+                self.isUpdateSuccess = true
+            }
             
         case .phone(let phone, let isEdit):
             self.phoneNumber = phone
-            editProfile(isEditingNickname: isEdit)
+            editProfile(isEditingNickname: isEdit) {
+                self.isUpdateSuccess = true
+            }
             
         case .showImagePicker:
             isShowingImagePicker = true
@@ -98,7 +103,8 @@ extension ProfileModel {
         .store(in: &cancelable)
     }
     
-    private func editProfile(isEditingNickname: Bool) {
+    private func editProfile(isEditingNickname: Bool,
+                             onSuccess: @escaping () -> Void) {
         let editMyProfileBody: EditMyProfileRequestBody
         
         if isEditingNickname {
@@ -130,6 +136,7 @@ extension ProfileModel {
             self?.userData = response
             self?.nickname = response.nickname
             self?.phoneNumber = response.phone ?? ""
+            onSuccess()
         }
         .store(in: &cancelable)
     }

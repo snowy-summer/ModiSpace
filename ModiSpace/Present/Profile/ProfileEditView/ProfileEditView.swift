@@ -52,6 +52,12 @@ struct ProfileEditView: View {
             Image(systemName: "chevron.left")
                 .foregroundColor(.black)
         })
+        .onChange(of: model.isUpdateSuccess) { success in
+            if success {
+                presentationMode.wrappedValue.dismiss()
+                model.isUpdateSuccess = false
+            }
+        }
     }
     
 }
