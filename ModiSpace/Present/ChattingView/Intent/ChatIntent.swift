@@ -16,4 +16,5 @@ enum ChatIntent {
     case dontShowDeleteAlert
     case deleteChannel
     case showEditChannelView
+    case editChannel
 }

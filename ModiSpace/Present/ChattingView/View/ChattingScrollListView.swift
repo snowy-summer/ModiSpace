@@ -19,7 +19,7 @@ struct ChattingScrollListView: View {
                     ForEach(messages) { message in
                         VStack(alignment: .leading) {
                             if let content = message.content, !content.isEmpty {
-                                ChatMessageRowCell(message: message)
+                                ChatMessageRowCell(message: message, showDate: true)
                             }
                             // 이미지 파일이 있는 경우 처리
                             // if let images = message.files, !images.isEmpty {
