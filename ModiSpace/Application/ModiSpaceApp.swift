@@ -22,7 +22,7 @@ import KakaoSDKAuth
 struct ModiSpaceApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @State var isSplashView = true
+    @State var isSplashView = false
     
     init() {
         let nativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
@@ -42,22 +42,24 @@ struct ModiSpaceApp: App {
                         }
                     }
             } else {
-//                OnboardingView()
-//                    .onOpenURL { url in
-//                        if (AuthApi.isKakaoTalkLoginUrl(url)) {
-//                            _ = AuthController.handleOpenUrl(url: url)
-//                        }
-//                    }
-//
-//            }
-                ContentView()
-
+                OnboardingView()
+                    .onOpenURL { url in
+                        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                            _ = AuthController.handleOpenUrl(url: url)
+                        }
+                    }
+                
+                //                ContentView()
+//                CustomTabView()
+                
             }
-
+            
             
         }
         
+        
     }
+    
 }
 
 struct LaunchScreenView: UIViewControllerRepresentable {

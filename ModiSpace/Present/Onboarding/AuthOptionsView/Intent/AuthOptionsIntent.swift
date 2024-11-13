@@ -11,6 +11,7 @@ enum AuthOptionsIntent {
     
     case appleLogin
     case kakaoLogin
-    case localLogin
+    case showSignInView    
+    case showSignUpView
     
 }
