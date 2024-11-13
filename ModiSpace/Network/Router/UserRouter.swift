@@ -172,14 +172,11 @@ extension UserRouter: RouterProtocol {
         case .validateEmail, .logout, .saveDeviceToken:
             return EmptyResponseDTO.self
             
-        case .getMyProfile, .updateMyProfile:
+        case .getMyProfile, .updateMyProfile, .updateMyProfileImage:
             return UserProfileDTO.self
             
         case .getOtherUserProfile:
             return OtherUserDTO.self
-            
-        case .updateMyProfileImage:
-            return UserDTO.self
         }
     }
     

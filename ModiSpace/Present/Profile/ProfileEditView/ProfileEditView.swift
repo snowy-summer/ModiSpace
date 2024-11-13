@@ -14,8 +14,9 @@ struct ProfileEditView: View {
     
     let isEditingNickname: Bool
     
-    init(model: ProfileModel = ProfileModel(), isEditingNickname: Bool) {
-        _model = ObservedObject(wrappedValue: model)
+    init(model: @autoclosure @escaping @MainActor () -> ProfileModel,
+         isEditingNickname: Bool) {
+        _model = ObservedObject(wrappedValue: model())
         self.isEditingNickname = isEditingNickname
     }
     
@@ -51,6 +52,12 @@ struct ProfileEditView: View {
             Image(systemName: "chevron.left")
                 .foregroundColor(.black)
         })
+        .onChange(of: model.isUpdateSuccess) { success in
+            if success {
+                presentationMode.wrappedValue.dismiss()
+                model.isUpdateSuccess = false
+            }
+        }
     }
     
 }

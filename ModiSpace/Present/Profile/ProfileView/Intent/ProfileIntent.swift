@@ -12,5 +12,10 @@ enum ProfileIntent {
     case viewAppear
     case nickname(String, Bool)
     case phone(String, Bool)
+    case showImagePicker
+    case myProfileImageChange
+    case showLogoutAlertView
+    case dontShowLogoutAlert
+    case logout
     
 }

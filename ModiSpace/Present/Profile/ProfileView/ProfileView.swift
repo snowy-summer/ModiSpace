@@ -14,14 +14,20 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                
                 ImageSelectButton(action: {
-//                    model.apply(.showImagePicker)
-                }, image: UIImage(named: "tempImage"))
-//                .sheet(isPresented: $model.isShowingImagePicker) {
-//                    PhotoPicker(selectedImages: $model.workspaceImage,
-//                                isMultipleImage: false)
-//                }
+                    model.apply(.showImagePicker)
+                }, image: model.myProfileImage.last)
+                .sheet(isPresented: $model.isShowingImagePicker) {
+                    PhotoPicker(selectedImages: $model.myProfileImage,
+                                isMultipleImage: false)
+                }
+                .onChange(of: model.myProfileImage) { newImages in
+                    if !newImages.isEmpty, let newImage = newImages.last {
+                        print("이미지가 선택되었습니다.")
+                        model.apply(.myProfileImageChange)
+                    }
+                }
+                .padding(.top)
                 
                 VStack(spacing: 4) {
                     SelectableRow(destination: ContentView(),
@@ -105,7 +111,7 @@ struct ProfileView: View {
                     SelectableRow<Never, _>(destination: nil,
                                             showChevron: false) {
                         Button(action: {
-                            
+                            model.apply(.showLogoutAlertView)
                         }) {
                             HStack {
                                 Text("로그아웃")
@@ -132,10 +138,53 @@ struct ProfileView: View {
                 Image(systemName: "chevron.left")
                     .foregroundStyle(.black)
             })
+            .onReceive(model.$goOnboarding) { value in
+                if value {
+                    DispatchQueue.main.async {
+                        setRootViewToOnboarding()
+                    }
+                }
+            }
+
+        }
+        .overlay {
+            if model.isShowLogoutAlertView {
+                Rectangle()
+                    .opacity(0.3)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            model.apply(.logout)
+                        }
+                    }
+                AlertView(
+                    title: "로그아웃",
+                    message: "정말 로그아웃 할까요?",
+                    primaryButtonText: "취소",
+                    secondaryButtonText: "로그아웃",
+                    onPrimaryButtonTap: { model.apply(.dontShowLogoutAlert) },
+                    onSecondaryButtonTap: { model.apply(.logout) }
+                )
+            }
         }
         .onAppear {
             model.apply(.viewAppear)
         }
+        .onReceive(model.$goOnboarding) { value in
+            if value {
+                setRootViewToOnboarding()
+            }
+        }
+        
+    }
+    
+    private func setRootViewToOnboarding() {
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        let rootViewController = UIHostingController(rootView: OnboardingView())
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
     }
     
 }
