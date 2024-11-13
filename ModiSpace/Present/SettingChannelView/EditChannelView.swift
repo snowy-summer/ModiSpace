@@ -31,12 +31,12 @@ struct EditChannelView: View {
             
             CommonButton(icon: nil,
                          backgroundColor: .main,
-                         text: "생성",
+                         text: "저장",
                          textColor: .white,
                          symbolColor: nil,
                          cornerRadius: 8,
                          isEnabled: model.isEditAble) {
-                // model.apply(.editChannel)
+                 model.apply(.editChannel)
                 dismiss()
             }
             .padding(.horizontal)

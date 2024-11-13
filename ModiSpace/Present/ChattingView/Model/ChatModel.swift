@@ -25,6 +25,12 @@ final class ChatModel: ObservableObject {
         !channel.name.isEmpty
     }
     
+    private var currentTime: String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "hh:mm a" // 오전/오후 포함된 시간 형식
+            return formatter.string(from: Date())
+        }
+    
     let networkManager = NetworkManager()
     var cancelable = Set<AnyCancellable>()
     
@@ -58,6 +64,9 @@ final class ChatModel: ObservableObject {
             
         case .showEditChannelView:
             isShowingEditChannelView = true
+              
+        case .editChannel:
+            editingChannel()
         }
     }
     
@@ -80,7 +89,7 @@ extension ChatModel {
             channelName: channel.name,
             chatID: "",
             content: messageText,
-            createdAt: channel.createdAt,
+            createdAt: currentTime,
             files: [""],
             user: OtherUserDTO(userID: "", email: "Modispace@naver.com", nickname: "임시닉네임", profileImage: "")
         )
@@ -90,5 +99,26 @@ extension ChatModel {
         messageText = ""
         selectedImages = []
     }
+    
+}
+
+
+extension ChatModel {
+    //수정된 채널 설정 서버에 반영하기
+    func editingChannel() {
+        let emptyData = Data() //이미지 뭐 넣어야 되는지 모르겠음  channel.coverImage 이거 인가?
+        Task {
+            do {
+                let router = ChannelRouter.editSpecificChannel(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "", channelID: channel.channelID, body: PostChannelRequestBody(name: channel.name, description: channel.description, image: emptyData))
+                
+                let _ = try await
+                NetworkManager().getDecodedData(from: router, type: ChannelDTO.self)
+            } catch(let error) {
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
+    
     
 }
