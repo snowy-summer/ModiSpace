@@ -25,6 +25,12 @@ final class ChatModel: ObservableObject {
         !channel.name.isEmpty
     }
     
+    private var currentTime: String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "hh:mm a" // 오전/오후 포함된 시간 형식
+            return formatter.string(from: Date())
+        }
+    
     let networkManager = NetworkManager()
     var cancelable = Set<AnyCancellable>()
     
@@ -83,7 +89,7 @@ extension ChatModel {
             channelName: channel.name,
             chatID: "",
             content: messageText,
-            createdAt: channel.createdAt,
+            createdAt: currentTime,
             files: [""],
             user: OtherUserDTO(userID: "", email: "Modispace@naver.com", nickname: "임시닉네임", profileImage: "")
         )

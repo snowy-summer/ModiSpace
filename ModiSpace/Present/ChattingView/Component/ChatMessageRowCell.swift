@@ -35,7 +35,7 @@ struct ChatMessageRowCell: View {
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                     
-                    Text("08:20 오전")
+                    Text(formattedTime(from: message.createdAt))
                         .font(.caption)
                         .foregroundStyle(.gray)
                 }
@@ -53,4 +53,22 @@ struct ChatMessageRowCell: View {
         .padding(message.isCurrentUser ? .leading : .trailing, 60)
         .padding(.vertical, 4)
     }
+}
+
+extension ChatMessageRowCell {
+    
+    private func formattedTime(from dateString: String) -> String {
+          let inputFormatter = DateFormatter()
+          inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+          
+          let outputFormatter = DateFormatter()
+          outputFormatter.dateFormat = "a hh:mm"
+          
+          if let date = inputFormatter.date(from: dateString) {
+              return outputFormatter.string(from: date)
+          } else {
+              return dateString
+          }
+      }
+    
 }
