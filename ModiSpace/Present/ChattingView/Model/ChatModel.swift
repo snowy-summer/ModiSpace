@@ -58,6 +58,9 @@ final class ChatModel: ObservableObject {
             
         case .showEditChannelView:
             isShowingEditChannelView = true
+              
+        case .editChannel:
+            editingChannel()
         }
     }
     
@@ -90,5 +93,26 @@ extension ChatModel {
         messageText = ""
         selectedImages = []
     }
+    
+}
+
+
+extension ChatModel {
+    //수정된 채널 설정 서버에 반영하기
+    func editingChannel() {
+        let emptyData = Data() //이미지 뭐 넣어야 되는지 모르겠음  channel.coverImage 이거 인가?
+        Task {
+            do {
+                let router = ChannelRouter.editSpecificChannel(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "", channelID: channel.channelID, body: PostChannelRequestBody(name: channel.name, description: channel.description, image: emptyData))
+                
+                let _ = try await
+                NetworkManager().getDecodedData(from: router, type: ChannelDTO.self)
+            } catch(let error) {
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
+    
     
 }
