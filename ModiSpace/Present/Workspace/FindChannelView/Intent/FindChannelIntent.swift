@@ -9,6 +9,7 @@ import Foundation
 
 enum FindChannelIntent {
     
+    case expiredRefreshToken
     case fetchChannelList
     
 }

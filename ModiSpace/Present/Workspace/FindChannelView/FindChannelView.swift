@@ -31,6 +31,9 @@ struct FindChannelView: View {
         .onAppear() {
             model.apply(.fetchChannelList)
         }
+        .onChange(of: model.isExpiredRefreshToken) {
+            setRootView(what: OnboardingView())
+        }
     }
     
 }

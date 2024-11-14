@@ -138,7 +138,7 @@ struct ProfileView: View {
             .onReceive(model.$goOnboarding) { value in
                 if value {
                     DispatchQueue.main.async {
-                        setRootViewToOnboarding()
+                        setRootView(what: OnboardingView())
                     }
                 }
             }
@@ -168,19 +168,10 @@ struct ProfileView: View {
         }
         .onReceive(model.$goOnboarding) { value in
             if value {
-                setRootViewToOnboarding()
+                setRootView(what: OnboardingView())
             }
         }
         
-    }
-    
-    private func setRootViewToOnboarding() {
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        let window = windowScene?.windows.first
-        let rootViewController = UIHostingController(rootView: OnboardingView())
-        window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
     }
     
     private func handleImageSelection() {

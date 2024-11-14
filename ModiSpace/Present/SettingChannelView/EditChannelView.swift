@@ -10,7 +10,7 @@ import SwiftUI
 struct EditChannelView: View {
     
     @Environment(\.dismiss) private var dismiss
-    @StateObject var model: ChatModel
+    @ObservedObject var model: ChatModel
     
     var body: some View {
         VStack(spacing: 24) {

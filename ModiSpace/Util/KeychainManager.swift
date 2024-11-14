@@ -20,14 +20,14 @@ enum KeychainKey: String {
 final class KeychainManager {
     
     static func save(_ value: String,
-                     forKey key: String) {
+                     forKey key: KeychainKey) {
         delete(forKey: key)
         
         guard let data = value.data(using: .utf8) else { return }
         
         let query: NSDictionary = [
             kSecClass : kSecClassGenericPassword,
-            kSecAttrAccount : key,
+            kSecAttrAccount : key.rawValue,
             kSecValueData : data
         ]
         
@@ -37,10 +37,10 @@ final class KeychainManager {
                "키체인 저장 실패: \(status)")
     }
     
-    static  func delete(forKey key: String) {
+    static  func delete(forKey key: KeychainKey) {
         let query: NSDictionary = [
             kSecClass : kSecClassGenericPassword,
-            kSecAttrAccount : key
+            kSecAttrAccount : key.rawValue
         ]
         
         let status = SecItemDelete(query as CFDictionary)
@@ -50,10 +50,10 @@ final class KeychainManager {
                "키체인 삭제 실패: \(status)")
     }
     
-    static func load(forKey key: String) -> String? {
+    static func load(forKey key: KeychainKey) -> String? {
         let query: NSDictionary = [
             kSecClass : kSecClassGenericPassword,
-            kSecAttrAccount : key,
+            kSecAttrAccount : key.rawValue,
             kSecReturnData : true,
             kSecMatchLimit : kSecMatchLimitOne
         ]

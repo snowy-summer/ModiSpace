@@ -170,8 +170,8 @@ extension NetworkManager: NetworkManagerProtocol {
                             })
                             .store(in: &self.cancelable)
                         }
-                        return
                     }
+                    promise(.failure(error))
                 }
                 
                 do {
@@ -181,7 +181,7 @@ extension NetworkManager: NetworkManagerProtocol {
                     print("실패한 라우터:", router.url!.absoluteString)
                     print(NetworkError.decodingFailed("\(type)"))
                     if let string = String(data: data, encoding: .utf8) {
-                        print("\(router.url!.absoluteString):", string)
+                        print("\(router.url!.absoluteString): 에서 보내온 Data", string)
                     }
                 }
             }
@@ -330,7 +330,7 @@ extension NetworkManager {
                 }
             } receiveValue: { tokens in
                 KeychainManager.save(tokens.accessToken,
-                                     forKey: KeychainKey.accessToken.rawValue)
+                                     forKey: .accessToken)
             }
             .store(in: &cancelable)
         }

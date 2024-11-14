@@ -10,5 +10,6 @@ import Foundation
 enum DMListIntent {
     
     case viewAppear
+    case expiredRefreshToken
     
 }

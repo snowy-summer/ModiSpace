@@ -63,6 +63,9 @@ struct DMListView: View {
         .onAppear() {
             model.apply(.viewAppear)
         }
+        .onChange(of: model.isExpiredRefreshToken) {
+            setRootView(what: OnboardingView())
+        }
     }
     
 }

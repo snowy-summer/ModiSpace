@@ -26,13 +26,14 @@ extension ChatModel {
             )
         )
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 print("메시지 전송 성공")
             case .failure(let error):
                 if let apiError = error as? APIError, apiError == .refreshTokenExpired {
                     print("리프레시 토큰 만료")
+                    self?.apply(.expiredRefreshToken)
                 }
                 print("메시지 전송 실패: \(error.localizedDescription)")
             }
@@ -54,13 +55,15 @@ extension ChatModel {
             type: [ChannelChatListDTO].self
         )
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 print("채팅 데이터 로드 성공")
             case .failure(let error):
-                if let apiError = error as? APIError, apiError == .refreshTokenExpired {
+                if let apiError = error as? APIError,
+                   apiError == .refreshTokenExpired {
                     print("리프레시 토큰 만료")
+                    self?.apply(.expiredRefreshToken)
                 }
                 print("채팅 데이터 로드 실패: \(error.localizedDescription)")
             }

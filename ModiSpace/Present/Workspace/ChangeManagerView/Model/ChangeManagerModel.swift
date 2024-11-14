@@ -14,8 +14,10 @@ final class ChangeManagerModel: ObservableObject {
     @Published var memberList = [WorkspaceMemberDTO]()
     var workspaceID: String = WorkspaceIDManager.shared.workspaceID ?? ""
     var isAble: Bool = true
-    @Published var isShowAlert = false
     var selectedMember: WorkspaceMemberDTO?
+    
+    @Published var isShowAlert = false
+    @Published var isExpiredRefreshToken = false
     
     private let networkManager = NetworkManager()
     private var cancelable = Set<AnyCancellable>()
@@ -25,6 +27,9 @@ final class ChangeManagerModel: ObservableObject {
         switch intent {
         case .fetchMemberList:
             fetchMemberList()
+            
+        case .expiredRefreshToken:
+            isExpiredRefreshToken = true
             
         case .changeManager:
             changeManager()
@@ -51,7 +56,7 @@ extension ChangeManagerModel {
         networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getMemberList(spaceId: workspaceID),
                                                    type: [WorkspaceMemberDTO].self)
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -62,6 +67,7 @@ extension ChangeManagerModel {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)

@@ -12,6 +12,8 @@ final class FindChannelModel: ObservableObject {
     
     @Published var channelList: [ChannelDTO] = []
     
+    @Published var isExpiredRefreshToken = false
+    
     private let networkManager = NetworkManager()
     private var cancelable = Set<AnyCancellable>()
     
@@ -19,6 +21,10 @@ final class FindChannelModel: ObservableObject {
         switch intent {
         case .fetchChannelList:
             fetchChannelList()
+            
+        case .expiredRefreshToken:
+            isExpiredRefreshToken = true
+            
         }
     }
     
@@ -32,7 +38,7 @@ extension FindChannelModel {
         networkManager.getDecodedDataWithPublisher(from: router,
                                                    type: [ChannelDTO].self)
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -43,6 +49,7 @@ extension FindChannelModel {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)

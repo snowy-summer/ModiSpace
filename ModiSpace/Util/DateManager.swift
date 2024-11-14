@@ -19,14 +19,14 @@ final class DateManager {
     }
     
     func string(from date: Date,
-                format: String = "yyyy.MM.dd HH:mm:ss") -> String {
+                format: String = "hh:mm a") -> String {
         dateFormatter.dateFormat = format
         dateFormatter.timeZone = TimeZone.current
         return dateFormatter.string(from: date)
     }
     
     func convertToFormattedString(isoString: String,
-                                  format: String = "yyyy.MM.dd HH:mm:ss") -> String? {
+                                  format: String = "hh:mm a") -> String? {
         guard let date = date(from: isoString) else { return nil }
         return string(from: date, format: format)
     }
