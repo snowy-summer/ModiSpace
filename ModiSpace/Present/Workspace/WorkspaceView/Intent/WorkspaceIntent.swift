@@ -22,5 +22,6 @@ enum WorkspaceIntent {
     case deleteWorkspace
     case reloadWorkspaceList
     case exitWorkspace
+    case profileMe
     
 }

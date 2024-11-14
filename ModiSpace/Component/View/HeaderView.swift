@@ -11,6 +11,7 @@ struct HeaderView: View {
     
     let coverImage: UIImage
     let name: String
+    let profileImage: UIImage
     let action: () -> Void
 
     var body: some View {
@@ -25,7 +26,7 @@ struct HeaderView: View {
             Spacer()
             
             Button(action: action) {
-                Image(systemName: "star")
+                Image(uiImage: profileImage)
                     .resizable()
                     .background(Color.main)
                     .frame(width: 40, height: 40)

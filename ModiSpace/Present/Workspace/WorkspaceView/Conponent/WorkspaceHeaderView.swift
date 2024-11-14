@@ -15,6 +15,7 @@ struct WorkspaceHeaderView: View {
         HeaderView(
             coverImage: model.selectedWorkspace?.coverImage ?? UIImage(resource: .temp),
             name: model.selectedWorkspace?.name ?? "아무 값 없음",
+            profileImage: model.profileImage ?? UIImage(resource: .temp),
             action: {
                 model.isShowProfileView = true
             }
@@ -22,6 +23,9 @@ struct WorkspaceHeaderView: View {
         NavigationLink(destination: ProfileView(),
                        isActive: $model.isShowProfileView) {
             EmptyView()
+        }
+        .onAppear {
+            model.apply(.profileMe)
         }
     }
     
