@@ -30,6 +30,7 @@ struct ChattingView: View {
             .background(Color(UIColor.systemGray6))
             .cornerRadius(8)
             .padding(.horizontal)
+            .padding(.bottom)
         }
         .navigationTitle(model.channel.name)
         .toolbar {

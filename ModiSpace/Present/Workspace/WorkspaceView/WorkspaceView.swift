@@ -1,5 +1,5 @@
 //
-//  ChannelView_Home.swift
+//  WorkspaceView.swift
 //  ModiSpace
 //
 //  Created by 이윤지 on 10/26/24.
@@ -28,16 +28,21 @@ struct WorkspaceView: View {
                     
                     Divider()
                     
-                    ScrollView{
-                        CategoryListView()
+                    if model.isWorkspaceEmpty {
+                        SideMenuEmptyContentView()
                             .environmentObject(model)
-                        
-                        SFSubButton(text: "팀원 추가") {
-                            model.apply(.showMemberAddView)
+                    } else {
+                        ScrollView{
+                            CategoryListView()
+                                .environmentObject(model)
+                            
+                            SFSubButton(text: "팀원 추가") {
+                                model.apply(.showMemberAddView)
+                            }
+                            .padding()
+                            
+                            Spacer()
                         }
-                        .padding()
-                        
-                        Spacer()
                     }
                 }
                 .dragGesture(direction: .right) {
@@ -53,11 +58,11 @@ struct WorkspaceView: View {
                    onDismiss: {
                 model.apply(.reloadWorkspaceList)
             }) { type in
-                SheetView(type: type)
+                WorkspaceSheetView(type: type)
                     .presentationDragIndicator(.visible)
             }
             .onAppear() {
-                model.apply(.viewAppear)
+                model.apply(.fetchWorkspaceList)
             }
             .navigationDestination(isPresented: $model.isShowNewMessageView) {
                 NewMessageView()

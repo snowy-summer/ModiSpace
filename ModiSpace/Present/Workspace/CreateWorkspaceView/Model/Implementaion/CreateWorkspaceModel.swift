@@ -19,7 +19,7 @@ final class CreateWorkSpaceModel: ObservableObject {
     init(workspace: WorkspaceState = WorkspaceState(),
          isShowingImagePicker: Bool = false,
          isEditingMode: Bool = false) {
-        self.workspaceImage = [workspace.coverImage]
+        self.workspaceImage = workspace.coverImage != nil ? [workspace.coverImage!] : []
         self.workspaceName = workspace.name
         self.workspaceDescription = workspace.description
         self.workspaceID = workspace.workspaceID

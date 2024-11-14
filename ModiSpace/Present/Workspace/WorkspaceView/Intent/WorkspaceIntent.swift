@@ -9,7 +9,7 @@ import Foundation
 
 enum WorkspaceIntent {
     
-    case viewAppear
+    case fetchWorkspaceList
     case showSideView
     case dontShowSideView
     case showMemberAddView

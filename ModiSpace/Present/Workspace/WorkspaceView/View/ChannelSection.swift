@@ -57,7 +57,7 @@ struct ChannelSection: View {
                onDismiss: {
             workspaceModel.apply(.reloadChannelList)
         }) { type in
-            SheetView(type: type)
+            WorkspaceSheetView(type: type)
                 .presentationDragIndicator(.visible)
         }
     }

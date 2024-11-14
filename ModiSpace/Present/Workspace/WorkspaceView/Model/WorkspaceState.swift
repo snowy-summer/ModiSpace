@@ -13,7 +13,7 @@ struct WorkspaceState {
     let name: String
     let description: String
     let coverImageString: String
-    var coverImage: UIImage
+    var coverImage: UIImage?
     let ownerID: String
     var createdAt: String
     let channels: [ChannelDTO]
@@ -23,7 +23,7 @@ struct WorkspaceState {
          name: String = "",
          description: String = "",
          coverImageString: String = "",
-         coverImage: UIImage = UIImage(),
+         coverImage: UIImage? = nil,
          ownerID: String = "",
          createdAt: String = "",
          channels: [ChannelDTO] = [],
