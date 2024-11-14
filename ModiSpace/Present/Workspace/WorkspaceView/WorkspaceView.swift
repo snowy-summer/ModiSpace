@@ -28,16 +28,21 @@ struct WorkspaceView: View {
                     
                     Divider()
                     
-                    ScrollView{
-                        CategoryListView()
+                    if model.isWorkspaceEmpty {
+                        SideMenuEmptyContentView()
                             .environmentObject(model)
-                        
-                        SFSubButton(text: "팀원 추가") {
-                            model.apply(.showMemberAddView)
+                    } else {
+                        ScrollView{
+                            CategoryListView()
+                                .environmentObject(model)
+                            
+                            SFSubButton(text: "팀원 추가") {
+                                model.apply(.showMemberAddView)
+                            }
+                            .padding()
+                            
+                            Spacer()
                         }
-                        .padding()
-                        
-                        Spacer()
                     }
                 }
                 .dragGesture(direction: .right) {
