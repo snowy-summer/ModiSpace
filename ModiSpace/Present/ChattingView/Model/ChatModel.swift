@@ -13,6 +13,7 @@ final class ChatModel: ObservableObject {
     @Published var messages: [ChannelChatListDTO] = []
     @Published var messageText: String = ""
     @Published var selectedImages: [UIImage] = []
+    
     @Published var isShowingImagePicker = false
     @Published var isShowDeleteAlertView = false
     @Published var isChannelDeleted = false
@@ -20,6 +21,8 @@ final class ChatModel: ObservableObject {
     //@Published var sheetType: ChatViewSheetType?
     @Published var channelMembers: [OtherUserDTO] = []
     @Published var isMemberListShow = false
+    @Published var isExpiredRefreshToken = false
+    
     
     var channel: ChannelDTO
     
@@ -70,6 +73,8 @@ final class ChatModel: ObservableObject {
             
             // case .showChangeManagerView:
             //sheetType = .changeChannelManager
+        case .expiredRefreshToken:
+            isExpiredRefreshToken = true
         }
     }
     

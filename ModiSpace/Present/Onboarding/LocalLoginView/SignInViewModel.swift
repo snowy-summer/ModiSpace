@@ -36,7 +36,7 @@ final class SignInViewModel: ObservableObject {
 extension SignInViewModel {
     
     func login() {
-        guard let token = KeychainManager.load(forKey: KeychainKey.deviceToken.rawValue) else { return }
+        guard let token = KeychainManager.load(forKey: .deviceToken) else { return }
         let router = UserRouter.login(body: LoginRequestBody(email: loginEmail,
                                                              password: loginPassword,
                                                              deviceToken: token))
@@ -54,9 +54,9 @@ extension SignInViewModel {
                 }
             } receiveValue: { [weak self] loginData in
                 KeychainManager.save(loginData.token.accessToken,
-                                     forKey: KeychainKey.accessToken.rawValue)
+                                     forKey: .accessToken)
                 KeychainManager.save(loginData.token.refreshToken!,
-                                     forKey: KeychainKey.refreshToken.rawValue)
+                                     forKey: .refreshToken)
                 self?.showWorkspace = true
             }.store(in: &cancelable)
         

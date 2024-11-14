@@ -9,6 +9,7 @@ import Foundation
 
 enum ChangeManagerInent {
     
+    case expiredRefreshToken
     case changeManager
     case fetchMemberList
     case showAlert

@@ -65,9 +65,18 @@ extension View {
      사용방법
      방향 선택후 액션
      .dragGesture(direction: .left) {
-      action()
+     action()
      }
      */
+    
+    func setRootView(what view: some View) {
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        let rootViewController = UIHostingController(rootView: view)
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
+    }
     
 }
 

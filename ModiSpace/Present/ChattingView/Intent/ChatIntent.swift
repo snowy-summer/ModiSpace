@@ -19,4 +19,5 @@ enum ChatIntent {
     case editChannel
    // case showChangeManagerView
     case getChannelMembers
+    case expiredRefreshToken
 }

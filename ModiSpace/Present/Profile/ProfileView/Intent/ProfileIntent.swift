@@ -16,6 +16,7 @@ enum ProfileIntent {
     case myProfileImageChange
     case showLogoutAlertView
     case dontShowLogoutAlert
+    case expiredRefreshToken
     case logout
     
 }

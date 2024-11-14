@@ -54,6 +54,9 @@ struct ChangeManagerView: View {
         .onAppear() {
             model.apply(.fetchMemberList)
         }
+        .onChange(of: model.isExpiredRefreshToken) {
+            setRootView(what: OnboardingView())
+        }
     }
     
 }

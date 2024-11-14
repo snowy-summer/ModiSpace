@@ -34,7 +34,7 @@ enum Header {
     var value: String {
         switch self {
         case .authorization:
-            guard let token = KeychainManager.load(forKey: KeychainKey.accessToken.rawValue) else { return "실패" }
+            guard let token = KeychainManager.load(forKey: .accessToken) else { return "실패" }
             return token
             
         case .sesacKey:
@@ -42,7 +42,7 @@ enum Header {
             return key
             
         case .refreshToken:
-            guard let token = KeychainManager.load(forKey: KeychainKey.refreshToken.rawValue) else { return "실패" }
+            guard let token = KeychainManager.load(forKey: .refreshToken) else { return "실패" }
             return token
             
         case .contentTypeJson:

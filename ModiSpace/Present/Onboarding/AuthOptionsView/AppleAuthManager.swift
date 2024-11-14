@@ -46,7 +46,7 @@ extension AppleAuthManager: ASAuthorizationControllerDelegate {
         
         print("Success, Token: \(identityToken), Name: \(nickname)")
         
-        let deviceToken = KeychainManager.load(forKey: KeychainKey.deviceToken.rawValue) ?? ""
+        let deviceToken = KeychainManager.load(forKey: .deviceToken) ?? ""
         let requestBody = AppleLoginRequestBody(idToken: identityToken,
                                                 nickname: nickname,
                                                 deviceToken: deviceToken)
@@ -65,15 +65,15 @@ extension AppleAuthManager: ASAuthorizationControllerDelegate {
                     print("Response: \(response)")
                     let accessToken = response.token.accessToken
                     KeychainManager.save(accessToken,
-                                         forKey: KeychainKey.accessToken.rawValue)
+                                         forKey: .accessToken)
                     
                     if let refreshToken = response.token.refreshToken {
                         KeychainManager.save(refreshToken,
-                                             forKey: KeychainKey.refreshToken.rawValue)
+                                             forKey: .refreshToken)
                     }
                     
                     KeychainManager.save(response.userID,
-                                         forKey: KeychainKey.userID.rawValue)
+                                         forKey: .userID)
                     
                     self?.continuation?.resume(returning: true)
                 }

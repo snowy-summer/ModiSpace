@@ -41,6 +41,9 @@ struct RegisterChannelView: View {
         .onTapGesture {
             endTextEditing()
         }
+        .onChange(of: model.isExpiredRefreshToken) {
+            setRootView(what: OnboardingView())
+        }
     }
     
 }

@@ -36,9 +36,9 @@ struct ContentView: View {
                     
                     // 토큰 저장
                     KeychainManager.save(loginData.token.accessToken,
-                                         forKey: KeychainKey.accessToken.rawValue)
+                                         forKey: .accessToken)
                     KeychainManager.save(loginData.token.refreshToken!,
-                                         forKey: KeychainKey.refreshToken.rawValue)
+                                         forKey: .refreshToken)
                     print("에세스토큰: \(loginData.token.accessToken)")
                     print("리프레쉬토큰: \(loginData.token.refreshToken)")
                 } catch(let error) {

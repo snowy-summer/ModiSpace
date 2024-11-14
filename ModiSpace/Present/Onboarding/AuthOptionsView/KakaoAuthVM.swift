@@ -69,7 +69,7 @@ final class KakaoAuthVM: ObservableObject{
             return
         }
         
-        let deviceToken = KeychainManager.load(forKey: KeychainKey.deviceToken.rawValue) ?? ""
+        let deviceToken = KeychainManager.load(forKey: .deviceToken) ?? ""
         let requestBody = KakaoLoginRequestBody(oauthToken: accessToken,
                                                 deviceToken: deviceToken)
         
@@ -88,15 +88,15 @@ final class KakaoAuthVM: ObservableObject{
                     
                     let accessToken = response.token.accessToken
                     KeychainManager.save(accessToken,
-                                         forKey: KeychainKey.accessToken.rawValue)
+                                         forKey: .accessToken)
                     
                     if let refreshToken = response.token.refreshToken {
                         KeychainManager.save(refreshToken,
-                                             forKey: KeychainKey.refreshToken.rawValue)
+                                             forKey: .refreshToken)
                     }
                     
                     KeychainManager.save(response.userID,
-                                         forKey: KeychainKey.userID.rawValue)
+                                         forKey: .userID)
                     
                     continuation.resume(returning: true)
                 }

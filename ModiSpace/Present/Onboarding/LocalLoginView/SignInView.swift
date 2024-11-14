@@ -56,20 +56,12 @@ struct SignInView: View {
             }
             .onReceive(model.$showWorkspace) { value in
                 if value {
-                    setRootViewToWorkspace()
+                    setRootView(what: CustomTabView())
                 }
             }
         }
     }
     
-    private func setRootViewToWorkspace() {
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        let window = windowScene?.windows.first
-        let rootViewController = UIHostingController(rootView: CustomTabView())
-        window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
-    }
 }
 
 #Preview {
