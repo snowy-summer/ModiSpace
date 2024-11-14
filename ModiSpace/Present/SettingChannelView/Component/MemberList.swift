@@ -11,6 +11,8 @@ struct MemberList: View {
     
     @State private var isMemberListShow = false
     
+    @StateObject var model: ChatModel
+    
     let memberCount = 30
 
     // Grid 설정: 4열로 설정
@@ -29,7 +31,7 @@ struct MemberList: View {
             }) {
                 HStack {
                     Text("멤버")
-                    Text("(\(memberCount))")
+                    Text(" \(model.channelMembers.count)")
                     Spacer()
                     Image(systemName: isMemberListShow ? "chevron.down" : "chevron.forward")
                         .foregroundStyle(.black)
@@ -39,19 +41,16 @@ struct MemberList: View {
             
             if isMemberListShow {
                 LazyVGrid(columns: columns, spacing: 12) {
-                    ForEach(0..<memberCount, id: \.self) { _ in
-                        ProfileNickCell(profile: "",
-                                        nickText: "dfdf")
+                    ForEach(model.channelMembers, id: \.userID) { member in
+                        ProfileNickCell(profile: member.profileImage ?? "",
+                                        nickText: member.nickname)
                     }
                 }
                 .padding(.horizontal, 12)
             }
+        }.onAppear {
+            model.apply(.getChannelMembers)
         }
     }
     
 }
-
-//#Preview {
-//    SettingChannelView()
-//}
-

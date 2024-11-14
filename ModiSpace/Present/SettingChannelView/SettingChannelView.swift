@@ -16,7 +16,7 @@ struct SettingChannelView: View {
             VStack {
                 SettingChannelHeaderView(model: model)
                 
-                MemberList()
+                MemberList(model: model)
                 
                 SettingChannelButton(title: "채널 편집") {
                     model.apply(.showEditChannelView)
@@ -55,10 +55,7 @@ struct SettingChannelView: View {
                     switchToWorkspaceView()
                 }
             }
-            
         }
-        
-        
     }
     
 }
