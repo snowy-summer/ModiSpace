@@ -10,28 +10,24 @@ import SwiftUI
 struct ProfileView: View {
     
     @StateObject var model = ProfileModel()
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
                 ImageSelectButton(action: {
                     model.apply(.showImagePicker)
                 }, image: model.myProfileImage.last)
-                .sheet(isPresented: $model.isShowingImagePicker) {
+                .sheet(isPresented: $model.isShowingImagePicker,
+                       onDismiss: handleImageSelection) {
                     PhotoPicker(selectedImages: $model.myProfileImage,
                                 isMultipleImage: false)
-                }
-                .onChange(of: model.myProfileImage) { newImages in
-                    if !newImages.isEmpty, let newImage = newImages.last {
-                        print("이미지가 선택되었습니다.")
-                        model.apply(.myProfileImageChange)
-                    }
                 }
                 .padding(.top)
                 
                 VStack(spacing: 4) {
                     SelectableRow(destination: ContentView(),
-                                        showChevron: true) {
+                                  showChevron: true) {
                         Text("내 새싹 코인")
                             .foregroundStyle(.black)
                             .customFont(.bodyBold)
@@ -49,7 +45,7 @@ struct ProfileView: View {
                     
                     SelectableRow(destination: ProfileEditView(model: model,
                                                                isEditingNickname: true),
-                                        showChevron: true) {
+                                  showChevron: true) {
                         Text("닉네임")
                             .foregroundStyle(.black)
                             .customFont(.bodyBold)
@@ -63,7 +59,7 @@ struct ProfileView: View {
                     
                     SelectableRow(destination: ProfileEditView(model: model,
                                                                isEditingNickname: false),
-                                        showChevron: true) {
+                                  showChevron: true) {
                         Text("연락처")
                             .foregroundStyle(.black)
                             .customFont(.bodyBold)
@@ -132,8 +128,9 @@ struct ProfileView: View {
             }
             .background(Color(.systemGray6))
             .navigationBarTitle("내 정보 수정", displayMode: .inline)
+            .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: Button(action: {
-                
+                dismiss()
             }) {
                 Image(systemName: "chevron.left")
                     .foregroundStyle(.black)
@@ -145,7 +142,6 @@ struct ProfileView: View {
                     }
                 }
             }
-
         }
         .overlay {
             if model.isShowLogoutAlertView {
@@ -185,6 +181,21 @@ struct ProfileView: View {
         let rootViewController = UIHostingController(rootView: OnboardingView())
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
+    }
+    
+    private func handleImageSelection() {
+        guard let newImage = model.myProfileImage.last else { return }
+        if !areImagesEqual(model.previousImage, newImage) {
+            model.apply(.myProfileImageChange)
+        }
+        model.previousImage = newImage
+    }
+    
+    private func areImagesEqual(_ image1: UIImage?, _ image2: UIImage?) -> Bool {
+        guard let image1 = image1, let image2 = image2 else {
+            return image1 == nil && image2 == nil
+        }
+        return image1.pngData() == image2.pngData()
     }
     
 }

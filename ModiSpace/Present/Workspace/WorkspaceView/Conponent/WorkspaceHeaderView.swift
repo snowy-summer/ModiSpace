@@ -10,15 +10,19 @@ import SwiftUI
 struct WorkspaceHeaderView: View {
     
     @ObservedObject var model: WorkspaceModel
-
+    
     var body: some View {
         HeaderView(
             coverImage: model.selectedWorkspace?.coverImage ?? UIImage(resource: .temp),
             name: model.selectedWorkspace?.name ?? "아무 값 없음",
             action: {
-                print("스타 버튼 클릭")
+                model.isShowProfileView = true
             }
         )
+        NavigationLink(destination: ProfileView(),
+                       isActive: $model.isShowProfileView) {
+            EmptyView()
+        }
     }
     
 }

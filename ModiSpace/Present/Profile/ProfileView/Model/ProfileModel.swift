@@ -20,6 +20,7 @@ final class ProfileModel: ObservableObject {
     @Published var isShowLogoutAlertView = false
     @Published var isUpdateSuccess = false
     @Published var goOnboarding = false
+    @Published var previousImage: UIImage?
     
     private var cancelable = Set<AnyCancellable>()
     private let networkManager = NetworkManager()

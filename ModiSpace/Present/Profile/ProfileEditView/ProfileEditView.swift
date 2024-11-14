@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileEditView: View {
     
     @ObservedObject var model: ProfileModel
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     let isEditingNickname: Bool
     
@@ -47,14 +47,14 @@ struct ProfileEditView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }) {
             Image(systemName: "chevron.left")
                 .foregroundColor(.black)
         })
         .onChange(of: model.isUpdateSuccess) { success in
             if success {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
                 model.isUpdateSuccess = false
             }
         }

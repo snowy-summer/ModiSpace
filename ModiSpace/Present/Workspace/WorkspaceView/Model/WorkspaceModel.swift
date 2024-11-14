@@ -13,6 +13,7 @@ final class WorkspaceModel: ObservableObject {
     @Published var isShowNewMessageView = false
     @Published var isShowSideView = false
     @Published var isShowDeleteAlertView = false
+    @Published var isShowProfileView = false
     
     @Published var workspaceList: [WorkspaceState] = []
     @Published var selectedWorkspaceID: String? = WorkspaceIDManager.shared.workspaceID
