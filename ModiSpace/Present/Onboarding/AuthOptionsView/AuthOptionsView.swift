@@ -88,7 +88,7 @@ struct AuthOptionsView: View {
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
         let window = windowScene?.windows.first
-        let rootViewController = UIHostingController(rootView: WorkspaceView())
+        let rootViewController = UIHostingController(rootView: CustomTabView())
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
