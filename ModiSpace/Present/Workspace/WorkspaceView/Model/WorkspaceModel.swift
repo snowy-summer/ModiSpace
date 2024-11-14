@@ -13,12 +13,14 @@ final class WorkspaceModel: ObservableObject {
     @Published var isShowNewMessageView = false
     @Published var isShowSideView = false
     @Published var isShowDeleteAlertView = false
+    @Published var isShowProfileView = false
     @Published var isExpiredRefreshToken = false
     
     @Published var workspaceList: [WorkspaceState] = []
     @Published var selectedWorkspaceID: String? = WorkspaceIDManager.shared.workspaceID
     @Published var selectedWorkspaceChannelList = [ChannelDTO]()
     
+    @Published var profileImage: UIImage? = nil
     @Published var sheetType: WorkspaceViewSheetType?
     
     var selectedWorkspace: WorkspaceState? {
@@ -95,6 +97,9 @@ final class WorkspaceModel: ObservableObject {
         
         case .exitWorkspace:
             exitWorkspace()
+            
+        case .profileMe:
+            fetchUserProfile()
         }
     }
     
@@ -247,6 +252,28 @@ extension WorkspaceModel {
                 }
             } receiveValue: { [weak self] data in
                 self?.fetchWorkspace()
+            }
+            .store(in: &cancelable)
+    }
+    
+    private func fetchUserProfile() {
+        networkManager.getDecodedDataWithPublisher(from: UserRouter.getMyProfile, type: UserProfileDTO.self)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    print("프로필 데이터 가져오기 실패: \(error)")
+                }
+            } receiveValue: { [weak self] response in
+                Task { [weak self] in
+                    guard let self = self else { return }
+                    if let image = await self.fetchImage(for: response.profileImage ?? "") {
+                        DispatchQueue.main.async {
+                            self.profileImage = image
+                        }
+                    }
+                }
             }
             .store(in: &cancelable)
     }

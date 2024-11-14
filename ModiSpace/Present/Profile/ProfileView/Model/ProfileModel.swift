@@ -21,6 +21,7 @@ final class ProfileModel: ObservableObject {
     @Published var isShowLogoutAlertView = false
     @Published var isUpdateSuccess = false
     @Published var goOnboarding = false
+    @Published var previousImage: UIImage?
     @Published var isExpiredRefreshToken = false
     
     private var cancelable = Set<AnyCancellable>()

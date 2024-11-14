@@ -17,6 +17,7 @@ struct DMListView: View {
                 HeaderView(
                     coverImage: UIImage(resource: .temp),
                     name: "Direct Message",
+                    profileImage: UIImage(resource: .temp),
                     action: {
                         
                     }
