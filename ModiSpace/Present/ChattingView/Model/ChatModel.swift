@@ -19,6 +19,7 @@ final class ChatModel: ObservableObject {
     @Published var isShowingEditChannelView = false
     //@Published var sheetType: ChatViewSheetType?
     @Published var channelMembers: [OtherUserDTO] = []
+    @Published var isMemberListShow = false
     
     var channel: ChannelDTO
     
