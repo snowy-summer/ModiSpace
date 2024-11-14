@@ -11,7 +11,7 @@ struct MemberList: View {
     
     @State private var isMemberListShow = false
     
-    @StateObject var model: ChatModel
+    @ObservedObject var model: ChatModel
     
     let memberCount = 30
 
