@@ -17,4 +17,6 @@ enum ChatIntent {
     case deleteChannel
     case showEditChannelView
     case editChannel
+   // case showChangeManagerView
+    case getChannelMembers
 }
