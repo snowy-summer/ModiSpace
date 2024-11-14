@@ -21,7 +21,8 @@ struct SignInView: View {
                 
                 InputField(text: $model.loginPassword,
                            title: "비밀번호",
-                           placeholder: "비밀번호를 입력하세요")
+                           placeholder: "비밀번호를 입력하세요",
+                           isSecure: true)
                 
                 Spacer()
                 

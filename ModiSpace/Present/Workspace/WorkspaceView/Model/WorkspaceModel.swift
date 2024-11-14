@@ -26,6 +26,12 @@ final class WorkspaceModel: ObservableObject {
                 return workspace
             }
         }
+        
+        if !isWorkspaceEmpty {
+            selectedWorkspaceID = workspaceList.first!.workspaceID
+            return workspaceList.first!
+        }
+        
         return nil
     }
     
@@ -45,7 +51,7 @@ final class WorkspaceModel: ObservableObject {
         
         switch intent {
             
-        case .viewAppear:
+        case .fetchWorkspaceList:
             fetchWorkspace()
             
         case .showSideView:

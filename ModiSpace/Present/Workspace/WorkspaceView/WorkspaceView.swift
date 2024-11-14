@@ -62,7 +62,7 @@ struct WorkspaceView: View {
                     .presentationDragIndicator(.visible)
             }
             .onAppear() {
-                model.apply(.viewAppear)
+                model.apply(.fetchWorkspaceList)
             }
             .navigationDestination(isPresented: $model.isShowNewMessageView) {
                 NewMessageView()
