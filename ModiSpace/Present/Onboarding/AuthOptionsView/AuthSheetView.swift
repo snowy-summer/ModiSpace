@@ -12,15 +12,13 @@ struct AuthSheetView: View {
     var type: AuthSheetType
     
     var body: some View {
-        NavigationStack {
+        
+        switch type {
+        case .signIn:
+            SignInView()
             
-            switch type {
-            case .signIn:
-                SignInView()
-                    
-            case .signUp:
-                SignUpView()
-            }
+        case .signUp:
+            SignUpView()
         }
     }
 }
