@@ -1,5 +1,5 @@
 //
-//  ChannelView_Home.swift
+//  WorkspaceView.swift
 //  ModiSpace
 //
 //  Created by 이윤지 on 10/26/24.
@@ -53,7 +53,7 @@ struct WorkspaceView: View {
                    onDismiss: {
                 model.apply(.reloadWorkspaceList)
             }) { type in
-                SheetView(type: type)
+                WorkspaceSheetView(type: type)
                     .presentationDragIndicator(.visible)
             }
             .onAppear() {

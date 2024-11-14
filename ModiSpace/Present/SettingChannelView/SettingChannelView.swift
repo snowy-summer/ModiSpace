@@ -45,6 +45,7 @@ struct SettingChannelView: View {
         )
         .sheet(isPresented: $model.isShowingEditChannelView) {
                    EditChannelView(model: model)
+                .presentationDragIndicator(.visible)
                }
         .onChange(of: model.isChannelDeleted) { isDeleted in
             if isDeleted {

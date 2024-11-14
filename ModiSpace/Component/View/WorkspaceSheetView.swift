@@ -1,5 +1,5 @@
 //
-//  SheetView.swift
+//  WorkspaceSheetView.swift
 //  ModiSpace
 //
 //  Created by 최승범 on 11/5/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SheetView: View {
+struct WorkspaceSheetView: View {
     
     @EnvironmentObject var model: WorkspaceModel
     var type: WorkspaceViewSheetType

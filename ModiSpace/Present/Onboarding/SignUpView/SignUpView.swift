@@ -13,7 +13,7 @@ struct SignUpView: View {
     @StateObject private var model = SignUpModel()
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack(spacing: 4) {
                 HStack(spacing: 4){
                     InputField(text: $model.email,
@@ -109,7 +109,7 @@ struct SignUpView: View {
                              .padding()
                              .onReceive(model.$isSignUpSuccessful) { isSuccess in
                                  if isSuccess {
-//                                     showWorkspaceView = true
+                                     setRootViewToWorkspace()
                                  }
                              }
             }
@@ -126,6 +126,15 @@ struct SignUpView: View {
                 }
             }
         }
+    }
+    
+    private func setRootViewToWorkspace() {
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        let rootViewController = UIHostingController(rootView: CustomTabView())
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
     }
 }
 
