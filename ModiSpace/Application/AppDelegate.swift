@@ -28,7 +28,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let deviceTokenString = tokenParts.joined()
         print("Device Token: \(deviceTokenString)")
         KeychainManager.save(deviceTokenString,
-                             forKey: KeychainKey.deviceToken.rawValue)
+                             forKey: .deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

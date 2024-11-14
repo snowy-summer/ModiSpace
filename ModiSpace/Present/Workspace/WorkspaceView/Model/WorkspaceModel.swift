@@ -29,7 +29,7 @@ final class WorkspaceModel: ObservableObject {
         }
         
         if !isWorkspaceEmpty {
-            selectedWorkspaceID = workspaceList.first!.workspaceID
+            WorkspaceIDManager.shared.workspaceID = workspaceList.first!.workspaceID
             return workspaceList.first!
         }
         
@@ -134,6 +134,7 @@ extension WorkspaceModel {
             }
         } receiveValue: { [weak self] value in
             self?.convertWorkspaceList(from: value)
+            WorkspaceIDManager.shared.workspaceID = value.first?.workspaceID
         }.store(in: &cancelable)
     }
     
