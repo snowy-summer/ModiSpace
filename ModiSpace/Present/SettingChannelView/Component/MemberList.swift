@@ -9,10 +9,10 @@ import SwiftUI
 
 struct MemberList: View {
     
-    @State private var isMemberListShow = false
+    @ObservedObject var model: ChatModel
     
     let memberCount = 30
-
+    
     // Grid 설정: 4열로 설정
     let columns = [
         GridItem(.flexible()),
@@ -25,33 +25,30 @@ struct MemberList: View {
     var body: some View {
         VStack {
             Button(action: {
-                isMemberListShow.toggle()
+                model.isMemberListShow.toggle()
             }) {
                 HStack {
                     Text("멤버")
-                    Text("(\(memberCount))")
+                    Text(" \(model.channelMembers.count)")
                     Spacer()
-                    Image(systemName: isMemberListShow ? "chevron.down" : "chevron.forward")
+                    Image(systemName: model.isMemberListShow ? "chevron.down" : "chevron.forward")
                         .foregroundStyle(.black)
                 }
                 .padding()
             }
             
-            if isMemberListShow {
+            if model.isMemberListShow {
                 LazyVGrid(columns: columns, spacing: 12) {
-                    ForEach(0..<memberCount, id: \.self) { _ in
-                        ProfileNickCell(profile: "",
-                                        nickText: "dfdf")
+                    ForEach(model.channelMembers, id: \.userID) { member in
+                        ProfileNickCell(profile: member.profileImage ?? "",
+                                        nickText: member.nickname)
                     }
                 }
                 .padding(.horizontal, 12)
             }
+        }.onAppear {
+            model.apply(.getChannelMembers)
         }
     }
     
 }
-
-//#Preview {
-//    SettingChannelView()
-//}
-

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingChannelHeaderView: View {
     
-    @StateObject var model: ChatModel
+    @ObservedObject var model: ChatModel
     
     var body: some View {
         VStack (spacing: 10){
