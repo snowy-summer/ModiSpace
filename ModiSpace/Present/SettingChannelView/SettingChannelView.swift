@@ -23,7 +23,9 @@ struct SettingChannelView: View {
             
             SettingChannelButton(title: "채널에서 나가기") { }
             
-            SettingChannelButton(title: "채널 관리자 변경") { }
+            SettingChannelButton(title: "채널 관리자 변경") {
+                //model.apply(.showChangeManagerView)
+            }
             
             SettingChannelButton(title: "채널 삭제") {
                 model.isShowDeleteAlertView = true

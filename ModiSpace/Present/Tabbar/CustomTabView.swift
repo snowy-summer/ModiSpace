@@ -42,6 +42,7 @@ struct CustomTabView: View {
             VStack {
                 Spacer()
                 tabBar
+                    .background(Color.white)
             }
         }
         .edgesIgnoringSafeArea(.bottom)

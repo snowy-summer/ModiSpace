@@ -17,7 +17,7 @@ final class ChatModel: ObservableObject {
     @Published var isShowDeleteAlertView = false
     @Published var isChannelDeleted = false
     @Published var isShowingEditChannelView = false
-    
+    //@Published var sheetType: ChatViewSheetType?
     
     var channel: ChannelDTO
     
@@ -67,6 +67,9 @@ final class ChatModel: ObservableObject {
               
         case .editChannel:
             editingChannel()
+            
+       // case .showChangeManagerView:
+            //sheetType = .changeChannelManager
         }
     }
     
@@ -117,8 +120,9 @@ extension ChatModel {
                 print(error.localizedDescription)
             }
         }
-        
     }
     
-    
 }
+
+
+
