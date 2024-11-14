@@ -13,6 +13,7 @@ final class WorkspaceModel: ObservableObject {
     @Published var isShowNewMessageView = false
     @Published var isShowSideView = false
     @Published var isShowDeleteAlertView = false
+    @Published var isExpiredRefreshToken = false
     
     @Published var workspaceList: [WorkspaceState] = []
     @Published var selectedWorkspaceID: String? = WorkspaceIDManager.shared.workspaceID
@@ -53,6 +54,9 @@ final class WorkspaceModel: ObservableObject {
             
         case .fetchWorkspaceList:
             fetchWorkspace()
+            
+        case .expiredRefreshToken:
+            isExpiredRefreshToken = true
             
         case .showSideView:
             isShowSideView = true
@@ -112,7 +116,7 @@ extension WorkspaceModel {
         networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getWorkSpaceList,
                                                    type: [WorkspaceDTO].self)
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -123,6 +127,7 @@ extension WorkspaceModel {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)
@@ -173,7 +178,7 @@ extension WorkspaceModel {
         networkManager.getDecodedDataWithPublisher(from: router,
                                                    type: [ChannelDTO].self)
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -184,6 +189,7 @@ extension WorkspaceModel {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)
@@ -196,7 +202,7 @@ extension WorkspaceModel {
     
     private func deleteWorkspace() {
         networkManager.getDataWithPublisher(from: WorkSpaceRouter.deleteWorkSpace(spaceId: selectedWorkspaceID ?? ""))
-            .sink { completion in
+            .sink { [weak self] completion in
                 switch completion {
                 case .finished:
                     break
@@ -207,6 +213,7 @@ extension WorkspaceModel {
                     if let error = error as? APIError {
                         if error == .refreshTokenExpired {
                             print("리프레시 토큰 만료")
+                            self?.apply(.expiredRefreshToken)
                         }
                     }
                     print(error.localizedDescription)
@@ -221,7 +228,7 @@ extension WorkspaceModel {
     private func exitWorkspace() {
         guard let id = selectedWorkspaceID else { return }
         networkManager.getDataWithPublisher(from: WorkSpaceRouter.exitWorkSpace(spaceId: id))
-            .sink { completion in
+            .sink { [weak self] completion in
                 switch completion {
                 case .finished:
                     break
@@ -232,6 +239,7 @@ extension WorkspaceModel {
                     if let error = error as? APIError {
                         if error == .refreshTokenExpired {
                             print("리프레시 토큰 만료")
+                            self?.apply(.expiredRefreshToken)
                         }
                     }
                     print(error.localizedDescription)

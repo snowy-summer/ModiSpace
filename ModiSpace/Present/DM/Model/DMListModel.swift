@@ -15,6 +15,8 @@ final class DMListModel: ObservableObject {
     @Published var dmsList = [DMSDTO]()
     @Published var unReadCount = [DMSUnreadCountDTO]()
     
+    @Published var isExpiredRefreshToken = false
+    
     private var cancelable = Set<AnyCancellable>()
     private let networkManager = NetworkManager()
     
@@ -23,6 +25,9 @@ final class DMListModel: ObservableObject {
         case .viewAppear:
             fetchGetMember()
             fetchListAndUnread()
+            
+        case .expiredRefreshToken:
+            isExpiredRefreshToken = true
         }
     }
     
@@ -38,7 +43,7 @@ extension DMListModel {
         networkManager.getDecodedDataWithPublisher(from: WorkSpaceRouter.getMemberList(spaceId: id),
                                                    type: [WorkspaceMemberDTO].self)
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -49,6 +54,7 @@ extension DMListModel {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)
@@ -85,7 +91,7 @@ extension DMListModel {
         
         Publishers.Zip(dmListPublisher, unreadCountsPublisher)
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink { [weak self] completion in
                 switch completion {
                 case .finished:
                     break
@@ -95,6 +101,7 @@ extension DMListModel {
                     }
                     if let error = error as? APIError {
                         if error == .refreshTokenExpired {
+                            self?.apply(.expiredRefreshToken)
                             print("리프레시 토큰 만료")
                         }
                     }

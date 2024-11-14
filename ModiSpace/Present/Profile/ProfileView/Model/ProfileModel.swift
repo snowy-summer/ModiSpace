@@ -16,10 +16,12 @@ final class ProfileModel: ObservableObject {
     @Published var phoneNumber: String = ""
     @Published var providerName: String = ""
     @Published var myProfileImage = [UIImage]()
+    
     @Published var isShowingImagePicker = false
     @Published var isShowLogoutAlertView = false
     @Published var isUpdateSuccess = false
     @Published var goOnboarding = false
+    @Published var isExpiredRefreshToken = false
     
     private var cancelable = Set<AnyCancellable>()
     private let networkManager = NetworkManager()
@@ -56,6 +58,9 @@ final class ProfileModel: ObservableObject {
         case .dontShowLogoutAlert:
             isShowLogoutAlertView = false
             
+        case .expiredRefreshToken:
+            isExpiredRefreshToken = true
+            
         case .logout:
             logout()
             
@@ -70,7 +75,7 @@ extension ProfileModel {
         networkManager.getDecodedDataWithPublisher(from: UserRouter.getMyProfile,
                                                    type: UserProfileDTO.self)
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -81,6 +86,7 @@ extension ProfileModel {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)
@@ -116,7 +122,7 @@ extension ProfileModel {
         networkManager.getDecodedDataWithPublisher(from: UserRouter.updateMyProfile(body: editMyProfileBody),
                                                    type: UserProfileDTO.self)
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -127,6 +133,7 @@ extension ProfileModel {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)
@@ -148,7 +155,7 @@ extension ProfileModel {
         networkManager.getDecodedDataWithPublisher(from: UserRouter.updateMyProfileImage(body: updateProfileImageBody),
                                                    type: UserProfileDTO.self)
         .receive(on: DispatchQueue.main)
-        .sink { completion in
+        .sink { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -159,6 +166,7 @@ extension ProfileModel {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)
@@ -181,7 +189,7 @@ extension ProfileModel {
     
     private func logout() {
         networkManager.getDataWithPublisher(from: UserRouter.logout)
-            .sink { completion in
+            .sink { [weak self] completion in
                 switch completion {
                 case .finished:
                     break
@@ -191,6 +199,7 @@ extension ProfileModel {
                     }
                     if let error = error as? APIError {
                         if error == .refreshTokenExpired {
+                            self?.apply(.expiredRefreshToken)
                             print("리프레시 토큰 만료")
                         }
                     }

@@ -67,6 +67,9 @@ struct WorkspaceView: View {
             .navigationDestination(isPresented: $model.isShowNewMessageView) {
                 NewMessageView()
             }
+            .onChange(of: model.isExpiredRefreshToken) {
+                setRootView(what: OnboardingView())
+            }
         }
     }
     

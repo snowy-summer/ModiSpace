@@ -47,6 +47,9 @@ struct ChattingView: View {
         .onAppear {
             model.fetchChatsData()
         }
+        .onChange(of: model.isExpiredRefreshToken) {
+            setRootView(what: OnboardingView())
+        }
     }
     
 }

@@ -13,6 +13,9 @@ final class RegisterChannelModel: ObservableObject {
     @Published var workspaceID = WorkspaceIDManager.shared.workspaceID ?? ""
     @Published var channelName: String = ""
     @Published var channelDescription: String = ""
+    
+    @Published var isExpiredRefreshToken: Bool = false
+    
     var isRegistAble: Bool {
         !channelName.isEmpty
     }
@@ -22,6 +25,9 @@ final class RegisterChannelModel: ObservableObject {
     
     func apply(_ intent: RegisterChannelIntent) {
         switch intent {
+        case .expiredRefreshToken:
+            isExpiredRefreshToken = true
+            
         case .registChannel:
             regist()
         }
@@ -36,7 +42,7 @@ final class RegisterChannelModel: ObservableObject {
         networkManager.getDecodedDataWithPublisher(from: ChannelRouter.postChannel(workspaceID: workspaceID,
                                                                                    body: channelBody),
                                                    type: ChannelDTO.self)
-        .sink(receiveCompletion: { completion in
+        .sink(receiveCompletion: { [weak self] completion in
             switch completion {
             case .finished:
                 break
@@ -47,6 +53,7 @@ final class RegisterChannelModel: ObservableObject {
                 if let error = error as? APIError {
                     if error == .refreshTokenExpired {
                         print("리프레시 토큰 만료")
+                        self?.apply(.expiredRefreshToken)
                     }
                 }
                 print(error.localizedDescription)

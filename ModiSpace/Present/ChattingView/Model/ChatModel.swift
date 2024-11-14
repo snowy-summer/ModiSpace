@@ -13,10 +13,12 @@ final class ChatModel: ObservableObject {
     @Published var messages: [ChannelChatListDTO] = []
     @Published var messageText: String = ""
     @Published var selectedImages: [UIImage] = []
+    
     @Published var isShowingImagePicker = false
     @Published var isShowDeleteAlertView = false
     @Published var isChannelDeleted = false
     @Published var isShowingEditChannelView = false
+    @Published var isExpiredRefreshToken = false
     
     
     var channel: ChannelDTO
@@ -67,6 +69,9 @@ final class ChatModel: ObservableObject {
               
         case .editChannel:
             editingChannel()
+            
+        case .expiredRefreshToken:
+            isExpiredRefreshToken = true
         }
     }
     

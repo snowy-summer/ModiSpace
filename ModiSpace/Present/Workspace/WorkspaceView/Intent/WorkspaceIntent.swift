@@ -10,6 +10,7 @@ import Foundation
 enum WorkspaceIntent {
     
     case fetchWorkspaceList
+    case expiredRefreshToken
     case showSideView
     case dontShowSideView
     case showMemberAddView

@@ -9,6 +9,7 @@ import Foundation
 
 enum RegisterChannelIntent {
     
+    case expiredRefreshToken
     case registChannel
 
 }

@@ -79,18 +79,9 @@ struct AuthOptionsView: View {
         }
         .onReceive(model.$isLoggedIn) { isLoggedIn in
             if isLoggedIn {
-                setRootViewToWorkspace()
+                setRootView(what: CustomTabView())
             }
         }
-    }
-    
-    private func setRootViewToWorkspace() {
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        let window = windowScene?.windows.first
-        let rootViewController = UIHostingController(rootView: CustomTabView())
-        window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
     }
     
 }
