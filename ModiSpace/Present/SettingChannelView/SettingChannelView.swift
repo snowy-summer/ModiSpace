@@ -25,7 +25,7 @@ struct SettingChannelView: View {
                 SettingChannelButton(title: "채널에서 나가기") { }
                 
                 SettingChannelButton(title: "채널 관리자 변경") {
-                    //model.apply(.showChangeManagerView)
+                    model.apply(.showChangeManagerView)
                 }
                 
                 SettingChannelButton(title: "채널 삭제") {
@@ -46,9 +46,10 @@ struct SettingChannelView: View {
                     }
                 }
             )
-            .sheet(isPresented: $model.isShowingEditChannelView) {
-                EditChannelView(model: model)
-                    .presentationDragIndicator(.visible)
+            .sheet(item: $model.sheetType) { vale in
+                SettingChannelSheetView(type: vale,
+                                        model: model)
+                .presentationDragIndicator(.visible)
             }
             .onChange(of: model.isChannelDeleted) { isDeleted in
                 if isDeleted {
@@ -67,6 +68,23 @@ extension SettingChannelView {
            let keyWindow = windowScene.windows.first {
             keyWindow.rootViewController = UIHostingController(rootView: WorkspaceView())
             keyWindow.makeKeyAndVisible()
+        }
+    }
+    
+}
+
+struct SettingChannelSheetView: View {
+    
+    let type: SettingChannelSheetType
+    let model: ChatModel
+    
+    var body: some View {
+        switch type {
+        case .editChannel:
+            EditChannelView(model: model)
+            
+        case .changeManager:
+            ChangeChannelManagerView(model: ChangeChannelManagerModel(channelID: model.channel.channelID))
         }
     }
     

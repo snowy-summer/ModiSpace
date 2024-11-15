@@ -46,6 +46,16 @@ struct EditChannelView: View {
         .onTapGesture {
             endTextEditing()
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.gray)
+                }
+            }
+        }
     }
     
 }

@@ -17,8 +17,7 @@ final class ChatModel: ObservableObject {
     @Published var isShowingImagePicker = false
     @Published var isShowDeleteAlertView = false
     @Published var isChannelDeleted = false
-    @Published var isShowingEditChannelView = false
-    //@Published var sheetType: ChatViewSheetType?
+    @Published var sheetType: SettingChannelSheetType?
     @Published var channelMembers: [OtherUserDTO] = []
     @Published var isMemberListShow = false
     @Published var isExpiredRefreshToken = false
@@ -63,7 +62,7 @@ final class ChatModel: ObservableObject {
             deleteChannel()
             
         case .showEditChannelView:
-            isShowingEditChannelView = true
+            sheetType = .editChannel
             
         case .editChannel:
             editingChannel()
@@ -71,8 +70,9 @@ final class ChatModel: ObservableObject {
         case .getChannelMembers:
             getChannelMembers()
             
-            // case .showChangeManagerView:
-            //sheetType = .changeChannelManager
+             case .showChangeManagerView:
+            sheetType = .changeManager
+            
         case .expiredRefreshToken:
             isExpiredRefreshToken = true
         }
@@ -163,3 +163,18 @@ extension ChatModel {
 
 
 
+enum SettingChannelSheetType: Identifiable {
+    
+    case editChannel
+    case changeManager
+    
+    var id: String {
+        switch self {
+        case .editChannel:
+            return "editChannel"
+            
+        case .changeManager:
+            return "changeManager"
+        }
+    }
+}
