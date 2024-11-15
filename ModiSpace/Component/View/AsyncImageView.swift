@@ -37,7 +37,6 @@ struct AsyncImageView: View {
     private func loadImage() {
         Task {
             let router = ImageRouter.getImage(path: path)
-            print("통신 진행 값", router.url?.absoluteString)
             if let fetchedImage = await ImageCacheManager.shared.fetchImage(from: router) {
                 DispatchQueue.main.async {
                    uiImage = fetchedImage
