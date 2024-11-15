@@ -14,8 +14,7 @@ struct ProfileNickCell: View {
     
     var body: some View {
         VStack {
-            Image(profile)
-                .resizable()
+            AsyncImageView(path: profile)
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 44, height: 44)
                 .background(Color(.gray))

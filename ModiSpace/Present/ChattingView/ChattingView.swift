@@ -32,6 +32,7 @@ struct ChattingView: View {
             .padding(.horizontal)
             .padding(.bottom)
         }
+        
         .navigationTitle(model.channel.name)
         .toolbar {
                   ToolbarItem(placement: .navigationBarTrailing) {
@@ -41,6 +42,7 @@ struct ChattingView: View {
                       }
                   }
               }
+        .toolbar(.hidden, for: .tabBar)
         .onTapGesture {
             endTextEditing()
         }
