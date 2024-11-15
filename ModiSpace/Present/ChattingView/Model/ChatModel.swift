@@ -70,7 +70,7 @@ final class ChatModel: ObservableObject {
         case .getChannelMembers:
             getChannelMembers()
             
-             case .showChangeManagerView:
+        case .showChangeManagerView:
             sheetType = .changeManager
             
         case .expiredRefreshToken:
