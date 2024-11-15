@@ -12,7 +12,7 @@ struct DMListView: View {
     @StateObject var model = DMListModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 HeaderView(
                     coverImage: UIImage(resource: .temp),

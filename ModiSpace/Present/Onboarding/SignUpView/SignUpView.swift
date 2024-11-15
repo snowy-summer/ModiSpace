@@ -13,7 +13,7 @@ struct SignUpView: View {
     @StateObject private var model = SignUpModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 4) {
                 HStack(spacing: 4){
                     InputField(text: $model.email,
