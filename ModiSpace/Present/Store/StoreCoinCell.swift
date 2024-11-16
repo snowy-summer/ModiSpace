@@ -9,18 +9,20 @@ import SwiftUI
 
 struct StoreCoinCell: View {
     
-    let titleText = "🎲 10 Coin"
-    let realMoneyText = "₩ 100"
+    let titleText: String
+    let realMoneyText: String
+    var action: () -> Void
     
     var body: some View {
         HStack {
-            
             Text(titleText)
                 .customFont(.bodyBold)
+            
             Spacer()
-            Button {
-                
-            } label: {
+            
+            Button (action: {
+                action()
+            }) {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(.main)
                     .overlay {
@@ -29,14 +31,10 @@ struct StoreCoinCell: View {
                             .foregroundStyle(.white)
                     }
             }
-            .frame(width: 72)
+            .frame(width: 72, height: 40)
             
         }
         .frame(maxWidth: .infinity)
     }
     
-}
-
-#Preview {
-    ContentView()
 }
