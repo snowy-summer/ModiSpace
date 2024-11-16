@@ -22,7 +22,7 @@ struct CustomTabView: View {
                     .tag(TabComponent.home)
                     
                     NavigationStack {
-                        OnboardingView()
+                        DMListView()
                     }
                     .tag(TabComponent.dm)
                     

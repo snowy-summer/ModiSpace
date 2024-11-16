@@ -26,7 +26,7 @@ struct ProfileView: View {
                 .padding(.top)
                 
                 VStack(spacing: 4) {
-                    SelectableRow(destination: ContentView(),
+                    SelectableRow(destination: CoinShopView(),
                                   showChevron: true) {
                         Text("내 새싹 코인")
                             .foregroundStyle(.black)
