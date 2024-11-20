@@ -12,7 +12,7 @@ struct DMListView: View {
     @StateObject var model = DMListModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 HeaderView(
                     coverImage: UIImage(resource: .temp),
@@ -46,15 +46,17 @@ struct DMListView: View {
                     ForEach(model.dmsList, id: \.roomID) { dm in
                         let unreadCount = model.unReadCount.first(where: { $0.roomID == dm.roomID })?.count ?? 0
                         
-                        DMListCell(
-                            profileImage: dm.user.profileImage ?? "tempImage",
-                            userNickname: dm.user.nickname,
-                            message: "메시지 호출 하나 더 해야함..",
-                            time: dm.createdAt,
-                            badgeCount: unreadCount
-                        )
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+                        NavigationLink(destination: DMChatView(dm: dm)) {
+                            DMListCell(
+                                profileImage: dm.user.profileImage ?? "tempImage",
+                                userNickname: dm.user.nickname,
+                                message: "메시지 호출 하나 더 해야함..",
+                                time: dm.createdAt,
+                                badgeCount: unreadCount
+                            )
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+                        }
                     }
                 }
                 .listStyle(PlainListStyle())

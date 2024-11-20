@@ -30,7 +30,7 @@ struct CustomTabView: View {
                     .tag(TabComponent.home)
                     
                     NavigationStack {
-                        OnboardingView()
+                        DMListView()
                     }
                     .tabItem {
                         TabButton(selectedTab: $selectedTab,
