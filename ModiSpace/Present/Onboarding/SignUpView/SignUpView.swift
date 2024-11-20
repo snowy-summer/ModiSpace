@@ -13,6 +13,7 @@ struct SignUpView: View {
     @StateObject private var model = SignUpModel()
     
     var body: some View {
+        
         NavigationStack {
             VStack(spacing: 4) {
                 HStack(spacing: 4){
@@ -25,8 +26,6 @@ struct SignUpView: View {
                         model.apply(.validateEmail(email))
                         model.apply(.checkSignUpEnabled)
                     }
-                    .padding(.top)
-                    .padding(.leading)
                     
                     CommonButton(icon: nil,
                                  backgroundColor: .main,
@@ -41,6 +40,7 @@ struct SignUpView: View {
                                  .padding(.top, 40)
                                  .padding(.trailing)
                 }
+                
                 
                 InputField(text: $model.nickname,
                            title: "닉네임",
@@ -127,9 +127,4 @@ struct SignUpView: View {
             }
         }
     }
-    
 }
-
-//#Preview {
-//    SignUpView(showWorkspaceView: .constant(true))
-//}

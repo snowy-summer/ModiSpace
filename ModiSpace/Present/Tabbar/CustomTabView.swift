@@ -12,6 +12,10 @@ struct CustomTabView: View {
     @State private var selectedTab: TabComponent = .home
     @StateObject var workspaceModel = WorkspaceModel()
     
+    init() {
+      UITabBar.appearance().scrollEdgeAppearance = .init()
+    }
+    
     var body: some View {
         ZStack {
             TabView(selection: $selectedTab) {
@@ -19,31 +23,41 @@ struct CustomTabView: View {
                     NavigationStack {
                         WorkspaceView(model: workspaceModel)
                     }
+                    .tabItem {
+                        TabButton(selectedTab: $selectedTab,
+                                  tabType: .home)
+                    }
                     .tag(TabComponent.home)
                     
                     NavigationStack {
                         DMListView()
+                    }
+                    .tabItem {
+                        TabButton(selectedTab: $selectedTab,
+                                  tabType: .dm)
                     }
                     .tag(TabComponent.dm)
                     
                     NavigationStack {
                         WorkspaceView()
                     }
+                    .tabItem {
+                        TabButton(selectedTab: $selectedTab,
+                                  tabType: .search)
+                    }
                     .tag(TabComponent.search)
                     
                     NavigationStack {
                         WorkspaceView()
                     }
+                    .tabItem {
+                        TabButton(selectedTab: $selectedTab,
+                                  tabType: .setting)
+                    }
                     .tag(TabComponent.setting)
                 }
             }
             .toolbar(.hidden, for: .tabBar)
-            
-            VStack {
-                Spacer()
-                tabBar
-                    .background(Color.white)
-            }
         }
         .edgesIgnoringSafeArea(.bottom)
         .overlay {
@@ -85,29 +99,6 @@ struct CustomTabView: View {
             }
         }
         
-    }
-    
-    private var tabBar: some View {
-        VStack {
-            Divider()
-            
-            HStack {
-                TabButton(selectedTab: $selectedTab,
-                          tabType: .home)
-                Spacer()
-                TabButton(selectedTab: $selectedTab,
-                          tabType: .dm)
-                Spacer()
-                TabButton(selectedTab: $selectedTab,
-                          tabType: .search)
-                
-                Spacer()
-                TabButton(selectedTab: $selectedTab,
-                          tabType: .setting)
-            }
-            .padding(.horizontal, 32)
-            .padding(.bottom, 32)
-        }
     }
     
 }
