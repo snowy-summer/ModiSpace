@@ -7,22 +7,33 @@
 
 import Foundation
 
-enum SocketRouter {
+protocol SockeRoutertProtocol: RouterProtocol {
     
-    case chatSocket(channelID: String)
+    var baseURL: URL? { get }
+    var event: String { get }
     
 }
 
-extension SocketRouter: RouterProtocol {
+enum SocketRouter {
+    
+    case chat(channelID: String)
+    case dm(roomID: String)
+    
+}
 
+extension SocketRouter: SockeRoutertProtocol {
+    
     var scheme: String { return "http" }
     
     var host: String? { return BundleManager.loadBundleValue(.host) }
     
     var path: String {
         switch self {
-        case .chatSocket(let id):
+        case .chat(let id):
             return "/ws-channel-\(id)"
+            
+        case .dm(let id):
+            return "/ws-dm-\(id)"
         }
     }
     
@@ -32,6 +43,25 @@ extension SocketRouter: RouterProtocol {
     
     var query: [URLQueryItem] { return [] }
     
+    var baseURL: URL? {
+        var components = URLComponents()
+        components.scheme = scheme
+        components.host = host
+        components.port = port
+        
+        return components.url
+    }
+    
+    var event: String {
+        switch self {
+        case .chat:
+            return "channel"
+            
+        case .dm:
+            return "dm"
+        }
+    }
+    
     var url: URL? {
         var components = URLComponents()
         components.scheme = scheme
@@ -39,7 +69,7 @@ extension SocketRouter: RouterProtocol {
         components.port = port
         components.path = path
         components.queryItems = query
-    
+        
         return components.url
     }
     

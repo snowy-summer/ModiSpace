@@ -100,6 +100,19 @@
 		6BF1F2F02CD63E1100919F3B /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF1F2EF2CD63E1100919F3B /* CacheManager.swift */; };
 		6BF1F2F22CD6576F00919F3B /* ImageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF1F2F12CD6576F00919F3B /* ImageRouter.swift */; };
 		6BF1F2F52CD65D2600919F3B /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF1F2F42CD65D2600919F3B /* AsyncImageView.swift */; };
+		724DEBEA2CE7488D00171F44 /* CoinShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBE92CE7488D00171F44 /* CoinShopView.swift */; };
+		724DEBED2CE7620000171F44 /* PGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBEC2CE7620000171F44 /* PGView.swift */; };
+		724DEBF22CE8CBA700171F44 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 724DEBF12CE8CBA700171F44 /* SocketIO */; };
+		724DEBF42CE8CC8A00171F44 /* DMChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBF32CE8CC8A00171F44 /* DMChatView.swift */; };
+		724DEC072CEC7A2700171F44 /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBF72CEC7A2700171F44 /* SocketEvent.swift */; };
+		724DEC082CEC7A2700171F44 /* SocketNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBF82CEC7A2700171F44 /* SocketNameSpace.swift */; };
+		724DEC092CEC7A2700171F44 /* ChannelEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBFA2CEC7A2700171F44 /* ChannelEventHandler.swift */; };
+		724DEC0B2CEC7A2700171F44 /* DMEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBFC2CEC7A2700171F44 /* DMEventHandler.swift */; };
+		724DEC0E2CEC7A2700171F44 /* SocketEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBFF2CEC7A2700171F44 /* SocketEventRouter.swift */; };
+		724DEC102CEC7A2700171F44 /* SocketEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEC022CEC7A2700171F44 /* SocketEventHandler.swift */; };
+		724DEC112CEC7A2700171F44 /* SocketEventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEC032CEC7A2700171F44 /* SocketEventProtocol.swift */; };
+		724DEC122CEC7A2700171F44 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEC052CEC7A2700171F44 /* SocketIOManager.swift */; };
+		724DEC152CEE085300171F44 /* SocketDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEC142CEE085300171F44 /* SocketDTO.swift */; };
 		727D87452CD205D100C52751 /* ChannelRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87442CD205D100C52751 /* ChannelRouter.swift */; };
 		727D87482CD3447A00C52751 /* PostChannelRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87472CD3447A00C52751 /* PostChannelRequestBody.swift */; };
 		727D874A2CD349D000C52751 /* SendChannelRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87492CD349D000C52751 /* SendChannelRequestBody.swift */; };
@@ -283,6 +296,18 @@
 		6BF1F2EF2CD63E1100919F3B /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		6BF1F2F12CD6576F00919F3B /* ImageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRouter.swift; sourceTree = "<group>"; };
 		6BF1F2F42CD65D2600919F3B /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		724DEBE92CE7488D00171F44 /* CoinShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopView.swift; sourceTree = "<group>"; };
+		724DEBEC2CE7620000171F44 /* PGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGView.swift; sourceTree = "<group>"; };
+		724DEBF32CE8CC8A00171F44 /* DMChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatView.swift; sourceTree = "<group>"; };
+		724DEBF72CEC7A2700171F44 /* SocketEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
+		724DEBF82CEC7A2700171F44 /* SocketNameSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketNameSpace.swift; sourceTree = "<group>"; };
+		724DEBFA2CEC7A2700171F44 /* ChannelEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelEventHandler.swift; sourceTree = "<group>"; };
+		724DEBFC2CEC7A2700171F44 /* DMEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMEventHandler.swift; sourceTree = "<group>"; };
+		724DEBFF2CEC7A2700171F44 /* SocketEventRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEventRouter.swift; sourceTree = "<group>"; };
+		724DEC022CEC7A2700171F44 /* SocketEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEventHandler.swift; sourceTree = "<group>"; };
+		724DEC032CEC7A2700171F44 /* SocketEventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEventProtocol.swift; sourceTree = "<group>"; };
+		724DEC052CEC7A2700171F44 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		724DEC142CEE085300171F44 /* SocketDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDTO.swift; sourceTree = "<group>"; };
 		727D87432CD1013900C52751 /* Secretes.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secretes.xcconfig; sourceTree = "<group>"; };
 		727D87442CD205D100C52751 /* ChannelRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRouter.swift; sourceTree = "<group>"; };
 		727D87472CD3447A00C52751 /* PostChannelRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChannelRequestBody.swift; sourceTree = "<group>"; };
@@ -375,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				727D87882CDA2D7E00C52751 /* KakaoSDKCommon in Frameworks */,
+				724DEBF22CE8CBA700171F44 /* SocketIO in Frameworks */,
 				727D87862CDA2D7E00C52751 /* KakaoSDKAuth in Frameworks */,
 				727D878A2CDA2D7E00C52751 /* KakaoSDKUser in Frameworks */,
 			);
@@ -423,6 +449,7 @@
 		6B2C72E32CCB9BDB0043E478 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				724DEC062CEC7A2700171F44 /* Socket */,
 				6B2C73132CCCB8F00043E478 /* Manager */,
 				6B2C73192CCCB9670043E478 /* Session */,
 				6B2C72F02CCB9E4F0043E478 /* RequestBuilder */,
@@ -496,6 +523,7 @@
 				727D874D2CD35D6000C52751 /* Channel */,
 				727D875F2CD4FE0600C52751 /* DMS */,
 				AA5491262CD1F424009A0B2F /* SesacStore */,
+				724DEC132CEE083900171F44 /* Socket */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -988,6 +1016,69 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		724DEBE82CE7485C00171F44 /* CoinView */ = {
+			isa = PBXGroup;
+			children = (
+				724DEBE92CE7488D00171F44 /* CoinShopView.swift */,
+			);
+			path = CoinView;
+			sourceTree = "<group>";
+		};
+		724DEBEB2CE761CD00171F44 /* PortOneView */ = {
+			isa = PBXGroup;
+			children = (
+				724DEBEC2CE7620000171F44 /* PGView.swift */,
+			);
+			path = PortOneView;
+			sourceTree = "<group>";
+		};
+		724DEBF92CEC7A2700171F44 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				724DEBF72CEC7A2700171F44 /* SocketEvent.swift */,
+				724DEBF82CEC7A2700171F44 /* SocketNameSpace.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		724DEC002CEC7A2700171F44 /* Implement */ = {
+			isa = PBXGroup;
+			children = (
+				724DEBFA2CEC7A2700171F44 /* ChannelEventHandler.swift */,
+				724DEBFC2CEC7A2700171F44 /* DMEventHandler.swift */,
+				724DEBFF2CEC7A2700171F44 /* SocketEventRouter.swift */,
+			);
+			path = Implement;
+			sourceTree = "<group>";
+		};
+		724DEC042CEC7A2700171F44 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				724DEC022CEC7A2700171F44 /* SocketEventHandler.swift */,
+				724DEC032CEC7A2700171F44 /* SocketEventProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		724DEC062CEC7A2700171F44 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				724DEC052CEC7A2700171F44 /* SocketIOManager.swift */,
+				724DEBF92CEC7A2700171F44 /* Enum */,
+				724DEC002CEC7A2700171F44 /* Implement */,
+				724DEC042CEC7A2700171F44 /* Protocol */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
+		724DEC132CEE083900171F44 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				724DEC142CEE085300171F44 /* SocketDTO.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
 		727D87462CD342F800C52751 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,6 +1196,7 @@
 				727D879D2CE0C79E00C52751 /* DMListView.swift */,
 				727D879F2CE1CCFA00C52751 /* Intent */,
 				727D87A02CE1CD0100C52751 /* Model */,
+				724DEBF32CE8CC8A00171F44 /* DMChatView.swift */,
 			);
 			path = DM;
 			sourceTree = "<group>";
@@ -1130,6 +1222,8 @@
 			children = (
 				727D87B32CE389FA00C52751 /* ProfileView */,
 				727D87B42CE38A0E00C52751 /* ProfileEditView */,
+				724DEBE82CE7485C00171F44 /* CoinView */,
+				724DEBEB2CE761CD00171F44 /* PortOneView */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1452,6 +1546,7 @@
 				727D87852CDA2D7E00C52751 /* KakaoSDKAuth */,
 				727D87872CDA2D7E00C52751 /* KakaoSDKCommon */,
 				727D87892CDA2D7E00C52751 /* KakaoSDKUser */,
+				724DEBF12CE8CBA700171F44 /* SocketIO */,
 			);
 			productName = ModiSpace;
 			productReference = 6BD397592CCA819500F7097D /* ModiSpace.app */;
@@ -1483,6 +1578,7 @@
 			mainGroup = 6BD397502CCA819500F7097D;
 			packageReferences = (
 				727D87842CDA2D7E00C52751 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				724DEBF02CE8CBA700171F44 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 6BD3975A2CCA819500F7097D /* Products */;
 			projectDirPath = "";
@@ -1521,10 +1617,12 @@
 				6B8DB44F2CDB61DB001B0893 /* ChangeManagerView.swift in Sources */,
 				6B0565022CCF7FAB003086AC /* CheckEmailRequestBody.swift in Sources */,
 				6B694E3B2CCCFB4500ED484D /* CreateWorkspaceModel.swift in Sources */,
+				724DEC092CEC7A2700171F44 /* ChannelEventHandler.swift in Sources */,
 				727D87BC2CE3AD0F00C52751 /* UserProfileDTO.swift in Sources */,
 				727D876A2CD5022400C52751 /* SendDMSChatRequestBody.swift in Sources */,
 				AA54FD082CCCB9FE00D09293 /* DirectMessageCell.swift in Sources */,
 				AA54FD0A2CCCBA1000D09293 /* ChannelActionSheet.swift in Sources */,
+				724DEC0E2CEC7A2700171F44 /* SocketEventRouter.swift in Sources */,
 				AA54911C2CD0EEDA009A0B2F /* DirectMessageSection.swift in Sources */,
 				6B0564FD2CCF7B36003086AC /* DeviceTokenRequestBody.swift in Sources */,
 				727D87452CD205D100C52751 /* ChannelRouter.swift in Sources */,
@@ -1544,13 +1642,17 @@
 				6B2C72F22CCB9E5E0043E478 /* RequestBuilder.swift in Sources */,
 				6B2C72F62CCCA7560043E478 /* ErrorDTO.swift in Sources */,
 				6BD27EE22CD7B1AC00CDF93A /* CategoryListModel.swift in Sources */,
+				724DEC102CEC7A2700171F44 /* SocketEventHandler.swift in Sources */,
 				6B0564F32CCF6E0A003086AC /* BundleError.swift in Sources */,
 				6B0564FF2CCF7B74003086AC /* JoinRequestBody.swift in Sources */,
 				6B91FE9D2CE19F7500D9F5CE /* SocketRouter.swift in Sources */,
 				6B8DB4672CE07A1D001B0893 /* DBManager.swift in Sources */,
 				6B694E292CCCF69100ED484D /* CreateWorkspaceView.swift in Sources */,
+				724DEBF42CE8CC8A00171F44 /* DMChatView.swift in Sources */,
 				6B8DB4532CDB9233001B0893 /* MemberInfoCell.swift in Sources */,
+				724DEC152CEE085300171F44 /* SocketDTO.swift in Sources */,
 				6BCF99702CD4A625001A73FE /* WorkspaceModel.swift in Sources */,
+				724DEBEA2CE7488D00171F44 /* CoinShopView.swift in Sources */,
 				AA54912F2CD342BD009A0B2F /* ChatTextField.swift in Sources */,
 				6B2C73122CCCB8420043E478 /* QueryOfWorkspaceSearch.swift in Sources */,
 				727D874A2CD349D000C52751 /* SendChannelRequestBody.swift in Sources */,
@@ -1566,6 +1668,7 @@
 				727D875A2CD3745800C52751 /* QueryOfGetChannelChatList.swift in Sources */,
 				AA54FD142CCCBA9D00D09293 /* ChatMessageRowCell.swift in Sources */,
 				727D87922CDB594300C52751 /* AuthOptionsModel.swift in Sources */,
+				724DEC082CEC7A2700171F44 /* SocketNameSpace.swift in Sources */,
 				727D87902CDB593700C52751 /* AuthOptionsIntent.swift in Sources */,
 				727D87A62CE1F52700C52751 /* HeaderView.swift in Sources */,
 				AA54FCF52CCCB91300D09293 /* SettingChannelHeaderView.swift in Sources */,
@@ -1574,6 +1677,8 @@
 				AA54FD0C2CCCBA2200D09293 /* SFSubButton.swift in Sources */,
 				6BADE9A42CCE3F2A00099B78 /* UserDTO.swift in Sources */,
 				6BCF99722CD4C634001A73FE /* WorkspaceIntent.swift in Sources */,
+				724DEBED2CE7620000171F44 /* PGView.swift in Sources */,
+				724DEC0B2CEC7A2700171F44 /* DMEventHandler.swift in Sources */,
 				727D87822CD90C8000C52751 /* AppDelegate.swift in Sources */,
 				6BC87C772CD367AD00ED3CD4 /* MultipartFormData.swift in Sources */,
 				6B8DB45B2CDDECEA001B0893 /* FindChannelView.swift in Sources */,
@@ -1612,6 +1717,7 @@
 				AA54FCE62CCCB84700D09293 /* InputField.swift in Sources */,
 				6B05650A2CCF7FF6003086AC /* EditMyProfileRequestBody.swift in Sources */,
 				727D876F2CD5054600C52751 /* QueryOfUnReadDMS.swift in Sources */,
+				724DEC122CEC7A2700171F44 /* SocketIOManager.swift in Sources */,
 				72F25EB92CCE675200A1F182 /* OnboardingImageView.swift in Sources */,
 				727D874C2CD3507500C52751 /* OwnershipTransferRequestBody.swift in Sources */,
 				AA54FD112CCCBA7400D09293 /* ChattingView.swift in Sources */,
@@ -1650,6 +1756,7 @@
 				6BC87C6D2CD3091800ED3CD4 /* InviteMemberRequestBody.swift in Sources */,
 				6BF1F2F22CD6576F00919F3B /* ImageRouter.swift in Sources */,
 				6BD865C32CD4CF9700361227 /* SideMenuInetnt.swift in Sources */,
+				724DEC072CEC7A2700171F44 /* SocketEvent.swift in Sources */,
 				6B0565062CCF7FDA003086AC /* KakaoLoginRequestBody.swift in Sources */,
 				6B2C72ED2CCB9DF90043E478 /* RouterProtocol.swift in Sources */,
 				6B2C73152CCCB8FE0043E478 /* NetworkManager.swift in Sources */,
@@ -1657,6 +1764,7 @@
 				6BC87C732CD3649000ED3CD4 /* MutipartEncodable.swift in Sources */,
 				6B8DB4362CD85FBB001B0893 /* WorkspaceIDManager.swift in Sources */,
 				6B2C72EF2CCB9E1D0043E478 /* WorkSpaceRouter.swift in Sources */,
+				724DEC112CEC7A2700171F44 /* SocketEventProtocol.swift in Sources */,
 				AA5491252CD1EEAB009A0B2F /* SesacStoreRouter.swift in Sources */,
 				727D87BA2CE3A09700C52751 /* ProfileModel.swift in Sources */,
 				6B694E492CCE170300ED484D /* SideMenuContentView.swift in Sources */,
@@ -1914,6 +2022,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		724DEBF02CE8CBA700171F44 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 16.1.1;
+			};
+		};
 		727D87842CDA2D7E00C52751 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -1925,6 +2041,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		724DEBF12CE8CBA700171F44 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 724DEBF02CE8CBA700171F44 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
 		727D87852CDA2D7E00C52751 /* KakaoSDKAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 727D87842CDA2D7E00C52751 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;

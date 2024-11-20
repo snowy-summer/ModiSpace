@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct DMChatView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    
+    let dm: DMSDTO
+    private var socketManager: SocketIOManager
+    
+    init(dm: DMSDTO) {
+        self.dm = dm
+        socketManager = SocketIOManager(router: SocketRouter.dm(roomID: dm.roomID))
     }
-}
-
-#Preview {
-    DMChatView()
+    
+    var body: some View {
+        VStack {
+            Text("채팅방: \(dm.user.nickname)")
+                .font(.title)
+                .padding()
+            
+            Text("Room ID: \(dm.roomID)")
+                .padding()
+            
+            Button("메시지 보내기") {
+                
+            }
+        }
+        .onAppear {
+            socketManager.connect()
+        }
+        .onDisappear {
+            socketManager.disconnect()
+        }
+    }
 }
