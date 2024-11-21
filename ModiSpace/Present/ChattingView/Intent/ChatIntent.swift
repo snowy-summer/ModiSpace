@@ -20,4 +20,7 @@ enum ChatIntent {
     case showChangeManagerView
     case getChannelMembers
     case expiredRefreshToken
+    
+    case socketConnect
+    case socketDisconnect
 }

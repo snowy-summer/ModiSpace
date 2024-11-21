@@ -48,6 +48,10 @@ struct ChattingView: View {
         }
         .onAppear {
             model.fetchChatsData()
+            model.apply(.socketConnect)
+        }
+        .onDisappear {
+            model.apply(.socketDisconnect)
         }
         .onChange(of: model.isExpiredRefreshToken) {
             setRootView(what: OnboardingView())
