@@ -31,10 +31,14 @@ final class ChatModel: ObservableObject {
     
     private let dateManager = DateManager()
     let networkManager = NetworkManager()
+    private let socketManager: SocketIOManager
+    private let jsonDecoder = JSONDecoder()
     var cancelable = Set<AnyCancellable>()
     
     init(channel: ChannelDTO) {
         self.channel = channel
+        socketManager = SocketIOManager(router: SocketRouter.chat(channelID: channel.channelID))
+        socketBinding()
     }
     
     func apply(_ intent: ChatIntent) {
@@ -75,6 +79,12 @@ final class ChatModel: ObservableObject {
             
         case .expiredRefreshToken:
             isExpiredRefreshToken = true
+            
+        case .socketConnect:
+            socketManager.connect()
+            
+        case .socketDisconnect:
+            socketManager.disconnect()
         }
     }
     
@@ -101,7 +111,7 @@ extension ChatModel {
             files: [""],
             user: OtherUserDTO(userID: "", email: "Modispace@naver.com", nickname: "임시닉네임", profileImage: "")
         )
-        messages.append(newMessage)
+//        messages.append(newMessage)
         
         // 텍스트와 이미지 초기화
         messageText = ""
@@ -109,7 +119,6 @@ extension ChatModel {
     }
     
 }
-
 
 extension ChatModel {
     
@@ -161,6 +170,29 @@ extension ChatModel {
     
 }
 
+extension ChatModel {
+    
+    private func socketBinding() {
+        socketManager.dataPublisher
+            .receive(on: DispatchQueue.main)
+            .decode(type: ChannelChatListDTO.self,
+                    decoder: jsonDecoder)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                    
+                case .failure(let error):
+                    print("디코딩 에러\(error.localizedDescription)")
+                }
+            } receiveValue: { [weak self] value in
+                self?.messages.append(value)
+            }
+            .store(in: &cancelable)
+
+    }
+    
+}
 
 
 enum SettingChannelSheetType: Identifiable {

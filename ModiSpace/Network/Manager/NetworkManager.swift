@@ -12,9 +12,7 @@ final class NetworkManager: NSObject {
     
     private let session: URLSessionProtocol
     private let decoder = JSONDecoder()
-    private var webSocket: URLSessionWebSocketTask?
     private var cancelable = Set<AnyCancellable>()
-    private var timer: Timer?
     
     init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
@@ -189,102 +187,6 @@ extension NetworkManager: NetworkManagerProtocol {
         .eraseToAnyPublisher()
     }
     
-}
-
-//MARK: - Socket 통신
-//TODO: - 소켓 통신 아직 안됨
-extension NetworkManager {
-    
-    func openWebSocket(from router: RouterProtocol) {
-        do {
-            let socketSession = URLSession(configuration: .default,
-                                           delegate: self,
-                                           delegateQueue: nil)
-            webSocket = try socketSession.webSocket(from: router)
-            webSocket?.resume()
-            startPing()
-//            send()
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func closeWebSocket() {
-        webSocket?.cancel(with: .goingAway,
-                          reason: nil)
-        webSocket = nil
-    }
-    
-    func send() {
-        let string = """
-    {"event":"channel"}
-    """
-        
-        webSocket?.send(.string(string),
-                        completionHandler: { error in
-            if let error {
-                print("send error, \(error)")
-            }
-        })
-    }
-    
-    func receive() {
-        webSocket?.receive { [weak self] result in
-            switch result {
-            case .success(let message):
-                switch message {
-                case .string(let text):
-                    print("서버 -> 클라: \(text)")
-                case .data(let data):
-                    print("서버 -> 클라: \(data)")
-                @unknown default:
-                    print("Received unknown message")
-                }
-                self?.receive()
-            case .failure(let error):
-                print("Receive error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    private func startPing() {
-        self.timer?.invalidate()
-        self.timer = Timer.scheduledTimer(
-            withTimeInterval: 10,
-            repeats: true,
-            block: { [weak self] _ in self?.ping() }
-        )
-    }
-    
-    private func ping() {
-        self.webSocket?.sendPing(pongReceiveHandler: { [weak self] error in
-            if let error {
-                print("ping pong Error, \(error)")
-            } else {
-                print("Ping")
-            }
-            self?.startPing()
-        })
-    }
-}
-
-extension NetworkManager: URLSessionWebSocketDelegate {
-    
-    func urlSession(_ session: URLSession,
-                    webSocketTask: URLSessionWebSocketTask,
-                    didOpenWithProtocol protocol: String?) {
-        
-        print("Websoket OPEN")
-        receive()
-    }
-    
-    func urlSession(_ session: URLSession,
-                    webSocketTask: URLSessionWebSocketTask,
-                    didCloseWith closeCode: URLSessionWebSocketTask.CloseCode,
-                    reason: Data?) {
-        
-        print("webSocket Close")
-    }
 }
 
 //MARK: - 유효성, Error핸들링
