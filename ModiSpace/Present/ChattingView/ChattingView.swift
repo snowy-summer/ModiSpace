@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChattingView: View {
     
+    @Environment(\.modelContext) private var modelContext
     @StateObject private var model: ChatModel
     
     init(channel: ChannelDTO) {
@@ -47,7 +48,7 @@ struct ChattingView: View {
             endTextEditing()
         }
         .onAppear {
-            model.fetchChatsData()
+            model.apply(.fetchMessages(modelContext))
             model.apply(.socketConnect)
         }
         .onDisappear {

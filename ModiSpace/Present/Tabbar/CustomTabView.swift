@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CustomTabView: View {
     
     @State private var selectedTab: TabComponent = .home
     @StateObject var workspaceModel = WorkspaceModel()
+    private let modelContainer = DBManager.makeModelContainer()
     
     init() {
       UITabBar.appearance().scrollEdgeAppearance = .init()
@@ -23,6 +25,7 @@ struct CustomTabView: View {
                     NavigationStack {
                         WorkspaceView(model: workspaceModel)
                     }
+                    .modelContainer(modelContainer)
                     .tabItem {
                         TabButton(selectedTab: $selectedTab,
                                   tabType: .home)
@@ -32,6 +35,7 @@ struct CustomTabView: View {
                     NavigationStack {
                         DMListView()
                     }
+                    .modelContainer(modelContainer)
                     .tabItem {
                         TabButton(selectedTab: $selectedTab,
                                   tabType: .dm)
@@ -59,6 +63,7 @@ struct CustomTabView: View {
             }
             .toolbar(.hidden, for: .tabBar)
         }
+        .modelContainer(DBManager.makeModelContainer())
         .edgesIgnoringSafeArea(.bottom)
         .overlay {
             if workspaceModel.isShowSideView {
