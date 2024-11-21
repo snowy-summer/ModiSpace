@@ -43,7 +43,7 @@ final class ChatModel: ObservableObject {
     
     func apply(_ intent: ChatIntent) {
         switch intent {
-        case .sendMessage(let text, let images):
+        case .sendMessage:
             sendMessage()
             
         case .removeImage(let index):
@@ -100,19 +100,9 @@ extension ChatModel {
         guard !messageText.isEmpty || !selectedImages.isEmpty else { return }
         
         // 서버로 메시지 전송
-        sendMessageserver(text: messageText, images: selectedImages)
-        
-        let newMessage = ChannelChatListDTO(
-            channelID: channel.channelID,
-            channelName: channel.name,
-            chatID: "",
-            content: messageText,
-            createdAt: dateManager.string(from: Date()),
-            files: [""],
-            user: OtherUserDTO(userID: "", email: "Modispace@naver.com", nickname: "임시닉네임", profileImage: "")
-        )
-//        messages.append(newMessage)
-        
+        sendMessageserver(text: messageText,
+                          images: selectedImages)
+
         // 텍스트와 이미지 초기화
         messageText = ""
         selectedImages = []
@@ -124,14 +114,15 @@ extension ChatModel {
     
     func getChannelMembers() {
         
-        networkManager.getDecodedDataWithPublisher(from: ChannelRouter.getChannelMember(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "", channelID: channel.channelID),
+        networkManager.getDecodedDataWithPublisher(from: ChannelRouter.getChannelMember(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "",
+                                                                                        channelID: channel.channelID),
                                                    type: [OtherUserDTO].self)
         .receive(on: DispatchQueue.main)
         .sink { completion in
             switch completion {
             case .finished:
-                // break
                 print("네트워크 요청 성공: 채널 멤버 데이터를 성공적으로 가져왔습니다.")
+                // break
             case .failure(let error):
                 if let error = error as? NetworkError {
                     print(error.description)
