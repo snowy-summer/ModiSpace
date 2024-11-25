@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 enum ChatIntent {
     case sendMessage(text: String, images: [UIImage])
     case removeImage(Int)
     case showImagePicker(Bool)
-    case fetchMessages
+    case fetchMessages(ModelContext)
     case showDeleteAlert
     case dontShowDeleteAlert
     case deleteChannel

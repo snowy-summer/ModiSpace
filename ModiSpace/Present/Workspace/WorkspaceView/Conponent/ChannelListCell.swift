@@ -10,7 +10,7 @@ import SwiftUI
 struct ChannelListCell: View {
     
     var channelTitle: String
-    var badge: String? = "n개"
+    var unreadChannelCount: Int?
     
     var body: some View {
         HStack {
@@ -21,8 +21,8 @@ struct ChannelListCell: View {
             
             Spacer()
             
-            if let badge = badge {
-                Text(badge)
+            if let badge = unreadChannelCount {
+                Text("\(badge)")
                     .font(.system(size: 12))
                     .foregroundStyle(.white)
                     .padding(5)

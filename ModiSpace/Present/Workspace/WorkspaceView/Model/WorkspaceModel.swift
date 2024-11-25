@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import SwiftData
 
 final class WorkspaceModel: ObservableObject {
     
@@ -44,6 +45,7 @@ final class WorkspaceModel: ObservableObject {
     
     private let networkManager = NetworkManager()
     private let dateManager = DateManager()
+    private let dbManager = DBManager()
     private var cancelable = Set<AnyCancellable>()
     
     init() {
@@ -53,6 +55,8 @@ final class WorkspaceModel: ObservableObject {
     func apply(_ intent: WorkspaceIntent) {
         
         switch intent {
+        case .insertModelContext(let context):
+            dbManager.modelContext = context
             
         case .fetchWorkspaceList:
             fetchWorkspace()
@@ -94,7 +98,7 @@ final class WorkspaceModel: ObservableObject {
             
         case .reloadWorkspaceList:
             fetchWorkspace()
-        
+            
         case .exitWorkspace:
             exitWorkspace()
             
@@ -201,9 +205,56 @@ extension WorkspaceModel {
                 print(error.localizedDescription)
             }
         } receiveValue: { [weak self] value in
-            self?.selectedWorkspaceChannelList = value
-        }.store(in: &cancelable)
+            Task { [weak self] in
+                guard let self = self else { return }
+                var list = value
+                
+                await withTaskGroup(of: (Int, Int).self) { group in
+                    for (index, channel) in list.enumerated() {
+                        group.addTask {
+                            let count = await self.fetchUnreadChatCount(channel: channel)
+                            return (index, count)
+                        }
+                    }
+                    
+                    for await (index, count) in group {
+                        if count != 0 {
+                            list[index].unreadChannelCount = count
+                        }
+                    }
+                }
+                
+                selectedWorkspaceChannelList = list
+            }
+        }
+        .store(in: &cancelable)
         
+    }
+    
+    private func fetchUnreadChatCount(channel: ChannelDTO) async -> Int {
+        guard let id = selectedWorkspaceID else { return 0 }
+        var chattingList = dbManager.fetchItems(ofType: ChannelChatList.self).filter { channel.channelID == $0.channelID }
+        chattingList.sort { $0.createdAt < $1.createdAt }
+        
+        let router: ChannelRouter
+        if let lastChat = chattingList.last {
+            router = ChannelRouter.unReadCountChat(workspaceID: id,
+                                                   channelID: channel.channelID,
+                                                   after: lastChat.createdAt)
+        } else {
+            router = ChannelRouter.unReadCountChat(workspaceID: id,
+                                                   channelID: channel.channelID,
+                                                   after: "2024-10-18T09:30:00.722Z")
+        }
+        
+        do {
+            let count = try await networkManager.getDecodedData(from: router,
+                                                                type: UnReadChannelCountDTO.self).count
+            return count
+        } catch {
+            print(error)
+            return 0
+        }
     }
     
     private func deleteWorkspace() {

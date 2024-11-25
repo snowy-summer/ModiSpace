@@ -44,6 +44,7 @@ extension DBManager {
         do {
             try modelContext.save()
         } catch {
+            print(error.localizedDescription)
             print("DB 저장 실패")
         }
     }

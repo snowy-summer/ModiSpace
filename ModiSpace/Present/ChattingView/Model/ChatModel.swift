@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import SwiftData
 
 final class ChatModel: ObservableObject {
     
@@ -32,6 +33,7 @@ final class ChatModel: ObservableObject {
     private let dateManager = DateManager()
     let networkManager = NetworkManager()
     private let socketManager: SocketIOManager
+    private let dbManager = DBManager()
     private let jsonDecoder = JSONDecoder()
     var cancelable = Set<AnyCancellable>()
     
@@ -52,8 +54,9 @@ final class ChatModel: ObservableObject {
         case .showImagePicker(let isShowing):
             isShowingImagePicker = isShowing
             
-        case .fetchMessages:
-            fetchChatsData()
+        case .fetchMessages(let context):
+            insertContext(context: context)
+            fetchChattingLog()
             
         case .showDeleteAlert:
             isShowDeleteAlertView = true
@@ -90,6 +93,70 @@ final class ChatModel: ObservableObject {
     
     func removeImage(at index: Int) {
         selectedImages.remove(at: index)
+    }
+    
+}
+
+// MARK: - DB 관련 ChatModel DB
+extension ChatModel {
+    
+    private func insertContext(context: ModelContext) {
+        dbManager.modelContext = context
+    }
+    
+    private func fetchDBChattingLog() -> [ChannelChatList] {
+        let chatList = dbManager.fetchItems(ofType: ChannelChatList.self)
+        
+        var channelChatList = chatList.filter {
+            $0.channelID == channel.channelID
+        }
+        channelChatList.sort {
+            $0.createdAt < $1.createdAt
+        }
+        
+        return channelChatList
+    }
+    
+    private func fetchChattingLog() {
+        
+        let dbChat = fetchDBChattingLog()
+        
+        for chat in dbChat {
+            messages.append(ChannelChatListDTO(ChattingLogs: chat))
+        }
+
+        if dbChat.isEmpty {
+            print("DB 비었음")
+            fetchChatsData(cursorDate: "2024-10-18T09:30:00.722Z")
+        } else {
+            print("DB에서 가지고 옴")
+            fetchChatsData(cursorDate: dbChat.last!.createdAt)
+        }
+    }
+    
+     func saveChattingLog() {
+        for chat in messages {
+            
+            let user: User
+            let existingUser = dbManager.fetchItems(ofType: User.self).filter { $0.userID == chat.user.userID }
+            if !existingUser.isEmpty {
+                user = existingUser.first!
+               } else {
+                   user = User(userID: chat.user.userID,
+                               email: chat.user.email,
+                               nickname: chat.user.nickname,
+                               profileImage: chat.user.profileImage)
+               }
+            
+            dbManager.addItem(user)
+            dbManager.addItem(ChannelChatList(channelID: chat.channelID,
+                                              channelName: chat.channelName,
+                                              chatID: chat.chatID,
+                                              content: chat.content,
+                                              createdAt: chat.createdAt,
+                                              files: chat.files,
+                                              user: user))
+        }
     }
     
 }
@@ -178,6 +245,7 @@ extension ChatModel {
                 }
             } receiveValue: { [weak self] value in
                 self?.messages.append(value)
+                self?.saveChattingLog()
             }
             .store(in: &cancelable)
 

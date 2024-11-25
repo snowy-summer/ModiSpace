@@ -47,11 +47,11 @@ extension ChatModel {
 
 extension ChatModel {
     // 채팅 데이터 가져오기
-    func fetchChatsData() {
+    func fetchChatsData(cursorDate: String) {
         networkManager.getDecodedDataWithPublisher(
             from: ChannelRouter.getChannelListChat(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "",
                                                    channelID: channel.channelID,
-                                                   cursorDate: "2024-10-18T09:30:00.722Z"),
+                                                   cursorDate: cursorDate),
             type: [ChannelChatListDTO].self
         )
         .receive(on: DispatchQueue.main)
@@ -68,7 +68,8 @@ extension ChatModel {
                 print("채팅 데이터 로드 실패: \(error.localizedDescription)")
             }
         } receiveValue: { [weak self] decodedData in
-            self?.messages = decodedData
+            self?.messages.append(contentsOf: decodedData)
+            self?.saveChattingLog()
         }
         .store(in: &cancelable)
     }
