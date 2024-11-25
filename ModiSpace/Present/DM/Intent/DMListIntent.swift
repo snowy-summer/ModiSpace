@@ -11,5 +11,6 @@ enum DMListIntent {
     
     case viewAppear
     case expiredRefreshToken
+    case creatRoom(opponentID: String)
     
 }
