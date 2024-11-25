@@ -12,8 +12,6 @@ struct CategoryListView: View {
     @EnvironmentObject var workspaceModel: WorkspaceModel
     @StateObject private var model: CategoryListModel = CategoryListModel()
     
-    let directMessages = ["캠퍼스지킴이", "Hue", "테스트 코드 짜는 새싹이", "Jack"]
-    
     var body: some View {
         NavigationStack {
             VStack {

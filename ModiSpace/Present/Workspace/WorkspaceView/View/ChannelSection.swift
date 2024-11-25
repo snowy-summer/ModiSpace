@@ -40,7 +40,8 @@ struct ChannelSection: View {
                             //🌟
                             destination: ChattingView(channel: channel),
                             label: {
-                                ChannelListCell(channelTitle: channel.name)
+                                ChannelListCell(channelTitle: channel.name,
+                                                unreadChannelCount: channel.unreadChannelCount)
                                     .foregroundStyle(Color.gray)
                             }
                         )

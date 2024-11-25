@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WorkspaceView: View {
     
+    @Environment(\.modelContext) private var modelContext
     @ObservedObject var model: WorkspaceModel
     
     init(model: WorkspaceModel = WorkspaceModel()) {
@@ -62,6 +63,7 @@ struct WorkspaceView: View {
                     .presentationDragIndicator(.visible)
             }
             .onAppear() {
+                model.apply(.insertModelContext(modelContext))
                 model.apply(.fetchWorkspaceList)
             }
             .navigationDestination(isPresented: $model.isShowNewMessageView) {

@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftData
 
 enum WorkspaceIntent {
     
+    case insertModelContext(ModelContext)
     case fetchWorkspaceList
     case expiredRefreshToken
     case showSideView
