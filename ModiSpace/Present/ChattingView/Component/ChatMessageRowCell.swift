@@ -26,6 +26,10 @@ struct ChatMessageRowCell: View {
             
             VStack(alignment: message.isCurrentUser ? .trailing : .leading) {
                 if let content = message.content {
+                    Text(message.user.nickname)
+                        .font(.caption)
+                        .bold()
+                    
                     Text(content)
                         .padding(10)
                         .background(message.isCurrentUser ? .blue : .clear)
