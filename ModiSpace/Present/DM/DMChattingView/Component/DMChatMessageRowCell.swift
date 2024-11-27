@@ -1,16 +1,17 @@
 //
-//  ChatMessageRowCell.swift
+//  DMChatMessageRowCell.swift
 //  ModiSpace
 //
-//  Created by 이윤지 on 10/26/24.
+//  Created by 전준영 on 11/26/24.
 //
 
 import SwiftUI
 
-struct ChatMessageRowCell: View {
+struct DMChatMessageRowCell: View {
     
     var message: ChannelChatListDTO
     var showDate: Bool
+    let dateManager = DateManager()
     
     var body: some View {
         HStack {
@@ -37,12 +38,12 @@ struct ChatMessageRowCell: View {
                         )
                     HStack {
                         if showDate {
-                            Text(formattedDate(from: message.createdAt))
+                            Text(dateManager.formattedDate(from: message.createdAt))
                                 .font(.caption)
                                 .foregroundStyle(.gray)
                         }
                         
-                        Text(formattedTime(from: message.createdAt))
+                        Text(dateManager.formattedTime(from: message.createdAt))
                             .font(.caption)
                             .foregroundStyle(.gray)
                     }

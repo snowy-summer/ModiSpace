@@ -53,7 +53,7 @@ struct DMListView: View {
                     ForEach(model.dmsList, id: \.roomID) { dm in
                         let unreadCount = model.unReadCount.first(where: { $0.roomID == dm.roomID })?.count ?? 0
                         
-                        NavigationLink(destination: DMChatView(dm: dm)) {
+                        NavigationLink(destination: DMChattingView(dm: dm)) {
                             DMListCell(
                                 profileImage: dm.user.profileImage ?? "tempImage",
                                 userNickname: dm.user.nickname,
@@ -71,7 +71,7 @@ struct DMListView: View {
         }
         
         NavigationLink(
-            destination: DMChatView(dm: model.createMember),
+            destination: DMChattingView(dm: model.createMember),
             isActive: $model.isShowChattingView
         ) {
             EmptyView()

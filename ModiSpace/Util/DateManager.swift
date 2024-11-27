@@ -30,4 +30,32 @@ final class DateManager {
         guard let date = date(from: isoString) else { return nil }
         return string(from: date, format: format)
     }
+    
+    func formattedTime(from dateString: String) -> String {
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "a hh:mm"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        } else {
+            return dateString
+        }
+    }
+    
+    func formattedDate(from dateString: String) -> String {
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "MM월 dd일"
+        outputFormatter.locale = Locale(identifier: "ko_KR")
+        
+        if let date = dateFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        } else {
+            return dateString
+        }
+    }
+    
 }

@@ -106,9 +106,10 @@
 		724DEBEA2CE7488D00171F44 /* CoinShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBE92CE7488D00171F44 /* CoinShopView.swift */; };
 		724DEBED2CE7620000171F44 /* PGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBEC2CE7620000171F44 /* PGView.swift */; };
 		724DEBF22CE8CBA700171F44 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 724DEBF12CE8CBA700171F44 /* SocketIO */; };
-		724DEBF42CE8CC8A00171F44 /* DMChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBF32CE8CC8A00171F44 /* DMChatView.swift */; };
+		724DEBF42CE8CC8A00171F44 /* DMChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEBF32CE8CC8A00171F44 /* DMChattingView.swift */; };
 		724DEC122CEC7A2700171F44 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEC052CEC7A2700171F44 /* SocketManager.swift */; };
 		724DEC152CEE085300171F44 /* SocketDMDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEC142CEE085300171F44 /* SocketDMDTO.swift */; };
+		724DEC1D2CF5BA9800171F44 /* DMChatMessageRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724DEC1C2CF5BA9800171F44 /* DMChatMessageRowCell.swift */; };
 		727D87452CD205D100C52751 /* ChannelRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87442CD205D100C52751 /* ChannelRouter.swift */; };
 		727D87482CD3447A00C52751 /* PostChannelRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87472CD3447A00C52751 /* PostChannelRequestBody.swift */; };
 		727D874A2CD349D000C52751 /* SendChannelRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D87492CD349D000C52751 /* SendChannelRequestBody.swift */; };
@@ -297,9 +298,10 @@
 		6BF1F2F42CD65D2600919F3B /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		724DEBE92CE7488D00171F44 /* CoinShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopView.swift; sourceTree = "<group>"; };
 		724DEBEC2CE7620000171F44 /* PGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGView.swift; sourceTree = "<group>"; };
-		724DEBF32CE8CC8A00171F44 /* DMChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatView.swift; sourceTree = "<group>"; };
+		724DEBF32CE8CC8A00171F44 /* DMChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChattingView.swift; sourceTree = "<group>"; };
 		724DEC052CEC7A2700171F44 /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		724DEC142CEE085300171F44 /* SocketDMDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDMDTO.swift; sourceTree = "<group>"; };
+		724DEC1C2CF5BA9800171F44 /* DMChatMessageRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatMessageRowCell.swift; sourceTree = "<group>"; };
 		727D87432CD1013900C52751 /* Secretes.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secretes.xcconfig; sourceTree = "<group>"; };
 		727D87442CD205D100C52751 /* ChannelRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRouter.swift; sourceTree = "<group>"; };
 		727D87472CD3447A00C52751 /* PostChannelRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChannelRequestBody.swift; sourceTree = "<group>"; };
@@ -1050,6 +1052,57 @@
 			path = Socket;
 			sourceTree = "<group>";
 		};
+		724DEC162CF5B7C300171F44 /* DMListView */ = {
+			isa = PBXGroup;
+			children = (
+				727D879D2CE0C79E00C52751 /* DMListView.swift */,
+				727D879F2CE1CCFA00C52751 /* Intent */,
+				727D87A02CE1CD0100C52751 /* Model */,
+			);
+			path = DMListView;
+			sourceTree = "<group>";
+		};
+		724DEC172CF5B7EC00171F44 /* DMChattingView */ = {
+			isa = PBXGroup;
+			children = (
+				724DEBF32CE8CC8A00171F44 /* DMChattingView.swift */,
+				724DEC182CF5B9F000171F44 /* Model */,
+				724DEC192CF5B9F600171F44 /* Intent */,
+				724DEC1A2CF5B9FC00171F44 /* View */,
+				724DEC1B2CF5BA0100171F44 /* Component */,
+			);
+			path = DMChattingView;
+			sourceTree = "<group>";
+		};
+		724DEC182CF5B9F000171F44 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		724DEC192CF5B9F600171F44 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		724DEC1A2CF5B9FC00171F44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		724DEC1B2CF5BA0100171F44 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				724DEC1C2CF5BA9800171F44 /* DMChatMessageRowCell.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		727D87462CD342F800C52751 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1164,10 +1217,8 @@
 		727D879C2CE0C74F00C52751 /* DM */ = {
 			isa = PBXGroup;
 			children = (
-				727D879D2CE0C79E00C52751 /* DMListView.swift */,
-				727D879F2CE1CCFA00C52751 /* Intent */,
-				727D87A02CE1CD0100C52751 /* Model */,
-				724DEBF32CE8CC8A00171F44 /* DMChatView.swift */,
+				724DEC162CF5B7C300171F44 /* DMListView */,
+				724DEC172CF5B7EC00171F44 /* DMChattingView */,
 			);
 			path = DM;
 			sourceTree = "<group>";
@@ -1601,6 +1652,7 @@
 				6B8DB4552CDB9331001B0893 /* ChangeManagerIntent.swift in Sources */,
 				6BC87C6B2CD208F900ED3CD4 /* ChangeWorkspaceManagerRequestBody.swift in Sources */,
 				6B2C72FF2CCCAD3B0043E478 /* EmptyResponseDTO.swift in Sources */,
+				724DEC1D2CF5BA9800171F44 /* DMChatMessageRowCell.swift in Sources */,
 				6B694E442CCE0E2F00ED484D /* CustomCornerShape.swift in Sources */,
 				6BA79EC82CCB723800FB1310 /* StoreCoinCell.swift in Sources */,
 				727D87722CD6130300C52751 /* SignUpView.swift in Sources */,
@@ -1617,7 +1669,7 @@
 				6B91FE9D2CE19F7500D9F5CE /* SocketRouter.swift in Sources */,
 				6B8DB4672CE07A1D001B0893 /* DBManager.swift in Sources */,
 				6B694E292CCCF69100ED484D /* CreateWorkspaceView.swift in Sources */,
-				724DEBF42CE8CC8A00171F44 /* DMChatView.swift in Sources */,
+				724DEBF42CE8CC8A00171F44 /* DMChattingView.swift in Sources */,
 				6B8DB4532CDB9233001B0893 /* MemberInfoCell.swift in Sources */,
 				724DEC152CEE085300171F44 /* SocketDMDTO.swift in Sources */,
 				6BCF99702CD4A625001A73FE /* WorkspaceModel.swift in Sources */,

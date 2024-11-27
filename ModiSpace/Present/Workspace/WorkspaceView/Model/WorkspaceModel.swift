@@ -11,7 +11,6 @@ import SwiftData
 
 final class WorkspaceModel: ObservableObject {
     
-    @Published var isShowNewMessageView = false
     @Published var isShowSideView = false
     @Published var isShowDeleteAlertView = false
     @Published var isShowProfileView = false

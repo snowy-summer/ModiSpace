@@ -1,5 +1,5 @@
 //
-//  DMChatView.swift
+//  DMChattingView.swift
 //  ModiSpace
 //
 //  Created by 전준영 on 11/16/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DMChatView: View {
+struct DMChattingView: View {
     
     let dm: DMSDTO
     private var socketManager: SocketIOManager
