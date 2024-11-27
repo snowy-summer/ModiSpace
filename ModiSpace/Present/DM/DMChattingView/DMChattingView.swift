@@ -9,32 +9,55 @@ import SwiftUI
 
 struct DMChattingView: View {
     
-    let dm: DMSDTO
-    private var socketManager: SocketIOManager
+    @Environment(\.modelContext) private var modelContext
+    @StateObject private var model: DMChatModel
     
-    init(dm: DMSDTO) {
-        self.dm = dm
-        socketManager = SocketIOManager(router: SocketRouter.dm(roomID: dm.roomID))
+    init(dms: DMSDTO) {
+        _model = StateObject(wrappedValue: DMChatModel(dms: dms))
     }
     
     var body: some View {
         VStack {
-            Text("채팅방: \(dm.user.nickname)")
-                .font(.title)
-                .padding()
+            DMChattingScrollListView(messages: $model.messages)
             
-            Text("Room ID: \(dm.roomID)")
-                .padding()
-            
-            Button("메시지 보내기") {
-                
-            }
+            ChatTextField(
+                messageText: $model.messageText,
+                selectedImages: $model.selectedImages,
+                isShowingImagePicker: $model.isShowingImagePicker,
+                onSendMessage: model.sendMessage,
+                onRemoveImage: model.removeImage
+            )
+            .padding(.horizontal, 16)
+            .background(Color(UIColor.systemGray6))
+            .cornerRadius(8)
+            .padding(.horizontal)
+            .padding(.bottom)
+        }
+        
+        .navigationTitle(model.dms.user.nickname)
+        .toolbar(.hidden, for: .tabBar)
+        .onTapGesture {
+            endTextEditing()
         }
         .onAppear {
-            socketManager.connect()
+            model.apply(.fetchMessages(modelContext))
+            model.apply(.socketConnect)
         }
         .onDisappear {
-            socketManager.disconnect()
+            model.apply(.socketDisconnect)
+        }
+        .onChange(of: model.isExpiredRefreshToken) {
+            setRootView(what: OnboardingView())
         }
     }
+    
 }
+
+extension DMChattingView {
+    
+    func removeImage(at index: Int) {
+        model.selectedImages.remove(at: index)
+    }
+    
+}
+

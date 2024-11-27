@@ -20,6 +20,7 @@ final class DBManager {
         let schema = Schema([
             ChannelChatList.self,
             User.self,
+            DMChatList.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema,
                                                     isStoredInMemoryOnly: false)

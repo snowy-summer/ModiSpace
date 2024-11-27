@@ -70,3 +70,36 @@ struct ChatMessageRowCell: View {
     }
     
 }
+
+extension ChatMessageRowCell {
+    
+    private func formattedTime(from dateString: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "a hh:mm"
+        
+        if let date = inputFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        } else {
+            return dateString
+        }
+    }
+    
+    private func formattedDate(from dateString: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "MM월 dd일"
+        outputFormatter.locale = Locale(identifier: "ko_KR")
+        
+        if let date = inputFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        } else {
+            return dateString
+        }
+    }
+    
+}

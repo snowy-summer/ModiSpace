@@ -1,28 +1,27 @@
 //
-//  ChatModel_SendChatting_Network.swift
+//  DMChatModelSendChattingNetwork.swift
 //  ModiSpace
 //
-//  Created by 이윤지 on 11/11/24.
+//  Created by 전준영 on 11/27/24.
 //
 
 import SwiftUI
 import Combine
 
-extension ChatModel {
+extension DMChatModel {
     // 서버로 메시지 전송하는 실제 함수
     func sendMessageserver(text: String, images: [UIImage]) {
-        let channelID = channel.channelID
+        let roomID = dms.roomID
         
         let imageFiles = images.compactMap { $0.jpegData(compressionQuality: 0.8) }
-        let requestBody = SendChannelChatRequestBody(content: text, files: imageFiles)
-        print(text, imageFiles)
+        let requestBody = SendDMSChatRequestBody(content: text,
+                                                 files: imageFiles)
+        print("값 확인: \(text), \(imageFiles)")
         
         networkManager.getDataWithPublisher(
-            from: ChannelRouter.sendChannelChat(
-                workspaceID: WorkspaceIDManager.shared.workspaceID ?? "",
-                channelID: channelID,
-                body: requestBody
-            )
+            from: DMSRouter.sendChatDMS(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "",
+                                        roomID: roomID,
+                                        body: requestBody)
         )
         .receive(on: DispatchQueue.main)
         .sink { [weak self] completion in
@@ -44,14 +43,14 @@ extension ChatModel {
     
 }
 
-extension ChatModel {
+extension DMChatModel {
     // 채팅 데이터 가져오기
     func fetchChatsData(cursorDate: String) {
         networkManager.getDecodedDataWithPublisher(
-            from: ChannelRouter.getChannelListChat(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "",
-                                                   channelID: channel.channelID,
-                                                   cursorDate: cursorDate),
-            type: [ChannelChatListDTO].self
+            from: DMSRouter.getChatListDMS(workspaceID: WorkspaceIDManager.shared.workspaceID ?? "",
+                                           roomID: dms.roomID,
+                                           cursorDate: cursorDate),
+            type: [DMSChatDTO].self
         )
         .receive(on: DispatchQueue.main)
         .sink { [weak self] completion in
@@ -74,4 +73,3 @@ extension ChatModel {
     }
     
 }
-
