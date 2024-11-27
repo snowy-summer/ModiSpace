@@ -17,8 +17,8 @@ struct ChatMessageRowCell: View {
             if message.isCurrentUser {
                 Spacer()
             } else {
-                // Image(na: message.profileImage)
-                Image(systemName: "star")
+                
+                Image("tempImage")
                     .resizable()
                     .background(.gray)
                     .customRoundedRadius()
@@ -26,15 +26,22 @@ struct ChatMessageRowCell: View {
             
             VStack(alignment: message.isCurrentUser ? .trailing : .leading) {
                 if let content = message.content {
+                    Text(message.user.nickname)
+                        .font(.caption)
+                        .bold()
+                    
+                    let isCurrentUser = (KeychainManager.load(forKey: .userID) as? String) == message.user.userID
+                    
                     Text(content)
                         .padding(10)
-                        .background(message.isCurrentUser ? .blue : .clear)
-                        .foregroundStyle(message.isCurrentUser ? .white : .black)
+                        .background(isCurrentUser ? .blue : .clear)
+                        .foregroundStyle(isCurrentUser ? .white : .black)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(.gray, lineWidth: 1)
                         )
+                    
                     HStack {
                         if showDate {
                             Text(formattedDate(from: message.createdAt))
