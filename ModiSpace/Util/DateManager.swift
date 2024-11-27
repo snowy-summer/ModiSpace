@@ -9,7 +9,29 @@ import Foundation
 
 final class DateManager {
     
-   private let dateFormatter = DateFormatter()
+    private let inputDateFormatter: DateFormatter
+    private let shortDateFormatter: DateFormatter
+    private let yearDateFormatter: DateFormatter
+    private let shortTimeFormatter: DateFormatter
+    
+    init() {
+        self.inputDateFormatter = DateFormatter()
+        self.inputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        self.inputDateFormatter.timeZone = TimeZone.current
+        
+        self.shortDateFormatter = DateFormatter()
+        self.shortDateFormatter.dateFormat = "MM월 dd일"
+        self.shortDateFormatter.locale = Locale(identifier: "ko_KR")
+        
+        self.yearDateFormatter = DateFormatter()
+        self.yearDateFormatter.dateFormat = "yyyy.MM.dd"
+        self.yearDateFormatter.locale = Locale(identifier: "ko_KR")
+        
+        self.shortTimeFormatter = DateFormatter()
+        self.shortTimeFormatter.dateFormat = "a hh:mm"
+        self.shortTimeFormatter.locale = Locale(identifier: "ko_KR")
+        self.shortTimeFormatter.timeZone = TimeZone.current
+    }
     
     func date(from isoString: String) -> Date? {
         let isoFormatter = ISO8601DateFormatter()
@@ -20,9 +42,9 @@ final class DateManager {
     
     func string(from date: Date,
                 format: String = "hh:mm a") -> String {
-        dateFormatter.dateFormat = format
-        dateFormatter.timeZone = TimeZone.current
-        return dateFormatter.string(from: date)
+        inputDateFormatter.dateFormat = format
+        inputDateFormatter.timeZone = TimeZone.current
+        return inputDateFormatter.string(from: date)
     }
     
     func convertToFormattedString(isoString: String,
@@ -32,29 +54,45 @@ final class DateManager {
     }
     
     func formattedTime(from dateString: String) -> String {
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        inputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
-        let outputFormatter = DateFormatter()
-        outputFormatter.dateFormat = "a hh:mm"
+        if let date = inputDateFormatter.date(from: dateString) {
+            return shortTimeFormatter.string(from: date)
+        } else {
+            return dateString
+        }
+    }
+
+    func formattedDate(from dateString: String) -> String {
+        inputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
-        if let date = dateFormatter.date(from: dateString) {
-            return outputFormatter.string(from: date)
+        if let date = inputDateFormatter.date(from: dateString) {
+            return shortDateFormatter.string(from: date)
         } else {
             return dateString
         }
     }
     
-    func formattedDate(from dateString: String) -> String {
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    func relativeFormattedTime(from dateString: String) -> String {
+        guard let date = date(from: dateString) else { return dateString }
         
-        let outputFormatter = DateFormatter()
-        outputFormatter.dateFormat = "MM월 dd일"
-        outputFormatter.locale = Locale(identifier: "ko_KR")
+        let now = Date()
+        let interval = now.timeIntervalSince(date)
         
-        if let date = dateFormatter.date(from: dateString) {
-            return outputFormatter.string(from: date)
+        if interval < 60 {
+            return "방금 전"
+        } else if interval < 3600 {
+            let minutes = Int(interval / 60)
+            return "\(minutes)분 전"
+        } else if interval < 86400 {
+            let hours = Int(interval / 3600)
+            return "\(hours)시간 전"
+        } else if interval < 172800 {
+            return "하루 전"
+        } else if interval < 31536000 {
+            return shortDateFormatter.string(from: date)
         } else {
-            return dateString
+            return yearDateFormatter.string(from: date)
         }
     }
     

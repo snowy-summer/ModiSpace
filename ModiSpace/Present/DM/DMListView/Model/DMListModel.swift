@@ -14,12 +14,15 @@ final class DMListModel: ObservableObject {
     @Published var workspaceMemberList = [WorkspaceMemberDTO]()
     @Published var createMember = DMSDTO()
     @Published var dmsList = [DMSDTO]()
+    @Published var dmsLastMessage = [DMSChatDTO]()
     @Published var unReadCount = [DMSUnreadCountDTO]()
     @Published var isShowChattingView = false
     @Published var isExpiredRefreshToken = false
+    @Published var isShowProfileView = false
     
     private var cancelable = Set<AnyCancellable>()
     private let networkManager = NetworkManager()
+    private let dbManager = DBManager()
     
     func apply(_ intent: DMListIntent) {
         switch intent {
@@ -82,18 +85,36 @@ extension DMListModel {
         
         let unreadCountsPublisher = dmListPublisher
             .flatMap { dmsList -> AnyPublisher<[DMSUnreadCountDTO], Error> in
-                let publishers = dmsList.map { dm in
-                    self.networkManager.getDecodedDataWithPublisher(
+                let publishers = dmsList.map { dm -> AnyPublisher<DMSUnreadCountDTO, Error> in
+                    let lastMessageTime = self.fetchDBChattingLog(dms: dm)?.createdAt
+                    return self.networkManager.getDecodedDataWithPublisher(
                         from: DMSRouter.unReadChatDMS(workspaceID: id,
                                                       roomID: dm.roomID,
-                                                      after: nil),
+                                                      after: lastMessageTime),
                         type: DMSUnreadCountDTO.self
                     )
                 }
                 return Publishers.MergeMany(publishers).collect().eraseToAnyPublisher()
             }
+
         
-        Publishers.Zip(dmListPublisher, unreadCountsPublisher)
+        let lastMessagesPublisher = dmListPublisher
+            .flatMap { dmsList -> AnyPublisher<[DMSChatDTO], Error> in
+                let publishers = dmsList.map { dm in
+                    self.networkManager.getDecodedDataWithPublisher(
+                        from: DMSRouter.getChatListDMS(workspaceID: id,
+                                                       roomID: dm.roomID,
+                                                       cursorDate: nil),
+                        type: [DMSChatDTO].self
+                    )
+                    .map { $0.last }
+                    .compactMap { $0 }
+                    .eraseToAnyPublisher()
+                }
+                return Publishers.MergeMany(publishers).collect().eraseToAnyPublisher()
+            }
+        
+        Publishers.Zip3(dmListPublisher, unreadCountsPublisher, lastMessagesPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -111,10 +132,11 @@ extension DMListModel {
                     }
                     print(error.localizedDescription)
                 }
-            } receiveValue: { [weak self] dmsList, unreadCount in
-                print("dmList: \(dmsList), unread: \(unreadCount)")
+            } receiveValue: { [weak self] dmsList, unreadCount, lastMessage in
+                print("dmList: \(dmsList), unread: \(unreadCount), lastMessage: \(lastMessage)")
                 self?.dmsList = dmsList
                 self?.unReadCount = unreadCount
+                self?.dmsLastMessage = lastMessage
             }
             .store(in: &cancelable)
     }
@@ -154,6 +176,28 @@ extension DMListModel {
                 self?.isShowChattingView = true
                 self?.createMember = value
             }.store(in: &cancelable)
+    }
+    
+    private func fetchLastMessageTime(for roomID: String) -> String? {
+        let dbManager = DBManager()
+        let lastChat = dbManager.fetchItems(ofType: DMChatList.self)
+            .filter { $0.roomID == roomID }
+            .sorted { $0.createdAt < $1.createdAt }
+            .last
+        
+        return lastChat?.createdAt
+    }
+    
+    private func fetchDBChattingLog(dms: DMSDTO) -> DMChatList? {
+        let chatList = dbManager.fetchItems(ofType: DMChatList.self)
+        
+        var dmsChatList = chatList.filter {
+            $0.roomID == dms.roomID
+        } .sorted {
+            $0.createdAt < $1.createdAt
+        }
+        
+        return dmsChatList.last
     }
     
 }
