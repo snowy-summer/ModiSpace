@@ -55,3 +55,30 @@ final class ChannelChatList {
         self.isCurrentUser = isCurrentUser
     }
 }
+
+@Model
+final class DMChatList {
+    @Attribute(.unique) var dmID: String
+    var roomID: String
+    var content: String?
+    var createdAt: String
+    var files: [String]
+    var user: User
+    var isCurrentUser: Bool
+
+    init(dmID: String,
+         roomID: String,
+         content: String?,
+         createdAt: String,
+         files: [String],
+         user: User,
+         isCurrentUser: Bool = false) {
+        self.dmID = dmID
+        self.roomID = roomID
+        self.content = content
+        self.createdAt = createdAt
+        self.files = files
+        self.user = user
+        self.isCurrentUser = isCurrentUser
+    }
+}

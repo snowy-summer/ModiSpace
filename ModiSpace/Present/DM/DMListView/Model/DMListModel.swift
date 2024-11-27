@@ -12,9 +12,10 @@ final class DMListModel: ObservableObject {
     
     @Published var workspaceID: String? = WorkspaceIDManager.shared.workspaceID
     @Published var workspaceMemberList = [WorkspaceMemberDTO]()
+    @Published var createMember = DMSDTO()
     @Published var dmsList = [DMSDTO]()
     @Published var unReadCount = [DMSUnreadCountDTO]()
-    
+    @Published var isShowChattingView = false
     @Published var isExpiredRefreshToken = false
     
     private var cancelable = Set<AnyCancellable>()
@@ -28,6 +29,9 @@ final class DMListModel: ObservableObject {
             
         case .expiredRefreshToken:
             isExpiredRefreshToken = true
+            
+        case .creatRoom(let opponentID):
+            creatRoom(opponentID)
         }
     }
     
@@ -113,6 +117,43 @@ extension DMListModel {
                 self?.unReadCount = unreadCount
             }
             .store(in: &cancelable)
+    }
+    
+    private func creatRoom(_ opponentID: String) {
+        guard let id = workspaceID else {
+            print("No workspaceID")
+            return
+        }
+        
+        let dmListPublisher = networkManager.getDecodedDataWithPublisher(
+            from: DMSRouter.createDMS(workspaceID: id,
+                                      body: CreateDMSRequestBody(opponentID: opponentID)),
+            type: DMSDTO.self
+        )
+        
+        dmListPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    if let error = error as? NetworkError {
+                        print(error.description)
+                    }
+                    if let error = error as? APIError {
+                        if error == .refreshTokenExpired {
+                            print("리프레시 토큰 만료")
+                            self?.apply(.expiredRefreshToken)
+                        }
+                    }
+                    print(error.localizedDescription)
+                }
+            } receiveValue: { [weak self] value in
+                print(value)
+                self?.isShowChattingView = true
+                self?.createMember = value
+            }.store(in: &cancelable)
     }
     
 }

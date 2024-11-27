@@ -19,6 +19,13 @@ struct OtherUserDTO: Decodable, Equatable {
         case email, nickname, profileImage
     }
     
+    init(userID: String = "", email: String = "", nickname: String = "", profileImage: String? = nil) {
+        self.userID = userID
+        self.email = email
+        self.nickname = nickname
+        self.profileImage = profileImage
+    }
+    
 }
 
 

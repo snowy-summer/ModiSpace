@@ -30,8 +30,15 @@ struct DMListView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
                             ForEach(model.workspaceMemberList, id: \.userID) { member in
-                                ProfileNickCell(profile: member.profileImage ?? "tempImage",
-                                                nickText: member.nickname)
+                                Button(action: {
+                                    model.apply(.creatRoom(opponentID: member.userID))
+                                }) {
+                                    ProfileNickCell(
+                                        profile: member.profileImage ?? "tempImage",
+                                        nickText: member.nickname
+                                    )
+                                }
+                                .buttonStyle(.plain)
                             }
                         }
                         .padding(.horizontal, 16)
@@ -46,7 +53,7 @@ struct DMListView: View {
                     ForEach(model.dmsList, id: \.roomID) { dm in
                         let unreadCount = model.unReadCount.first(where: { $0.roomID == dm.roomID })?.count ?? 0
                         
-                        NavigationLink(destination: DMChatView(dm: dm)) {
+                        NavigationLink(destination: DMChattingView(dms: dm)) {
                             DMListCell(
                                 profileImage: dm.user.profileImage ?? "tempImage",
                                 userNickname: dm.user.nickname,
@@ -62,6 +69,14 @@ struct DMListView: View {
                 .listStyle(PlainListStyle())
             }
         }
+        
+        NavigationLink(
+            destination: DMChattingView(dms: model.createMember),
+            isActive: $model.isShowChattingView
+        ) {
+            EmptyView()
+        }
+        
         .onAppear() {
             model.apply(.viewAppear)
         }

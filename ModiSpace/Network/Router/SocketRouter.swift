@@ -68,7 +68,7 @@ extension SocketRouter: SocketRoutertProtocol {
         case .chat:
             return ChannelChatListDTO.self
         case .dm:
-            return SocketDMDTO.self
+            return DMSChatDTO.self
         }
     }
     

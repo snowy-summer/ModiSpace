@@ -18,4 +18,10 @@ struct DMSDTO: Decodable {
         case createdAt, user
     }
     
+    init(roomID: String = "", createdAt: String = "", user: OtherUserDTO = OtherUserDTO()) {
+        self.roomID = roomID
+        self.createdAt = createdAt
+        self.user = user
+    }
+    
 }
