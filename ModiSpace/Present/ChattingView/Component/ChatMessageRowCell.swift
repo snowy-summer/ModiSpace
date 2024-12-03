@@ -30,7 +30,7 @@ struct ChatMessageRowCell: View {
                         .font(.caption)
                         .bold()
                     
-                    let isCurrentUser = (KeychainManager.load(forKey: .userID) as? String) == message.user.userID
+                    let isCurrentUser = (KeychainManager.load(forKey: .userID)) == message.user.userID
                     
                     Text(content)
                         .padding(10)
@@ -44,12 +44,14 @@ struct ChatMessageRowCell: View {
                     
                     HStack {
                         if showDate {
-                            Text(formattedDate(from: message.createdAt))
+                            Text(DateManager()
+                                .formattedDate(from: message.createdAt))
                                 .font(.caption)
                                 .foregroundStyle(.gray)
                         }
                         
-                        Text(formattedTime(from: message.createdAt))
+                        Text(DateManager()
+                            .formattedTime(from: message.createdAt))
                             .font(.caption)
                             .foregroundStyle(.gray)
                     }
@@ -67,39 +69,6 @@ struct ChatMessageRowCell: View {
         }
         .padding(message.isCurrentUser ? .leading : .trailing, 60)
         .padding(.vertical, 4)
-    }
-    
-}
-
-extension ChatMessageRowCell {
-    
-    private func formattedTime(from dateString: String) -> String {
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        
-        let outputFormatter = DateFormatter()
-        outputFormatter.dateFormat = "a hh:mm"
-        
-        if let date = inputFormatter.date(from: dateString) {
-            return outputFormatter.string(from: date)
-        } else {
-            return dateString
-        }
-    }
-    
-    private func formattedDate(from dateString: String) -> String {
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        
-        let outputFormatter = DateFormatter()
-        outputFormatter.dateFormat = "MM월 dd일"
-        outputFormatter.locale = Locale(identifier: "ko_KR")
-        
-        if let date = inputFormatter.date(from: dateString) {
-            return outputFormatter.string(from: date)
-        } else {
-            return dateString
-        }
     }
     
 }

@@ -19,7 +19,7 @@ struct DMListView: View {
                     name: "Direct Message",
                     profileImage: UIImage(resource: .temp),
                     action: {
-                        
+                        model.isShowProfileView = true
                     }
                 )
                 
@@ -52,13 +52,16 @@ struct DMListView: View {
                 List {
                     ForEach(model.dmsList, id: \.roomID) { dm in
                         let unreadCount = model.unReadCount.first(where: { $0.roomID == dm.roomID })?.count ?? 0
+                        let lastMessage = model.dmsLastMessage.first(where: { $0.roomID == dm.roomID })?.content ?? "마지막 내용이 없습니다"
+                        let time = model.dmsLastMessage.first(where: { $0.roomID == dm.roomID })?.createdAt
+                        let formattedTime = time != nil ? DateManager().relativeFormattedTime(from: time!) : "시간 없음"
                         
                         NavigationLink(destination: DMChattingView(dms: dm)) {
                             DMListCell(
                                 profileImage: dm.user.profileImage ?? "tempImage",
                                 userNickname: dm.user.nickname,
-                                message: "메시지 호출 하나 더 해야함..",
-                                time: dm.createdAt,
+                                message: lastMessage,
+                                time: formattedTime,
                                 badgeCount: unreadCount
                             )
                             .listRowSeparator(.hidden)
@@ -69,14 +72,16 @@ struct DMListView: View {
                 .listStyle(PlainListStyle())
             }
         }
-        
         NavigationLink(
             destination: DMChattingView(dms: model.createMember),
             isActive: $model.isShowChattingView
         ) {
             EmptyView()
         }
-        
+        NavigationLink(destination: ProfileView(),
+                       isActive: $model.isShowProfileView) {
+            EmptyView()
+        }
         .onAppear() {
             model.apply(.viewAppear)
         }

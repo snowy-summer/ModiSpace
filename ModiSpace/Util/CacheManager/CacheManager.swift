@@ -42,25 +42,25 @@ final class ImageCacheManager {
         }
         
         do {
-            let (data, response) = try await session.data(for: request!)
+            let (data1, response) = try await session.data(for: request!)
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else { throw NetworkError.invalidResponse }
             
             guard (200..<300) ~= statusCode else {
                 print("StatusCode: \(statusCode)")
-                let errorData = try JSONDecoder().decode(ErrorDTO.self, from: data)
+                let errorData = try JSONDecoder().decode(ErrorDTO.self, from: data1)
                 let error = APIError(errorCode: errorData.errorCode)
                 print(error.description)
                 throw NetworkError.invalidResponse
             }
             
-            let cachedResponse = CachedURLResponse(response: response, data: data)
-        
+            let cachedResponse = CachedURLResponse(response: response, data: data1)
+            
             urlCache.storeCachedResponse(cachedResponse, for: request!)
             
-            nsCache.setObject(NSData(data: data), forKey: cacheKey)
+            nsCache.setObject(NSData(data: data1), forKey: cacheKey)
             
-            return UIImage(data: data)
+            return UIImage(data: data1)
         } catch {
             return nil
         }

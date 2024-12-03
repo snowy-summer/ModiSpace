@@ -118,6 +118,7 @@ final class KakaoAuthVM: ObservableObject{
     }
     
     //MARK: -로그아웃
+    @available(*, renamed: "kakaoLogout()")
     func kakaoLogout(completion: @escaping () -> Void){
         Task{
             if await handleKakaoLogout(){
@@ -127,6 +128,15 @@ final class KakaoAuthVM: ObservableObject{
         
         completion()
     }
+    
+    func kakaoLogout() async {
+        return await withCheckedContinuation { continuation in
+            kakaoLogout() {
+                continuation.resume(returning: ())
+            }
+        }
+    }
+    
     
     private func handleKakaoLogout() async -> Bool{
         await withCheckedContinuation{ continuation in
